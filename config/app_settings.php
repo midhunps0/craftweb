@@ -5,6 +5,12 @@ return [
         'en' => 'English',
         'ar' => 'Arabic'
     ],
-    'page_templates_folder' => 'pageTemplates',
-    'form_templates_folder' => 'pageformtemplates'
+    'page_templates_folder' => 'pagetemplates',
+    'form_templates_folder' => 'pageformtemplates',
+    'article_translation_component' => 'article',
+    'review_translation_component' => 'review',
+    'vtestimonial_translation_component' => 'vtestimonial',
+    'doctor_translation_component' => 'doctor',
+    'news_translation_component' => 'news',
+    'hfeature_translation_component' => 'hilight_feature',
 ];

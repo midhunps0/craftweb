@@ -1,6 +1,6 @@
 <x-easyadmin::partials.adminpanel>
     <div>
-        <h3 class="text-xl font-bold px-1 pb-3"><span>Create Page</span>&nbsp;</h3>
+        <h3 class="text-xl font-bold px-1 pb-3"><span>Edit Page</span>&nbsp;</h3>
         <div class="px-1">
             <div x-data="{
                     templateId: '',

@@ -19,7 +19,9 @@
                         <h4 class="text-center underline font-bold">{{ $language }} content</h4>
                         <input type="hidden" name="template" value="{{ $templateId }}">
                         <input type="hidden" name="locale" value="{{ $code }}">
-                        <x-pageformtemplates.sidebar-right.create />
+                        {{-- <x-pageformtemplates.sidebar-right.create /> --}}
+                        <x-dynamic-component :component="$formComponent"
+                            locale="{{$code}}"/>
                     </div>
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-success btn-sm">Submit</button>

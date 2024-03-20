@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.preview-item {
+    @apply hover:bg-warning hover:border hover:border-warning rounded-md cursor-pointer;
+}
+.preview-item img {
+    @apply hover:opacity-50 cursor-pointer;
+}

@@ -19,8 +19,11 @@
                         @method('PUT')
                         <input type="hidden" name="template" value="{{ $templateId }}">
                         <input type="hidden" name="locale" value="{{ $code }}">
-                        <x-pageformtemplates.sidebar-right.edit
+                        {{-- <x-pageformtemplates.sidebar-right.edit
                             :webpage="$webpage"
+                            locale="{{$code}}"/> --}}
+                        <x-dynamic-component :component="$formComponent"
+                            :instance="$instance"
                             locale="{{$code}}"/>
                     </div>
                     <div class="text-center mt-4">

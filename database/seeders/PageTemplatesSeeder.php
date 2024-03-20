@@ -9,6 +9,12 @@ use Illuminate\Database\Seeder;
 class PageTemplatesSeeder extends Seeder
 {
     private $templates = [
+        'article',
+        'review',
+        'vtestimonial',
+        'doctor',
+        'news',
+        'hilight_feature',
         'sidebar-right',
         'sidebar-none'
     ];

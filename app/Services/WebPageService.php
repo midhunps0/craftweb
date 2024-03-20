@@ -7,6 +7,7 @@ use App\Models\Translation;
 use App\Models\WebPage;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -17,6 +18,7 @@ use Modules\Ynotz\EasyAdmin\RenderDataFormats\EditPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Illuminate\Support\Str;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class WebPageService implements ModelViewConnector {
     use IsModelViewConnector;
@@ -49,7 +51,14 @@ class WebPageService implements ModelViewConnector {
     public function getShowPageData($slug): ShowPageData
     {
         $item = WebPage::with(['translations'])
-            ->whereRelation('translations', 'slug', '=', $slug)->get()->first();
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', App::currentLocale())
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        if($item == null) {
+            throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
+        }
         return new ShowPageData(
             Str::ucfirst($this->getModelShortName()),
             $item
@@ -310,8 +319,7 @@ class WebPageService implements ModelViewConnector {
                 ]
             );
             $translation->addMediaFromEAInput('cover_image', $coverImage);
-info('metatsgs');
-info($data);
+
             MetatagsList::create([
                 'translation_id' => $translation->id,
                 'title' => $data['data']['metatags']['title'],
@@ -349,6 +357,7 @@ info($data);
             $translation = $wp->getTranslation($data['locale']);
             if ($translation != null) {
                 $translation->data = $data['data'];
+                $translation->slug = $data['slug'];
                 $translation->last_updated_by = auth()->user()->id;
                 $translation->save();
             } else {
@@ -367,7 +376,20 @@ info($data);
                 );
             }
 
+            MetatagsList::where('translation_id', $translation->id)
+                ->updateOrCreate(
+                    ['translation_id' => $translation->id],
+                    [
+                        'title' => $data['data']['metatags']['title'],
+                        'description' => $data['data']['metatags']['description'],
+                        'og_title' => $data['data']['metatags']['title'],
+                        'og_description' => $data['data']['metatags']['description'],
+                        'og_type' => $data['data']['metatags']['og_type'],
+                ]);
+
             $translation->syncMedia('cover_image', $coverImage);
+
+
             DB::commit();
             return $wp->refresh();
         } catch (\Throwable $e) {

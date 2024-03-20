@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\PageTemplate;
 use App\Models\WebPage;
 use App\Services\WebPageService;
+use Exception;
 use Illuminate\Http\Request;
+use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
 
@@ -26,6 +28,21 @@ class WebPageController extends SmartController
         // $this->editView = 'easyadmin::admin.form';
         // $this->itemsCount = 10;
         // $this->resultsName = 'results';
+    }
+
+    public function show($locale, $slug)
+    {
+        try {
+            $showPageData = $this->connectorService->getShowPageData($slug);
+
+            if (!($showPageData instanceof ShowPageData)) {
+                throw new Exception('getShowPageData() of connectorService must return an instance of ' . ShowPageData::class);
+            }
+            return $this->buildResponse($this->showView, $showPageData->getData());
+        } catch (\Throwable $e) {
+            info($e);
+            return $this->buildResponse($this->errorView, ['error' => $e->__toString()]);
+        }
     }
 
     public function create()

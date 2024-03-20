@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PageTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
@@ -27,17 +29,30 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function () {
+    Route::get('dashboard', [config('easyadmin.dashboard_controller'), config('easyadmin.dashboard_method')])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     RouteHelper::getEasyRoutes('PageTemplate');
     RouteHelper::getEasyRoutes('WebPage');
+    RouteHelper::getEasyRoutes('Article');
+    RouteHelper::getEasyRoutes('Review');
+    RouteHelper::getEasyRoutes('VideoTestimonial');
+    RouteHelper::getEasyRoutes('Doctor');
+    RouteHelper::getEasyRoutes('News');
+    RouteHelper::getEasyRoutes('HilightFeature');
 
     Route::get('/template-get', [PageTemplateController::class, 'getTemplateInputsForm'])->name('template.get');
 });
 
 
+
 require __DIR__.'/auth.php';
 
-Route::get('/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');
+Route::group(['middleware' => ['ynotz.translation']], function () {
+    Route::get('/{locale}/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');
+    Route::get('/{locale}/articles/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
+    Route::get('/{locale}/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
+});
+

@@ -9,6 +9,75 @@ class SidebarService implements SidebarServiceInterface
     {
         return [
             [
+                'type' => 'menu_item',
+                'title' => 'Web Pages',
+                'route' => 'webpages.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Articles',
+                'route' => 'articles.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Reviews',
+                'route' => 'reviews.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Video Testimonials',
+                'route' => 'videotestimonials.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Doctors',
+                'route' => 'doctors.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'News And Achievements',
+                'route' => 'news.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Hilight Features',
+                'route' => 'hilightfeatures.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
+                'type' => 'menu_section',
+                'title' => 'Settings',
+                'icon' => 'easyadmin::icons.users',
+            ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Page Templates',
+                'route' => 'pagetemplates.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showSettings()
+            ],
+            [
 
                 'type' => 'menu_group',
                 'title' => 'Access Control',
@@ -48,27 +117,6 @@ class SidebarService implements SidebarServiceInterface
                         'show' => $this->showPermissions()
                     ],
                 ]
-            ],
-            [
-                'type' => 'menu_section',
-                'title' => 'Settings',
-                'icon' => 'easyadmin::icons.users',
-            ],
-            [
-                'type' => 'menu_item',
-                'title' => 'Page Templates',
-                'route' => 'pagetemplates.index',
-                'route_params' => [],
-                'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
-            ],
-            [
-                'type' => 'menu_item',
-                'title' => 'Web Pages',
-                'route' => 'webpages.index',
-                'route_params' => [],
-                'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
             ],
             // [
             //     'type' => 'menu_item',

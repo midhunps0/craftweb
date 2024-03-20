@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('translatable_id');
             $table->string('translatable_type');
             $table->string('locale');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->json('data');
             $table->foreignId('created_by')->constrained('users', 'id');
             $table->foreignId('last_updated_by')->nullable()->constrained('users', 'id');
