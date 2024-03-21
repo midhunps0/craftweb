@@ -306,8 +306,11 @@ class WebPageService implements ModelViewConnector {
                     'template_id' => $data['template']
                 ]
             );
-            $coverImage = $data['data']['cover_image'];
-            unset($data['data']['cover_image']);
+            $coverImage = $data['data']['cover_image'] ?? null;
+            if ($coverImage) {
+                unset($data['data']['cover_image']);
+            }
+
             $translation = Translation::create(
                 [
                     'translatable_id' => $wp->id,
@@ -318,7 +321,9 @@ class WebPageService implements ModelViewConnector {
                     'created_by' => auth()->user()->id,
                 ]
             );
-            $translation->addMediaFromEAInput('cover_image', $coverImage);
+            if ($coverImage) {
+                $translation->addMediaFromEAInput('cover_image', $coverImage);
+            }
 
             MetatagsList::create([
                 'translation_id' => $translation->id,
@@ -345,8 +350,10 @@ class WebPageService implements ModelViewConnector {
             DB::beginTransaction();
             info('data');
             info($data['data']);
-            $coverImage = $data['data']['cover_image'];
-            unset($data['data']['cover_image']);
+            $coverImage = $data['data']['cover_image'] ?? null;
+            if ($coverImage) {
+                unset($data['data']['cover_image']);
+            }
             /**
              * @var WebPage
              */
@@ -387,7 +394,9 @@ class WebPageService implements ModelViewConnector {
                         'og_type' => $data['data']['metatags']['og_type'],
                 ]);
 
-            $translation->syncMedia('cover_image', $coverImage);
+            if ($coverImage) {
+                $translation->syncMedia('cover_image', $coverImage);
+            }
 
 
             DB::commit();

@@ -1,4 +1,4 @@
-@props(['key'])
+@props(['key', 'contentdata' => null])
 <div>
     <div x-data="{
             htmltext: '',
@@ -10,17 +10,22 @@
             hideEditor() {
                 this.editorVisible = false;
             },
-            addRow(nCols, ratio = null) {
-                let cols = [];
-                if (ratio == null) {
-                    for (i = 0; i < cols; i++) {
-                        cols.push([
-                            {
-                                type: ''
-                            }
-                        ]);
-                    }
-                }
+            addRow(ratio = ['w-full']) {
+                let theRow = {
+                    cols: [],
+                    classes: 'w-full'
+                };
+                ratio.forEach((c) => {
+                    theRow.cols.push(
+                        {
+                            classes: c,
+                            items: []
+                        }
+                    );
+                });
+                this.contentlist.push(theRow);
+                console.log('this.contentlist');
+                console.log(this.contentlist);
             },
             getPreviewHtml(item, r, c, i) {
                 let str = '';
@@ -61,7 +66,7 @@
                 return str;
             },
             getParaPreview(theitem, r, c, i) {
-                let str = '<div>';
+                let str = `<div @click='previewclick(${r},${c},${i})' class=\'preview-item\'>`;
                 theitem.content.forEach((item) => {
                     let atrStart = item.attribs != null ? item.attribs.reduce((r, x) => {
                         return r + `<${x}>`;
@@ -69,20 +74,18 @@
                     let atrEnd = item.attribs != null ? item.attribs.reverse().reduce((r, x) => {
                         return r + `</${x}>`;
                     }, '') : '';
-                    switch(item.type) {
-                        case 'plaintext':
-                            str += `<span>${atrStart}${item.text}${atrEnd}</span> `;
-                            break;
-                        case 'inlink':
-                            str += `<a x-on:click.prevent.stop='' href='${item.link}'>${atrStart}${item.text}${atrEnd}</a> `;
-                            break;
-                        case 'exlink':
-                            str += `<a href='${item.link}' target='_blank'>${atrStart}${item.text}${atrEnd}</a> `;
-                            break;
+                    let contenthtml = `<span>${atrStart}${item.text}${atrEnd}</span> `;
+                    if (typeof item.link != 'undefined' && item.link != null) {
+                        let target = item.link.exteral ? `target='_blank'` : ``;
+                        let aTag = `<a @click.prevent.stop='' class='text-primary' href='${item.link.url}' ${target}>`;
+                            contenthtml = `${aTag}${contenthtml}</a> `;
                     }
+                    str += contenthtml;
+
                 });
-                str += '</div>';
-                return str.trim();
+                str = str.trim();
+                str += `</div>`;
+                return str;
             },
             previewclick(r,c,i) {
                 $dispatch('previewclick', {row: r, col: c, index: i});
@@ -118,13 +121,22 @@
                 }
             },
             moveRow(dir, row) {
-
+                let replaceIndex =  dir == 'up' ? row - 1 : row + 1;
+                dummy = JSON.parse(JSON.stringify(this.contentlist[replaceIndex]));
+                this.contentlist[replaceIndex] = JSON.parse(JSON.stringify(this.contentlist[row]));
+                this.contentlist[row] = dummy;
             },
             moveCol(dir, row, col) {
-
+                let replaceIndex =  dir == 'up' ? col - 1 : col + 1;
+                dummy = JSON.parse(JSON.stringify(this.contentlist[row].cols[replaceIndex]));
+                this.contentlist[row].cols[replaceIndex] = JSON.parse(JSON.stringify(this.contentlist[row].cols[col]));
+                this.contentlist[row].cols[col] = dummy;
             },
             moveColItem(dir, row, col, index) {
-
+                let replaceIndex =  dir == 'up' ? index - 1 : index + 1;
+                dummy = JSON.parse(JSON.stringify(this.contentlist[row].cols[col].items[replaceIndex]));
+                this.contentlist[row].cols[col].items[replaceIndex] = JSON.parse(JSON.stringify(this.contentlist[row].cols[col].items[index]));
+                this.contentlist[row].cols[col].items[index] = dummy;
             },
             moveContentItem(dir, row, col, index, xindex) {
                 let replaceIndex = dir == 'up' ? xindex - 1 : xindex + 1;
@@ -141,134 +153,231 @@
                         this.contentlist[row].cols[col].items[index].content[xindex] = dummy;
                         break;
                 }
+            },
+            deleteItem(row, col = null, index = null, xindex = null) {
+                let itemType = 'row';
+                if (col != null) {
+                    itemType = 'col';
+                }
+                if (index != null) {
+                    itemType = 'colitem';
+                }
+                if (xindex != null) {
+                    itemType = 'contentitem';
+                }
+                switch(itemType) {
+                    case 'row':
+                        this.deleteRow(row);
+                        break;
+                    case 'col':
+                        this.deleteCol(row, col);
+                        break;
+                    case 'colitem':
+                        this.deleteColItem(row, col, index);
+                        break;
+                    case 'contentitem':
+                        this.deleteContentItem(row, col, index, xindex);
+                        break;
+                }
+            },
+            deleteRow(row) {
+                this.contentlist = this.contentlist.filter((x, i) => {
+                    return i != row;
+                });
+            },
+            deleteCol(row, col) {},
+            deleteColItem(row, col, index) {
+                this.contentlist[row].cols[col].items = this.contentlist[row].cols[col].items.filter((ci, ciIndex) => {
+                    return ciIndex  != index;
+                });
+            },
+            deleteContentItem(row, col, index, xindex) {
+                switch(this.contentlist[row].cols[col].items[index].type) {
+                    case 'list':
+                        this.contentlist[row].cols[col].items[index].list = this.contentlist[row].cols[col].items[index].list.filter((li, liIndex) => {
+                            return liIndex  != xindex;
+                        });
+                        break;
+                    case 'para':
+                        this.contentlist[row].cols[col].items[index].content = this.contentlist[row].cols[col].items[index].content.filter((ci, ciIndex) => {
+                            return ciIndex  != xindex;
+                        });
+                        break;
+                }
+            },
+            addItem(row = null, col = null, index = null) {
+                let itemType = 'row';
+                if (row != null) {
+                    itemType = 'col';
+                }
+                if (col != null) {
+                    itemType = 'colitem';
+                }
+                if (index != null) {
+                    itemType = 'contentitem';
+                }
+                switch(itemType) {
+                    case 'row':
+                        break;
+                    case 'col':
+                        this.addCol(row);
+                        break;
+                    case 'contentitem':
+                        this.addContentItem(row, col, index);
+                        break;
+                }
+            },
+            addCol(row) {},
+            addColItem(row, col, type) {
+                switch(type) {
+                    case 'heading':
+                        this.contentlist[row].cols[col].items.push({
+                            type: 'heading',
+                            level: 3,
+                            content: '--- Heading text ---'
+                        });
+                        break;
+                    case 'para':
+                        this.contentlist[row].cols[col].items.push({
+                            type: 'para',
+                            content: [
+                                {
+                                    text: '-- Paragraph text --',
+                                    attribs: [],
+                                    link: null
+                                },
+                            ]
+                        });
+                        break;
+                    case 'img':
+                        this.contentlist[row].cols[col].items.push({
+                            type: 'img',
+                            url: '/images/placeholder800x450.png',
+                            ulid: '',
+                            attribs: {
+                                width: '',
+                                height: '',
+                                alt: ''
+                            }
+                        });
+                        break;
+                    case 'list':
+                        this.contentlist[row].cols[col].items.push({
+                            type: 'list',
+                            list: [
+                                {
+                                    text: 'item 1',
+                                    attribs: []
+                                },
+                                {
+                                    text: 'item 2',
+                                    attribs: []
+                                },
+                                {
+                                    text: 'item 3',
+                                    attribs: []
+                                },
+                            ],
+                            listType: 'ol'
+                        });
+                        break;
+                }
+            },
+            addContentItem(row, col, index) {
+                switch(this.contentlist[row].cols[col].items[index].type) {
+                    case 'list':
+                        this.contentlist[row].cols[col].items[index].list.push({
+                            text: '',
+                            attribs: []
+                        });
+                        break;
+                    case 'para':
+                        break;
+                }
+            },
+            setContentForSave() {
+                this.htmltext = JSON.stringify(this.contentlist);
+                console.log(this.htmltext);
+            },
+            decodeHtml(html) {
+                let txt = document.createElement('textarea');
+                txt.innerHTML = html;
+                return txt.value;
             }
         }"
         x-init="
-            let col = {
-                classes: ['w-1/3'],
-                items: [
-                    {
-                        type: 'heading',
-                        level: 1,
-                        content: 'An awesome heading!'
-                    },
-                    {
-                        type: 'img',
-                        url: '/images/placeholder800x450.png',
-                        ulid: '',
-                        attribs: {
-                            width: '',
-                            height: '',
-                            alt: ''
-                        }
-                    },
-                    {
-                        type: 'para',
-                        content: [
-                            {
-                                type: 'plaintext',
-                                text: 'some text kjh dak akdj akdhj akd akd akdjb',
-                                attribs: ['i', 'u', 'b']
-                            },
-                            {
-                                type: 'plaintext',
-                                text: 'some normal text',
-                                attribs: []
-                            },
-                            {
-                                type: 'inlink',
-                                text: 'inlink text',
-                                link: '/some-link',
-                                attribs: ['u']
-                            },
-                            {
-                                type: 'exlink',
-                                text: 'exlink text',
-                                link: 'http://ynotzitsolutions.com',
-                                attribs: ['b']
-                            },
-                        ]
-                    },
-                    {
-                        type: 'list',
-                        list: [
-                            {
-                                text: 'li 1',
-                                attribs: ['b']
-                            },
-                            {
-                                text: 'li 2',
-                                attribs: ['i']
-                            },
-                            {
-                                text: 'li 3',
-                                attribs: ['u']
-                            },
-                        ],
-                        listType: 'ol'
-                    },
-                ]
-            };
-            contentlist = [
-                {
-                    cols: [
-                        col, col, col
-                    ],
-                    classes: []
-                },
-            ];
-
+            {{-- @if (isset($contentdata))
+                contentlist = JSON.parse({{Js::from($contentdata)}});
+            @endif --}}
+            //replace double quotes at the begining and end with single quotes
+            $nextTick(() => {
+                let thedata = decodeHtml(document.getElementById('contentdatavalue').value);
+                thedata = thedata.substring(1,thedata.length-1);
+                console.log('thedata');
+                console.log(thedata);
+                contentlist = JSON.parse(thedata);
+                console.log('contentlist');
+                console.log(typeof contentlist);
+                console.log(contentlist);
+                htmltext = JSON.stringify(contentlist);
+            });
         "
         @filechanged.window="
-            console.log('file change captured');
             updateFiledata($event.detail);
         "
         class="form-control">
-        <button @click.prevent.stop="showEditor()" type="button" class="w-full py-10 bg-base-100 rounded-md border border-base-content border-opacity-20 flex flex-row justify-center">
-            <x-easyadmin::display.icon icon="easyadmin::icons.plus" />
+        <input id="contentdatavalue" type="hidden" value="{{'"'.$contentdata.'"' ?? ''}}">
+        <div class="w-full h-20 bg-base-100 rounded-md border border-base-content border-opacity-20 overflow-hidden relative">
+            <div class="p-2" x-text="htmltext"></div>
+            <button @click.prevent.stop="showEditor()" type="button" class="flex flex-row justify-center absolute right-1/2 top-1/4 z-20 btn btn-sm btn-warning">
+            <x-easyadmin::display.icon icon="easyadmin::icons.edit" />
+        </div>
+
         </button>
-        <input name="{{$key}}" type="hidden" model="htmltext" class="textarea textarea-bordered h-24"/>
+        <input name="{{$key}}" type="hidden" x-model="htmltext" class="textarea textarea-bordered h-24"/>
         <div x-show="editorVisible" class="fixed top-0 left-0 z-50 bg-base-200 bg-opacity-70 flex flex-col w-screen">
             <div class="w-5/6 mx-auto h-screen overflow-y-scroll bg-base-100">
                 <div>
                     <x-inputs.builder-partials.preview />
                 </div>
-                <div x-data="{
-                        showRowOptions: false,
-                        showOptions() {
-                            this.showRowOptions = true;
-                        },
-                    }" class="w-full flex flex-col items-center p-4 relative">
-                    <button @click.prevent.stop="showOptions();" type="button" class="mt-8 px-4 py-2 bg-base-100 rounded-md border border-base-content border-opacity-20 flex flex-row justify-center items-center">
+                <div class="w-full flex flex-col items-center p-4 relative">
+                    {{-- <button @click.prevent.stop="showOptions();" type="button" class="mt-8 px-4 py-2 bg-base-100 rounded-md border border-base-content border-opacity-20 flex flex-row justify-center items-center">
                         Add Row&nbsp;<x-easyadmin::display.icon icon="easyadmin::icons.plus" />
-                    </button>
-                    <button @click.prevent.stop="hideEditor();" type="button" class="mt-2 px-4 py-2 bg-transparent text-error flex flex-row justify-center items-center">
-                        Cancel&nbsp;<x-easyadmin::display.icon icon="easyadmin::icons.close" />
-                    </button>
-                    <div x-show="showRowOptions" class="absolute top-24 w-full flex flex-row justify-center">
+                    </button> --}}
+                    <div @click.outside="showRowOptions = false;" class="w-full flex flex-row justify-center">
                         <div class="bg-base-200 rounded-sm shadow-md p-4">
-                            <div class="flex flex-row space-x-4">
-                                <button type="button" @click.prevent.stop="addRow(1)" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                            <div class="flex flex-row space-x-4 items-center">
+                                <div>Add Row:</div>
+                                <button type="button" @click.prevent.stop="addRow(['w-full'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     1 Col
                                 </button>
-                                <button type="button" @click.prevent.stop="addRow(2, '1x1')" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                <button type="button" @click.prevent.stop="addRow(['w-1/2', 'w-1/2'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     2 Cols 1:1
                                 </button>
-                                <button type="button" @click.prevent.stop="addRow(2, '1x2')" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                <button type="button" @click.prevent.stop="addRow(['w-1/3', 'w-2/3'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     2 Cols 1:2
                                 </button>
-                                <button type="button" @click.prevent.stop="addRow(2, '2x1')" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                <button type="button" @click.prevent.stop="addRow(['w-2/3', 'w-1/3'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     2 Cols 2:1
                                 </button>
-                                <button type="button" @click.prevent.stop="addRow(3)" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                <button type="button" @click.prevent.stop="addRow(['w-1/3', 'w-1/3', 'w-1/3'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     3 Cols
                                 </button>
-                                <button type="button" @click.prevent.stop="addRow(4)" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                <button type="button" @click.prevent.stop="addRow(['w-1/4', 'w-1/4', 'w-1/4', 'w-1/4'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     4 Cols
                                 </button>
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-row justify-center items-center space-x-4 mt-4 border-t border-base-content border-opacity-20 w-full p-4">
+                        <button @click.prevent.stop="hideEditor();" type="button" class="mt-2 px-4 py-2 bg-transparent text-error flex flex-row justify-center items-center">
+                            Cancel&nbsp;<x-easyadmin::display.icon icon="easyadmin::icons.close" />
+                        </button>
+                        <button @click.prevent.stop="setContentForSave();hideEditor();" type="button" class="btn btn-success btn-sm">
+                            Save <x-easyadmin::display.icon icon="easyadmin::icons.tick" />
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

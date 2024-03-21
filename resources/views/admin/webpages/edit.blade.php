@@ -61,7 +61,7 @@
                     });
                 ">
                 <form class="mb-8" @submit.prevent.stop="" action="#">
-                    <label class="label">Choose a page template</label>
+                    <label class="label">Page template</label>
                     <select x-model="templateId" class="select select-bordered w-full max-w-xs" disabled>
                         <option value="" disabled>Select</option>
                         <template x-for="t in allTemplates">

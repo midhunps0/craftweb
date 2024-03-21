@@ -13,7 +13,8 @@
     <label class="label">
         <span class="label-text">Body</span>
     </label>
-    <textarea name="data[body]" class="textarea textarea-bordered h-24">{{$instance->translations_array[$locale]['body'] ?? ''}}</textarea>
+    {{-- <textarea name="data[body]" class="textarea textarea-bordered h-24">{{$instance->translations_array[$locale]['body'] ?? ''}}</textarea> --}}
+    <x-inputs.content-builder key="data[body]" contentdata="{{$instance->translations_array[$locale]['body'] ?? ''}}"/>
 </div>
 <x-easyadmin::inputs.imageuploader
     :element="[
