@@ -89,7 +89,7 @@ class ArticleService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Title',
-            sort: ['key' => 'title'],
+            // sort: ['key' => 'title'],
         )->addHeaderColumn(
             title: 'Actions'
         )->getHeaderRow();

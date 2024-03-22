@@ -22,7 +22,7 @@ class WebPageFactory extends Factory
      */
     public function definition(): array
     {
-        $template = PageTemplate::where('name', 'sidebar-right')->get()->first();
+        $template = PageTemplate::where('name', 'page-sidebar-right')->get()->first();
         return [
             'template_id' => $template->id
         ];

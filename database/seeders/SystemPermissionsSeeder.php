@@ -11,9 +11,16 @@ class SystemPermissionsSeeder extends Seeder
     private $items = [
         'System Settings',
         'App Settings',
-        'PageTemplate',
-        'WebPage',
-        'Translation'
+        'Article',
+        'Doctor',
+        'Hilight Feature',
+        'Metatags',
+        'News',
+        'Page Template',
+        'Review',
+        'Translation',
+        'Video Testimonial',
+        'Web Page',
     ];
     private $actions = [
         'Create',

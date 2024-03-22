@@ -15,8 +15,10 @@ class PageTemplatesSeeder extends Seeder
         'doctor',
         'news',
         'hilight_feature',
-        'sidebar-right',
-        'sidebar-none'
+        'page-sidebar-right',
+        'page-full-width',
+        'page-narrow-centered',
+        'page-home',
     ];
     /**
      * Run the database seeds.

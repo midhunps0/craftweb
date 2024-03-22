@@ -89,7 +89,7 @@ class DoctorService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Name',
-            sort: ['key' => 'name'],
+            // sort: ['key' => 'name'],
         )
         ->addHeaderColumn(
             title: 'Designation',

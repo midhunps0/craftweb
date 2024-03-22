@@ -67,7 +67,7 @@ class ReviewService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Reviewer',
-            sort: ['key' => 'title'],
+            // sort: ['key' => 'title'],
         )->addHeaderColumn(
             title: 'Review Score',
         )->addHeaderColumn(

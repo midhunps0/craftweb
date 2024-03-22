@@ -363,6 +363,12 @@
                                 <button type="button" @click.prevent.stop="addRow(['w-2/3', 'w-1/3'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     2 Cols 2:1
                                 </button>
+                                <button type="button" @click.prevent.stop="addRow(['w-2/5', 'w-3/5'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                    2 Cols 2:3
+                                </button>
+                                <button type="button" @click.prevent.stop="addRow(['w-3/5', 'w-2/5'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
+                                    2 Cols 3:2
+                                </button>
                                 <button type="button" @click.prevent.stop="addRow(['w-1/3', 'w-1/3', 'w-1/3'])" class="px-2 py-1 btn btn-success bg-opacity-60 text-base-content">
                                     3 Cols
                                 </button>

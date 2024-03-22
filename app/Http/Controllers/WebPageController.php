@@ -23,7 +23,7 @@ class WebPageController extends SmartController
         // $this->unauthorisedView = 'easyadmin::admin.unauthorised';
         // $this->errorView = 'easyadmin::admin.error';
         // $this->indexView = 'easyadmin::admin.indexpanel';
-        $this->showView = 'pagetemplates.sidebar-right';
+        // $this->showView = 'pagetemplates.sidebar-right';
         // $this->createView = 'easyadmin::admin.form';
         // $this->editView = 'easyadmin::admin.form';
         // $this->itemsCount = 10;
@@ -34,11 +34,11 @@ class WebPageController extends SmartController
     {
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
-
+            $template = PageTemplate::find($showPageData->instance->template_id);
             if (!($showPageData instanceof ShowPageData)) {
                 throw new Exception('getShowPageData() of connectorService must return an instance of ' . ShowPageData::class);
             }
-            return $this->buildResponse($this->showView, $showPageData->getData());
+            return $this->buildResponse('pagetemplates.'.$template->name, $showPageData->getData());
         } catch (\Throwable $e) {
             info($e);
             return $this->buildResponse($this->errorView, ['error' => $e->__toString()]);

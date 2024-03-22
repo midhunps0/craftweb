@@ -61,7 +61,7 @@ class PageTemplateService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Template Name',
-            sort: ['key' => 'name'],
+            // sort: ['key' => 'name'],
         )->addHeaderColumn(
             title: 'Template File',
         )->addHeaderColumn(

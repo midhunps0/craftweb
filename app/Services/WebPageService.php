@@ -90,7 +90,7 @@ class WebPageService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Title',
-            sort: ['key' => 'title'],
+            // sort: ['key' => 'title'],
         )->addHeaderColumn(
             title: 'Page Template',
             filter: ['key' => 'pageTemplate', 'options' => PageTemplate::all()->pluck('name', 'id')]
