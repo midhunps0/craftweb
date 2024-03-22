@@ -6,7 +6,13 @@ use App\Http\Controllers\PageTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
 use App\Models\PageTemplate;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Modules\Ynotz\AccessControl\Http\Controllers\PermissionsController;
+use Modules\Ynotz\AccessControl\Http\Controllers\RolesController;
+use Modules\Ynotz\AccessControl\Http\Controllers\UsersController;
+use Modules\Ynotz\AccessControl\Models\Permission;
+use Modules\Ynotz\AccessControl\Models\Role;
 use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 
 /*
@@ -42,6 +48,12 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
     RouteHelper::getEasyRoutes('Doctor');
     RouteHelper::getEasyRoutes('News');
     RouteHelper::getEasyRoutes('HilightFeature');
+
+    RouteHelper::getEasyRoutes(modelName: Role::class, controller: RolesController::class);
+    RouteHelper::getEasyRoutes(modelName: Permission::class, controller: PermissionsController::class);
+    RouteHelper::getEasyRoutes(modelName: User::class, controller: UsersController::class);
+    Route::get('/roles-permissions', [RolesController::class, 'rolesPermissions'])->name('roles.permissions');
+    Route::post('/roles/permission-update', [RolesController::class, 'permissionUpdate'])->name('roles.update_permissions');
 
     Route::get('/template-get', [PageTemplateController::class, 'getTemplateInputsForm'])->name('template.get');
 });
