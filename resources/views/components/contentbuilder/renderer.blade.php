@@ -3,8 +3,8 @@
 @foreach ($content as $row)
     <div class="row flex flex-row {{ $row->classes }}">
         @foreach ($row->cols as $col)
-            <div class="w-full">
-                <div class="col w-full flex flex-col {{ $col->classes }}">
+            <div class="col {{ $col->classes }}">
+                <div class="col-content w-full flex flex-col">
                     @foreach ($col->items as $item)
                         @switch($item->type)
                             @case('heading')

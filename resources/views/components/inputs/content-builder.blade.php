@@ -3,8 +3,10 @@
     <div x-data="{
             htmltext: '',
             contentlist: [],
+            listforsave: [],
             editorVisible: false,
             showEditor() {
+                this.contentlist = JSON.parse(JSON.stringify(this.listforsave));
                 this.editorVisible = true;
             },
             hideEditor() {
@@ -296,7 +298,8 @@
                 }
             },
             setContentForSave() {
-                this.htmltext = JSON.stringify(this.contentlist);
+                this.listforsave = JSON.parse(JSON.stringify(this.contentlist));
+                this.htmltext = JSON.stringify(this.listforsave);
                 console.log(this.htmltext);
             },
             decodeHtml(html) {
@@ -315,11 +318,11 @@
                 thedata = thedata.substring(1,thedata.length-1);
                 console.log('thedata');
                 console.log(thedata);
-                contentlist = JSON.parse(thedata);
+                listforsave = JSON.parse(thedata);
                 console.log('contentlist');
-                console.log(typeof contentlist);
-                console.log(contentlist);
-                htmltext = JSON.stringify(contentlist);
+                console.log(typeof listforsave);
+                console.log(listforsave);
+                htmltext = JSON.stringify(listforsave);
             });
         "
         @filechanged.window="

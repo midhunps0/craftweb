@@ -3,19 +3,27 @@
         <div class="flex flex-row border border-dotted border-base-content border-opacity-50" :class="row.classes">
             <template x-for="(c, cindex) in row.cols">
                 <div class="flex flex-col border border-dotted border-base-content border-opacity-50 p-1" :class="c.classes">
-                    <template x-for="(item,index) in c.items">
+                    <template x-for="(item,index) in c.items" :key="`${rindex}${cindex}${index}`">
                         <div class="relative">
-                            <div class="absolute top-0 right-0 z-50 bg-warning p-1">
-                                <button type="button" @click.stop.prevent="moveItem('up', rindex, cindex, index)" class="btn btn-xs rounded-full" :disabled="index == 0">
-                                    <x-easyadmin::display.icon icon="easyadmin::icons.up-arrow" height="h-3" width="w-3" />
-                                </button>
-                                <button type="button" @click.stop.prevent="moveItem('down', rindex, cindex, index)" class="btn btn-xs rounded-full" :disabled="index == c.items.length - 1">
-                                    <x-easyadmin::display.icon icon="easyadmin::icons.down-arrow" height="h-3" width="w-3" />
-                                </button>
-                                <button @click.prevent.stop="deleteItem(rindex, cindex, index)" class="btn text-error btn-xs rounded-full bg-opacity-50" type="button">
-                                    <x-easyadmin::display.icon icon="easyadmin::icons.close"
-                                        height="h-3" width="w-3" />
-                                </button>
+                            <div @click.outside="showitemoptions = false;" x-data="{showitemoptions: false}" class="absolute top-0 right-0 z-50 bg-base-content bg-opacity-70 rounded-full flex flex-row items-center p-0.5">
+                                <div x-show="showitemoptions" class="p-0">
+                                    <button type="button" @click.stop.prevent="moveItem('up', rindex, cindex, index); showitemoptions = false;" class="btn btn-xs rounded-full" :disabled="index == 0">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.up-arrow" height="h-3" width="w-3" />
+                                    </button>
+                                    <button type="button" @click.stop.prevent="moveItem('down', rindex, cindex, index); showitemoptions = false;" class="btn btn-xs rounded-full" :disabled="index == c.items.length - 1">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.down-arrow" height="h-3" width="w-3" />
+                                    </button>
+                                    <button @click.prevent.stop="deleteItem(rindex, cindex, index)" class="btn btn-error btn-xs rounded-full bg-opacity-50" type="button">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.close"
+                                            height="h-3" width="w-3" />
+                                    </button>
+                                </div>
+                                <div class="p-0">
+                                    <button @click.prevent.stop="showitemoptions = !showitemoptions" type="button" class="btn btn-xs rounded-full">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.ellipsis-vertical"
+                                            height="h-3" width="w-3" />
+                                    </button>
+                                </div>
                             </div>
                             <div class="min-h-10" x-html="getPreviewHtml(item, rindex, cindex, index);"></div>
                             <div x-data="{
@@ -467,13 +475,16 @@
                         </button>
                         <button type="button" @click.stop.prevent="showclasses = true;"
                         class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                        <x-easyadmin::display.icon icon="easyadmin::icons.bullet-list" height="h-3" width="w-3" />
+                        <x-easyadmin::display.icon icon="easyadmin::icons.curly-braces" height="h-3" width="w-3" />
                         </button>
-                        <div @click.outside="showclasses = false;" x-show="showclasses" class="w-full absolute flex flex-row justify-center items-center bg-base-200 border border-base-300 shadow-md p-1">
-                            <input class="input input-xs input-bordered" type="text" x-model="c.classes">
+                        <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start">
+                            <div><input class="input input-sm w-52 input-bordered" type="text" x-model="c.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span></div>
+
                             <button type="button" @click.stop.prevent="showclasses = false;"
-                            class="btn btn-xs text-error rounded-full flex flex-row items-center justify-center">
+                            class="btn btn-xs rounded-full flex flex-row items-center justify-center rouded-full btn-warning">
                             <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-3" width="w-3" />
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -493,14 +504,23 @@
             <x-easyadmin::display.icon icon="easyadmin::icons.delete" height="h-3" width="w-3" />
         </button><button type="button" @click.stop.prevent="showclasses = true;"
         class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-        <x-easyadmin::display.icon icon="easyadmin::icons.bullet-list" height="h-3" width="w-3" />
+        <x-easyadmin::display.icon icon="easyadmin::icons.curly-braces" height="h-3" width="w-3" />
         </button>
         <div class="relative overflow-visible">
-            <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute bottom-2 -right-1 flex flex-row justify-center items-center bg-base-200 border border-base-300 shadow-md p-1">
+            {{-- <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute bottom-2 -right-1 flex flex-row justify-center items-center bg-base-200 border border-base-300 shadow-md p-1">
                 <input class="input input-xs input-bordered" type="text" x-model="row.classes">
                 <button type="button" @click.stop.prevent="showclasses = false;"
                 class="btn btn-xs text-error rounded-full flex flex-row items-center justify-center">
                 <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-3" width="w-3" />
+            </div> --}}
+            <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute right-0 z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start">
+                <div><input class="input input-sm w-52 input-bordered" type="text" x-model="row.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span></div>
+
+                <button type="button" @click.stop.prevent="showclasses = false;"
+                class="btn btn-xs rounded-full flex flex-row items-center justify-center rouded-full btn-warning">
+                <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-3" width="w-3" />
+                </button>
+
             </div>
         </div>
     </div>
