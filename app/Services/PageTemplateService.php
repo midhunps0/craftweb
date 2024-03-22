@@ -233,6 +233,41 @@ class PageTemplateService implements ModelViewConnector {
         // ]);
     }
 
+    public function authoriseIndex(): bool
+    {
+        return true;
+    }
+
+    public function authoriseShow($item): bool
+    {
+        return true;
+    }
+
+    public function authoriseCreate(): bool
+    {
+        return auth()-user()->hasPermissionTo('Page Template: Create');
+    }
+
+    public function authoriseStore(): bool
+    {
+        return auth()-user()->hasPermissionTo('Page Template: Create');
+    }
+
+    public function authoriseEdit($id): bool
+    {
+        return auth()-user()->hasPermissionTo('Page Template: Edit');
+    }
+
+    public function authoriseUpdate($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Page Template: Edit');
+    }
+
+    public function authoriseDestroy($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Page Template: Delete');
+    }
+
     public function getStoreValidationRules(): array
     {
         return [

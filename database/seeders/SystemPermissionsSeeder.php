@@ -21,6 +21,9 @@ class SystemPermissionsSeeder extends Seeder
         'Translation',
         'Video Testimonial',
         'Web Page',
+        'User',
+        'Role',
+        'Permission',
     ];
     private $actions = [
         'Create',

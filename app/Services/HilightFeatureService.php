@@ -67,7 +67,7 @@ class HilightFeatureService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Title',
-            sort: ['key' => 'title'],
+            // sort: ['key' => 'title'],
         )->addHeaderColumn(
             title: 'Actions'
         )->getHeaderRow();
@@ -195,6 +195,41 @@ class HilightFeatureService implements ModelViewConnector {
         //         $query->select('id', 'name');
         //     }
         // ]);
+    }
+
+    public function authoriseIndex(): bool
+    {
+        return true;
+    }
+
+    public function authoriseShow($item): bool
+    {
+        return true;
+    }
+
+    public function authoriseCreate(): bool
+    {
+        return auth()-user()->hasPermissionTo('Hilight Feature: Create');
+    }
+
+    public function authoriseStore(): bool
+    {
+        return auth()-user()->hasPermissionTo('Hilight Feature: Create');
+    }
+
+    public function authoriseEdit($id): bool
+    {
+        return auth()-user()->hasPermissionTo('Hilight Feature: Edit');
+    }
+
+    public function authoriseUpdate($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Hilight Feature: Edit');
+    }
+
+    public function authoriseDestroy($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Hilight Feature: Delete');
     }
 
     public function getStoreValidationRules(): array

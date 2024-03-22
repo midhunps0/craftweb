@@ -7,6 +7,7 @@ class SidebarService implements SidebarServiceInterface
 {
     public function getSidebarData(): array
     {
+        $user = auth()->user();
         return [
             [
                 'type' => 'menu_item',
@@ -14,7 +15,7 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'webpages.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Web Page: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -22,7 +23,7 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'articles.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Article: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -30,7 +31,7 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'reviews.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Review: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -38,7 +39,7 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'videotestimonials.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Video Testimonial: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -46,7 +47,7 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'doctors.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Doctor: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -54,7 +55,7 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'news.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('News: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -62,12 +63,13 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'hilightfeatures.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Hilight Feature: Edit')
             ],
             [
                 'type' => 'menu_section',
                 'title' => 'Settings',
                 'icon' => 'easyadmin::icons.users',
+                'show' => $user->hasPermissionTo('App Settings: Edit') || $user->hasPermissionTo('System Settings: Edit')
             ],
             [
                 'type' => 'menu_item',
@@ -75,14 +77,14 @@ class SidebarService implements SidebarServiceInterface
                 'route' => 'pagetemplates.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $this->showSettings()
+                'show' => $user->hasPermissionTo('Page Template: Edit')
             ],
             [
 
                 'type' => 'menu_group',
                 'title' => 'Access Control',
                 'icon' => 'easyadmin::icons.users',
-                'show' => $this->showRoles(),
+                'show' => $user->hasPermissionTo('User: Edit') || $user->hasPermissionTo('Role: Edit') || $user->hasPermissionTo('Permission: Edit'),
                 'menu_items' => [
                     [
                         'type' => 'menu_item',
@@ -90,7 +92,7 @@ class SidebarService implements SidebarServiceInterface
                         'route' => 'users.index',
                         'route_params' => [],
                         'icon' => 'easyadmin::icons.users',
-                        'show' => $this->showRoles()
+                        'show' => $user->hasPermissionTo('User: Edit')
                     ],
                     [
                         'type' => 'menu_item',
@@ -98,7 +100,7 @@ class SidebarService implements SidebarServiceInterface
                         'route' => 'roles.index',
                         'route_params' => [],
                         'icon' => 'easyadmin::icons.users',
-                        'show' => $this->showRoles()
+                        'show' => $user->hasPermissionTo('Role: Edit')
                     ],
                     [
                         'type' => 'menu_item',
@@ -106,7 +108,7 @@ class SidebarService implements SidebarServiceInterface
                         'route' => 'permissions.index',
                         'route_params' => [],
                         'icon' => 'easyadmin::icons.users',
-                        'show' => $this->showPermissions()
+                        'show' => $user->hasPermissionTo('Permission: Edit')
                     ],
                     [
                         'type' => 'menu_item',
@@ -114,7 +116,7 @@ class SidebarService implements SidebarServiceInterface
                         'route' => 'roles.permissions',
                         'route_params' => [],
                         'icon' => 'easyadmin::icons.users',
-                        'show' => $this->showPermissions()
+                        'show' => $user->hasPermissionTo('User: Edit')
                     ],
                 ]
             ],

@@ -201,6 +201,41 @@ class VideoTestimonialService implements ModelViewConnector {
         // ]);
     }
 
+    public function authoriseIndex(): bool
+    {
+        return true;
+    }
+
+    public function authoriseShow($item): bool
+    {
+        return true;
+    }
+
+    public function authoriseCreate(): bool
+    {
+        return auth()-user()->hasPermissionTo('Video Testimonial: Create');
+    }
+
+    public function authoriseStore(): bool
+    {
+        return auth()-user()->hasPermissionTo('Video Testimonial: Create');
+    }
+
+    public function authoriseEdit($id): bool
+    {
+        return auth()-user()->hasPermissionTo('Video Testimonial: Edit');
+    }
+
+    public function authoriseUpdate($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Video Testimonial: Edit');
+    }
+
+    public function authoriseDestroy($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Video Testimonial: Delete');
+    }
+
     public function getStoreValidationRules(): array
     {
         return [

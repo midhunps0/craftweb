@@ -226,6 +226,41 @@ class WebPageService implements ModelViewConnector {
         // ]);
     }
 
+    public function authoriseIndex(): bool
+    {
+        return true;
+    }
+
+    public function authoriseShow($item): bool
+    {
+        return true;
+    }
+
+    public function authoriseCreate(): bool
+    {
+        return auth()-user()->hasPermissionTo('Web Page: Create');
+    }
+
+    public function authoriseStore(): bool
+    {
+        return auth()-user()->hasPermissionTo('Web Page: Create');
+    }
+
+    public function authoriseEdit($id): bool
+    {
+        return auth()-user()->hasPermissionTo('Web Page: Edit');
+    }
+
+    public function authoriseUpdate($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Web Page: Edit');
+    }
+
+    public function authoriseDestroy($item): bool
+    {
+        return auth()-user()->hasPermissionTo('Web Page: Delete');
+    }
+
     public function getStoreValidationRules(): array
     {
         return [
@@ -260,16 +295,6 @@ class WebPageService implements ModelViewConnector {
         // $data['user_id'] = auth()->user()->id;
 
         return $data;
-    }
-
-    public function authoriseCreate(): bool
-    {
-        return auth()->user()->hasPermissionTo('WebPage: Create');
-    }
-
-    public function authoriseUpdate(): bool
-    {
-        return auth()->user()->hasPermissionTo('WebPage: Edit');
     }
 
     public function processAfterStore($instance): void
