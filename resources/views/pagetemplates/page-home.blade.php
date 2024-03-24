@@ -222,24 +222,24 @@
                         <div class="flex flex-row">
                             <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']"/>
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L01']->current_translation->data['title']"/>
                         </div>
                         <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L10']->current_translation->data['title']"/>
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L11']->current_translation->data['title']"/>
                         </div>
                     </div>
                     <div class="flex-col ltr:justify-start rtl:justify-end space-y-8">
                         <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R00']->current_translation->data['title']" />
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R01']->current_translation->data['title']" />
                         </div>
                         <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R10']->current_translation->data['title']" />
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R11']->current_translation->data['title']" />
                         </div>
                     </div>
                 </div>
