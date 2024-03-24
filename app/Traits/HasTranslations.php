@@ -5,6 +5,7 @@ use App\Models\Translation;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Lang;
 
 trait HasTranslations {
     public function translations(): MorphMany
@@ -25,7 +26,9 @@ trait HasTranslations {
     {
         return Translation::where('translatable_id', $this->id)
             ->Where('translatable_type', Self::class)
-            ->where('locale', $code ?? App::currentLocale())->get()->first();
+            ->where('locale', $code ?? App::currentLocale())->get()->first() ?? Translation::where('translatable_id', $this->id)
+            ->Where('translatable_type', Self::class)
+            ->where('locale', $code ?? 'en')->get()->first();
     }
 
     public function currentTranslation(): Attribute
