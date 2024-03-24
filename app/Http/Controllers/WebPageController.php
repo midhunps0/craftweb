@@ -30,6 +30,11 @@ class WebPageController extends SmartController
         // $this->resultsName = 'results';
     }
 
+    public function home()
+    {
+        return $this->show('en','home');
+    }
+
     public function show($locale, $slug)
     {
         try {
@@ -41,7 +46,9 @@ class WebPageController extends SmartController
             return $this->buildResponse('pagetemplates.'.$template->name, $showPageData->getData());
         } catch (\Throwable $e) {
             info($e);
-            return $this->buildResponse($this->errorView, ['error' => $e->__toString()]);
+            return $this->buildResponse($this->errorView, [
+                'error' => $e->__toString()
+            ]);
         }
     }
 

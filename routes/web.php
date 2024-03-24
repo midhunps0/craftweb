@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\IconsController;
 use App\Http\Controllers\PageTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
@@ -26,9 +27,11 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
+Route::get('/', [WebPageController::class, 'home'])->name('home');
+Route::get('/ea/icons', [IconsController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -63,8 +66,8 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['ynotz.translation']], function () {
-    Route::get('/{locale}/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');
-    Route::get('/{locale}/articles/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
-    Route::get('/{locale}/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
+    Route::get('/pages/{locale}/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');
+    Route::get('/articles/{locale}/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
+    Route::get('/doctors/{locale}/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
 });
 

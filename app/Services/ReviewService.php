@@ -241,6 +241,7 @@ class ReviewService implements ModelViewConnector {
         return [
             'locale' => ['required', 'string'],
             'data' => ['required', 'array'],
+            'image' => ['sometimes', 'string'],
             'stars' => ['required', 'integer'],
         ];
     }
@@ -250,6 +251,7 @@ class ReviewService implements ModelViewConnector {
         return [
             'locale' => ['required', 'string'],
             'data' => ['required', 'array'],
+            'image' => ['sometimes', 'string'],
             'stars' => ['required', 'integer'],
         ];
     }
@@ -305,6 +307,9 @@ class ReviewService implements ModelViewConnector {
                     'stars' => $data['stars']
                 ]
             );
+            if(isset($data['image'])){
+                $review->addMediaFromEAInput('photo', $data['image']);
+            }
             $translation = Translation::create(
                 [
                     'translatable_id' => $review->id,
@@ -336,6 +341,12 @@ class ReviewService implements ModelViewConnector {
             $review = Review::find($id);
             $review->stars = $data['stars'];
             $review->save();
+            if(isset($data['image'])){
+                $review->syncMedia('image', $data['image']);
+            } else {
+                $review->deleteAllMedia('image');
+            }
+
             /**
              * @var Translation
              */

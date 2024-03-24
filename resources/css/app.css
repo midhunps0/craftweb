@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family:gothic;
+    src:url('./fonts/DidactGothic-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family:gothic1;
+    src:url('./fonts/CenturyGothic.ttf') format('truetype');
+}
+@font-face {
+    font-family:franklin;
+    src:url('./fonts/franklin-gothic-book.ttf') format('truetype');
+}
+@font-face {
+    font-family:questrial;
+    src:url('./fonts/Questrial-Regular.ttf');
+}
+
+.dir-img {
+    @apply ltr:-scale-x-100 rtl:scale-x-100;
+}
+
 .preview-item {
     @apply hover:bg-warning hover:border hover:border-warning rounded-md cursor-pointer;
 }
