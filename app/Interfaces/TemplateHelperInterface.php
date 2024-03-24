@@ -1,9 +1,9 @@
 <?php
-namespace App\TemplateHelpers;
+namespace App\Interfaces;
 
 use Modules\Ynotz\EasyAdmin\Services\UILayout;
 
-interface TemplatehelperInterface
+interface TemplateHelperInterface
 {
     public function getCreatePageInputs(array $data = []): array;
     public function getEditPageInputs(array $data = []): array;
