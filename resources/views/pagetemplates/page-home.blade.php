@@ -161,20 +161,20 @@
 
         <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L01']" /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L11']" /></div>
             </div>
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L01']" /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L11']" /></div>
             </div>
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R00']" /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R01']" /></div>
             </div>
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R10']" /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R11']" /></div>
             </div>
         </div>
 
