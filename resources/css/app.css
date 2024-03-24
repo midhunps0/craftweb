@@ -20,7 +20,7 @@
 }
 
 .dir-img {
-    @apply ltr:-scale-x-100 rtl:scale-x-100;
+    @apply ltr:scale-x-100 rtl:-scale-x-100;
 }
 
 .preview-item {

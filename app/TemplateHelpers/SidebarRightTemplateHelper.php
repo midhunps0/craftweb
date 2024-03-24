@@ -1,10 +1,11 @@
 <?php
 namespace App\TemplateHelpers;
 
+use App\Interfaces\TemplateHelperInterface;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\UILayout;
 
-class SidebarRightTemplateHelper implements TemplatehelperInterface
+class SidebarRightTemplateHelper implements TemplateHelperInterface
 {
     public function getCreatePageInputs(array $data = []): array
     {

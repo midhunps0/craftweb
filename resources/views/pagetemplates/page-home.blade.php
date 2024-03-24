@@ -118,8 +118,8 @@
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
                     </div>
-                    <p class="text-3xl text-darkgray font-franklin pt-6 relative z-40">Video
-                        Testimonials</p>
+                    <h2 class="text-3xl text-darkgray font-franklin pt-6 relative z-40">Video
+                        Testimonials</h2>
                     <p class="z-40 relative w-2/3 text-2xl text-darkgray font-franklin mt-3 lg:mt-8 ">Our patients are
                         our best
                         advocates, hear the inspiring stories of their treatment journey</p>
@@ -139,12 +139,12 @@
                     <div class="relative mt-4 flex flex-row justify-center space-x-4">
                         <a href="#"
                             class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
-                            <x-easyadmin::display.icon icon="easyadmin::icons.chevron_left" height="h-6"
+                            <x-easyadmin::display.icon icon="icons.chevron_left" height="h-6"
                                 width="w-6" />
                         </a>
                         <a href="#"
                             class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
-                            <x-easyadmin::display.icon icon="easyadmin::icons.chevron_right" height="h-6"
+                            <x-easyadmin::display.icon icon="icons.chevron_right" height="h-6"
                                 width="w-6" />
                         </a>
                     </div>
@@ -159,7 +159,26 @@
                 Be Successful </h2>
         </div>
 
-        <div class="hidden relative my-20 lg:flex flex-row justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
+        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
+            <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+            </div>
+            <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+            </div>
+            <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+            </div>
+            <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component /></div>
+            </div>
+        </div>
+
+        <div class="hidden relative my-16 lg:flex flex-row justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
             <div class="relative w-1/2 border border-gray p-8">
                 <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
                     <img src="/images/icons/vector women pink_Mesa de trabajo 1.png" class="h-full opacity-40 dir-img"
@@ -225,6 +244,107 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full md:px-16 lg:px-24 z-10">
+            <div class="w-full lg:w-1/3">
+                <p class="text-4xl text-darkgray font-franklin my-6 relative z-40">
+                    Our Experienced And<br>Certified Doctors
+                </p>
+                <p>
+                    <x-viewallbutton-component text="All Doctors" />
+                </p>
+            </div>
+            <div class="w-full lg:w-2/3">
+                <div class="w-full flex flex-row flex-wrap md:flex-nowrap justify-center md:justify-between">
+                    <div class="p-2 lg:p-0">
+                        <x-doctorcard-component/>
+                    </div>
+                    <div class="p-2 lg:p-0">
+                        <x-doctorcard-component/>
+                    </div>
+                    <div class="p-2 lg:p-0">
+                        <x-doctorcard-component/>
+                    </div>
+                </div>
+                <div class="hidden md:flex flex-row ltr:justify-end rtl:justify-start mt-6">
+                    <div class="relative mt-4 flex flex-row justify-center space-x-4">
+                        <a href="#"
+                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
+                            <x-easyadmin::display.icon icon="icons.chevron_left" height="h-6"
+                                width="w-6" />
+                        </a>
+                        <a href="#"
+                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
+                            <x-easyadmin::display.icon icon="icons.chevron_right" height="h-6"
+                                width="w-6" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative my-20 flex flex-col w-full md:px-16 lg:px-24 z-10">
+            <div class="absolute top-0 left-0 z-0 bg-gray w-1/12 h-full"></div>
+            <div class="relative z-10 my-12">
+                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40">News And Announcements</h2>
+                <div class="relative z-10 overflow-hidden py-4">
+                    <div class="w-full flex flex-row">
+                        <div class="hidden md:block w-1/2 min-w-1/2 px-4 ltr:-translate-x-1/2 rtl:translate-x-1/2">
+                            <x-news img="/images/home/news.png" />
+                        </div>
+                        <div class="w-full md:w-1/2 min-w-1/2 px-4 ltr:md:-translate-x-1/2 rtl:md:translate-x-1/2">
+                            <x-news img="/images/home/news.png" />
+                        </div>
+                        <div class="hidden md:block w-1/2 min-w-1/2 px-4 ltr:-translate-x-1/2 rtl:translate-x-1/2">
+                            <x-news img="/images/home/news.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6">
+                    <x-viewallbutton-component text="More News" />
+                </div>
+            </div>
+        </div>
+
+        <div class="relative flex flex-col w-full md:px-16 lg:px-24 z-10">
+            <div class="relative z-10">
+                <h2 class="text-4xl text-darkgray font-franklin relative z-40">Blog</h2>
+                <div class="relative z-10 py-6">
+                    <div class="w-full flex flex-row justify-center md:justify-between">
+                        <div class="hidden md:block w-1/3 px-2">
+                            <x-blogcard-component/>
+                        </div>
+                        <div class="w-full md:w-1/3 px-2 flex flex-row justify-center">
+                            <x-blogcard-component/>
+                        </div>
+                        <div class="hidden md:block w-1/3 px-2">
+                            <x-blogcard-component/>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">
+                    <x-viewallbutton-component text="More Articles" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full md:px-16 lg:px-24 z-10">
+            <div class="flex ltr:flex-row rtl:flex-row-reverse justify-start mt-16 w-1/2">
+                <div class="mr-4">
+                    <img src="/images/icons/faq.png" class="h-24" alt="">
+                </div>
+                <div>
+                    <h2 class="text-3xl">Frequently Asked Questions</h2>
+                    <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
+                </div>
+            </div>
+        </div>
+        <div class="relative w-full lg:px-24 z-10 lg:h-0 overflow-visible">
+            <div class="relative lg:absolute lg:z-50 lg:-bottom-24 ltr:right-0 rtl:left-0 lg:w-5/12 h-fit">
+                <x-bookappointment-component/>
+            </div>
+        </div>
+        <div class="relative w-full z-0 h-0 overflow-visible">
+            <x-footer />
         </div>
     </div>
 </x-guest-layout>
