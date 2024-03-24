@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\HilightFeature;
 use App\Models\MetatagsList;
 use App\Models\PageTemplate;
 use App\Models\Translation;
@@ -50,6 +51,15 @@ class WebPageService implements ModelViewConnector {
 
     public function getShowPageData($slug): ShowPageData
     {
+
+        $thedata = [];
+        if ($slug == 'home') {
+            $hfeatures = HilightFeature::all();
+            foreach ($hfeatures as $f) {
+                $thedata['hfeatures'][$f->display_location] = $f;
+            }
+        }
+
         $item = WebPage::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug) {
                 $q->where('locale', App::currentLocale())
@@ -60,8 +70,9 @@ class WebPageService implements ModelViewConnector {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
         return new ShowPageData(
-            Str::ucfirst($this->getModelShortName()),
-            $item
+            title: Str::ucfirst($this->getModelShortName()),
+            instance: $item,
+            data: $thedata
         );
     }
 
