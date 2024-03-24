@@ -1,0 +1,28 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-BkWeqeMt.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/fonts/CenturyGothic.ttf": {
+    "file": "assets/CenturyGothic-CaTj-HNL.ttf",
+    "src": "resources/css/fonts/CenturyGothic.ttf"
+  },
+  "resources/css/fonts/DidactGothic-Regular.ttf": {
+    "file": "assets/DidactGothic-Regular-BHqZkJr8.ttf",
+    "src": "resources/css/fonts/DidactGothic-Regular.ttf"
+  },
+  "resources/css/fonts/Questrial-Regular.ttf": {
+    "file": "assets/Questrial-Regular-C8uSKUik.ttf",
+    "src": "resources/css/fonts/Questrial-Regular.ttf"
+  },
+  "resources/css/fonts/franklin-gothic-book.ttf": {
+    "file": "assets/franklin-gothic-book-DIqz9-ej.ttf",
+    "src": "resources/css/fonts/franklin-gothic-book.ttf"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BCMqxNiK.js",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
