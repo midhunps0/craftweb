@@ -209,27 +209,27 @@ class HilightFeatureService implements ModelViewConnector {
 
     public function authoriseCreate(): bool
     {
-        return auth()-user()->hasPermissionTo('Hilight Feature: Create');
+        return auth()->user()->hasPermissionTo('Hilight Feature: Create');
     }
 
     public function authoriseStore(): bool
     {
-        return auth()-user()->hasPermissionTo('Hilight Feature: Create');
+        return auth()->user()->hasPermissionTo('Hilight Feature: Create');
     }
 
     public function authoriseEdit($id): bool
     {
-        return auth()-user()->hasPermissionTo('Hilight Feature: Edit');
+        return auth()->user()->hasPermissionTo('Hilight Feature: Edit');
     }
 
     public function authoriseUpdate($item): bool
     {
-        return auth()-user()->hasPermissionTo('Hilight Feature: Edit');
+        return auth()->user()->hasPermissionTo('Hilight Feature: Edit');
     }
 
     public function authoriseDestroy($item): bool
     {
-        return auth()-user()->hasPermissionTo('Hilight Feature: Delete');
+        return auth()->user()->hasPermissionTo('Hilight Feature: Delete');
     }
 
     public function getStoreValidationRules(): array
