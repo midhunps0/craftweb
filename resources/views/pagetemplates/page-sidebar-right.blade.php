@@ -1,5 +1,6 @@
 <x-guest-layout>
     <div>
+        <x-main-menu-component />
         <h1>{{$instance->current_translation->data['title']}}</h1>
         @if (isset($instance->current_translation->display_image))
             <div>
