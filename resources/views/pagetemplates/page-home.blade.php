@@ -326,7 +326,7 @@
                 </div>
             </div>
         </div>
-        <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full md:px-16 lg:px-24 z-10">
+        {{-- <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full md:px-16 lg:px-24 z-10">
             <div class="flex ltr:flex-row rtl:flex-row-reverse justify-start mt-16 w-1/2">
                 <div class="mr-4">
                     <img src="/images/icons/faq.png" class="h-24" alt="">
@@ -341,7 +341,7 @@
             <div class="relative lg:absolute lg:z-50 lg:-bottom-24 ltr:right-0 rtl:left-0 lg:w-5/12 h-fit">
                 <x-bookappointment-component/>
             </div>
-        </div>
+        </div> --}}
         <div class="relative w-full z-0 h-0 overflow-visible">
             <x-footer />
         </div>

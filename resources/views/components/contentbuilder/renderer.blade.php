@@ -1,9 +1,9 @@
 @props(['content'])
 {{-- {{dd($content)}} --}}
 @foreach ($content as $row)
-    <div class="row flex flex-row {{ $row->classes }}">
+    <div class="row flex flex-row flex-wrap {{ $row->classes }}">
         @foreach ($row->cols as $col)
-            <div class="col {{ $col->classes }}">
+            <div class="col px-2 min-w-64 flex-grow {{ $col->classes }}">
                 <div class="col-content w-full flex flex-col">
                     @foreach ($col->items as $item)
                         @switch($item->type)

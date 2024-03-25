@@ -5,6 +5,7 @@ return [
         'en' => 'English',
         'ar' => 'Arabic'
     ],
+    'default_locale' => 'en',
     'page_templates_folder' => 'pagetemplates',
     'form_templates_folder' => 'pageformtemplates',
     'article_translation_component' => 'article',

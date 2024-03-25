@@ -1,4 +1,21 @@
-<footer class="w-full flex flex-col md:flex-row md:justify-between bg-darkgray cursor-pointer md:px-16 lg:px-20 lg:pt-4 lg:pb-10 px-4 text-base-100">
+<footer class="bg-white">
+    <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full md:px-16 lg:px-24 z-10">
+        <div class="flex ltr:flex-row rtl:flex-row-reverse justify-start mt-16 w-1/2">
+            <div class="mr-4">
+                <img src="/images/icons/faq.png" class="h-24" alt="">
+            </div>
+            <div>
+                <h2 class="text-3xl">Frequently Asked Questions</h2>
+                <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
+            </div>
+        </div>
+    </div>
+    <div class="relative w-full lg:px-24 z-10 lg:h-0 overflow-visible">
+        <div class="relative lg:absolute lg:z-50 lg:-bottom-24 ltr:right-0 rtl:left-0 lg:w-5/12 h-fit">
+            <x-bookappointment-component/>
+        </div>
+    </div>
+<div class="w-full flex flex-col md:flex-row md:justify-between bg-darkgray cursor-pointer md:px-16 lg:px-20 lg:pt-4 lg:pb-10 px-4 text-base-100">
     <div class="md:flex md:flex-row md:w-7/12 justify-between mt-8 lg:mt-0 pr-8">
         <div class="flex flex-col justify-center items-start lg:items-center">
             <img src="{{ asset('/images/icons/craftfertility (1).webp') }}" alt="" class="w-16 bg-white shadow md:w-32 rounded-sm">
@@ -79,4 +96,5 @@
         </div>
 
     </div>
+</div>
 </footer>

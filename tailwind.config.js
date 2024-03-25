@@ -12,11 +12,11 @@ export default {
     theme: {
         extend: {
             fontFamily: {
+                sans: ['Arial', ...defaultTheme.fontFamily.sans],
                 gothic:['Didact Gothic','sans-serif'],
                 gothic1:['Century Gothic','sans-serif'],
                 franklin:['Franklin Gothic','sans-serif'],
                 questrial:['Questrial','sans-serif'],
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             width: {
                 '30': '7.5rem',

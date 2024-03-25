@@ -29,10 +29,53 @@
 .preview-item img {
     @apply hover:opacity-50 cursor-pointer;
 }
-
-.col {
-    @apply p-2;
+.row {
+    @apply mb-2;
 }
-.col div {
-    @apply space-y-2;
+.col .col-content {
+    @apply gap-y-2 h-full flex flex-col justify-center w-full;
+}
+
+.para p:not(:last-child){
+    @apply mb-4;
+}
+
+.list {
+    @apply my-2;
+}
+
+ol.list li{
+    @apply list-decimal list-inside px-0;
+}
+
+ul.list li{
+    @apply list-decimal list-outside px-0;
+}
+
+h2{
+    @apply text-2xl;
+}
+
+h3{
+    @apply text-xl;
+}
+
+.card>div{
+    @apply shadow-md p-3 w-full;
+}
+.card .heading {
+    @apply font-bold text-center text-xl;
+}
+.card .para {
+    @apply text-center leading-7;
+}
+
+.card.mini {
+    @apply max-w-36;
+}
+.card.base {
+    @apply max-w-72;
+}
+.card.big {
+    @apply max-w-100;
 }

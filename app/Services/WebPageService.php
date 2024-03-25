@@ -52,6 +52,24 @@ class WebPageService implements ModelViewConnector {
     public function getShowPageData($slug): ShowPageData
     {
 
+        $item = WebPage::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', App::currentLocale())
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $item = WebPage::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', config('app_settings.default_locale'))
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        }
+        if($item == null) {
+            throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
+        }
+
         $thedata = [];
         if ($slug == 'home') {
             $hfeatures = HilightFeature::all();
@@ -60,15 +78,6 @@ class WebPageService implements ModelViewConnector {
             }
         }
 
-        $item = WebPage::with(['translations'])
-            ->wherehas('translations', function ($q) use ($slug) {
-                $q->where('locale', App::currentLocale())
-                ->where('slug', $slug);
-            })
-            ->get()->first();
-        if($item == null) {
-            throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
-        }
         return new ShowPageData(
             title: Str::ucfirst($this->getModelShortName()),
             instance: $item,
