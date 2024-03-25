@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\IconsController;
+use App\Http\Controllers\LayoutBuilderController;
 use App\Http\Controllers\PageTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
@@ -37,11 +38,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function () {
     Route::get('dashboard', [config('easyadmin.dashboard_controller'), config('easyadmin.dashboard_method')])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/get-rendered-preview', [LayoutBuilderController::class, 'getPreview'])->name('layoutbuilder.preview');
 
     RouteHelper::getEasyRoutes('PageTemplate');
     RouteHelper::getEasyRoutes('WebPage');

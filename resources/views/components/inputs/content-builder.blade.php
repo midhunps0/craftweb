@@ -5,9 +5,12 @@
             contentlist: [],
             listforsave: [],
             editorVisible: false,
+            previewLoading: false,
+            previewHtml: '',
             showEditor() {
                 this.contentlist = JSON.parse(JSON.stringify(this.listforsave));
                 this.editorVisible = true;
+                $dispatch('reseteditor');
             },
             hideEditor() {
                 this.editorVisible = false;
@@ -300,12 +303,29 @@
             setContentForSave() {
                 this.listforsave = JSON.parse(JSON.stringify(this.contentlist));
                 this.htmltext = JSON.stringify(this.listforsave);
-                console.log(this.htmltext);
+                this.getRenderedPreview();
             },
             decodeHtml(html) {
                 let txt = document.createElement('textarea');
                 txt.innerHTML = html;
                 return txt.value;
+            },
+            getRenderedPreview() {
+                this.previewLoading = true;
+                axios.get(
+                    '{{route('layoutbuilder.preview')}}',
+                    {
+                        params: {
+                            'content': JSON.stringify(this.contentlist),
+                        }
+                    }
+                ).then((r) => {
+                    this.previewHtml = r.data.preview_html;
+                    this.previewLoading = false;
+                }).catch((e) => {
+                    console.log(e);
+                    this.previewLoading = false;
+                });
             }
         }"
         x-init="
@@ -316,13 +336,12 @@
             $nextTick(() => {
                 let thedata = decodeHtml(document.getElementById('contentdatavalue').value);
                 thedata = thedata.substring(1,thedata.length-1);
-                console.log('thedata');
-                console.log(thedata);
                 listforsave = JSON.parse(thedata);
-                console.log('contentlist');
-                console.log(typeof listforsave);
-                console.log(listforsave);
                 htmltext = JSON.stringify(listforsave);
+                if (listforsave.length > 0) {
+                    contentlist = JSON.parse(JSON.stringify(listforsave));
+                    getRenderedPreview();
+                }
             });
         "
         @filechanged.window="
@@ -331,7 +350,7 @@
         class="form-control">
         <input id="contentdatavalue" type="hidden" value="{{'"'.$contentdata.'"' ?? ''}}">
         <div class="w-full h-20 bg-base-100 rounded-md border border-base-content border-opacity-20 overflow-hidden relative">
-            <div class="p-2" x-text="htmltext"></div>
+            <div x-show="previewHtml.length > 0" class="p-2 overflow-y-scroll bg-white text-black" x-html="previewHtml"></div>
             <button @click.prevent.stop="showEditor()" type="button" class="flex flex-row justify-center absolute right-1/2 top-1/4 z-20 btn btn-sm btn-warning">
             <x-easyadmin::display.icon icon="easyadmin::icons.edit" />
         </div>
@@ -382,8 +401,8 @@
                         <button @click.prevent.stop="hideEditor();" type="button" class="mt-2 px-4 py-2 bg-transparent text-error flex flex-row justify-center items-center">
                             Cancel&nbsp;<x-easyadmin::display.icon icon="easyadmin::icons.close" />
                         </button>
-                        <button @click.prevent.stop="setContentForSave();hideEditor();" type="button" class="btn btn-success btn-sm">
-                            Save <x-easyadmin::display.icon icon="easyadmin::icons.tick" />
+                        <button @click.prevent.stop="setContentForSave();hideEditor();" type="button" class="btn btn-success btn-sm text-white">
+                            Set Content <x-easyadmin::display.icon icon="easyadmin::icons.tick" />
                         </button>
                     </div>
 

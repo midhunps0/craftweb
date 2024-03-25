@@ -35,7 +35,8 @@
                             if (r.data.success) {
                                 $dispatch('linkaction', {
                                     route: 'doctors.index',
-                                    link: '{{route('doctors.index')}}'
+                                    link: '{{route('doctors.index')}}',
+                                    fresh: true
                                 });
                             }
                         }).catch((e) => {

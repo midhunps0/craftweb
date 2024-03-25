@@ -35,7 +35,8 @@
                             if (r.data.success) {
                                 $dispatch('linkaction', {
                                     route: 'hilightfeatures.index',
-                                    link: '{{route('hilightfeatures.index')}}'
+                                    link: '{{route('hilightfeatures.index')}}',
+                                    fresh: true
                                 });
                             }
                         }).catch((e) => {

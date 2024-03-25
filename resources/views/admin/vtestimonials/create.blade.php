@@ -35,7 +35,8 @@
                             if (r.data.success) {
                                 $dispatch('linkaction', {
                                     route: 'videotestimonials.index',
-                                    link: '{{route('videotestimonials.index')}}'
+                                    link: '{{route('videotestimonials.index')}}',
+                                    fresh: true
                                 });
                             }
                         }).catch((e) => {
