@@ -155,7 +155,7 @@
                     </div>
                     <div class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0">
                         <template x-for="(r, i) in reviews">
-                            <div :data-ix="i" class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
+                            <div class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
                                 <div class="w-full lg:max-w-96 my-3" :style="`min-width: ${itemWidth - 20}px`">
                                     <div class="bg-base-100 bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] mx-2 pb-5">
                                         <div class="flex w-full p-2 items-center">
@@ -212,27 +212,75 @@
                     <div class="hidden md:block mt-4 lg:mt-8 z-20 relative"><x-viewallbutton-component
                             text="All Testimonials" /></div>
                 </div>
-                <div class="w-full md:w-1/2 relative py-4 md:py-16">
+                <div x-data="{
+                        dir: 'ltr',
+                        itemWidth: 0,
+                        itemHeight: 0,
+                        wrapperWidth: 0,
+                        videos: [],
+                        currentItems: [],
+                        wrapperOffset: 0,
+                        slideForward() {
+                            if (this.currentItems[0] != this.videos.length - 1) {
+                                this.wrapperOffset = this.wrapperOffset - this.itemWidth;
+                                this.currentItems[0]++;
+                            }
+                        },
+                        slideBackward() {
+                            if (this.currentItems[0] != 0) {
+                                this.wrapperOffset = this.wrapperOffset + this.itemWidth;
+                                this.currentItems[0]--;
+                            }
+                            console.log(this.wrapperOffset);
+                        },
+                        setItemWidth() {
+                            this.itemWidth = document.getElementById('video-container').offsetWidth;
+                            this.wrapperWidth = this.itemWidth * this.videos.length;
+                        },
+                        setCurrentItems () {
+                            this.currentItems = this.dir == 'ltr' ? [0] : [this.videos.length - 1];
+                            this.setItemWidth();
+                        }
+                    }"
+                    x-init="
+                        dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+                        $nextTick(() => {
+                            videos = {{Js::from($data['videos'])}};
+                            setCurrentItems();
+                            setItemWidth();
+
+                        });
+                    "
+                    @resize.window="setItemWidth();"
+                    class="w-full md:w-1/2 relative py-4 md:py-16">
                     <div class="absolute top-0 ltr:left-0 rtl:right-0 bg-gray w-1/2 h-full z-0">
                     </div>
-                    <div class="relative z-10 w-full" style="position:relative;padding-bottom:56.25%;">
-                        <iframe width="100%" height="100%"
-                            class="w-full absolute top-0 left-0"src="https://www.youtube.com/embed/0Pgrr23voYs?si=QPgjNPM6CUIpC4nC"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div id="video-container" class="w-full overflow-hidden">
+                        <div :style="`width: ${wrapperWidth}px; transform: translate(${wrapperOffset}px);`" class="flex flex-row transition-all">
+                            <template x-for="(v, i) in videos">
+                                <div :style="`width: ${itemWidth}px`">
+                                    <div class="relative z-10" style="position:relative;padding-bottom:56.25%">
+                                        <iframe width="100%" height="100%"
+                                            class="w-full absolute top-0 left-0"src="https://www.youtube.com/embed/0Pgrr23voYs?si=QPgjNPM6CUIpC4nC"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
                     </div>
-                    <div class="relative mt-4 flex flex-row justify-center space-x-4">
-                        <a href="#"
-                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
+                    <div class="relative mt-4 flex ltr:flex-row rtl:flex-row-reverse justify-center space-x-4">
+                        <button type="button" @click.prevent.stop="slideBackward();"
+                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center disabled:bg-gray shadow-lg" :disabled="currentItems[0] == 0">
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-6"
                                 width="w-6" />
-                        </a>
-                        <a href="#"
-                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
+                        </button>
+                        <button type="button" @click.prevent.stop="slideForward();"
+                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center disabled:bg-gray shadow-lg" :disabled="currentItems[currentItems.length - 1] == videos.length - 1">
                             <x-easyadmin::display.icon icon="icons.chevron_right" height="h-6"
                                 width="w-6" />
-                        </a>
+                        </button>
                     </div>
                     <div class="md:hidden mt-8 lg:mt-8 z-20 relative flex flex-row justify-center">
                         <x-viewallbutton-component text="All Testimonials" />
@@ -340,30 +388,94 @@
                     <x-viewallbutton-component text="All Doctors" />
                 </p>
             </div>
-            <div class="w-full lg:w-2/3">
-                <div class="w-full flex flex-row flex-wrap md:flex-nowrap justify-center md:justify-between">
-                    <div class="p-2 lg:p-0">
-                        <x-doctorcard-component/>
-                    </div>
-                    <div class="p-2 lg:p-0">
-                        <x-doctorcard-component/>
-                    </div>
-                    <div class="p-2 lg:p-0">
-                        <x-doctorcard-component/>
-                    </div>
+            <div x-data="{
+                    dir: 'ltr',
+                    itemWidth: 0,
+                    doctors: [],
+                    currentItems: [],
+                    slideForward() {
+                        if (this.currentItems.length == 3 && this.currentItems[2] != this.doctors.length -1 ) {
+                            this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                            console.log(this.currentItems);
+                        } else if (this.currentItems.length == 1 && this.currentItems[0] != this.doctors.length - 1) {
+                            this.currentItems = [this.currentItems[0] + 1];
+                        }
+                    },
+                    slideBackward() {
+                        if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
+                            this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                        } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
+                            this.currentItems = [this.currentItems[0] - 1];
+                        }
+                    },
+                    setItemWidth() {
+                        this.itemWidth = itemWidth = $el.offsetWidth / this.currentItems.length;
+                    },
+                    setCurrentItems () {
+                        if (window.innerWidth > 640) {
+                            if(this.currentItems.length != 3) {
+                                let rlen = this.doctors.length;
+                                this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                            }
+                        } else {
+                            if(this.currentItems.length != 1) {
+                                this.currentItems = this.dir == 'ltr' ? [0] : [this.doctors.length - 1];
+                            }
+                        }
+                        this.setItemWidth();
+                    }
+                }"
+                x-init="
+                    dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+                    $nextTick(() => {
+                        doctors = {{Js::from($data['doctors'])}};
+                        setCurrentItems();
+                        console.log('doctors');
+                        console.log(doctors);
+                    });
+                "
+                @resize.window="setCurrentItems();"
+                class="w-full lg:w-2/3">
+                <div class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden">
+                    <template x-for="(d,i) in doctors">
+                        <div :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'"
+                            class="flex flex-row justify-center md:justify-between transition-all overflow-x-hidden">
+                            <div class="mx-3">
+                                <div class="w-56 relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
+                                   <div class="px-4">
+                                      <p class="text-xl font-franklin pt-6 min-h-20" x-text="d.current_translation.data.name"></p>
+                                   </div>
+
+                                   <div class="relative flex flex-row justify-end">
+                                      <img :src="d.photo_url" class="h-52 dir-img" alt="doctor_image">
+                                   </div>
+
+                                   <div class="absolute flex ltr:flex-row rtl:flex-row-reverse items-center space-x-2 -rotate-90 origin-top-left bottom-10 ltr:left-2 rtl:-right-24">
+                                         <img src="/images/icons/Copy of icone-d-information-noir.png" class="opacity-40 h-8 w-8 rotate-90" alt="">
+                                         <p class="text-gray text-xs font-normal">Craft IVF Hospital</p>
+                                   </div>
+
+                                   <div class="bg-gray-600 py-3">
+                                      <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.designation"></p>
+                                      <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.qualification"></p>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
-                <div class="hidden md:flex flex-row ltr:justify-end rtl:justify-start mt-6">
-                    <div class="relative mt-4 flex flex-row justify-center space-x-4">
-                        <a href="#"
-                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
+                <div class="flex-row mt-6">
+                    <div class="relative mt-4 flex ltr:flex-row rtl:flex-row-reverse justify-center gap-4">
+                        <button type="button" @click.prevent.stop="slideBackward();"
+                            class="border border-gray bg-darkgray text-white p-2 rounded-full flex items-center justify-center disabled:bg-gray shadow-lg" :disabled="currentItems[0] == 0">
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-6"
                                 width="w-6" />
-                        </a>
-                        <a href="#"
-                            class="border border-gray bg-darkgray text-white p-2 w-7-h-7 rounded-full flex items-center justify-center">
+                    </button>
+                        <button type="button" @click.prevent.stop="slideForward();"
+                            class="border border-gray bg-darkgray text-white p-2 flex items-center justify-center disabled:bg-gray rounded-full shadow-lg" :disabled="currentItems[currentItems.length - 1] == doctors.length - 1">
                             <x-easyadmin::display.icon icon="icons.chevron_right" height="h-6"
                                 width="w-6" />
-                        </a>
+                    </button>
                     </div>
                 </div>
             </div>

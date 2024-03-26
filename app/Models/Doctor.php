@@ -20,6 +20,7 @@ class Doctor extends Model implements MediaOwner
     protected $appends = [
         'translations_array',
         'current_translation',
+        'photo_url'
     ];
 
     public function defaultName(): Attribute
@@ -69,7 +70,7 @@ class Doctor extends Model implements MediaOwner
     {
         return Attribute::make(
             get: function ($v) {
-                return $this->getSingleMediaFilePath('photo');
+                return asset($this->getSingleMediaFilePath('photo'));
             }
         );
     }

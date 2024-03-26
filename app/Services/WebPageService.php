@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Doctor;
 use App\Models\HilightFeature;
 use App\Models\MetatagsList;
 use App\Models\PageTemplate;
@@ -79,7 +80,10 @@ class WebPageService implements ModelViewConnector {
             foreach ($hfeatures as $f) {
                 $thedata['hfeatures'][$f->display_location] = $f;
             }
-            $thedata['reviews'] = Review::limit(12)->get();
+            $thedata['reviews'] = Review::orderBy('id', 'desc')->limit(12)->get();
+            $thedata['videos'] = Review::orderBy('id', 'desc')->limit(6)->get();
+            $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
+            // dd($thedata['doctors']);
         }
 
         return new ShowPageData(
