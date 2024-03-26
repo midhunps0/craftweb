@@ -176,7 +176,7 @@
                                             </div>
                                         </div>
                                         <div class="px-4">
-                                            <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review_text"></p>
+                                            <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review"></p>
                                         </div>
                                     </div>
                                 </div>
