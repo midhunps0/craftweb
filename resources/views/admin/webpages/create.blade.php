@@ -46,8 +46,6 @@
                                 });
                             }
                         }).catch((e) => {
-                            console.log('error:');
-                            console.log(e.response.data.errors);
                             $dispatch('showtoast', {
                                 mode: 'error',
                                 message: this.getErrorString(e.response.data.errors)

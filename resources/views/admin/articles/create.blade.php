@@ -40,8 +40,20 @@
                                 });
                             }
                         }).catch((e) => {
-                            console.log(e);
+                            console.log('error:');
+                            console.log(e.response.data.errors);
+                            $dispatch('showtoast', {
+                                mode: 'error',
+                                message: this.getErrorString(e.response.data.errors)
+                            });
                         });
+                    },
+                    getErrorString(e) {
+                        let temp = '';
+                        Object.keys(e).forEach((k) => {
+                            temp += `${e[k].join('.')}; `;
+                        });
+                        return temp.trim();
                     }
                 }"
                 x-init="

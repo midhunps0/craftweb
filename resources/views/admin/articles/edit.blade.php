@@ -46,8 +46,18 @@
                                 });
                             }
                         }).catch((e) => {
-                            console.log(e);
+                            $dispatch('showtoast', {
+                                mode: 'error',
+                                message: this.getErrorString(e.response.data.errors)
+                            });
                         });
+                    },
+                    getErrorString(e) {
+                        let temp = '';
+                        Object.keys(e).forEach((k) => {
+                            temp += `${e[k].join('.')}; `;
+                        });
+                        return temp.trim();
                     }
                 }"
                 x-init="
