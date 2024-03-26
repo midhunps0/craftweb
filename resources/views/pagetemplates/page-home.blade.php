@@ -95,14 +95,100 @@
                     Reviews</p>
             </div>
 
-            <div class="mt-8 flex justify-center md:hidden">
+            {{-- <div class="mt-8 flex justify-center md:hidden">
                 <x-review-component />
-            </div>
+            </div> --}}
 
-            <div class="mt-8 justify-between hidden md:flex space-x-4 lg:space-x-4 xl:space-x-14 rtl:space-x-reverse">
-                <div><x-review-component /></div>
-                <div><x-review-component /></div>
-                <div class="hidden lg:block"><x-review-component /></div>
+            <div class="mt-8 justify-between">
+                <div x-data="{
+                        dir: 'ltr',
+                        itemWidth: 0,
+                        reviews: [],
+                        currentItems: [],
+                        slideForward() {
+                            if (this.currentItems.length == 3 && this.currentItems[2] != this.reviews.length -1 ) {
+                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                                console.log(this.currentItems);
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != this.reviews.length - 1) {
+                                this.currentItems = [this.currentItems[0] + 1];
+                            }
+                        },
+                        slideBackward() {
+                            if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
+                                this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
+                                this.currentItems = [this.currentItems[0] - 1];
+                            }
+                        },
+                        setItemWidth() {
+                            this.itemWidth = itemWidth = $el.offsetWidth / this.currentItems.length;
+                        },
+                        setCurrentItems () {
+                            if (window.innerWidth > 768) {
+                                if(this.currentItems.length != 3) {
+                                    let rlen = this.reviews.length;
+                                    this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                                }
+                            } else {
+                                if(this.currentItems.length != 1) {
+                                    this.currentItems = this.dir == 'ltr' ? [0] : [this.reviews.length - 1];
+                                }
+                            }
+                            this.setItemWidth();
+                        }
+                    }"
+                    x-init="
+                        dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+                        $nextTick(() => {
+                            reviews = {{Js::from($data['reviews'])}};
+                            setCurrentItems();
+
+                        });
+                    "
+                    @resize.window="setCurrentItems();"
+                    class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0"
+                    >
+                    <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
+                        <button type="button" @click.prevent.stop="slideBackward();" class="text-darkgray opacity-40 hover:opacity-100 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
+                        </button>
+                    </div>
+                    <div class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0">
+                        <template x-for="(r, i) in reviews">
+                            <div :data-ix="i" class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
+                                <div class="w-full lg:max-w-96 my-3" :style="`min-width: ${itemWidth - 20}px`">
+                                    <div class="bg-base-100 bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] mx-2 pb-5">
+                                        <div class="flex w-full p-2 items-center">
+                                            <div>
+                                                <img src="/images/icons/double qoute left1.png" class="h-16" alt="">
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    <p class="font-franklin font-bold text-sm" x-text="r.current_translation.data.reviewer"></p>
+                                                </div>
+                                                <div class="flex flex-row">
+                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="px-4">
+                                            <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review_text"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div :class="currentItems[currentItems.length - 1] != reviews.length - 1 || 'hidden'" class="absolute z-10 h-full top-0 right-0 flex flex-row items-center">
+                        <button type="button" @click.prevent.stop="slideForward();" class="text-darkgray opacity-40 hover:opacity-100 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div
@@ -154,6 +240,7 @@
                 </div>
             </div>
         </div>
+
         <div class="mt-8">
             <h2 class="text-darkgray text-3xl text-center font-franklin">Why Is Your IVF Cycle In Craft Most Likely To
                 Be Successful </h2>

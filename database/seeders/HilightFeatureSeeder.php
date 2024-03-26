@@ -12,12 +12,12 @@ class HilightFeatureSeeder extends Seeder
     private $locs = [
         'L00',
         'L01',
+        'L10',
         'L11',
-        'L12',
         'R00',
         'R01',
+        'R10',
         'R11',
-        'R12',
     ];
     /**
      * Run the database seeds.

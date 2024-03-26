@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\HilightFeature;
 use App\Models\MetatagsList;
 use App\Models\PageTemplate;
+use App\Models\Review;
 use App\Models\Translation;
 use App\Models\WebPage;
 use Exception;
@@ -78,6 +79,7 @@ class WebPageService implements ModelViewConnector {
             foreach ($hfeatures as $f) {
                 $thedata['hfeatures'][$f->display_location] = $f;
             }
+            $thedata['reviews'] = Review::limit(12)->get();
         }
 
         return new ShowPageData(
