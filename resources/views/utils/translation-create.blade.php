@@ -2,6 +2,9 @@
 <div x-data="{
     currentTab: 0,
     }">
+    <div class="w-full text-right px-4">
+        <a href="#" class="btn btn-sm py-2 normal-case" @click.prevent.stop="window.history.back();">Go Back</a>
+    </div>
     <div>
         <div class="flex flex-row m-0">
             @foreach (config('app_settings.enabled_locales') as $code => $language)

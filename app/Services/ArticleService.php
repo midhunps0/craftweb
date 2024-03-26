@@ -18,6 +18,7 @@ use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class ArticleService implements ModelViewConnector {
@@ -258,7 +259,12 @@ class ArticleService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(fn ($query) => $query->where('translatable_type', Article::class))
+                ->where('locale', App::currentLocale())
+            ],
             'data' => ['required', 'array'],
         ];
     }
@@ -267,7 +273,16 @@ class ArticleService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(static function ($query) use ($id) {
+                        return $query->where('translatable_type', Article::class)
+                        ->where('locale', App::currentLocale())
+                        ->whereNotIn('translatable_id', [$id]);
+                    }
+                )
+            ],
             'data' => ['required', 'array'],
         ];
     }

@@ -38,18 +38,36 @@
                                     link: '{{route('webpages.index')}}',
                                     fresh: true
                                 });
+                            } else {
+                                console.log(r.data)
+                                $dispatch('showtoast', {
+                                    mode: 'error',
+                                    message: this.getErrorString(r.data.errors)
+                                });
                             }
                         }).catch((e) => {
-                            console.log(e);
+                            console.log('error:');
+                            console.log(e.response.data.errors);
+                            $dispatch('showtoast', {
+                                mode: 'error',
+                                message: this.getErrorString(e.response.data.errors)
+                            });
                         });
+                    },
+                    getErrorString(e) {
+                        let temp = '';
+                        Object.keys(e).forEach((k) => {
+                            temp += `${e[k].join('.')}; `;
+                        });
+                        return temp.trim();
                     }
                 }"
                 x-init="
                     $nextTick(() => {
                         allTemplates = {{Js::from($templates)}};
-                        $watch('templateId', (v) => {
-                            fetchForm();
-                        });
+                    });
+                    $watch('templateId', (v) => {
+                        fetchForm()
                     });
                 ">
                 <form class="mb-8" @submit.prevent.stop="" action="#">

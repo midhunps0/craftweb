@@ -350,7 +350,7 @@
         class="form-control">
         <input id="contentdatavalue" type="hidden" value="{{'"'.$contentdata.'"' ?? ''}}">
         <div class="w-full h-20 bg-base-100 rounded-md border border-base-content border-opacity-20 overflow-hidden relative">
-            <div x-show="previewHtml.length > 0" class="p-2 overflow-y-scroll bg-white text-black" x-html="previewHtml"></div>
+            <div x-show="previewHtml.length > 0 " class="p-2 overflow-y-scroll bg-white text-black" x-html="previewHtml"></div>
             <button @click.prevent.stop="showEditor()" type="button" class="flex flex-row justify-center absolute right-1/2 top-1/4 z-20 btn btn-sm btn-warning">
             <x-easyadmin::display.icon icon="easyadmin::icons.edit" />
         </div>

@@ -8,6 +8,7 @@ use App\Models\Translation;
 use App\Models\WebPage;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -18,6 +19,7 @@ use Modules\Ynotz\EasyAdmin\RenderDataFormats\CreatePageData;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\EditPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
@@ -29,7 +31,7 @@ class WebPageService implements ModelViewConnector {
     {
         $this->modelClass = WebPage::class;
         $this->indexTable = new IndexTable();
-        $this->selectionEnabled = true;
+        // $this->selectionEnabled = true;
 
         $this->idKey = 'slug';
         // $this->selects = '*';
@@ -111,10 +113,15 @@ class WebPageService implements ModelViewConnector {
         return $this->indexTable->addHeaderColumn(
             title: 'Title',
             // sort: ['key' => 'title'],
-        )->addHeaderColumn(
+        )
+        ->addHeaderColumn(
+            title: 'Slug',
+        )
+        ->addHeaderColumn(
             title: 'Page Template',
             filter: ['key' => 'pageTemplate', 'options' => PageTemplate::all()->pluck('name', 'id')]
-        )->addHeaderColumn(
+        )
+        ->addHeaderColumn(
             title: 'Actions'
         )->getHeaderRow();
     }
@@ -123,10 +130,15 @@ class WebPageService implements ModelViewConnector {
     {
         return $this->indexTable->addColumn(
             fields: ['defaultTitle'],
-        )->addColumn(
+        )
+        ->addColumn(
+            fields: ['default_slug'],
+        )
+        ->addColumn(
             fields: ['template_file'],
             relation: 'pageTemplate'
-        )->addActionColumn(
+        )
+        ->addActionColumn(
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
         )->getRow();
@@ -286,7 +298,12 @@ class WebPageService implements ModelViewConnector {
         return [
             'template' => ['required', 'string'],
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(fn ($query) => $query->where('translatable_type', WebPage::class))
+                ->where('locale', App::currentLocale())
+            ],
             'data' => ['required', 'array'],
         ];
     }
@@ -296,7 +313,16 @@ class WebPageService implements ModelViewConnector {
         return [
             'template' => ['required', 'string'],
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(static function ($query) use ($id) {
+                        return $query->where('translatable_type', WebPage::class)
+                        ->where('locale', App::currentLocale())
+                        ->whereNotIn('translatable_id', [$id]);
+                    }
+                )
+            ],
             'data' => ['required', 'array'],
         ];
     }
