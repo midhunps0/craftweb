@@ -108,7 +108,6 @@
                         slideForward() {
                             if (this.currentItems.length == 3 && this.currentItems[2] != this.reviews.length -1 ) {
                                 this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
-                                console.log(this.currentItems);
                             } else if (this.currentItems.length == 1 && this.currentItems[0] != this.reviews.length - 1) {
                                 this.currentItems = [this.currentItems[0] + 1];
                             }
@@ -231,7 +230,6 @@
                                 this.wrapperOffset = this.wrapperOffset + this.itemWidth;
                                 this.currentItems[0]--;
                             }
-                            console.log(this.wrapperOffset);
                         },
                         setItemWidth() {
                             this.itemWidth = document.getElementById('video-container').offsetWidth;
@@ -312,8 +310,18 @@
             </div>
         </div>
 
-        <div class="hidden relative my-16 lg:flex flex-row justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
-            <div class="relative w-1/2 border border-gray p-8">
+        <div x-data="{
+                    features: [],
+                    currentKey: 'L00'
+                }"
+                x-init="
+                    features = {{Js::from($data['hfeatures'])}};
+                    console.log('features')
+                    console.log(features)
+                "
+                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
+            <div
+                class="relative w-1/2 border border-gray p-8">
                 <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
                     <img src="/images/icons/vector women pink_Mesa de trabajo 1.png" class="h-full opacity-40 dir-img"
                         alt="pregnant_lady_image">
@@ -327,11 +335,13 @@
                                             width="w-16" />
                                     </div>
                                     <div class="items-center mt-1">
-                                        <p class="font-bold text-2xl font-questrial ">100% non-donor policy</p>
+                                        <h3 class="font-bold text-2xl font-questrial "
+                                            x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">100% non-donor policy</h3>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex justify-center z-40 text-sm lg:text-base font-normal font-questrial text-justify w-3/4 m-auto px-[6%]">
+                                    class="flex justify-center z-40 text-sm lg:text-base font-normal font-questrial text-justify w-3/4 m-auto px-[6%]"
+                                    x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">
                                     We’re
                                     the only centre in India that strictly follows a non-donor (self-parentage) IVF
                                     policy. We
@@ -354,26 +364,26 @@
                     class="w-full lg:w-10/12 xl:4/5 flex ltr:flex-row rtl:flex-row-reverse justify-between items-center">
                     <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8">
                         <div class="flex flex-row">
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" ref_key="L00"/>
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L01']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L01']->current_translation->data['title']" ref_key="L01"/>
                         </div>
                         <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['L10']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L10']->current_translation->data['title']" ref_key="L10"/>
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L11']->current_translation->data['title']"/>
+                            <x-cycle-component :title="$data['hfeatures']['L11']->current_translation->data['title']" ref_key="L11"/>
                         </div>
                     </div>
                     <div class="flex-col ltr:justify-start rtl:justify-end space-y-8">
                         <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['R00']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R00']->current_translation->data['title']"  ref_key="R00"/>
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['R01']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R01']->current_translation->data['title']"  ref_key="R01"/>
                         </div>
                         <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['R10']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R10']->current_translation->data['title']"  ref_key="R10"/>
                             <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['R11']->current_translation->data['title']" />
+                            <x-cycle-component :title="$data['hfeatures']['R11']->current_translation->data['title']"  ref_key="R11"/>
                         </div>
                     </div>
                 </div>
@@ -396,7 +406,6 @@
                     slideForward() {
                         if (this.currentItems.length == 3 && this.currentItems[2] != this.doctors.length -1 ) {
                             this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
-                            console.log(this.currentItems);
                         } else if (this.currentItems.length == 1 && this.currentItems[0] != this.doctors.length - 1) {
                             this.currentItems = [this.currentItems[0] + 1];
                         }
@@ -430,8 +439,6 @@
                     $nextTick(() => {
                         doctors = {{Js::from($data['doctors'])}};
                         setCurrentItems();
-                        console.log('doctors');
-                        console.log(doctors);
                     });
                 "
                 @resize.window="setCurrentItems();"
@@ -483,19 +490,95 @@
 
         <div class="relative my-20 flex flex-col w-full md:px-16 lg:px-24 z-10">
             <div class="absolute top-0 left-0 z-0 bg-gray w-1/12 h-full"></div>
-            <div class="relative z-10 my-12">
+            <div x-data="{
+                    dir: 'ltr',
+                    itemWidth: 0,
+                    itemHeight: 0,
+                    newsitems: [],
+                    currentItems: [],
+                    wrapperOffset: 0,
+                    slideForward() {
+                        if (this.currentItems[0] != this.newsitems.length - (this.currentItems.length - 1)) {
+                            this.wrapperOffset = this.wrapperOffset - this.itemWidth;
+
+                            if (this.currentItems.length == 3 && this.currentItems[2] != this.newsitems.length -1 ) {
+                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != this.newsitems.length - 1) {
+                                this.currentItems = [this.currentItems[0] + 1];
+                            }
+                        }
+                    },
+                    slideBackward() {
+                        if (this.currentItems[0] >= 0) {
+                            this.wrapperOffset = this.wrapperOffset + this.itemWidth;
+
+                            if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
+                                this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
+                                this.currentItems = [this.currentItems[0] - 1];
+                            }
+                        }
+                    },
+
+                    setItemWidth() {
+                        if (this.currentItems.length > 1) {
+                            this.itemWidth = document.getElementById('news-container').offsetWidth / 2;
+                        } else {
+                            this.itemWidth = $el.offsetWidth
+                        }
+                        this.itemHeight = document.getElementById('news-container').offsetHeight;
+                    },
+                    setCurrentItems () {
+                        if (window.innerWidth > 640) {
+                            if(this.currentItems.length != 3) {
+                                let rlen = this.newsitems.length;
+                                this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                            }
+                        } else {
+                            if(this.currentItems.length != 1) {
+                                this.currentItems = this.dir == 'ltr' ? [0] : [this.newsitems.length - 1];
+                            }
+                        }
+                        this.setItemWidth();
+                        this.setWrapperOffset();
+                    },
+                    setWrapperOffset() {
+                        this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
+                    }
+                }"
+                x-init="
+                    dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+                    $nextTick(() => {
+                        newsitems = {{Js::from($data['newsitems'])}};
+                        setCurrentItems();
+                        setWrapperOffset();
+                    });
+                "
+                @resize.window="setCurrentItems();"
+                class="relative z-10 my-12 min-h-84">
                 <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40">News And Announcements</h2>
-                <div class="relative z-10 overflow-hidden py-4">
-                    <div class="w-full flex flex-row">
-                        <div class="hidden md:block w-1/2 min-w-1/2 px-4 ltr:-translate-x-1/2 rtl:translate-x-1/2">
-                            <x-news img="/images/home/news.png" />
+                <div id="news-container" class="relative z-10 overflow-hidden py-4">
+                    <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
+                        <button type="button" @click.prevent.stop="slideBackward();" class="text-white hover:opacity-40 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
+                        </button>
+                    </div>
+                    <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
+                        <template x-for="(n,i) in newsitems">
+                        <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
+                            <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white">
+                                <div>
+                                    <img :src="n.image_url" alt="">
+                                </div>
+                                <div class="text-center p-2 mt-4" x-text="n.current_translation.data.title"></div>
+                            </div>
                         </div>
-                        <div class="w-full md:w-1/2 min-w-1/2 px-4 ltr:md:-translate-x-1/2 rtl:md:translate-x-1/2">
-                            <x-news img="/images/home/news.png" />
-                        </div>
-                        <div class="hidden md:block w-1/2 min-w-1/2 px-4 ltr:-translate-x-1/2 rtl:translate-x-1/2">
-                            <x-news img="/images/home/news.png" />
-                        </div>
+                        </template>
+                    </div>
+                    <div :class="currentItems[currentItems.length - 1] != newsitems.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
+                        <button type="button" @click.prevent.stop="slideForward();" class="text-white hover:opacity-40 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
+                        </button>
                     </div>
                 </div>
                 <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6">
@@ -505,19 +588,92 @@
         </div>
 
         <div class="relative flex flex-col w-full md:px-16 lg:px-24 z-10">
-            <div class="relative z-10">
+            <div x-data="{
+                dir: 'ltr',
+                itemWidth: 0,
+                itemHeight: 0,
+                articles: [],
+                currentItems: [],
+                wrapperOffset: 0,
+                slideForward() {
+                    if (this.currentItems[0] < this.articles.length - this.currentItems.length) {
+                        this.wrapperOffset = this.wrapperOffset - this.itemWidth;
+
+                        if (this.currentItems.length == 3 && this.currentItems[2] != this.articles.length -1 ) {
+                            this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                        } else if (this.currentItems.length == 1 && this.currentItems[0] != this.articles.length - 1) {
+                            this.currentItems = [this.currentItems[0] + 1];
+                        }
+                    }
+                },
+                slideBackward() {
+                    if (this.currentItems[0] > 0) {
+                        this.wrapperOffset = this.wrapperOffset + this.itemWidth;
+
+                        if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
+                            this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                        } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
+                            this.currentItems = [this.currentItems[0] - 1];
+                        }
+                    }
+                },
+
+                setItemWidth() {
+                    if (this.currentItems.length > 1) {
+                        this.itemWidth = document.getElementById('articles-container').offsetWidth / 3;
+                    } else {
+                        this.itemWidth = $el.offsetWidth
+                    }
+                    this.itemHeight = document.getElementById('articles-container').offsetHeight;
+                },
+                setCurrentItems () {
+                    if (window.innerWidth > 640) {
+                        if(this.currentItems.length != 3) {
+                            let rlen = this.articles.length;
+                            this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                        }
+                    } else {
+                        if(this.currentItems.length != 1) {
+                            this.currentItems = this.dir == 'ltr' ? [0] : [this.articles.length - 1];
+                        }
+                    }
+                    this.setItemWidth();
+                },
+                setWrapperOffset() {
+                    this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
+                }
+            }"
+            x-init="
+                dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+                $nextTick(() => {
+                    articles = {{Js::from($data['articles'])}};
+                    setCurrentItems();
+                });
+            "
+            @resize.window="setCurrentItems();"
+            class="relative z-10">
                 <h2 class="text-4xl text-darkgray font-franklin relative z-40">Blog</h2>
-                <div class="relative z-10 py-6">
-                    <div class="w-full flex flex-row justify-center md:justify-between">
-                        <div class="hidden md:block w-1/3 px-2">
-                            <x-blogcard-component/>
+                <div id="articles-container" class="relative z-10 overflow-hidden py-4">
+                    <div  class="absolute z-50 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
+                        <button type="button" @click.prevent.stop="slideBackward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
+                        </button>
+                    </div>
+                    <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
+                    <template x-for="(a,i) in articles">
+                        <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
+                            <div class="w-full flex flex-row justify-center md:justify-between">
+                                <div class="mx-2">
+                                    <x-blogcard-component/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-full md:w-1/3 px-2 flex flex-row justify-center">
-                            <x-blogcard-component/>
-                        </div>
-                        <div class="hidden md:block w-1/3 px-2">
-                            <x-blogcard-component/>
-                        </div>
+                    </template>
+                    </div>
+                    <div :class="currentItems[currentItems.length - 1] != articles.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
+                        <button type="button" @click.prevent.stop="slideForward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
+                        </button>
                     </div>
                 </div>
                 <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">

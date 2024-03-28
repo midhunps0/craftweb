@@ -17,7 +17,9 @@
                 </div>
                 {{-- Sidebar --}}
                 <div class="md:w-1/4">
-                    some dummy text some dummy text some dummy text some dummy text some dummy text
+                    <div class="border border-gray bg-lightgray rounded-md p-2">
+                    <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['sidebar'])"/>
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,6 +13,12 @@
     {{-- <textarea name="data[body]" class="textarea textarea-bordered h-24"></textarea> --}}
     <x-inputs.content-builder key="data[body]" />
 </div>
+<div class="form-control">
+    <label class="label">
+        <span class="label-text">Sidebar</span>
+    </label>
+    <x-inputs.content-builder key="data[sidebar]" />
+</div>
 <x-easyadmin::inputs.imageuploader
     :element="[
         'key' => 'data[cover_image]',

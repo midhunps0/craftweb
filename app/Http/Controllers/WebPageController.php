@@ -7,6 +7,7 @@ use App\Models\WebPage;
 use App\Services\WebPageService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
@@ -32,7 +33,14 @@ class WebPageController extends SmartController
 
     public function home()
     {
+        App::setlocale('en');
         return $this->show('en','home');
+    }
+
+    public function quickShow($slug)
+    {
+        App::setlocale('en');
+        return $this->show('en', $slug);
     }
 
     public function show($locale, $slug)

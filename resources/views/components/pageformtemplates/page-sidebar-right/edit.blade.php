@@ -13,8 +13,13 @@
     <label class="label">
         <span class="label-text">Body</span>
     </label>
-    {{-- <textarea name="data[body]" class="textarea textarea-bordered h-24">{{$instance->translations_array[$locale]['body'] ?? ''}}</textarea> --}}
     <x-inputs.content-builder key="data[body]" contentdata="{{$instance->translations_array[$locale]['body'] ?? ''}}"/>
+</div>
+<div class="form-control">
+    <label class="label">
+        <span class="label-text">Sidebar</span>
+    </label>
+    <x-inputs.content-builder key="data[sidebar]" contentdata="{{$instance->translations_array[$locale]['sidebar'] ?? ''}}"/>
 </div>
 <x-easyadmin::inputs.imageuploader
     :element="[

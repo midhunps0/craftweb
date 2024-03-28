@@ -1,9 +1,11 @@
 <?php
 namespace App\Services;
 
+use App\Models\Article;
 use App\Models\Doctor;
 use App\Models\HilightFeature;
 use App\Models\MetatagsList;
+use App\Models\News;
 use App\Models\PageTemplate;
 use App\Models\Review;
 use App\Models\Translation;
@@ -83,6 +85,8 @@ class WebPageService implements ModelViewConnector {
             $thedata['reviews'] = Review::orderBy('id', 'desc')->limit(12)->get();
             $thedata['videos'] = Review::orderBy('id', 'desc')->limit(6)->get();
             $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
+            $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
+            $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
             // dd($thedata['doctors']);
         }
 
@@ -145,9 +149,17 @@ class WebPageService implements ModelViewConnector {
             relation: 'pageTemplate'
         )
         ->addActionColumn(
+            viewRoute: $this->getViewRoute(),
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
+            viewRouteUniqueKey: 'current_translation.slug',
+            viewRouteSlug: 'slug'
         )->getRow();
+    }
+
+    public function getViewRoute()
+    {
+        return 'webpages.view';
     }
 
     public function getAdvanceSearchFields(): array

@@ -70,6 +70,7 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['ynotz.translation']], function () {
+    Route::get('/{slug}', [WebPageController::class, 'quickShow'])->name('webpages.view');
     Route::get('/pages/{locale}/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');
     Route::get('/articles/{locale}/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
     Route::get('/doctors/{locale}/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
