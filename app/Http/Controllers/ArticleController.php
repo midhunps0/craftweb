@@ -7,6 +7,7 @@ use App\Models\PageTemplate;
 use App\Services\ArticleService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
@@ -28,6 +29,12 @@ class ArticleController extends SmartController
         // $this->editView = 'easyadmin::admin.form';
         // $this->itemsCount = 10;
         // $this->resultsName = 'results';
+    }
+
+    public function quickShow($slug)
+    {
+        App::setlocale('en');
+        return $this->show('en', $slug);
     }
 
     public function show($locale, $slug)

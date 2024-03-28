@@ -62,7 +62,8 @@ class ArticleService implements ModelViewConnector {
         }
         return new ShowPageData(
             Str::ucfirst($this->getModelShortName()),
-            $item
+            $item,
+            []
         );
     }
 
@@ -101,9 +102,17 @@ class ArticleService implements ModelViewConnector {
         return $this->indexTable->addColumn(
             fields: ['defaultTitle'],
         )->addActionColumn(
+            viewRoute: $this->getViewRoute(),
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
+            viewRouteUniqueKey: 'current_translation.slug',
+            viewRouteSlug: 'slug'
         )->getRow();
+    }
+
+    public function getViewRoute()
+    {
+        return 'articles.view';
     }
 
     public function getAdvanceSearchFields(): array
