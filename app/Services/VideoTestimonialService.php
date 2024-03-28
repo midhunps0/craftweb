@@ -300,14 +300,14 @@ class VideoTestimonialService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $review = VideoTestimonial::create(
+            $testimonial = VideoTestimonial::create(
                 [
                     'link' => $data['link']
                 ]
             );
             $translation = Translation::create(
                 [
-                    'translatable_id' => $review->id,
+                    'translatable_id' => $testimonial->id,
                     'translatable_type' => VideoTestimonial::class,
                     'locale' => $data['locale'],
                     'data' => $data['data'],
@@ -316,7 +316,7 @@ class VideoTestimonialService implements ModelViewConnector {
             );
 
             DB::commit();
-            return $review->refresh();
+            return $testimonial->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

@@ -1,5 +1,5 @@
 <div class="form-control">
-    <label class="label" for="">Name</label>
+    <label class="label" for="">Full Name</label>
     <input @change="$dispatch('titlechange', {key: 'create-doctor', value: $el.value});" name="data[name]" type="text" class="input input-bordered w-full" required />
 </div>
 <div class="form-control">
