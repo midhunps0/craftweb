@@ -357,7 +357,9 @@
                 if (document.getElementById(contentDataDivId) != null) {
                     let thedata = decodeHtml((document.getElementById(contentDataDivId)).value);
                     if(thedata.length > 2) {
+                        console.log(`thedata: ${thedata}`);
                         thedata = thedata.substring(1,thedata.length-1);
+                        console.log(`thedata: ${thedata}`);
                         listforsave = JSON.parse(thedata);
                         htmltext = JSON.stringify(listforsave);
                         if (listforsave.length > 0) {
