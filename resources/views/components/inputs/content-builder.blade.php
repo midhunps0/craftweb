@@ -329,7 +329,7 @@
                 });
             },
             copyToClipboard() {
-                navigator.permissions.query({ name: 'write-on-clipboard' }).then((result) => {
+                navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
                     if (result.state == 'granted' || result.state == 'prompt') {
                         if (this.listforsave.length != 0) {
                             navigator.clipboard.writeText(JSON.stringify(this.listforsave)).then((s) => {
