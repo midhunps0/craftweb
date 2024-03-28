@@ -260,7 +260,7 @@
                                 <div :style="`width: ${itemWidth}px`">
                                     <div class="relative z-10" style="position:relative;padding-bottom:56.25%">
                                         <iframe width="100%" height="100%"
-                                            class="w-full absolute top-0 left-0" :src="v.link + '?enablejsapi=1'"
+                                            class="w-full absolute top-0 left-0" :src="v.link + '&enablejsapi=1'"
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
