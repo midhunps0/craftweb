@@ -334,9 +334,9 @@
                 contentlist = JSON.parse({{Js::from($contentdata)}});
             @endif --}}
             //replace double quotes at the begining and end with single quotes
-            contentDataDivId = 'contentdatavalue' + Match.floor((Match.random() * 10000));
+            this.contentDataDivId = 'contentdatavalue' + Match.floor((Match.random() * 10000));
             $nextTick(() => {
-                let thedata = decodeHtml(document.getElementById(contentDataDivId).value);
+                let thedata = decodeHtml(document.getElementById(this.contentDataDivId).value);
                 thedata = thedata.substring(1,thedata.length-1);
                 listforsave = JSON.parse(thedata);
                 htmltext = JSON.stringify(listforsave);
