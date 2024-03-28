@@ -360,7 +360,7 @@ class VideoTestimonialService implements ModelViewConnector {
             }
 
             DB::commit();
-            return $review->refresh();
+            return $testimonial->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

@@ -246,7 +246,8 @@
                             videos = {{Js::from($data['videos'])}};
                             setCurrentItems();
                             setItemWidth();
-
+                            console.log('videos');
+                            console.log(videos);
                         });
                     "
                     @resize.window="setItemWidth();"
