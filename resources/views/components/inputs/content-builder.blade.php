@@ -7,7 +7,7 @@
             editorVisible: false,
             previewLoading: false,
             previewHtml: '',
-            contentDataDivId: '',
+            contentDataDivId: 'contentdata-{{rand(100, 10000)}}',
             showEditor() {
                 this.contentlist = JSON.parse(JSON.stringify(this.listforsave));
                 this.editorVisible = true;
@@ -330,19 +330,16 @@
             }
         }"
         x-init="
-            {{-- @if (isset($contentdata))
-                contentlist = JSON.parse({{Js::from($contentdata)}});
-            @endif --}}
-            //replace double quotes at the begining and end with single quotes
-            this.contentDataDivId = 'contentdatavalue' + Match.floor((Match.random() * 10000));
             $nextTick(() => {
-                let thedata = decodeHtml(document.getElementById(this.contentDataDivId).value);
-                thedata = thedata.substring(1,thedata.length-1);
-                listforsave = JSON.parse(thedata);
-                htmltext = JSON.stringify(listforsave);
-                if (listforsave.length > 0) {
-                    contentlist = JSON.parse(JSON.stringify(listforsave));
-                    getRenderedPreview();
+                if (document.getElementById(contentDataDivId) != null) {
+                    let thedata = decodeHtml((document.getElementById(contentDataDivId)).value);
+                    thedata = thedata.substring(1,thedata.length-1);
+                    listforsave = JSON.parse(thedata);
+                    htmltext = JSON.stringify(listforsave);
+                    if (listforsave.length > 0) {
+                        contentlist = JSON.parse(JSON.stringify(listforsave));
+                        getRenderedPreview();
+                    }
                 }
             });
         "
@@ -350,7 +347,7 @@
             updateFiledata($event.detail);
         "
         class="form-control">
-        <input :id="contentDataDivId" type="hidden" value="{{'"'.$contentdata.'"' ?? ''}}">
+        <input x-bind:id="contentDataDivId ?? ''" type="hidden" value="{{'"'.$contentdata.'"' ?? ''}}">
         <div class="w-full h-20 bg-base-100 rounded-md border border-base-content border-opacity-20 overflow-hidden relative">
             <div x-show="previewHtml.length > 0 " class="p-2 overflow-y-scroll bg-white text-black" x-html="previewHtml"></div>
             <button @click.prevent.stop="showEditor()" type="button" class="flex flex-row justify-center absolute right-1/2 top-1/4 z-20 btn btn-sm btn-warning">
