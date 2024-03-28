@@ -342,7 +342,7 @@
                                 </div>
                                 <div
                                     class="flex justify-center z-40 text-sm lg:text-base font-normal font-questrial text-justify w-3/4 m-auto px-[6%]"
-                                    x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">
+                                    x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.description : ''">
                                     We’re
                                     the only centre in India that strictly follows a non-donor (self-parentage) IVF
                                     policy. We
