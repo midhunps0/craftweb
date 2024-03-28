@@ -31,7 +31,7 @@
     <div class="flex-grow form-control">
         <label class="label" for="">Specialisations</label>
         <input name="data[specialisations]" type="text" class="input input-bordered w-full"
-        value="{{$instance->translations_array[$locale]['specialisations'] ?? ''}}" required />
+        value="{{$instance->translations_array[$locale]['specialisations'] ?? ''}}" />
     </div>
 </div>
 <div class="form-control">

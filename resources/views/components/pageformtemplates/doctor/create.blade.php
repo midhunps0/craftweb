@@ -23,7 +23,7 @@
     </div>
     <div class="flex-grow form-control">
         <label class="label" for="">Specialisations</label>
-        <input name="data[specialisations]" type="text" class="input input-bordered w-full" required />
+        <input name="data[specialisations]" type="text" class="input input-bordered w-full" />
     </div>
 </div>
 <div class="form-control">
