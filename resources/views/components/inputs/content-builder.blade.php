@@ -327,18 +327,43 @@
                     console.log(e);
                     this.previewLoading = false;
                 });
+            },
+            copyToClipboard() {
+                navigator.permissions.query({ name: 'write-on-clipboard' }).then((result) => {
+                    if (result.state == 'granted' || result.state == 'prompt') {
+                        if (this.listforsave.length != 0) {
+                            navigator.clipboard.writeText(JSON.stringify(this.listforsave)).then((s) => {
+                                $dispatch('showtoast', {message: 'Content copied to clipboard', mode: 'warning'});
+                            }).catch((e) => {
+                                console.log(e);
+                                $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
+                            });
+                        } else {
+                            $dispatch('showtoast', {message: 'Nothing to copy', mode: 'error'});
+                        }
+                    } else {
+                        $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
+                    }
+                });
+
+            },
+            pasteFromClipboard() {
+                listforsave = JSON.parse(thedata);
+                htmltext = JSON.stringify(listforsave);
             }
         }"
         x-init="
             $nextTick(() => {
                 if (document.getElementById(contentDataDivId) != null) {
                     let thedata = decodeHtml((document.getElementById(contentDataDivId)).value);
-                    thedata = thedata.substring(1,thedata.length-1);
-                    listforsave = JSON.parse(thedata);
-                    htmltext = JSON.stringify(listforsave);
-                    if (listforsave.length > 0) {
-                        contentlist = JSON.parse(JSON.stringify(listforsave));
-                        getRenderedPreview();
+                    if(thedata.length > 2) {
+                        thedata = thedata.substring(1,thedata.length-1);
+                        listforsave = JSON.parse(thedata);
+                        htmltext = JSON.stringify(listforsave);
+                        if (listforsave.length > 0) {
+                            contentlist = JSON.parse(JSON.stringify(listforsave));
+                            getRenderedPreview();
+                        }
                     }
                 }
             });
@@ -352,6 +377,10 @@
             <div x-show="previewHtml.length > 0 " class="p-2 overflow-y-scroll bg-white text-black" x-html="previewHtml"></div>
             <button @click.prevent.stop="showEditor()" type="button" class="flex flex-row justify-center absolute right-1/2 top-1/4 z-20 btn btn-sm btn-warning">
             <x-easyadmin::display.icon icon="easyadmin::icons.edit" />
+            <button @click.prevent.stop="copyToClipboard()" type="button" class="flex flex-row justify-center absolute right-1 top-1 z-20 btn btn-sm bg-darkgray">
+            <x-easyadmin::display.icon icon="easyadmin::icons.copy-clipboard" />
+            <button @click.prevent.stop="pasteFromClipboard()" type="button" class="flex flex-row justify-center absolute right-1 bottom-1 z-20 btn btn-sm bg-darkgray">
+            <x-easyadmin::display.icon icon="easyadmin::icons.paste-clipboard" />
         </div>
 
         </button>
