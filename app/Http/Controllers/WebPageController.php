@@ -24,7 +24,7 @@ class WebPageController extends SmartController
         // $this->unauthorisedView = 'easyadmin::admin.unauthorised';
         // $this->errorView = 'easyadmin::admin.error';
         // $this->indexView = 'easyadmin::admin.indexpanel';
-        // $this->showView = 'pagetemplates.sidebar-right';
+        $this->showView = 'pagetemplates.webpage';
         // $this->createView = 'easyadmin::admin.form';
         // $this->editView = 'easyadmin::admin.form';
         // $this->itemsCount = 10;
@@ -73,10 +73,10 @@ class WebPageController extends SmartController
         );
     }
 
-    public function doctors($slug = null)
+    public function doctors($locale = null)
     {
-        $locale = isset($slug) ?? 'en';
-        App::setLocale($locale);
+        $locale = $locale = $locale ?? 'en';
+        App::setlocale($locale);
         $doctors = $this->connectorService->getDoctorsData($locale);
         return $this->buildResponse(
             'frontend.doctors',
@@ -86,10 +86,10 @@ class WebPageController extends SmartController
         );
     }
 
-    public function patientVideos($slug = null)
+    public function patientVideos($locale = null)
     {
-        $locale = isset($slug) ?? 'en';
-        App::setLocale($locale);
+        $locale = $locale = $locale ?? 'en';
+        App::setlocale($locale);
         $videos = $this->connectorService->getVideoTestomonialsData($locale);
         return $this->buildResponse(
             'frontend.patient-videos',
@@ -99,10 +99,10 @@ class WebPageController extends SmartController
         );
     }
 
-    public function patientReviews($slug = null)
+    public function patientReviews($locale = null)
     {
-        $locale = isset($slug) ?? 'en';
-        App::setLocale($locale);
+        $locale = $locale = $locale ?? 'en';
+        App::setlocale($locale);
         $reviews = $this->connectorService->getReviewsData($locale);
         return $this->buildResponse(
             'frontend.patient-reviews',

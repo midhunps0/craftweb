@@ -57,6 +57,14 @@ class ArticleService implements ModelViewConnector {
                 ->where('slug', $slug);
             })
             ->get()->first();
+        if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $item = Article::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', config('app_settings.default_locale'))
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        }
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }

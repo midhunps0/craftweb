@@ -23,7 +23,7 @@ class DoctorController extends SmartController
         // $this->unauthorisedView = 'easyadmin::admin.unauthorised';
         // $this->errorView = 'easyadmin::admin.error';
         // $this->indexView = 'easyadmin::admin.indexpanel';
-        // $this->showView = 'easyadmin::admin.show';
+        $this->showView = 'pagetemplates.doctor';
         // $this->createView = 'easyadmin::admin.form';
         // $this->editView = 'easyadmin::admin.form';
         // $this->itemsCount = 10;
@@ -34,7 +34,6 @@ class DoctorController extends SmartController
     {
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
-
             if (!($showPageData instanceof ShowPageData)) {
                 throw new Exception('getShowPageData() of connectorService must return an instance of ' . ShowPageData::class);
             }
