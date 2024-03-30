@@ -12,6 +12,8 @@
                                 @break
                             @case('img')
                                 <x-contentbuilder.image :data="$item" />
+                            @case('yt_video')
+                                <x-contentbuilder.yt-video :data="$item" />
                                 @break
                             @case('para')
                                 <x-contentbuilder.para :data="$item" />

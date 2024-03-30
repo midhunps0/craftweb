@@ -65,6 +65,7 @@
                                     <div x-data="{
                                             showeditform: false
                                         }" @previewclick.window="
+                                            console.log('preview click!');
                                             rowindex = $event.detail.row;
                                             colindex = $event.detail.col;
                                             itemindex = $event.detail.index;
@@ -97,6 +98,11 @@
                                                         <x-easyadmin::display.icon icon="easyadmin::icons.tick" height="h-4" width="w-4"/>
                                                     </button>
                                                 </div>
+                                            </div>
+                                        </template>
+                                        <template x-if="item.type == 'yt_video'">
+                                            <div class="relative z-50 flex gap-2 w-full">
+                                                <input class="input input-sm input-bordered w-full" type="text" x-model="item.url" />
                                             </div>
                                         </template>
                                         <template x-if="item.type == 'img'">
@@ -504,6 +510,9 @@
                                 <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'img')"
                                 class="btn btn-xs rounded-full flex flex-row items-center justify-center">
                                 <x-easyadmin::display.icon icon="easyadmin::icons.photo" height="h-3" width="w-3" />
+                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'yt_video')"
+                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                <x-easyadmin::display.icon icon="icons.video" height="h-3" width="w-3" />
                                 </button>
                                 <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'list')"
                                 class="btn btn-xs rounded-full flex flex-row items-center justify-center">

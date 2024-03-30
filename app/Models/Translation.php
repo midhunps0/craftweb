@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Storage;
 use Modules\Ynotz\MediaManager\Contracts\MediaOwner;
 use Modules\Ynotz\MediaManager\Traits\OwnsMedia;
 
@@ -46,7 +47,7 @@ class Translation extends Model implements MediaOwner
     {
         return Attribute::make(
             get: function ($v) {
-                return $this->getSingleMediaFilePath('cover_image');
+                return Storage::url($this->getSingleMediaFilePath('cover_image'));
             }
         );
     }

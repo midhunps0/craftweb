@@ -56,6 +56,7 @@ x-init="
     currentroute=$event.detail.currentroute;"
     @routechange.window="currentroute=$event.detail.route;"
 {{-- :data-theme="theme" --}}
+
 dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >

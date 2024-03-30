@@ -98,6 +98,26 @@ class WebPageService implements ModelViewConnector {
         );
     }
 
+    public function getBlogData($locale)
+    {
+        return Article::paginate(30);
+    }
+
+    public function getDoctorsData($locale)
+    {
+        return Doctor::paginate(30);
+    }
+
+    public function getVideoTestomonialsData($locale)
+    {
+        return VideoTestimonial::paginate(30);
+    }
+
+    public function getReviewsData($locale)
+    {
+        return Review::paginate(30);
+    }
+
     public function getFileFields(): array
     {
         return ['cover_image'];

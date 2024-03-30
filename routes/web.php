@@ -70,6 +70,14 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['ynotz.translation']], function () {
+    Route::get('/our-blogs', [WebPageController::class, 'blog'])->name('blog');
+    Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
+    Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
+    Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
+    Route::get('/our-blogs/{locale}', [WebPageController::class, 'blog'])->name('blog.ar');
+    Route::get('/our-doctors/{locale}', [WebPageController::class, 'doctors'])->name('doctors.ar');
+    Route::get('/patient-videos/{locale}', [WebPageController::class, 'patientVideos'])->name('videotestimonials.ar');
+    Route::get('/patient-testimonials/{locale}', [WebPageController::class, 'patientReviews'])->name('patientreviews.ar');
     Route::get('/{slug}', [WebPageController::class, 'quickShow'])->name('webpages.view');
     Route::get('/articles/{slug}', [ArticleController::class, 'quickShow'])->name('articles.view');
     Route::get('/pages/{locale}/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');

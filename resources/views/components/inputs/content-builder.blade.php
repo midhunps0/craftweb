@@ -45,6 +45,9 @@
                     case 'img':
                     str = this.getImgPreview(item, r, c, i);
                         break;
+                    case 'yt_video':
+                    str = this.getYtVideoPreview(item, r, c, i);
+                        break;
                     case 'para':
                     str = this.getParaPreview(item, r, c, i);
                         break;
@@ -56,6 +59,9 @@
             },
             getImgPreview(item, r, c, i) {
                 return `<div @click='previewclick(${r},${c},${i})' class=\'preview-item\'><img src='${item.url}'></div>`;
+            },
+            getYtVideoPreview(item, r, c, i) {
+                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'absolute w-full z-50\' style=\'padding-bottom:56.25%;\'></div><div class=\'z-0\'><iframe width='100%' height='100%' src='${item.url}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe></div></div>`;
             },
             getListPreview(item, r, c, i) {
                 let str = `<${item.listType} @click='previewclick(${r},${c},${i})' class=\'preview-item\'>`;
@@ -265,6 +271,12 @@
                                 height: '',
                                 alt: ''
                             }
+                        });
+                        break;
+                    case 'yt_video':
+                        this.contentlist[row].cols[col].items.push({
+                            type: 'yt_video',
+                            url: 'https://www.youtube.com/embed/u31qwQUeGuM?si=RSWgLQ0pvAUSA-4T',
                         });
                         break;
                     case 'list':

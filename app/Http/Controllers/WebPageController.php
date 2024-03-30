@@ -60,6 +60,58 @@ class WebPageController extends SmartController
         }
     }
 
+    public function blog($locale = null)
+    {
+        $locale = $locale ?? 'en';
+        App::setlocale($locale);
+        $articles = $this->connectorService->getBlogData($locale);
+        return $this->buildResponse(
+            'frontend.blog',
+            [
+                'blog' => $articles
+            ]
+        );
+    }
+
+    public function doctors($slug = null)
+    {
+        $locale = isset($slug) ?? 'en';
+        App::setLocale($locale);
+        $doctors = $this->connectorService->getDoctorsData($locale);
+        return $this->buildResponse(
+            'frontend.doctors',
+            [
+                'doctors' => $doctors
+            ]
+        );
+    }
+
+    public function patientVideos($slug = null)
+    {
+        $locale = isset($slug) ?? 'en';
+        App::setLocale($locale);
+        $videos = $this->connectorService->getVideoTestomonialsData($locale);
+        return $this->buildResponse(
+            'frontend.patient-videos',
+            [
+                'videos' => $videos
+            ]
+        );
+    }
+
+    public function patientReviews($slug = null)
+    {
+        $locale = isset($slug) ?? 'en';
+        App::setLocale($locale);
+        $reviews = $this->connectorService->getReviewsData($locale);
+        return $this->buildResponse(
+            'frontend.patient-reviews',
+            [
+                'reviews' => $reviews
+            ]
+        );
+    }
+
     public function create()
     {
         $templates = PageTemplate::all();
