@@ -661,15 +661,20 @@
                         </button>
                     </div>
                     <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
-                    <template x-for="(a,i) in articles">
+                    {{-- <template x-for="(a,i) in articles"> --}}
+                        @foreach ($data['articles'] as $a)
                         <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
                             <div class="w-full flex flex-row justify-center md:justify-between">
                                 <div class="mx-2">
-                                    <x-blogcard-component/>
+                                    <x-blogcard-component
+                                    title="{{$a->current_translation->data['title']}}"
+                                    image_url="{{$a->current_translation->display_image}}"
+                                    slug="{{$a->current_translation->slug}}"/>
                                 </div>
                             </div>
                         </div>
-                    </template>
+                        @endforeach
+                    {{-- </template> --}}
                     </div>
                     <div :class="currentItems[currentItems.length - 1] != articles.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
                         <button type="button" @click.prevent.stop="slideForward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
