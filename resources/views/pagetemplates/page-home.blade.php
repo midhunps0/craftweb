@@ -463,8 +463,8 @@
                                          <p class="text-gray text-xs font-normal">Craft IVF Hospital</p>
                                    </div>
 
-                                   <div class="bg-gray-600 py-3">
-                                      {{-- <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.designation"></p> --}}
+                                   <div class="bg-gray-600 py-3 h-20 flex flex-col w-full justify-center items-center">
+                                      <p class="text-white font-questrial font-normal text-sm text-center overflow-y-hidden" x-text="d.current_translation.data.designation"></p>
                                       <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.qualification"></p>
                                    </div>
                                 </div>
