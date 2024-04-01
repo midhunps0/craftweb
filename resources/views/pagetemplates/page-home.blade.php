@@ -464,7 +464,7 @@
                                    </div>
 
                                    <div class="bg-gray-600 py-3">
-                                      <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.designation"></p>
+                                      {{-- <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.designation"></p> --}}
                                       <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.qualification"></p>
                                    </div>
                                 </div>
