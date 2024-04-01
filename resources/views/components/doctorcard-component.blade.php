@@ -15,7 +15,7 @@
             <p class="text-gray text-xs font-normal">Craft IVF Hospital</p>
       </div>
 
-      <div class="bg-gray-600 py-3">
+      <div class="bg-gray-600 py-3 h-20 overflow-y-scroll">
          <p class="text-white font-questrial font-normal text-sm text-center">{{$designation}}</p>
          <p class="text-white font-questrial font-normal text-sm text-center">{{$qualification}}</p>
       </div>
