@@ -37,6 +37,13 @@ class ArticleController extends SmartController
         return $this->show('en', $slug);
     }
 
+    public function old(Request $request)
+    {
+        App::setlocale('en');
+        $slug = $request->path();
+        return $this->show('en', $slug);
+    }
+
     public function show($locale, $slug)
     {
         try {

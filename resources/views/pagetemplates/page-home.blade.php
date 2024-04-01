@@ -209,7 +209,7 @@
                         our best
                         advocates, hear the inspiring stories of their treatment journey</p>
                     <div class="hidden md:block mt-4 lg:mt-8 z-20 relative"><x-viewallbutton-component
-                            text="All Testimonials" /></div>
+                            text="All Testimonials" href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"/></div>
                 </div>
                 <div x-data="{
                         dir: 'ltr',
@@ -282,7 +282,8 @@
                         </button>
                     </div>
                     <div class="md:hidden mt-8 lg:mt-8 z-20 relative flex flex-row justify-center">
-                        <x-viewallbutton-component text="All Testimonials" />
+                        <x-viewallbutton-component
+                            text="All Testimonials" href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"/>
                     </div>
                 </div>
             </div>
@@ -396,7 +397,7 @@
                     Our Experienced And<br>Certified Doctors
                 </p>
                 <p>
-                    <x-viewallbutton-component text="All Doctors" />
+                    <x-viewallbutton-component text="All Doctors" href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"/>
                 </p>
             </div>
             <div x-data="{
@@ -583,7 +584,7 @@
                     </div>
                 </div>
                 <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6">
-                    <x-viewallbutton-component text="More News" />
+                    <x-viewallbutton-component text="More News" href="{{route('news.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
         </div>
@@ -683,7 +684,7 @@
                     </div>
                 </div>
                 <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">
-                    <x-viewallbutton-component text="More Articles" />
+                    <x-viewallbutton-component text="More Articles" href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
         </div>

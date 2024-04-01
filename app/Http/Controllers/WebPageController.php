@@ -37,6 +37,12 @@ class WebPageController extends SmartController
         return $this->show('en','home');
     }
 
+    public function homeAr()
+    {
+        App::setlocale('ar');
+        return $this->show('en','home');
+    }
+
     public function quickShow($slug)
     {
         App::setlocale('en');
@@ -58,6 +64,19 @@ class WebPageController extends SmartController
                 'error' => $e->__toString()
             ]);
         }
+    }
+
+    public function news($locale = null)
+    {
+        $locale = $locale ?? 'en';
+        App::setlocale($locale);
+        $news = $this->connectorService->getNewsData($locale);
+        return $this->buildResponse(
+            'frontend.news',
+            [
+                'news' => $news
+            ]
+        );
     }
 
     public function blog($locale = null)

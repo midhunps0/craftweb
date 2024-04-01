@@ -98,6 +98,11 @@ class WebPageService implements ModelViewConnector {
         );
     }
 
+    public function getNewsData($locale)
+    {
+        return News::paginate(30);
+    }
+
     public function getBlogData($locale)
     {
         return Article::paginate(30);

@@ -9,7 +9,7 @@
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($doctors as $d)
                 {{-- {{dd($d->current_translation)}} --}}
-                    <div class="w-1/5 box-border mb-8">
+                    <div class="md:w-1/3 lg:w-1/5 box-border mb-8">
                         <x-doctorcard-component
                             name="{{$d->current_translation->data['name']}}"
                             photo_url="{{$d->photo_url}}"
