@@ -12,5 +12,13 @@
     <label class="label" for="">Review Stars</label>
     <input name="stars" type="number" step="1" min="1" class="input input-bordered w-full" required />
 </div>
+<x-easyadmin::inputs.imageuploader
+    :element="[
+        'key' => 'photo',
+        'authorised' => true,
+        'label' => 'Photo (Same across translations)',
+        'validations' => ['size' => '100 kb'],
+        'width' => 'full'
+    ]"/>
 
 

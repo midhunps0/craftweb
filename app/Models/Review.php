@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 use Modules\Ynotz\MediaManager\Contracts\MediaOwner;
 use Modules\Ynotz\MediaManager\Traits\OwnsMedia;
 
@@ -33,24 +34,24 @@ class Review extends Model implements MediaOwner
     public function getMediaStorage(): array
     {
         return [
-            'image' => $this->storageLocation('public', 'reviews')
+            'photo' => $this->storageLocation('public', 'reviews')
         ];
     }
 
-    public function image(): Attribute
+    public function photo(): Attribute
     {
         return Attribute::make(
             get: function ($v) {
-                return $this->getSingleMediaForEAForm('image');
+                return $this->getSingleMediaForEAForm('photo');
             }
         );
     }
 
-    public function imageUrl(): Attribute
+    public function photoUrl(): Attribute
     {
         return Attribute::make(
             get: function ($v) {
-                return $this->getSingleMediaFilePath('image');
+                return $this->getSingleMediaFilePath('photo') != null ? Storage::url($this->getSingleMediaFilePath('photo')) : null;
             }
         );
     }

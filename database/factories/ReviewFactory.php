@@ -36,7 +36,7 @@ class ReviewFactory extends Factory
                     'locale' =>  App::getLocale(),
                     'data' => [
                         'reviewer' =>  $this->faker->name(),
-                        'review_text' => 'This is the start of a big text body. It continues here. blah blah blah..'
+                        'review' => 'This is the start of a big text body. It continues here. blah blah blah..'
                     ],
                     'created_by' => User::all()->random()->id,
                 ]

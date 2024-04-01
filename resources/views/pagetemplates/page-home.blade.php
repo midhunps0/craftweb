@@ -192,7 +192,7 @@
 
             <div
                 class="mt-6 flex ltr:justify-end rtl:justify-end ltr:md:justify-center rtl:md:justify-center ltr:mr-10  rtl:ml-10 ltr:sm:mr-40 rtl:sm:ml-40 ltr:md:mr-0 rtl:md:ml-0 ">
-                <x-viewallbutton-component text="More Reviews" />
+                <x-viewallbutton-component text="More Reviews" href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}"/>
             </div>
         </div>
 
