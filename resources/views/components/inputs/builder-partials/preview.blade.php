@@ -102,7 +102,20 @@
                                         </template>
                                         <template x-if="item.type == 'yt_video'">
                                             <div class="relative z-50 flex gap-2 w-full">
+                                                <label>Video URL</label>
                                                 <input class="input input-sm input-bordered w-full" type="text" x-model="item.url" />
+                                            </div>
+                                        </template>
+                                        <template x-if="item.type == 'tsixty_img'">
+                                            <div class="relative">
+                                                <div class="relative z-50 flex gap-2 w-full">
+                                                    <label>Image URL</label>
+                                                    <input class="input input-sm input-bordered w-full" type="text" x-model="item.url" />
+                                                </div>
+                                                <div class="relative z-50 flex gap-2 w-full">
+                                                    <label>Style Classes</label>
+                                                    <input class="input input-sm input-bordered w-full" type="text" x-model="item.classes" />
+                                                </div>
                                             </div>
                                         </template>
                                         <template x-if="item.type == 'img'">
@@ -308,7 +321,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-row space-x-2">
-                                                    <div class="form-control w-1/2">
+                                                    <div class="form-control w-1/4">
                                                         <label>Alt Text</label>
                                                         <input x-model="item.attribs.alt" type="text" class="input input-sm input-bordered">
                                                     </div>
@@ -319,6 +332,10 @@
                                                     <div class="form-control w-1/4">
                                                         <label>Height (px)</label>
                                                         <input x-model="item.attribs.height" type="text" class="input input-sm input-bordered">
+                                                    </div>
+                                                    <div class="form-control w-1/4">
+                                                        <label>Classes</label>
+                                                        <input x-model="item.attribs.classes" type="text" class="input input-sm input-bordered">
                                                     </div>
                                                 </div>
                                                 <button @click="showeditform = false;" type="button" class="btn btn-success btn-sm">
@@ -497,7 +514,7 @@
                             </template>
                             <div x-data="{
                                     showclasses: false
-                                }" class="flex flex-row space-x-2 justify-center items-center relative">
+                                }" class="flex flex-row space-x-2 justify-center items-center relative mt-4">
                                 <span class="text-warning">Add: </span>
                                 <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'heading')"
                                 class="btn btn-xs rounded-full flex flex-row items-center justify-center">
@@ -507,16 +524,17 @@
                                 class="btn btn-xs rounded-full flex flex-row items-center justify-center">
                                     T
                                 </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'img')"
-                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                <x-easyadmin::display.icon icon="easyadmin::icons.photo" height="h-3" width="w-3" />
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'yt_video')"
-                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                <x-easyadmin::display.icon icon="icons.video" height="h-3" width="w-3" />
+                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'img')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                    <x-easyadmin::display.icon icon="easyadmin::icons.photo" height="h-3" width="w-3" />
                                 </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'list')"
-                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                <x-easyadmin::display.icon icon="easyadmin::icons.bullet-list" height="h-3" width="w-3" />
+                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'tsixty_img')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                    360
+                                </button>
+                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'yt_video')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                    <x-easyadmin::display.icon icon="icons.video" height="h-3" width="w-3" />
+                                </button>
+                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'list')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                    <x-easyadmin::display.icon icon="easyadmin::icons.bullet-list" height="h-3" width="w-3" />
                                 </button>
                                 <button type="button" @click.stop.prevent="showclasses = true;"
                                 class="btn btn-xs rounded-full flex flex-row items-center justify-center">
@@ -535,7 +553,7 @@
                         </div>
                     </template>
             </div>
-            <div x-data="{showclasses: false}" class="flex flex-col justify-center items-center space-y-2">
+            <div x-data="{showclasses: false}" class="flex flex-col justify-center items-center space-y-2 z-50">
                 <button type="button" @click.stop.prevent="moveItem('up', rindex)"
                 class="btn btn-xs rounded-full" :disabled="rindex == 0">
                     <x-easyadmin::display.icon icon="easyadmin::icons.up-arrow" height="h-3" width="w-3" />

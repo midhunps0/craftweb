@@ -40,16 +40,19 @@
                         str = this.getHeadingPreview(item, r, c, i);
                         break;
                     case 'list':
-                    str = this.getListPreview(item, r, c, i);
+                        str = this.getListPreview(item, r, c, i);
                         break;
                     case 'img':
-                    str = this.getImgPreview(item, r, c, i);
+                        str = this.getImgPreview(item, r, c, i);
+                        break;
+                    case 'tsixty_img':
+                        str = this.getTsixtyImgPreview(item, r, c, i);
                         break;
                     case 'yt_video':
-                    str = this.getYtVideoPreview(item, r, c, i);
+                        str = this.getYtVideoPreview(item, r, c, i);
                         break;
                     case 'para':
-                    str = this.getParaPreview(item, r, c, i);
+                        str = this.getParaPreview(item, r, c, i);
                         break;
                 }
                 return str;
@@ -60,8 +63,11 @@
             getImgPreview(item, r, c, i) {
                 return `<div @click='previewclick(${r},${c},${i})' class=\'preview-item\'><img src='${item.url}'></div>`;
             },
+            getTsixtyImgPreview(item, r, c, i) {
+                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'relative w-full z-20\' style=\'padding-bottom:56.25%;\'><iframe src='${item.url}' width='${item.width}' height='${item.height}' class='absolute z-0 w-full h-full' style='border:0;'' allowfullscreen='' loading='lazy'></iframe></div></div>`;
+            },
             getYtVideoPreview(item, r, c, i) {
-                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'absolute w-full z-50\' style=\'padding-bottom:56.25%;\'></div><div class=\'z-0\'><iframe width='100%' height='100%' src='${item.url}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe></div></div>`;
+                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'relative w-full z-20\' style=\'padding-bottom:56.25%;\'><iframe class='absolute z-0 w-full h-full' width='100%' height='100%' src='${item.url}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe></div></div>`;
             },
             getListPreview(item, r, c, i) {
                 let str = `<${item.listType} @click='previewclick(${r},${c},${i})' class=\'preview-item\'>`;
@@ -269,7 +275,21 @@
                             attribs: {
                                 width: '',
                                 height: '',
-                                alt: ''
+                                alt: '',
+                                classes: ''
+                            }
+                        });
+                        break;
+                    case 'tsixty_img':
+                        this.contentlist[row].cols[col].items.push({
+                            type: 'tsixty_img',
+                            url: 'https://www.google.com/maps/embed?pb=!4v1630682757286!6m8!1m7!1sCAoSLEFGMVFpcE9xVzBtMGQ0X2RTU0FlMS12UUo1S05pT3dhVGxVUmktamgxSkl2!2m2!1d10.234236!2d76.1934461!3f319.6792395640726!4f-4.865751855274624!5f0.7820865974627469',
+                            ulid: '',
+                            attribs: {
+                                width: '',
+                                height: '',
+                                alt: '',
+                                classes: ''
                             }
                         });
                         break;
@@ -360,8 +380,15 @@
 
             },
             pasteFromClipboard() {
-                listforsave = JSON.parse(thedata);
-                htmltext = JSON.stringify(listforsave);
+                navigator.clipboard
+                    .readText()
+                    .then(
+                        (t) => {
+                            this.listforsave = JSON.parse(t);
+                            this.htmltext = JSON.stringify(this.listforsave);
+                            $dispatch('showtoast', {message: 'Content pasted from clipboard', mode: 'success'});
+                        }
+                    ).catch((e) => {consile.log(e);});
             }
         }"
         x-init="
