@@ -379,6 +379,8 @@
                         }
                     });
                 } else {
+                    console.log('this.listforsave');
+                    console.log(this.listforsave);
                     navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
                         if (result.state == 'granted' || result.state == 'prompt') {
                             console.log(this.listforsave[rindex].cols[cindex]);
@@ -406,7 +408,7 @@
                             }
                         ).catch(
                             (e) => {
-                                consile.log(e);
+                                console.log(e);
                             }
                         );
                     } else {
