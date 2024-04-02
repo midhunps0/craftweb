@@ -379,12 +379,12 @@
                         }
                     });
                 } else {
-                    console.log('this.listforsave');
-                    console.log(this.listforsave);
+                    console.log('this.contentlist');
+                    console.log(this.contentlist);
                     navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
                         if (result.state == 'granted' || result.state == 'prompt') {
-                            console.log(this.listforsave[rindex].cols[cindex]);
-                            navigator.clipboard.writeText(JSON.stringify(this.listforsave[rindex].cols[cindex])).then((s) => {
+                            console.log(this.contentlist[rindex].cols[cindex]);
+                            navigator.clipboard.writeText(JSON.stringify(this.contentlist[rindex].cols[cindex])).then((s) => {
                                 $dispatch('showtoast', {message: 'Content copied to clipboard', mode: 'warning'});
                             }).catch((e) => {
                                 console.log(e);
@@ -415,8 +415,7 @@
                         navigator.clipboard.readText()
                             .then(
                                 (t) => {
-                                    this.listforsave[rindex].cols[cindex] = JSON.parse(t);
-                                    this.htmltext = JSON.stringify(this.listforsave);
+                                    this.contentlist[rindex].cols[cindex] = JSON.parse(t);
                                     $dispatch('showtoast', {message: 'Content pasted from clipboard', mode: 'success'});
                                 }
                             ).catch((e) => {
