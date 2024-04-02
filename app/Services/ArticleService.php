@@ -114,13 +114,14 @@ class ArticleService implements ModelViewConnector {
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
             viewRouteUniqueKey: 'current_translation.slug',
-            viewRouteSlug: 'slug'
+            viewRouteSlug: 'slug',
+            component: 'index-actions'
         )->getRow();
     }
 
     public function getViewRoute()
     {
-        return 'articles.view';
+        return 'articles.guest.show';
     }
 
     public function getAdvanceSearchFields(): array
