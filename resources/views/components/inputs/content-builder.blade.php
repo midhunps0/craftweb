@@ -415,7 +415,10 @@
                         navigator.clipboard.readText()
                             .then(
                                 (t) => {
-                                    this.contentlist[rindex].cols[cindex] = JSON.parse(t);
+                                    let oldClasses = JSON.parse(JSON.stringify(this.contentlist[rindex].cols[cindex].classes));
+                                    let cbContent = JSON.parse(t);
+                                    cbContent.classes = oldClasses;
+                                    this.contentlist[rindex].cols[cindex] = JSON.parse(JSON.stringify(cbContent));
                                     $dispatch('showtoast', {message: 'Content pasted from clipboard', mode: 'success'});
                                 }
                             ).catch((e) => {
