@@ -33,6 +33,8 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 // })->name('home');
 Route::get('/', [WebPageController::class, 'home'])->name('home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
+Route::get('/contact', [WebPageController::class, 'contact'])->name('contact');
+Route::get('/ar/contact', [WebPageController::class, 'contactAr'])->name('contact.ar');
 
 Route::get('/consequatur-molestias-debitis', [ArticleController::class, 'old'])->name('articles.old');
 

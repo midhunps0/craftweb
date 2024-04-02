@@ -1,4 +1,4 @@
-<<div class="flex flex-row justify-between w-full pt-1 md:px-16 lg:px-24">
+<div class="flex flex-row justify-between w-full pt-1 md:px-16 lg:px-24">
     <div class="flex ltr:justify-start rtl:justify-start">
         <img src="/images/icons/craftfertility (1).webp"
             class="h-16 md:h-28 lg:h-36"alt="craft_logo_image">
@@ -14,7 +14,7 @@
                     </div>
                     <div class="flex flex-row items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/medicine logo.png" class="h-3 2xl:h-5"alt="">
-                        <p class="lg:text-sm 2xl:text-base font-light font-questrial">{{ __('main_menu.international') }}
+                        <p class="lg:text-sm 2xl:text-base font-light font-questrial">International Patients
                         </p>
                     </div>
                 </div>
@@ -27,71 +27,59 @@
                     <div x-data="{ open: false }" @mouseleave="open = false">
                         <button @mouseover="open = true">
                             <div class="flex flex-row rtl:flex-row-reverse items-center  space-x-1">
-                                <div><span class="font-questrial">{{ __('main_menu.about_us') }}</span></div>
+                                <div><span class="font-questrial">About us</span></div>
                                 <x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-3" width="w-3" />
                             </div>
 
                         </button>
                         <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl ">
                             <ul class="flex flex-col p-0">
-                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about-craft'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about-craft'])}}'})"
-                                        class="font-questrial">{{ __('main_menu.about') }}</a></li>
-                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'message-from-chairman'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'message-from-chairman'])}}'})"
-                                        class="font-questrial">{{ __('main_menu.message') }}</a></li>
-                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}'})"
-                                        class="font-questrial">{{ __('main_menu.international') }}</a></li>
-                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-achievements'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-achievements'])}}'})"
-                                        class="font-questrial">{{ __('main_menu.achievements') }}</a></li>
+                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a
+                                        class="font-questrial">About CRAFT</a></li>
+                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a
+                                        class="font-questrial">Message from Chairman</a></li>
+                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a
+                                        class="font-questrial">International Patients</a></li>
+                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a
+                                        class="font-questrial">Our Achievements</a></li>
                             </ul>
                         </div>
                     </div>
                     <div x-data="{ open: false }" @mouseleave="open = false">
                         <button @mouseover="open = true">
                             <div class="flex flex-row rtl:flex-row-reverse items-center space-x-1">
-                                <div><span>{{ __('main_menu.looking_for') }}</span></div>
+                                <div><span>I’m Looking For</span></div>
                                 <x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-3" width="w-3" />
                             </div>
                         </button>
                         <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl">
                             <ul class="grid grid-cols-3 gap-4 p-4">
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-lab-and-embryology'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-lab-and-embryology'])}}'})" class="font-questrial text-center">{{ __('main_menu.ivf') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'female-fertility'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'female-fertility'])}}'})" class="font-questrial text-center">{{ __('main_menu.f_fertility') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'male-fertility'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'male-fertility'])}}'})" class="font-questrial text-center">{{ __('main_menu.m_fertility') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sperm-and-embryo-freezing'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sperm-and-embryo-freezing'])}}'})" class="font-questrial text-center">{{ __('main_menu.freezing') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-genetics'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-genetics'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.genetics') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'reproductive-surgery'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'reproductive-surgery'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.surgery') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'antenatal-care'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'antenatal-care'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.antenatal') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'foetal-medicine'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'foetal-medicine'])}}'})" class="font-questrial text-center">{{ __('main_menu.foetal') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'painless-labour'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'painless-labour'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.labour') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neonate-and-paediatric-care'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neonate-and-paediatric-care'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.pediatric') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'assisting-departments'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'assisting-departments'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.assisting') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'accommodation-at-craft'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'accommodation-at-craft'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.accommodation') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-insurance'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-insurance'])}}'})"
-                                        class="font-questrial text-center">{{ __('main_menu.insurance') }}</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a class="font-questrial text-center">IVF
+                                        Lab and Embriology</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a class="font-questrial text-center">Female
+                                        Fertility</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a class="font-questrial text-center">Male
+                                        Fertility</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a class="font-questrial text-center">Sperm
+                                        and Embrio Freezing</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Medical Genetics</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Reproduction Surgery</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Antenatal Care</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a class="font-questrial text-center">Foetal
+                                        Medicine</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Painless Labour</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Neonate and Pediatric care</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Assisting Departments</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Accormation at CRAFT</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial text-center">Medical Insurance</a></li>
 
                             </ul>
                         </div>
@@ -99,50 +87,47 @@
                     <div x-data="{ open: false }" @mouseleave="open = false">
                         <button @mouseover="open = true">
                             <div class="flex flex-row rtl:flex-row-reverse items-center space-x-1">
-                                <div><span>{{ __('main_menu.guide') }}</span></div>
+                                <div><span>Patient Guide</span></div>
                                 <x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-3" width="w-3" />
                             </div>
                         </button>
                         <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl">
                             <ul class="p-2 py-4 space-y-2">
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-cycle'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-cycle'])}}'})"
-                                        class="font-questrial px-4 py-2 mb-1">{{ __('main_menu.ivf_cycle') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors-videos'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors-videos'])}}'})"
-                                        class="font-questrial px-4 py-2 mb-1">{{ __('main_menu.doctor_vdo') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}'})"
-                                        class="font-questrial px-4 py-2 mb-1">{{ __('main_menu.patient_vdo') }}</a></li>
-                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()] )}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}'})"
-                                        class="font-questrial px-4 py-2 mb-1">{{ __('main_menu.testimonial') }}</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craft-slug'])}}"
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craft-slug'])}}'})"
+                                        class="font-questrial px-4 py-2 mb-1">IVF cycle</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial px-4 py-2 mb-1">Doctor's Video</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial px-4 py-2 mb-1">Patient Video</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a
+                                        class="font-questrial px-4 py-2 mb-1">Patient Testimonials</a></li>
                             </ul>
 
 
                         </div>
                     </div>
 
-                    <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}', route: 'webpages.guest.show'})">
+                    <a href="#">
                         <div class="flex flex-row rtl:flex-row-reverse items-center">
                             <div>
-                                <p>{{ __('main_menu.training') }}</p>
+                                <p>Training Courses</p>
+                            </div>
+
+                        </div>
+                    </a><a href="#">Contact Us</a>
+                    <a href="#">
+                        <div class="flex flex-row rtl:flex-row-reverse items-center">
+                            <div>
+                                <p>E Book</p>
                             </div>
 
                         </div>
                     </a>
-                    <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}', route: 'webpages.guest.show'})">
-                        <div class="flex flex-row rtl:flex-row-reverse items-center">
-                            <div>
-                                <p>{{ __('main_menu.ebook') }}</p>
-                            </div>
-
-                        </div>
-                    </a>
-                    <a href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})">
+                    <a href="#">
                         <div class="flex flex-row rtl:flex-row-reverse items-center ">
                             <div>
-                                <p>{{ __('main_menu.blogs') }}</p>
+                                <p>Blogs</p>
                             </div>
 
                         </div>
@@ -174,7 +159,7 @@
                         <li x-data={open:false} class=" text-black ">
                             <button @click="open = !open"
                                 class="font-questrial flex flex-row space-x-1 mt-1  py-1 md:py-1.5  hover:text-pink ">
-                                <span class=" ">{{ __('main_menu.about_us') }}</span>
+                                <span class=" ">About us</span>
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-3 w-3 mt-1.5 fill-current items-center " width="840" height="544"
                                     viewBox="0 0 840 544" version="1.1">
@@ -190,25 +175,21 @@
                                 x-on:click.outside="open = false">
 
                                 <ul class="flex flex-col ltr:ml-2 rtl:mr-2 p-2 py-4 space-y-2">
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about-craft'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about-craft'])}}'})"
-                                            class="font-questrial text-center  ">{{ __('main_menu.about') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'message-from-chairman'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'message-from-chairman'])}}'})"
-                                            class="font-questrial text-center  ">{{ __('main_menu.message') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}'})"
-                                            class="font-questrial text-center  ">{{ __('main_menu.international') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-achievements'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-achievements'])}}'})"
-                                            class="font-questrial text-center  ">{{ __('main_menu.achievements') }}</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center  ">About CRAFT</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center  ">Message from Chairman</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center  ">International Patients</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center  ">Our Achievements</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li x-data={open:false} class=" text-black">
                             <button @click="open = !open"
                                 class="font-questrial flex flex-row mt-2 space-x-1  py-1 md:py-2  hover:text-pink ">
-                                <span>{{ __('main_menu.looking_for') }}</span>
+                                <span>I’m Looking For</span>
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-3 w-3 mt-1.5 fill-current items-center" width="840" height="544"
                                     viewBox="0 0 840 544" version="1.1">
@@ -224,45 +205,32 @@
                                 x-on:click.outside="open = false">
 
                                 <ul class="ltr:ml-4 rtl:mr-4 space-y-2 ">
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-lab-and-embryology'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-lab-and-embryology'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.ivf') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'female-fertility'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'female-fertility'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.f_fertility') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'male-fertility'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'male-fertility'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.m_fertility') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sperm-and-embryo-freezing'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sperm-and-embryo-freezing'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.freezing') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-genetics'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-genetics'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.genetics') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'reproductive-surgery'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'reproductive-surgery'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.surgery') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'antenatal-care'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'antenatal-care'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.antenatal') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'foetal-medicine'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'foetal-medicine'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.foetal') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'painless-labour'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'painless-labour'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.labour') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neonate-and-paediatric-care'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neonate-and-paediatric-care'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.pediatric') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'assisting-departments'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'assisting-departments'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.assisting') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'accommodation-at-craft'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'accommodation-at-craft'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.accommodation') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer "><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-insurance'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'medical-insurance'])}}'})"
-                                            class="font-questrial text-center">{{ __('main_menu.insurance') }}</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">IVF Lab and Embriology</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Female Fertility</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Male Fertility</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Sperm and Embrio Freezing</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Medical Genetics</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Reproduction Surgery</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Antenatal Care</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Foetal Medicine</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Painless Labour</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Neonate and Pediatric care</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Assisting Departments</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center">Accormation at CRAFT</a></li>
+                                    <li class=" hover:text-pink cursor-pointer "><a
+                                            class="font-questrial text-center">Medical Insurance</a></li>
 
                                 </ul>
                             </div>
@@ -270,7 +238,7 @@
                         <li x-data={open:false} class=" text-black  ">
                             <button @click="open = !open"
                                 class="font-questrial flex flex-row mt-2 space-x-1  py-1 md:py-2  hover:text-pink">
-                                <p>{{ __('main_menu.guide') }}</p>
+                                <p>Patient Guide</p>
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-3 w-3 mt-1.5 fill-current text-black items-center" width="840"
                                     height="544" viewBox="0 0 840 544" version="1.1">
@@ -286,35 +254,32 @@
                                 x-on:click.outside="open = false">
 
                                 <ul class="ltr:ml-4 rtl:mr-4 space-y-2">
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-cycle'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-cycle'])}}'})"
-                                            class="font-questrial text-center ">{{ __('main_menu.ivf_cycle') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors-videos'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors-videos'])}}'})"
-                                            class="font-questrial text-center ">{{ __('main_menu.doctor_vdo') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}'})"
-                                            class="font-questrial text-center ">{{ __('main_menu.patient_vdo') }}</a></li>
-                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}'})"
-                                            class="font-questrial text-center ">{{ __('main_menu.testimonial') }}</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center ">IVF cycle</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center ">Doctor's Video</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center ">Patient Video</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a
+                                            class="font-questrial text-center ">Patient Testimonials</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class=" text-black  hover:text-pink">
-                            <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}', route: 'webpages.guest.show'})">
-                        </li>
-                        <li class=" text-black  hover:text-pink"><a href="{{route('contact')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('contact')}}', route: 'contact'})"
-                                class="font-questrial  py-1 md:py-2">{{ __('main_menu.contact') }}</a></li>
-                        <li class=" text-black  hover:text-pink">
-                            <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}', route: 'webpages.guest.show'})">
-                        </li>
-                        <li class=" text-black  hover:text-pink pb-4"><a href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"
-                                class="font-questrial  py-1 md:py-2">{{ __('main_menu.blogs') }}</a></li>
+                        <li class=" text-black  hover:text-pink"><a href="#"
+                                class="font-questrial  py-1 md:py-2">Training Courses</a></li>
+                        <li class=" text-black  hover:text-pink"><a href="#"
+                                class="font-questrial  py-1 md:py-2">Contact Us</a></li>
+                        <li class=" text-black  hover:text-pink"><a href="#"
+                                class="font-questrial  py-1 md:py-2">E Book</a></li>
+                        <li class=" text-black  hover:text-pink pb-4"><a href="#"
+                                class="font-questrial  py-1 md:py-2">Blogs</a></li>
                     </ul>
 
                 </div>
             </div>
         </div>
+
     </div>
+
+
 </div>
