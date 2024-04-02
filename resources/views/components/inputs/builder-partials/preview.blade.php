@@ -512,42 +512,52 @@
                                     </div>
                                 </div>
                             </template>
-                            <div x-data="{
-                                    showclasses: false
-                                }" class="flex flex-row space-x-2 justify-center items-center relative mt-4">
-                                <span class="text-warning">Add: </span>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'heading')"
-                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                    H
-                                </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'para')"
-                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                    T
-                                </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'img')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                    <x-easyadmin::display.icon icon="easyadmin::icons.photo" height="h-3" width="w-3" />
-                                </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'tsixty_img')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                    360
-                                </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'yt_video')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                    <x-easyadmin::display.icon icon="icons.video" height="h-3" width="w-3" />
-                                </button>
-                                <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'list')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                    <x-easyadmin::display.icon icon="easyadmin::icons.bullet-list" height="h-3" width="w-3" />
-                                </button>
-                                <button type="button" @click.stop.prevent="showclasses = true;"
-                                class="btn btn-xs rounded-full flex flex-row items-center justify-center">
-                                <x-easyadmin::display.icon icon="easyadmin::icons.curly-braces" height="h-3" width="w-3" />
-                                </button>
-                                <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start">
-                                    <div><input class="input input-sm w-52 input-bordered" type="text" x-model="c.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span></div>
-
-                                    <button type="button" @click.stop.prevent="showclasses = false;"
-                                    class="btn btn-xs rounded-full flex flex-row items-center justify-center rouded-full btn-warning">
-                                    <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-3" width="w-3" />
+                            <div class="flex flex-row justify-between">
+                                <div x-data="{
+                                        showclasses: false
+                                    }" class="flex flex-row space-x-1 justify-center items-center relative mt-2 p-1 rounded-md border border-base-content border-opacity-20 bg-base-200">
+                                    <span class="text-warning">Add: </span>
+                                    <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'heading')"
+                                    class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                        H
                                     </button>
+                                    <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'para')"
+                                    class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                        T
+                                    </button>
+                                    <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'img')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.photo" height="h-3" width="w-3" />
+                                    </button>
+                                    <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'tsixty_img')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                        360
+                                    </button>
+                                    <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'yt_video')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                        <x-easyadmin::display.icon icon="icons.video" height="h-3" width="w-3" />
+                                    </button>
+                                    <button type="button" @click.stop.prevent="addColItem(rindex, cindex, 'list')" class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.bullet-list" height="h-3" width="w-3" />
+                                    </button>
+                                    <button type="button" @click.stop.prevent="showclasses = true;"
+                                    class="btn btn-xs rounded-full flex flex-row items-center justify-center">
+                                    <x-easyadmin::display.icon icon="easyadmin::icons.curly-braces" height="h-3" width="w-3" />
+                                    </button>
+                                    <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start">
+                                        <div><input class="input input-sm w-52 input-bordered" type="text" x-model="c.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span></div>
 
+                                        <button type="button" @click.stop.prevent="showclasses = false;"
+                                        class="btn btn-xs rounded-full flex flex-row items-center justify-center rouded-full btn-warning">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-3" width="w-3" />
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div class="flex flex-row space-x-1 justify-center items-center relative mt-2 p-1 rounded-md border border-base-content border-opacity-20 bg-base-200">
+                                    <button @click.prevent.stop="copyToClipboard(rindex, cindex)" type="button" class="flex flex-row justify-center btn btn-xs">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.copy-clipboard" />
+                                    </button>
+                                    <button @click.prevent.stop="pasteFromClipboard(rindex, cindex)" type="button" class="flex flex-row justify-center btn btn-xs">
+                                        <x-easyadmin::display.icon icon="easyadmin::icons.paste-clipboard" />
+                                    </button>
                                 </div>
                             </div>
                         </div>

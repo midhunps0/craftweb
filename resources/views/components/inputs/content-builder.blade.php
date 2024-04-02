@@ -360,36 +360,71 @@
                     this.previewLoading = false;
                 });
             },
-            copyToClipboard() {
-                navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
-                    if (result.state == 'granted' || result.state == 'prompt') {
-                        if (this.listforsave.length != 0) {
-                            navigator.clipboard.writeText(JSON.stringify(this.listforsave)).then((s) => {
+            copyToClipboard(rindex = null, cindex = null) {
+                if (rindex == null || cindex == null) {
+                    navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
+                        if (result.state == 'granted' || result.state == 'prompt') {
+                            if (this.listforsave.length != 0) {
+                                navigator.clipboard.writeText(JSON.stringify(this.listforsave)).then((s) => {
+                                    $dispatch('showtoast', {message: 'Content copied to clipboard', mode: 'warning'});
+                                }).catch((e) => {
+                                    console.log(e);
+                                    $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
+                                });
+                            } else {
+                                $dispatch('showtoast', {message: 'Nothing to copy', mode: 'error'});
+                            }
+                        } else {
+                            $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
+                        }
+                    });
+                } else {
+                    navigator.permissions.query({ name: 'clipboard-write' }).then((result) => {
+                        if (result.state == 'granted' || result.state == 'prompt') {
+                            console.log(this.listforsave[rindex].cols[cindex]);
+                            navigator.clipboard.writeText(JSON.stringify(this.listforsave[rindex].cols[cindex])).then((s) => {
                                 $dispatch('showtoast', {message: 'Content copied to clipboard', mode: 'warning'});
                             }).catch((e) => {
                                 console.log(e);
                                 $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
                             });
                         } else {
-                            $dispatch('showtoast', {message: 'Nothing to copy', mode: 'error'});
+                            $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
                         }
+                    });
+                }
+            },
+            pasteFromClipboard(rindex = null, cindex = null) {
+                navigator.permissions.query({ name: 'clipboard-read' }).then((result) => {
+                    if (rindex == null || cindex == null) {
+                        navigator.clipboard.readText()
+                        .then(
+                            (t) => {
+                                this.listforsave = JSON.parse(t);
+                                this.htmltext = JSON.stringify(this.listforsave);
+                                $dispatch('showtoast', {message: 'Content pasted from clipboard', mode: 'success'});
+                            }
+                        ).catch(
+                            (e) => {
+                                consile.log(e);
+                            }
+                        );
                     } else {
-                        $dispatch('showtoast', {message: 'Can\'t copy to clipboard. Permission denied', mode: 'error'});
+                        navigator.clipboard.readText()
+                            .then(
+                                (t) => {
+                                    this.listforsave[rindex].cols[cindex] = JSON.parse(t);
+                                    this.htmltext = JSON.stringify(this.listforsave);
+                                    $dispatch('showtoast', {message: 'Content pasted from clipboard', mode: 'success'});
+                                }
+                            ).catch((e) => {
+                                consile.log(e);
+                            });
+
                     }
                 });
-
-            },
-            pasteFromClipboard() {
-                navigator.clipboard
-                    .readText()
-                    .then(
-                        (t) => {
-                            this.listforsave = JSON.parse(t);
-                            this.htmltext = JSON.stringify(this.listforsave);
-                            $dispatch('showtoast', {message: 'Content pasted from clipboard', mode: 'success'});
-                        }
-                    ).catch((e) => {consile.log(e);});
             }
+
         }"
         x-init="
             $nextTick(() => {
@@ -419,9 +454,11 @@
             <button @click.prevent.stop="showEditor()" type="button" class="flex flex-row justify-center absolute right-1/2 top-1/4 z-20 btn btn-sm btn-warning">
             <x-easyadmin::display.icon icon="easyadmin::icons.edit" />
             <button @click.prevent.stop="copyToClipboard()" type="button" class="flex flex-row justify-center absolute right-1 top-1 z-20 btn btn-sm bg-darkgray">
-            <x-easyadmin::display.icon icon="easyadmin::icons.copy-clipboard" />
+                <x-easyadmin::display.icon icon="easyadmin::icons.copy-clipboard" />
+            </button>
             <button @click.prevent.stop="pasteFromClipboard()" type="button" class="flex flex-row justify-center absolute right-1 bottom-1 z-20 btn btn-sm bg-darkgray">
-            <x-easyadmin::display.icon icon="easyadmin::icons.paste-clipboard" />
+                <x-easyadmin::display.icon icon="easyadmin::icons.paste-clipboard" />
+            </button>
         </div>
 
         </button>
