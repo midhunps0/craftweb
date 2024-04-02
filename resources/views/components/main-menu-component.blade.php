@@ -5,7 +5,6 @@
     </div>
     <div class="flex ltr:justify-end rtl:justify-end relative">
         <div class="  flex flex-col  top-0  ">
-            <!-- <svg  class=" w-5  z-10 md:h-6 md:w-6 mr-2 rtl:ml-2  md:mr-4 lg:hidden " viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M64.28704 864h416a64 64 0 0 1 4.8 127.84L480.28704 992H64.28704a64 64 0 0 1-4.8-127.84L64.28704 864h416H64.28704z m0-416h832a64 64 0 0 1 4.8 127.84L896.28704 576H64.28704a64 64 0 0 1-4.8-127.84L64.28704 448zM480.28704 48h416a64 64 0 0 1 4.8 127.84L896.28704 176H480.28704a64 64 0 0 1-4.8-127.84L480.28704 48z" fill="#404853" /></svg> -->
             <div class="z-10 lg:w-full hidden lg:flex ltr:justify-end rtl:justify-end relative">
                 <div
                     class="flex ltr:flex-row ltr:justify-end rtl:flex-row-reverse items-center space-x-3 lg:p-3  rtl:justify-start ltr:lg:mr-6 rtl:lg:ml-6 text-[0.4rem]">
@@ -94,7 +93,8 @@
                         </button>
                         <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl">
                             <ul class="p-2 py-4 space-y-2">
-                                <li class=" hover:text-pink cursor-pointer"><a
+                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craft-slug'])}}"
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craft-slug'])}}'})"
                                         class="font-questrial px-4 py-2 mb-1">IVF cycle</a></li>
                                 <li class=" hover:text-pink cursor-pointer"><a
                                         class="font-questrial px-4 py-2 mb-1">Doctor's Video</a></li>
