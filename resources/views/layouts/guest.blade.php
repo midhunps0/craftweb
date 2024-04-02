@@ -111,6 +111,7 @@ lang="en"
                 </div>
             </main>
         </div>
+        <x-progress-bar />
         <x-easyadmin::display.notice />
         <x-easyadmin::display.toast />
         @stack('js')
