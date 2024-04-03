@@ -1,6 +1,6 @@
 @props(['data'])
-<div class="img w-full">
-    <img class="w-full" src="{{$data->url}}"
+<div class="img cb-img w-full">
+    <img class="w-full {{$data->attribs->classes}}" src="{{$data->url}}"
         alt="{{$data->attribs->alt}}"
         width="{{$data->attribs->width}}"
         height="{{$data->attribs->height}}">
