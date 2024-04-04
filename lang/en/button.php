@@ -1,0 +1,20 @@
+<?php 
+return [
+    'book_an_appointment' => 'Book An Appointment',
+    'chat_with_us' => 'Chat With Us',
+    'more_reviews' => 'More Reviews',
+    'all_testimonials' => 'All Testimonials',
+    'all_doctors' => 'All Doctors',
+    'more_news' => 'More News',
+    'more_articles' => 'More Articles',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+];?>

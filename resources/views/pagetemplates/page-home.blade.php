@@ -18,8 +18,8 @@
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
                         <div class="lg:flex lg:mt-12 lg:space-x-1">
-                            <x-bluebutton-component text="Book An Appointment" href="#" />
-                            <x-pinkbutton-component text="Chat With Us" href="#" />
+                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="#" />
+                            <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="#" />
                         </div>
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
                             Feel Free To Call Us Any Time
@@ -192,7 +192,7 @@
 
             <div
                 class="mt-6 flex ltr:justify-end rtl:justify-end ltr:md:justify-center rtl:md:justify-center ltr:mr-10  rtl:ml-10 ltr:sm:mr-40 rtl:sm:ml-40 ltr:md:mr-0 rtl:md:ml-0 ">
-                <x-viewallbutton-component text="More Reviews" href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}"/>
+                <x-viewallbutton-component text="{{ __('button.more_reviews') }}" href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}"/>
             </div>
         </div>
 
@@ -209,7 +209,7 @@
                         our best
                         advocates, hear the inspiring stories of their treatment journey</p>
                     <div class="hidden md:block mt-4 lg:mt-8 z-20 relative"><x-viewallbutton-component
-                            text="All Testimonials" href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"/></div>
+                            text="{{ __('button.all_testimonials') }}" href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"/></div>
                 </div>
                 <div x-data="{
                         dir: 'ltr',
@@ -397,7 +397,7 @@
                     Our Experienced And<br>Certified Doctors
                 </p>
                 <p>
-                    <x-viewallbutton-component text="All Doctors" href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"/>
+                    <x-viewallbutton-component text="{{ __('button.all_doctors') }}" href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"/>
                 </p>
             </div>
             <div x-data="{
@@ -584,7 +584,7 @@
                     </div>
                 </div>
                 <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6">
-                    <x-viewallbutton-component text="More News" href="{{route('news.loc', ['locale' => app()->currentLocale()])}}"/>
+                    <x-viewallbutton-component text="{{ __('button.more_news') }}" href="{{route('news.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
         </div>
@@ -684,7 +684,7 @@
                     </div>
                 </div>
                 <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">
-                    <x-viewallbutton-component text="More Articles" href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"/>
+                    <x-viewallbutton-component text="{{ __('button.more_articles') }}" href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
         </div>

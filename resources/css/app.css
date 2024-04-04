@@ -111,3 +111,73 @@ h3{
     from{transform: translateX(-100%);}
     to{transform: translateX(0%);}
 }
+.big-box {
+    @apply my-24 flex flex-row justify-center items-center;
+}
+.big-box .col-content{
+    @apply flex flex-col items-center justify-center gap-y-4;
+}
+.big-box .col-content .heading{
+    @apply text-4xl mb-4
+}
+.arrival-row .col {
+    @apply  p-6;
+}
+.overseas-col .list {
+    @apply p-6;
+}
+.video-col .col-content {
+    @apply flex items-center ;
+}
+.list-class  {
+    @apply p-4 my-4; 
+}
+.neonate-row {
+    @apply mt-16
+}
+.neonate-col .heading{
+    @apply text-4xl ;
+}
+.fertility-row{
+    @apply justify-center items-center;
+}
+.test-row{
+    @apply border border-b-blue border-l-blue border-t-pink border-r-pink  my-6;
+}
+.test-row .col {
+    @apply p-4;
+}
+.ivf-image .img{
+    @apply w-2/3 my-16;
+}
+.ivf-image .col-content{
+    @apply flex justify-center items-center;
+}
+.ivf-content .col{
+    @apply mb-6;
+}
+.ivf-content .video{
+    @apply w-2/3 my-10 ;
+}
+.insurance-row{
+    @apply my-16;
+}
+.foetal-row{
+    @apply mt-16 p-4;
+}
+.foetal-row .heading{
+    @apply text-3xl; 
+}
+.foetal-row .list{
+    @apply p-4
+}
+.genetics-row{
+    @apply border border-blue/10 shadow-lg p-4;
+}
+.genetics-col{
+    @apply mt-2;
+}
+.genetics-col .list{
+    @apply p-4;
+}
+

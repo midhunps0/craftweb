@@ -35,42 +35,32 @@
             </ul>
         </div>
         <div class="flex flex-col justify-center items-left">
-            <h3 class="uppercase font-semibold text-white">Our location</h3>
+            <h3 class="uppercase font-semibold text-white">{{ __('footer.our_location') }}</h3>
             <div class="text-gray-300 text-xs  flex flex-col items-left ">
-                <p class="leading-6">
-                    CRAFT HOSPITAL AND<br>
-                    RESEARCH CENTR<br>
-                    V111/77/2,3,4, Kondungallur P.O<br>
-                    Chanthappura, Kodungallur, Thrissur, Keral<br>
-                    Ph: +91 6282396564
+                <p class="leading-6 ">
+                {!! __('footer.craft_address_kodungallur') !!}
                 </p>
 
                 <p class="mt-4 leading-6">
-                    CRAFT Multispeciality Centre<br>
-                    5th & 6th Fllor, Imperial Amity,<br>
-                    Chalikkavattam, NH66 Bypass<br>
-                    Kochi 682032, Kerala<br>
-                    ph: +91 9526986000<br>
+                {!! __('footer.craft_address_kochi') !!}
                 </p>
             </div>
         </div>
         <div class="flex flex-col justify-center md:mt-4">
-            <h3 class="uppercase font-semibold text-white">Opening Hours</h3>
+            <h3 class="uppercase font-semibold text-white">{{ __('footer.opening_hours') }}</h3>
             <div class="text-gray-300 text-xs  flex flex-col items-left ">
                 <p class="py-2 leading-6">
-                    Mon-Sat<br>
-                    09.00 AM - 06.00 PM(Kochi)<br>
-                    Mon - Sun<br>
-                    Always Open (Kodungallur)<br>
+                {!! __('footer.opening_hours_kochi') !!}
+                {!! __('footer.opening_hours_kodungallur') !!}
                 </p>
 
-                <h3 class="uppercase font-semibold text-white mt-4">General Info</h3>
+                <h3 class="uppercase font-semibold text-white mt-4">{{ __('footer.general_info') }}</h3>
                 <p class="py-2 px-4 leading-6">
                     <ul>
-                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">Terms and Conditions</a></li>
-                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">Privacy Policy</a></li>
-                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">Refund Policy</a></li>
-                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">Contact Us</a></li>
+                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.terms_and_conditions') }}</a></li>
+                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.privacy_policy') }}</a></li>
+                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.refund_policy') }}</a></li>
+                        <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.contact_us') }}</a></li>
                     </ul>
                 </p>
             </div>
@@ -87,7 +77,7 @@
                 </div>
 
                 <div class="">
-                    <h3 class="text-xs text-white">Our Sister Concern</h3>
+                    <h3 class="text-xs text-white">{{ __('footer.our_sister_concern') }}</h3>
                     <img src="/images/icons/ar_logo.png" alt="" class="lg:w-52 w-40 lg:mb-0 mb-4 ">
                 </div>
 
