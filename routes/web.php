@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AirpayController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\IconsController;
 use App\Http\Controllers\LayoutBuilderController;
@@ -44,6 +46,20 @@ Route::get('/ea/icons', [IconsController::class, 'index'])->name('home');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/booking', [BookingController::class, 'bookingPage'])->name('booking');
+Route::get('/booking/specialties', [BookingController::class, 'specialties'])->name('booking.specialties');
+Route::get('/booking/doctors', [BookingController::class, 'doctors'])->name('booking.doctors');
+Route::get('/booking/dates', [BookingController::class, 'dates'])->name('booking.dates');
+Route::get('/booking/slots', [BookingController::class, 'slots'])->name('booking.slots');
+Route::get('/booking/submit', [BookingController::class, 'submit'])->name('booking.submit');
+
+Route::get('/payment-form', [AirpayController::class, 'transactionForm'])->name('payment.airpay.form');
+Route::post('/responsefromairpay.php', [AirpayController::class, 'airpayResponse'])->name('payment.airpay.response');
+Route::get('/responsefromairpay.php', function() {
+    return view('airpay.response', ['success' => false]);
+})->name('payment.airpay.response-dummy');
 
 
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function () {

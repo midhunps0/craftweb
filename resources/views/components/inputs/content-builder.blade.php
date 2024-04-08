@@ -64,10 +64,10 @@
                 return `<div @click='previewclick(${r},${c},${i})' class=\'preview-item\'><img src='${item.url}'></div>`;
             },
             getTsixtyImgPreview(item, r, c, i) {
-                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'relative w-full z-20\' style=\'padding-bottom:56.25%;\'><iframe src='${item.url}' width='${item.width}' height='${item.height}' class='absolute z-0 w-full h-full' style='border:0;'' allowfullscreen='' loading='lazy'></iframe></div></div>`;
+                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'relative w-full z-20\' style=\'padding-bottom:56.25%;\'><iframe src='${item.url}' width='${item.width}' height='${item.height}' class='absolute z-0 w-full h-full' style='border:0;'' allowfullscreen='' loading='lazy'></iframe><div class='absolute w-full h-full z-10'></div</div></div>`;
             },
             getYtVideoPreview(item, r, c, i) {
-                return `<div @click='previewclick(${r},${c},${i})' class=\'relative preview-item\'><div class=\'relative w-full z-20\' style=\'padding-bottom:56.25%;\'><iframe class='absolute z-0 w-full h-full' width='100%' height='100%' src='${item.url}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe></div></div>`;
+                return `<div @click='previewclick(${r},${c},${i})' class=\'relative z-20 preview-item\'><div class=\'relative w-full z-20\' style=\'padding-bottom:56.25%;\'><iframe class='absolute z-0 w-full h-full' width='100%' height='100%' src='${item.url}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe><div class='absolute w-full h-full z-10'></div</div></div>`;
             },
             getListPreview(item, r, c, i) {
                 let str = `<${item.listType} @click='previewclick(${r},${c},${i})' class=\'preview-item\'>`;
