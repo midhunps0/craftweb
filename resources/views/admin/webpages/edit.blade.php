@@ -64,15 +64,15 @@
                     $nextTick(() => {
                         allTemplates = {{Js::from($templates)}};
                         webpageId = {{Js::from($webpageId)}};
-                        $watch('templateId', (v) => {
-                            fetchForm();
-                        });
                         templateId = {{Js::from($templateId)}};
+                        fetchForm();
                     });
                 ">
                 <form class="mb-8" @submit.prevent.stop="" action="#">
                     <label class="label">Page template</label>
-                    <select x-model="templateId" class="select select-bordered w-full max-w-xs" disabled>
+                    <select x-model="templateId" class="select select-bordered w-full max-w-xs" @if (!auth()->user()->hasRole('System Admin'))
+                        disabled
+                    @endif>
                         <option value="" disabled>Select</option>
                         <template x-for="t in allTemplates">
                         <option :value="t.id" x-text="t.name"></option>

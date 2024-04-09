@@ -20,7 +20,7 @@
                     <div>
                         <h4 class="text-center underline font-bold">{{ $language }} content</h4>
                         @method('PUT')
-                        <input type="hidden" name="template" value="{{ $templateId }}">
+                        <input x-model="templateId" type="hidden" name="template">
                         <input type="hidden" name="locale" value="{{ $code }}">
                         {{-- <x-pageformtemplates.sidebar-right.edit
                             :webpage="$webpage"

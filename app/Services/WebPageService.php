@@ -474,6 +474,9 @@ class WebPageService implements ModelViewConnector {
              * @var WebPage
              */
             $wp = WebPage::find($id);
+            $wp->template_id = $data['template'];
+            $wp->save();
+            $wp->refresh();
             /**
              * @var Translation
              */
