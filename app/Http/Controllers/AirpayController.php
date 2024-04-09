@@ -34,4 +34,12 @@ class AirpayController extends SmartController
             $service->processResoponse($request->all())
         );
     }
+
+    public function airpayNotification(Request $request, AirpayService $service)
+    {
+        info('airpay notification:');
+        info($request->all());
+        $service->processNotification($request->all());
+        return response('ok', 200);
+    }
 }
