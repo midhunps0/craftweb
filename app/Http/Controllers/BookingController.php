@@ -10,11 +10,21 @@ class BookingController extends SmartController
 {
     public function bookingPage(BookingService $service)
     {
-
-        return $this->buildResponse(
-            'pagetemplates.booking',
-            $service->initData()
-        );
+        try {
+            $data = $service->initData();
+            return $this->buildResponse(
+                'pagetemplates.booking',
+                $data
+            );
+        } catch (\Throwable $e) {
+            return $this->buildResponse(
+                'pagetemplates.booking',
+                [
+                    'success' => false,
+                    'error' => $e->__toString()
+                ]
+            );
+        }
     }
 
     public function dates(Request $request, BookingService $service)

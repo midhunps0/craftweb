@@ -38,6 +38,7 @@ class BookingService
         $specialties = $this->fetchSpecialties();
         $doctors = $this->fetchDoctors();
         return [
+            'success' => true,
             'doctors' => $doctors,
             'specialties' => $specialties
         ];
