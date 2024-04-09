@@ -21,7 +21,8 @@ class BookingService
         if ($token == null) {
             $newToken = $this->fetchToken();
             if (!isset($newToken)) {
-                throw new Exception('Failed to connect to booking server');
+                // throw new Exception('Failed to connect to booking server');
+                return null;
             } else {
                 $token = AppSetting::where('slug', 'solver_token')
                 ->get()->first();
