@@ -187,10 +187,15 @@
                         fetchTimeslots();
                     } --}}
                 });
-                doctors = {{Js::from($doctors)}};
-                specialties = {{Js::from($specialties)}}.filter((s) => {
-                    return hasDoctors(s.Sp_Cd);dbng
-                });
+                @if (isset($doctors))
+                    doctors = {{Js::from($doctors)}};
+                @endif
+                @if (isset($specialties))
+                    specialties = {{Js::from($specialties)}}.filter((s) => {
+                        return hasDoctors(s.Sp_Cd);dbng
+                    });
+                @endif
+
                 divWidthOriginal = document.getElementById('booking-form-div').offsetWidth / 2;
                 divWidth = 0;
             "
