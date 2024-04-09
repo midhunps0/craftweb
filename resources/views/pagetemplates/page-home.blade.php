@@ -18,8 +18,8 @@
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
                         <div class="lg:flex lg:mt-12 lg:space-x-1">
-                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="#" />
-                            <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="#" />
+                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" />
+                            <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
                         </div>
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
                             Feel Free To Call Us Any Time

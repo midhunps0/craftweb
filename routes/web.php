@@ -41,7 +41,7 @@ Route::get('/ar/contact', [WebPageController::class, 'contactAr'])->name('contac
 Route::get('/consequatur-molestias-debitis', [ArticleController::class, 'old'])->name('articles.old');
 
 
-Route::get('/ea/icons', [IconsController::class, 'index'])->name('home');
+Route::get('/ea/icons', [IconsController::class, 'index'])->name('eaicons');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

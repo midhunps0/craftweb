@@ -1,7 +1,13 @@
 <div class="flex flex-row justify-between w-full pt-1 md:px-16 lg:px-24">
     <div class="flex ltr:justify-start rtl:justify-start">
-        <img src="/images/icons/craftfertility (1).webp"
-            class="h-16 md:h-28 lg:h-36"alt="craft_logo_image">
+        <a href="{{route('home')}}" class="ltr:block rtl:hidden">
+            <img src="/images/icons/craft_logo.webp"
+                class="h-16 md:h-28 lg:h-36"alt="craft_logo_image">
+        </a>
+        <a href="{{route('home.ar')}}" class="ltr:hidden rtl:block">
+            <img src="/images/icons/craft_logo.webp"
+                class="h-16 md:h-28 lg:h-36"alt="craft_logo_image">
+        </a>
     </div>
     <div class="flex ltr:justify-end rtl:justify-end relative">
         <div class="  flex flex-col  top-0  ">
