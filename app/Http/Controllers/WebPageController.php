@@ -131,6 +131,18 @@ class WebPageController extends SmartController
         );
     }
 
+    public function contact()
+    {
+        App::setlocale('en');
+        return $this->show('en','home');
+    }
+
+    public function contactAr()
+    {
+        App::setlocale('ar');
+        return $this->show('en','contact');
+    }
+
     public function create()
     {
         $templates = PageTemplate::all();
