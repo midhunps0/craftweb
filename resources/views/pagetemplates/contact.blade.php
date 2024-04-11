@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html dir=ltr lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('css')
-    @stack('header_js')
-</head>
-<body  class="bg-white items-center mx-auto ">
-
-    <div>
+<x-guest-layout>
+    <div class="text-base">
         <x-main-menu-component/>
         <div class="w-full px-2 md:px-16 lg:px-24">
             <x-page-title title="Contact Us" />
@@ -26,5 +15,4 @@
 
         <x-footer />
     </div>
-</body>
-</html>
+</x-guest-layout>
