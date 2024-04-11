@@ -27,6 +27,10 @@
     </div>
 </div>
 <div class="form-control">
+    <label class="label" for="">Intro Video Link</label>
+    <input name="data[video_link]" type="text" class="input input-bordered w-full" />
+</div>
+<div class="form-control">
     <label class="label">
         <span class="label-text">Experience Summary</span>
     </label>

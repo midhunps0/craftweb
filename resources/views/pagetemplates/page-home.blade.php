@@ -694,7 +694,7 @@
                     <img src="/images/icons/faq.png" class="h-24" alt="">
                 </div>
                 <div>
-                    <h2 class="text-3xl"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}" 
+                    <h2 class="text-3xl"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}"
                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}', route: 'webpages.guest.show'})">Frequently Asked Questions</a></h2>
                     <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
                 </div>

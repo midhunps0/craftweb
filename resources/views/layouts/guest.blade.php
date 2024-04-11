@@ -90,21 +90,26 @@ lang="en"
                 <div x-data="{show: true}" x-show="show"
                 @contentupdate.window="
                 if ($event.detail.target == 'renderedpanel') {
-                    show = false;
+                    {{-- show = false; --}}
+                    $el.style.opacity = 0.7;
                     setTimeout(() => {
                         $el.innerHTML = $event.detail.content;
-                        show = true;},
-                        400
+                        {{-- show = true; --}}
+                        $el.style.opacity = 1;
+                    },
+                        200
                     );
                 }
                 " id="renderedpanel"
-                x-transition:enter="transition ease-out duration-250"
+                {{-- x-transition:enter="transition ease-out duration-250"
                 x-transition:enter-start="translate-x-6"
                 x-transition:enter-end="translate-x-0"
                 x-transition:leave="transition ease-in duration-250"
                 x-transition:leave-start="translate-x-0"
-                x-transition:leave-end="opacity-0 -translate-x-6"
-                class="bg-white">
+                x-transition:leave-end="opacity-20 -translate-x-6" --}}
+                class="transition-all duration-200 bg-white"
+                {{-- class="bg-white" --}}
+                >
                 @fragment('page-content')
                     {{ $slot }}
                 @endfragment

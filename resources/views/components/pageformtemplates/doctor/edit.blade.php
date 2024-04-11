@@ -35,6 +35,11 @@
     </div>
 </div>
 <div class="form-control">
+    <label class="label" for="">Intro Video Link</label>
+    <input name="data[video_link]" type="text" class="input input-bordered w-full"
+    value="{{$instance->translations_array[$locale]['video_link'] ?? ''}}"  />
+</div>
+<div class="form-control">
     <label class="label">
         <span class="label-text">Experience Summary</span>
     </label>
