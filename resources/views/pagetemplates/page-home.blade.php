@@ -18,7 +18,7 @@
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
                         <div class="lg:flex lg:mt-12 lg:space-x-1">
-                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" />
+                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking')}}', route: 'booking'})" />
                             <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
                         </div>
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
@@ -694,7 +694,8 @@
                     <img src="/images/icons/faq.png" class="h-24" alt="">
                 </div>
                 <div>
-                    <h2 class="text-3xl">Frequently Asked Questions</h2>
+                    <h2 class="text-3xl"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}" 
+                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}', route: 'webpages.guest.show'})">Frequently Asked Questions</a></h2>
                     <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
                 </div>
             </div>
