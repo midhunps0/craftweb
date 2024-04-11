@@ -2,7 +2,6 @@
 {{-- {{dd($data->content)}} --}}
 <div class="para">
 @foreach ($data->content as $c)
-    <p>
     @foreach ($c->attribs as $a)
         <{{$a}}>
     @endforeach
@@ -18,6 +17,5 @@
     @foreach (array_reverse($c->attribs) as $a)
         </{{$a}}>
     @endforeach
-    </p>
 @endforeach
 </div>
