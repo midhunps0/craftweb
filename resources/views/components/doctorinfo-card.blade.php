@@ -1,11 +1,12 @@
-@props(['name', 'designation', 'qualification', 'photo_url'])
-<div class="flex flex-col md:flex-row border border-blue/50 md:gap-x-3 lg:gap-x-1  p-4">
+@props(['name', 'designation', 'qualification', 'photo_url', 'department', 'specialisations', 'exp_summary'])
+<div class="flex flex-col md:flex-row border border-blue/50 md:gap-x-3 lg:gap-x-1  p-4 w-full">
     <div class="md:w-1/3 flex flex-col justify-center md:justify-start items-center mt-6 mx-auto">
         <x-doctorcard-component
             name="{{$name}}"
             designation="{{$designation}}"
             qualification="{{$qualification}}"
             photo_url="{{$photo_url}}"
+            department="{{$department}}"
             />
         <div class=" flex justify-end  mt-4">
             <button href="#"class="mb-8 flex flex-row justify-center py-2 lg:py-2 px-3  bg-blue font-franklin rounded-3xl shadow-[0px_10px_3px_-6px_rgba(0,0,0,0.3)] items-center space-x-1 w-fit  ">
@@ -18,25 +19,26 @@
 
         <div class="flex  flex-col  md:justify-end lg:justify-start gap-y-1 w-5/6  ">
         <p class=" font-semibold">Designation:</p>
-        <p class="">Chairman & Medical director</p>
+        <p class="">{{$designation}}</p>
         </div>
         <div class="flex flex-col  md:justify-end lg:justify-start gap-y-1  w-5/6">
         <p class=" font-semibold">Department:</p>
-        <p class="">Department</p>
+        <p class="">{{$department}}</p>
         </div>
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
         <p class=" font-semibold">Qualification:</p>
-        <p class="">MD, DGO, DPS (GERMANY)</p>
+        <p class="">{{$qualification}}</p>
         </div>
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
         <p class=" font-semibold">Specialization:</p>
-        <p class="">MD, DGO, DPS (GERMANY)</p>
+        <p class="">{{$specialisations}}</p>
         </div>
+        @if (trim($exp_summary) != '')
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
         <p class=" font-semibold">Experience & Expertise:</p>
-        <p class=" min-h-56 text-justify overflow-y-scroll">More than 30 years of Experience and a dedicated spirit. Leading Fertility Consultant in India and Abroad. Fulfilling each dream of parenthood is his goal. An Eminent Gynecologist, Fertility Specialist and Endoscopic Surgeon having almost 25 years of professional experience and now leading 5 super specialty healthcare organizations in India and Middle-East as Chairman and Medical Director, Dr.Mohammed Ashraf is one of the leading Fertility Consultant both in India and Abroad. Since 1998 he has been a visiting specialist gynecologist and laparoscopic surgeon in Dubai, since 2007 consultant gynecologist in Doha and Senior consultant in OBS-GYN at Muscat since 2010..</p>
+        <p class=" min-h-56 text-justify overflow-y-scroll">{{$exp_summary}}</p>
         </div>
-
+        @endif
 
     </div>
 </div>

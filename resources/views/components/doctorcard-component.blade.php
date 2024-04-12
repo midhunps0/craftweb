@@ -1,4 +1,4 @@
-@props(['name', 'designation', 'qualification', 'photo_url'])
+@props(['name', 'designation', 'qualification', 'photo_url', 'departmant'])
 <div>
    <div class="w-56 relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
       <div class="px-4">
