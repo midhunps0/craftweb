@@ -41,10 +41,12 @@
         <p class=" font-semibold">Qualification:</p>
         <p class="">{{$qualification}}</p>
         </div>
+        @if (trim($specialisations) != '')
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
         <p class=" font-semibold">Specialization:</p>
         <p class="">{{$specialisations}}</p>
         </div>
+        @endif
         @if (trim($exp_summary) != '')
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
         <p class=" font-semibold">Experience & Expertise:</p>
