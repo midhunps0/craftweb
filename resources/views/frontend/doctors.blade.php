@@ -19,6 +19,7 @@
                             qualification="{{$d->current_translation->data['qualification']}}"
                             specialisations="{{$d->current_translation->data['specialisations']}}"
                             exp_summary="{{$d->current_translation->data['exp_summary']}}"
+                            video_link="{{$d->current_translation->data['video_link'] ?? null}}"
                             slug="{{$d->current_translation->slug}}"/>
                     </div>
                 @endforeach
