@@ -55,7 +55,7 @@
         @endif
 
     </div>
-    <div x-show="showScreen" class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-darkgray bg-opacity-95">
+    <div x-show="showScreen" class="absolute z-10 top-0 left-0 w-full h-full flex justify-center items-center bg-darkgray bg-opacity-95 transition-all" x-transition>
         <button type="button" @click.prevent.stop="closeScreen();" class="btn btn-sm btn-error text-white absolute top-4 right-4">
             <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-4" width="w-4" />
         </button>
