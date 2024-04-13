@@ -21,7 +21,7 @@
                         <h3 class="bg-lightgray font-bold p-2">Other Articles</h3>
                         @foreach ($data['allArticles'] as $i)
                             <p class="p-2">
-                                <a href="{{route('articles.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}"
+                                <a @click.prevent.stop="$dispatch('linkaction', {link: '{{route('articles.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}', route: 'articles.guest.show'});" href="{{route('articles.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}"
                                     class="hover:text-pink underline">{{$i['title']}}</a>
                             </p>
                         @endforeach

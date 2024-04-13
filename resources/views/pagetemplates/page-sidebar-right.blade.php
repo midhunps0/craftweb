@@ -26,7 +26,7 @@
                         <h3 class="bg-lightgray font-bold p-2">Other Pages</h3>
                         @foreach ($data['quickLinks'] as $i)
                             <p class="p-2">
-                                <a href="{{route('articles.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}"
+                                <a @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}', route: 'webpages.guest.show'});" href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}"
                                     class="hover:text-pink underline">{{$i['title']}}</a>
                             </p>
                         @endforeach
