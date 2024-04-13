@@ -112,7 +112,6 @@ class WebPageService implements ModelViewConnector {
                     'title' => (json_decode($i->data))->title
                 ];
             }
-            dd($allItems);
             $thedata['quickLinks'] = $allItems;
         }
 
