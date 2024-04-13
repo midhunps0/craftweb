@@ -94,11 +94,15 @@ class WebPageService implements ModelViewConnector {
             $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
             // dd($thedata['doctors']);
         } else {
+            $homePage = WebPage::whereHas('translations', function ($q) {
+                return $q->where('slug', 'home');
+            })->get()->first();
             $results = DB::table('web_pages', 'w')
             ->join('translations as t', 'w.id', '=', 't.translatable_id')
             ->select('t.slug as slug', 't.data as data')
             ->where('t.translatable_type', WebPage::class)
-            ->where('t.slug', '<>', $slug)
+            ->where('w.id', '<>', $homePage->id)
+            ->where('t.slug', '<>', 'home')
             ->where('t.locale', App::currentLocale())
             ->get();
             $allItems = [];
@@ -108,6 +112,7 @@ class WebPageService implements ModelViewConnector {
                     'title' => (json_decode($i->data))->title
                 ];
             }
+            dd($allItems);
             $thedata['quickLinks'] = $allItems;
         }
 
