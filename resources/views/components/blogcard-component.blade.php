@@ -4,7 +4,7 @@
 @endphp
 <div class="flex flex-col h-full max-w-96 p-4 rounded-sm border border-lightgray shadow-[1px_1px_2px_2px_rgba(4,4,4,0.1)] text-sm">
     <div class="w-full relative overflow-hidden" style="padding-bottom:56.25%">
-    <img src="{{$image_url}}" class="absolute w-full"
+    <img src="{{$image_url}}" class="absolute w-full border border-lightgray"
         alt="ivf_image" />
     </div>
     <div class="flex flex-col flex-grow">
