@@ -6,7 +6,7 @@
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($blog as $a)
                 {{-- {{dd($a->current_translation)}} --}}
-                    <div class="md:w-1/4 p-3 box-border">
+                    <div class="md:w-1/3 p-3 box-border">
                         <x-blogcard-component
                             title="{{$a->current_translation->data['title']}}"
                             image_url="{{$a->current_translation->display_image}}"
