@@ -26,6 +26,7 @@ use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
+use Modules\Ynotz\Metatags\Helpers\MetatagHelper;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class WebPageService implements ModelViewConnector {
@@ -58,7 +59,8 @@ class WebPageService implements ModelViewConnector {
 
     public function getShowPageData($slug): ShowPageData
     {
-
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
         $item = WebPage::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug) {
                 $q->where('locale', App::currentLocale())
@@ -76,7 +78,9 @@ class WebPageService implements ModelViewConnector {
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
-
+        // dd($item->current_translation->data['metatags']);
+        MetatagHelper::setTitle($item->current_translation->data['metatags']['title'] ?? env('APP_NAME'));
+        MetatagHelper::addTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
         $thedata = [];
         if ($slug == 'home') {
             $hfeatures = HilightFeature::all();

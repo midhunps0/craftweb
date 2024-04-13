@@ -14,6 +14,14 @@
                 </div>
                 {{-- Sidebar --}}
                 <div class="md:w-1/4">
+                    <h3 class="bg-lightgray font-bold p-2">Other Articles</h3>
+                    @foreach ($data['allArticles'] as $i)
+                        <p class="p-2">
+                            <a href="{{route('articles.guest.show', ['locale' => app()->currentLocale(), 'slug' => $i['slug']])}}"
+                                class="hover:text-pink underline">{{$i['title']}}</a>
+                        </p>
+                    @endforeach
+
                     @if (isset($instance->current_translation->data['sidebar']))
                     <div class="border border-gray bg-lightgray rounded-md p-2">
                     <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['sidebar'])"/>

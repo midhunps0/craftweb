@@ -24,6 +24,8 @@ x-init="
     window.landingUrl = '{{\Request::getRequestUri()}}'; window.landingRoute = '{{ Route::currentRouteName() }}'; window.renderedpanel = 'pagecontent';
 
     let allTags = {{Js::from(session()->get('metatags'))}};
+    console.log('all tags');
+    console.log(allTags);
     if(allTags != null) {
         metatags = allTags.map((t) => {
             t.is_name = typeof t.name != 'undefined';
@@ -44,6 +46,8 @@ x-init="
 
     }
     xtitle='{{session()->get('title') ?? config('app.name')}}';
+    console.log('title')
+    console.log(xtitle)
     "
     @xmetachange="
         metatags = JSON.parse($event.detail.data);

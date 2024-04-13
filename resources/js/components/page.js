@@ -162,6 +162,8 @@ export default () => ({
                     this.ajax = true;
                     setTimeout(
                         () => {
+                            console.log('meta');
+                            console.log(r.data.x_metatags);
                             // document.getElementById(targetPanelId).innerHTML = r.data;
                             this.$dispatch('contentupdate', {content: r.data.html, target: targetPanelId});
                             if (r.data.x_metatags != undefined) {

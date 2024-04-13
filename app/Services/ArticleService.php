@@ -68,10 +68,26 @@ class ArticleService implements ModelViewConnector {
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
+
+        $results = DB::table('articles', 'a')
+            ->join('translations as t', 'a.id', '=', 't.translatable_id')
+            ->select('t.slug as slug', 't.data as data')
+            ->where('t.translatable_type', Article::class)
+            ->where('t.locale', App::currentLocale())
+            ->get();
+        $allItems = [];
+        foreach ($results as $i) {
+            $allItems[] = [
+                'slug' => $i->slug,
+                'title' => (json_decode($i->data))->title
+            ];
+        }
         return new ShowPageData(
             Str::ucfirst($this->getModelShortName()),
             $item,
-            []
+            [
+                'allArticles' => $allItems
+            ]
         );
     }
 
