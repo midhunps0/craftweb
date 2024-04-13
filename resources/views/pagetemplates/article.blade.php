@@ -15,6 +15,9 @@
                 {{-- Sidebar --}}
                 <div class="md:w-1/4">
                     <div class="w-full max-h-full overflow-y-scroll">
+                        <div class="py-2 mb-4">
+                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking')}}', route: 'booking'})" />
+                        </div>
                         <h3 class="bg-lightgray font-bold p-2">Other Articles</h3>
                         @foreach ($data['allArticles'] as $i)
                             <p class="p-2">

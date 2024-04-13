@@ -93,6 +93,22 @@ class WebPageService implements ModelViewConnector {
             $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
             $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
             // dd($thedata['doctors']);
+        } else {
+            $results = DB::table('web_pages', 'w')
+            ->join('translations as t', 'w.id', '=', 't.translatable_id')
+            ->select('t.slug as slug', 't.data as data')
+            ->where('t.translatable_type', WebPage::class)
+            ->where('t.slug', '<>', $slug)
+            ->where('t.locale', App::currentLocale())
+            ->get();
+            $allItems = [];
+            foreach ($results as $i) {
+                $allItems[] = [
+                    'slug' => $i->slug,
+                    'title' => (json_decode($i->data))->title
+                ];
+            }
+            $thedata['quickLinks'] = $allItems;
         }
 
         return new ShowPageData(

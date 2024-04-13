@@ -73,6 +73,7 @@ class ArticleService implements ModelViewConnector {
             ->join('translations as t', 'a.id', '=', 't.translatable_id')
             ->select('t.slug as slug', 't.data as data')
             ->where('t.translatable_type', Article::class)
+            ->where('t.slug', '<>', $slug)
             ->where('t.locale', App::currentLocale())
             ->get();
         $allItems = [];
