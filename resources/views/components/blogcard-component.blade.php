@@ -12,7 +12,9 @@
         {{-- <p class="font-questrial text-left  ml-2 mt-2">Women who are diagnosed to have cancer recently-do they
             have option to...</p> --}}
         <div class="flex flex-row justify-end text-xs">
-            <a class="flex flex-row text-pink justify-center items-center p-1 gap-1 px-2" href="{{$link}}">
+            <a class="flex flex-row text-pink justify-center items-center p-1 gap-1 px-2" href="{{$link}}" @click.prevent.stop="$dispatch('linkaction', {
+                link: '{{$link}}', route: 'articles.guest.show'
+            })">
                 <span>Read</span>
                 <x-easyadmin::display.icon icon="easyadmin::icons.arrow-right"
                     height="h-3" width="w-3" class="ltr:rotate-0 rtl:rotate-180" />
