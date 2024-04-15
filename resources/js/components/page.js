@@ -53,10 +53,10 @@ export default () => ({
                     if (this.$store.app.xpages[link] && typeof this.$store.app.xpages[link].data != 'undefined') {
                         // this.$dispatch('pagechanged', {currentpath: link, currentroute: route, target: target, fragment: fragment});
                         // this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
-                        console.log('goint to fetch from history');
                         this.fetchLink({
                             link: link,
-                            target: target
+                            target: target,
+                            fresh: true
                         });
                         // if (this.$store.app.xpages[link].meta != undefined) {
                         //     this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
