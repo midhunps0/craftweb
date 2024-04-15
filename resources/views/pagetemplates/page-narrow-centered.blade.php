@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div>
+    <div class="text-base">
         <x-main-menu-component />
         <div class="w-full px-2 md:px-16 lg:px-24">
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
