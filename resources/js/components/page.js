@@ -55,7 +55,6 @@ export default () => ({
                         // this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
                         this.fetchLink({
                             link: link,
-                            target: target,
                             fresh: true
                         });
                         // if (this.$store.app.xpages[link].meta != undefined) {
