@@ -6,7 +6,7 @@
             <div>
                 <img src="{{$instance->current_translation->display_image}}" alt="">
             </div>
-            <div class="max-w-3/4 m-auto">
+            <div class="lg:max-w-2/3 m-auto">
                 <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
             </div>
         </div>
