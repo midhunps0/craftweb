@@ -34,7 +34,7 @@ body {
     @apply hover:opacity-50 cursor-pointer;
 }
 .row {
-    @apply mb-6;
+    @apply mb-8;
 }
 .col .col-content {
     @apply gap-y-2 h-full flex flex-col w-full text-justify leading-8;
