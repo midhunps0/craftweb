@@ -166,8 +166,6 @@ export default () => ({
                     this.ajax = true;
                     setTimeout(
                         () => {
-                            console.log('meta');
-                            console.log(r.data.x_metatags);
                             // document.getElementById(targetPanelId).innerHTML = r.data;
                             this.$dispatch('contentupdate', {content: r.data.html, target: targetPanelId});
                             if (r.data.x_metatags != undefined) {
@@ -186,6 +184,7 @@ export default () => ({
                     if (this.$store.app.xpages == undefined || this.$store.app.xpages == null) {
                         this.$store.app.xpages = {};
                     }
+                    console.log(`target pid: ${targetPanelId}, pid: ${this.panelId}`);
                     if (targetPanelId == this.panelId) {
                         let theData = {data: r.data};
                         // this.$store.app.xpages[thelink].data = r.data;
