@@ -52,7 +52,11 @@ export default () => ({
                     // this.page = this.$store.app.xpages[link];
                     if (this.$store.app.xpages[link] && typeof this.$store.app.xpages[link].data != 'undefined') {
                         this.$dispatch('pagechanged', {currentpath: link, currentroute: route, target: target, fragment: fragment});
-                        this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
+                        // this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
+                        this.fetchLink({
+                            link: link,
+                            target: target
+                        });
                         if (this.$store.app.xpages[link].meta != undefined) {
                             this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
                         }
