@@ -181,7 +181,7 @@ h3{
 }
 .page-content h3{
  @apply text-3xl;
-.foetal-row .heading{
+
     @apply text-3xl;
 }
 .content-justify {
