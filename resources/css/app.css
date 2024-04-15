@@ -141,43 +141,65 @@ h3{
 .fertility-row{
     @apply justify-center items-center;
 }
-.test-row{
-    @apply border border-b-blue border-l-blue border-t-pink border-r-pink  my-6;
+.card-row{
+    @apply border border-gray  shadow-lg my-6;
 }
-.test-row .col {
-    @apply p-4;
-}
-.ivf-image .img{
-    @apply w-2/3 my-16;
-}
-.ivf-image .col-content{
-    @apply flex justify-center items-center;
-}
-.ivf-content .col{
-    @apply mb-6;
-}
-.ivf-content .video{
-    @apply w-2/3 my-10 ;
-}
-.insurance-row{
-    @apply my-16;
-}
-.foetal-row{
-    @apply mt-16 p-4;
-}
-.foetal-row .heading{
-    @apply text-3xl;
-}
-.foetal-row .list{
-    @apply p-4
-}
-.genetics-row{
-    @apply border border-blue/10 shadow-lg p-4;
-}
-.genetics-col{
-    @apply mt-2;
-}
-.genetics-col .list{
+.card-row .col {
     @apply p-4;
 }
 
+.card-row .col-content{
+    @apply p-4
+}
+
+
+.insurance-row{
+    @apply my-16;
+}
+
+
+.card-row .list{
+    @apply p-4;
+}
+.big-video{
+    @apply w-1/3;
+}
+.big-image{
+    @apply w-1/3;
+}
+.cover-image .col-content{
+    @apply flex flex-col items-center;
+}
+.cover-image .img{
+    @apply w-2/3 ;
+}
+.icon-image .img{
+    @apply w-20;
+}
+.icon-image .col-content{
+    @apply flex flex-col items-center;
+}
+.page-content h3{
+ @apply text-3xl;
+.foetal-row .heading{
+    @apply text-3xl;
+}
+.content-justify {
+    @apply text-justify;
+}
+.doc-image {
+    @apply w-1/4  p-2 ;
+
+}
+.doc-image .col-content {
+    @apply border border-gray  p-2 h-full;
+}
+.doc-image .img{
+    @apply flex flex-col justify-center items-center;
+}
+.doc-image  img{
+    @apply   border border-gray;
+}
+.center-align {
+    @apply text-center  ;
+}
