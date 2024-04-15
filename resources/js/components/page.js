@@ -36,8 +36,8 @@ export default () => ({
             let route = e.state.route;
             let target = e.state.target;
             let fragment = e.state.fragment;
-            this.showPage = false;
-            this.ajaxLoading = true;
+            // this.showPage = false;
+            // this.ajaxLoading = true;
             if (this.$store.app.xpages == undefined) {
                 this.$store.app.xpages = {};
             }
@@ -47,7 +47,7 @@ export default () => ({
             // console.log(this.$store.app.xpages[link]);
             if (this.$store.app.xpages[link] != undefined) {
 
-                setTimeout(() => {
+                // setTimeout(() => {
                     this.showPage = true;
                     // this.page = this.$store.app.xpages[link];
                     if (this.$store.app.xpages[link] && typeof this.$store.app.xpages[link].data != 'undefined') {
@@ -61,10 +61,10 @@ export default () => ({
                         //     this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
                         // }
                     }
-                    this.ajaxLoading = false;
-                },
-                    100
-                );
+                //     this.ajaxLoading = false;
+                // },
+                //     100
+                // );
             } else {
                 setTimeout(() => {
                         this.showPage = true;
