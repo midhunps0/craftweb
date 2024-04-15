@@ -141,7 +141,8 @@
                         $nextTick(() => {
                             reviews = {{Js::from($data['reviews'])}};
                             setCurrentItems();
-
+                            console.log('reviews');
+                            console.log(reviews);
                         });
                     "
                     @resize.window="setCurrentItems();"
