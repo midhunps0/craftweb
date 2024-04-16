@@ -141,7 +141,7 @@ h3{
 .fertility-row{
     @apply justify-center items-center;
 }
-.row.card-row, .col.card-row .col-content{
+.card-row{
     @apply border border-gray  shadow-lg my-6;
 }
 .card-row .col {
@@ -165,13 +165,13 @@ h3{
     @apply w-1/3;
 }
 .big-image{
-    @apply w-full md:w-1/3;
+    @apply w-1/3;
 }
 .cover-image .col-content{
     @apply flex flex-col items-center;
 }
 .cover-image .img{
-    @apply w-full md:w-2/3 ;
+    @apply w-2/3 ;
 }
 .icon-image .img{
     @apply w-20;
