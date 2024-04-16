@@ -1,7 +1,7 @@
 @props(['content'])
 {{-- {{dd($content)}} --}}
 @foreach ($content as $row)
-    <div class="row flex flex-row {{ $row->classes }} flex-wrap space-x-4">
+    <div class="row flex flex-row {{ $row->classes }} flex-wrap">
         @foreach ($row->cols as $col)
         @php
             $x = [];
