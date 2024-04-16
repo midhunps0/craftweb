@@ -36,10 +36,10 @@ body {
 .row {
     @apply mb-8;
 }
-.row:first-child {
+.row:first-child.card-row {
     @apply pl-0;
 }
-.row:last-child {
+.row:last-child.card-row {
     @apply pr-0;
 }
 .col .col-content {
