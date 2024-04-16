@@ -37,10 +37,10 @@ body {
     @apply mb-8;
 }
 .row .card-row:first-child {
-    @apply pl-0;
+    @apply ltr:pl-0 rtl:pr-0;
 }
 .row .card-row:last-child {
-    @apply pr-0;
+    @apply ltr:pr-0 rtl:pl-0;
 }
 .col .col-content {
     @apply gap-y-2 h-full flex flex-col w-full text-justify leading-8;
