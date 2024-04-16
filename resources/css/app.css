@@ -165,13 +165,13 @@ h3{
     @apply w-1/3;
 }
 .big-image{
-    @apply w-1/3;
+    @apply w-full md:w-1/3;
 }
 .cover-image .col-content{
     @apply flex flex-col items-center;
 }
 .cover-image .img{
-    @apply w-2/3 ;
+    @apply w-full md:w-2/3 ;
 }
 .icon-image .img{
     @apply w-20;
