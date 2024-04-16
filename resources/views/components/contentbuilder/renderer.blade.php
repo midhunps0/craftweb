@@ -1,9 +1,20 @@
 @props(['content'])
 {{-- {{dd($content)}} --}}
 @foreach ($content as $row)
-    <div class="row flex flex-row {{ $row->classes }} gap-x-4">
+    <div class="row flex flex-row {{ $row->classes }} flex-wrap">
         @foreach ($row->cols as $col)
-            <div class="col px-2 min-w-64 flex-grow {{ $col->classes }}">
+        @php
+            $x = [];
+            foreach (explode(' ', $col->classes) as $c) {
+                $c = trim($c);
+                if (str_starts_with($c, 'w-')) {
+                    $c = 'md:'.$c;
+                }
+                $x[] = $c;
+            }
+            $classes = implode(' ', $x);
+        @endphp
+            <div class="col px-2 w-full {{ $classes }}">
                 <div class="col-content w-full">
                     @foreach ($col->items as $item)
                         @switch($item->type)
