@@ -14,8 +14,8 @@
             }
             $classes = implode(' ', $x);
         @endphp
-            <div class="col px-2 w-full">
-                <div class="col-content w-full {{ $classes }}">
+            <div class="col px-2 w-full {{ $classes }}">">
+                <div class="col-content w-full
                     @foreach ($col->items as $item)
                         @switch($item->type)
                             @case('heading')
