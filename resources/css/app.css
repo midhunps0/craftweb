@@ -141,7 +141,7 @@ h3{
 .fertility-row{
     @apply justify-center items-center;
 }
-.card-row{
+.row.card-row, .col.card-row .col-content{
     @apply border border-gray  shadow-lg my-6;
 }
 .card-row .col {
