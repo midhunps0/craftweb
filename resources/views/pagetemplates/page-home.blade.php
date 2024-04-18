@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="bg-white items-center mx-auto text-base-content ">
         <div>
-            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-2 ">
+            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-2 overflow-hidden">
                 <x-main-menu-component />
                 <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
@@ -37,7 +37,7 @@
                     <div class="lg:w-1/2">
                         <div class="flex justify-center lg:flex lg:justify-normal">
                             <img src="/images/home/baby.jpg"
-                                class="w-2/3 sm:w-4/5 md:w-3/4 lg:w-10.5/12 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] relative z-10 "alt="baby_image">
+                                class="w-2/3 sm:w-2/3 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] relative z-10 "alt="baby_image">
                         </div>
                         <div class="flex justify-center">
                             <div
@@ -74,10 +74,29 @@
                         class="  lg:block text-sm italic text-pink  md:text-base xl:text-lg 2xl:text-xl font-normal text-center ">
                         <span class="font-bold">55,000 </span> little angles & counting...
                     </p>
-                    <div
+                    <div x-data="{
+                        options: [],
+                        observer: null,
+                        intersecting: false,
+                        callback (entries, observer) {
+                            this.intersecting = entries[0].isIntersecting;
+                            if(this.intersecting) {
+                                $dispatch('animatecounts');
+                            }
+                          }
+                        }"
+                        x-init="
+                        options = {
+                            threshold: 0.4
+                          };
+                          observer = new IntersectionObserver(callback, options);
+                          let el = document.querySelector('#counts-div');
+                          observer.observe(el);
+                        "
+                        id="counts-div"
                         class="flex justify-center space-x-4  sm:space-x-6    md:space-x-8  lg:space-x-32  rtl:space-x-reverse z-20 relative mt-6 pb-12">
-                        <x-babynew-component :count="'14,000'" :text="'IVF-ICFSI'" />
-                        <x-babynew-component :count="'3,800'" :text="'MTESE-TESA ICSI'" />
+                        <x-babynew-component :count="'14000'" :text="'IVF-ICFSI'" />
+                        <x-babynew-component :count="'3800'" :text="'MTESE-TESA ICSI'" />
                         <x-babynew-component :count="'500'" :text="'PGS/PGD'" />
                     </div>
                 </div>
@@ -196,10 +215,41 @@
             </div>
         </div>
 
-        <div class="relative my-20 w-full z-10 px-2 md:px-0">
+        <div x-data="{
+            options: [],
+            observer: null,
+            intersecting: false,
+            callback (entries, observer) {
+                this.intersecting = entries[0].isIntersecting;
+                if(this.intersecting) {
+                    $dispatch('animatevideo');
+                }
+              }
+            }"
+            x-init="
+                options = {
+                    threshold: 0.1
+                };
+                observer = new IntersectionObserver(callback, options);
+                let el = document.querySelector('#videos-div');
+                observer.observe(el);
+            "
+            id="videos-div" class="relative my-20 w-full z-10 px-2 md:px-0">
             <div class="absolute bg-gray w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 "></div>
-            <div class="flex flex-col md:flex-row relative w-full px-2 max-w-[1500px] m-auto z-10">
-                <div class="w-full md:w-1/2 py-4 md:py-16 relative">
+            <div x-data="{
+                    done: false,
+                    showanimation: false,
+                    animate() {
+                        if (!this.done) {
+                            {{-- this.showanimation = true;
+                            setTimeout(() => {
+                                this.showanimation = false;
+                            }, 100); --}}
+                            this.done = true;
+                        }
+                    },
+                }" class="flex flex-col md:flex-row relative w-full px-2 max-w-[1500px] m-auto z-10 overflow-hidden">
+                <div class="w-full md:w-1/2 py-4 md:py-16 relative transition-transform duration-1000 ease-in-out" :class="{'scale-100' : done, 'scale-50' : !done}">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
                     </div>
@@ -219,6 +269,19 @@
                         videos: [],
                         currentItems: [],
                         wrapperOffset: 0,
+{{--
+                        done: false,
+                        showanimation: false,
+                        animate() {
+                            if (!this.done) {
+                                this.showanimation = true;
+                                setTimeout(() => {
+                                    this.showanimation = false;
+                                }, 100);
+                                this.done = true;
+                            }
+                        }, --}}
+
                         slideForward() {
                             if (this.currentItems[0] != this.videos.length - 1) {
                                 this.wrapperOffset = this.wrapperOffset - this.itemWidth;
@@ -251,10 +314,11 @@
                         });
                     "
                     @resize.window="setItemWidth();"
+                    @animatevideo.window="animate();"
                     class="w-full md:w-1/2 relative py-4 md:py-16">
                     <div class="absolute top-0 ltr:left-0 rtl:right-0 bg-gray w-1/2 h-full z-0">
                     </div>
-                    <div id="video-container" class="w-full overflow-hidden">
+                    <div id="video-container" class="w-full overflow-hidden transition-transform duration-1000 ease-in-out" :class="{'translate-x-0' : done, 'ltr:translate-x-64 rtl:-translate-x-64' : !done}">
                         <div :style="`width: ${wrapperWidth}px; transform: translate(${wrapperOffset}px);`" class="flex flex-row transition-all">
                             <template x-for="(v, i) in videos">
                                 <div :style="`width: ${itemWidth}px`">
