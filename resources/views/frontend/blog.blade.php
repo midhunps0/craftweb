@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
         <div class="w-full px-2 max-w-[1500px] m-auto">
+            <x-main-menu-component />
             <x-page-title title="Blog" />
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($blog as $a)
