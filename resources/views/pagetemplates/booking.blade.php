@@ -1,8 +1,8 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
         <div
             class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto text-darkgray font-franklin text-sm pb-8">
+            <x-main-menu-component />
             <x-page-title title="Book An Appointment" />
             {{-- <p class="text-xs lg:text-base mb-8 text-center">Feel free to contact us any time. We will get back to you as soon as we can!</p> --}}
             <div x-data="{

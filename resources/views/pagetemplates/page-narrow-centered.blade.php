@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
         <div class="w-full px-2 max-w-[1500px] m-auto">
+            <x-main-menu-component />
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
             <div class="md:w-3/4 m-auto">
                 @if (isset($instance->current_translation->display_image))

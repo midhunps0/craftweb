@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
         <div class="w-full px-2 max-w-[1500px] m-auto">
+            <x-main-menu-component />
             <x-page-title title="{{$instance->current_translation->data['name']}}" />
             <div class="flex flex-row justify-end p-4">
                 <a href="{{route('doctors.guest.show', ['locale' => app()->currentLocale(), 'slug' => $instance->current_translation->slug])}}" class="btn btn-sm"
