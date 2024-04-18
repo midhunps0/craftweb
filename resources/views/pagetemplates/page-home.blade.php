@@ -1,17 +1,18 @@
 <x-guest-layout>
-    <div class="bg-white items-center max-w-8xl  mx-auto text-base-content ">
+    <div class="bg-white items-center mx-auto text-base-content ">
         <div>
-            <div class="relative flex flex-col items-center">
+            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-2 lg:px-0">
                 <x-main-menu-component />
                 <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
-                    <div class="h-full w-full flex flex-col justify-between items-end">
+                    <div class="h-full flex-grow flex flex-col justify-between items-end">
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
                     </div>
                     <div class="h-full w-32 lg:w-36 bg-gray"></div>
+                    <div class="absolute z-0 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div>
                 </div>
 
-                <div class="md:flex w-full md:px-16 lg:px-24 z-10">
+                <div class="md:flex w-full max-w-[1500px] m-auto z-10">
                     <div
                         class=" lg:w-1/2 hidden lg:flex lg:mt-24 lg:text-4xl xl:text-[2.75rem] font-thin font-franklin lg:flex-col justify-center">
                         <p class="text-darkgray leading-[3.25rem]">
@@ -84,7 +85,7 @@
             </div>
         </div>
 
-        <div class="my-20 flex flex-col w-full px-2 md:px-16 lg:px-24 z-10">
+        <div class="my-20 flex flex-col w-full px-2 max-w-[1500px] m-auto z-10">
             <h2 class="text-darkgray text-3xl text-center font-franklin">What our Patients Are Saying</h2>
 
             <div class="ltr:flex flex-row w-full rtl:flex-reverse  mt-4">
@@ -197,7 +198,7 @@
 
         <div class="relative my-20 w-full z-10 px-2 md:px-0">
             <div class="absolute bg-gray w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 "></div>
-            <div class="flex flex-col md:flex-row relative w-full md:px-16 lg:px-24 z-10">
+            <div class="flex flex-col md:flex-row relative w-full max-w-[1500px] m-auto z-10">
                 <div class="w-full md:w-1/2 py-4 md:py-16 relative">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
@@ -292,7 +293,7 @@
             <h2 class="text-darkgray text-3xl text-center font-franklin">Why Is Your IVF Cycle In Craft Most Likely To
                 Be Successful </h2>
         </div>
-        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full md:px-16 lg:px-24 z-10 h-fit items-stretch">
+        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full max-w-[1500px] m-auto z-10 h-fit items-stretch">
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
                 <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L00']" /></div>
                 <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L01']" /></div>
@@ -320,7 +321,7 @@
                     console.log('features')
                     console.log(features)
                 "
-                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full md:px-16 lg:px-24 z-10 h-fit">
+                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full max-w-[1500px] m-auto z-10 h-fit">
             <div
                 class="relative w-1/2 border border-gray p-8">
                 <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
@@ -390,7 +391,7 @@
                 </div>
             </div>
         </div>
-        <div class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full md:px-16 lg:px-24 z-10">
+        <div class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full max-w-[1500px] m-auto z-10">
             <div class="w-full lg:w-1/3">
                 <p class="text-4xl text-darkgray font-franklin my-6 relative z-40">
                     Our Experienced And<br>Certified Doctors
@@ -404,6 +405,7 @@
                     itemWidth: 0,
                     doctors: [],
                     currentItems: [],
+                    itemsCount: 3,
                     slideForward() {
                         if (this.currentItems.length == 3 && this.currentItems[2] != this.doctors.length -1 ) {
                             this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
@@ -422,6 +424,9 @@
                         this.itemWidth = itemWidth = $el.offsetWidth / this.currentItems.length;
                     },
                     setCurrentItems () {
+                        {{-- let el = document.getElementById('items-container');
+                        let cWidth = el.offsetWidth;
+                        console.log(`c width: ${cWidth}`); --}}
                         if (window.innerWidth > 640) {
                             if(this.currentItems.length != 3) {
                                 let rlen = this.doctors.length;
@@ -444,12 +449,12 @@
                 "
                 @resize.window="setCurrentItems();"
                 class="w-full lg:w-2/3">
-                <div class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden">
+                <div id="items-container" class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden">
                     <template x-for="(d,i) in doctors">
                         <div :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'"
                             class="flex flex-row justify-center md:justify-between transition-all overflow-x-hidden">
                             <div class="mx-3">
-                                <div class="w-56 relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
+                                <div class="w-64 max-w-full relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
                                    <div class="px-4">
                                       <p class="text-xl font-franklin pt-6 min-h-20" x-text="d.current_translation.data.name"></p>
                                    </div>
@@ -489,8 +494,8 @@
             </div>
         </div>
 
-        <div class="relative my-20 flex flex-col w-full md:px-16 lg:px-24 z-10">
-            <div class="absolute top-0 left-0 z-0 bg-gray w-1/12 h-full"></div>
+        <div class="relative my-20 flex flex-col w-fullz-10">
+            <div class="absolute top-0 left-0 z-0 bg-gray w-1/6 h-full"></div>
             <div x-data="{
                     dir: 'ltr',
                     itemWidth: 0,
@@ -534,6 +539,9 @@
                             if(this.currentItems.length != 3) {
                                 let rlen = this.newsitems.length;
                                 this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                                console.log(`rlen: ${rlen}`);
+                                console.log(`CI: ${this.currentItems}`);
+                                console.log(this.newsitems);
                             }
                         } else {
                             if(this.currentItems.length != 1) {
@@ -545,6 +553,7 @@
                     },
                     setWrapperOffset() {
                         this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
+                        this.wrapperOffset = this.dir == 'ltr' ? this.wrapperOffset : -(this.wrapperOffset);
                     }
                 }"
                 x-init="
@@ -557,8 +566,8 @@
                 "
                 @resize.window="setCurrentItems();"
                 class="relative z-10 my-12 min-h-84">
-                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40">News And Announcements</h2>
-                <div id="news-container" class="relative z-10 overflow-hidden py-4">
+                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40  max-w-[1500px] m-auto">News And Announcements</h2>
+                <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-[1500px] m-auto">
                     <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
                         <button type="button" @click.prevent.stop="slideBackward();" class="text-white hover:opacity-40 cursor-pointer">
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
@@ -582,13 +591,13 @@
                         </button>
                     </div>
                 </div>
-                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6">
+                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6 max-w-[1500px] m-auto px-2 lg:px-0">
                     <x-viewallbutton-component text="{{ __('button.more_news') }}" href="{{route('news.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
         </div>
 
-        <div class="relative flex flex-col w-full md:px-16 lg:px-24 z-10">
+        <div class="relative flex flex-col w-full max-w-[1500px] m-auto z-10">
             <div x-data="{
                 dir: 'ltr',
                 itemWidth: 0,
@@ -687,7 +696,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full md:px-16 lg:px-24 z-10">
+        {{-- <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full max-w-[1500px] m-auto z-10">
             <div class="flex ltr:flex-row rtl:flex-row-reverse justify-start mt-16 w-1/2">
                 <div class="mr-4">
                     <img src="/images/icons/faq.png" class="h-24" alt="">

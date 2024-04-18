@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-base">
         <x-main-menu-component />
-        <div class="w-full px-2 md:px-16 lg:px-24">
+        <div class="w-full px-2 max-w-[1500px] m-auto">
             <x-page-title title="Patient Testimonial Videos" />
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($videos as $v)

@@ -1,4 +1,4 @@
-<div class="flex flex-row justify-between w-full pt-1 md:px-16 lg:px-24">
+<div class="flex flex-row justify-between w-full pt-1 px-2 lg:px-0">
     <div class="flex ltr:justify-start rtl:justify-start">
         <a href="{{route('home')}}" class="ltr:block rtl:hidden">
             <img src="/images/icons/craft_logo.webp"
@@ -13,7 +13,7 @@
         <div class="  flex flex-col  top-0  ">
             <div class="z-10 lg:w-full hidden lg:flex ltr:justify-end rtl:justify-end relative">
                 <div
-                    class="flex ltr:flex-row ltr:justify-end rtl:flex-row-reverse items-center space-x-3 lg:p-3  rtl:justify-start ltr:lg:mr-6 rtl:lg:ml-6 text-[0.4rem]">
+                    class="flex ltr:flex-row ltr:justify-end rtl:flex-row-reverse items-center space-x-3 lg:py-3  rtl:justify-start text-[0.4rem]">
                     <div class="flex flex-row  items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/Phone.png" class="h-3 rtl:-rotate-90  "alt="">
                         <p class= "lg:text-sm 2xl:text-base font-light font-questrial">+91 8590462565</p>
@@ -27,9 +27,9 @@
 
             </div>
             <div
-                class=" items-center z-40  hidden lg:flex ltr:justify-end rtl:justify-start ltr:flex-row rtl:flex-row-reverse relative ltr:lg:-ml-80 rtl:-mr-80 ">
+                class=" items-center z-40  hidden lg:flex ltr:justify-end rtl:justify-start relative ltr:lg:-ml-80 rtl:-mr-80 ">
                 <div
-                    class="flex   ltr:justify-end lg:-ml-4 rtl:justify-start text-sm  lg:mt-4 lg:text-sm lg:pb-3 xl:mr-6 rtl:xl:ml-4 xl:text-base 2xl:text-base  ltr:lg:space-x-5 rtl:space-x-5 ltr:xl:space-x-8 rtl:xl:space-x-8 rtl:space-x-reverse  font-questrial ltr:lg:mr-10 rtl:lg:ml-10 ">
+                    class="flex gap-x-8 justify-end text-sm lg:mt-4 lg:text-sm lg:pb-3 xl:text-base font-questrial">
                     <div x-data="{ open: false }" @mouseleave="open = false">
                         <button @mouseover="open = true">
                             <div class="flex flex-row rtl:flex-row-reverse items-center  space-x-1">
@@ -130,28 +130,13 @@
                     </div>
 
                     <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}', route: 'webpages.guest.show'})">
-                        <div class="flex flex-row rtl:flex-row-reverse items-center">
-                            <div>
-                                <p>{{ __('main_menu.training') }}</p>
-                            </div>
-
-                        </div>
+                        {{ __('main_menu.training') }}
                     </a>
                     <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}', route: 'webpages.guest.show'})">
-                        <div class="flex flex-row rtl:flex-row-reverse items-center">
-                            <div>
-                                <p>{{ __('main_menu.ebook') }}</p>
-                            </div>
-
-                        </div>
+                        {{ __('main_menu.ebook') }}
                     </a>
                     <a href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})">
-                        <div class="flex flex-row rtl:flex-row-reverse items-center ">
-                            <div>
-                                <p>{{ __('main_menu.blogs') }}</p>
-                            </div>
-
-                        </div>
+                        {{ __('main_menu.blogs') }}
                     </a>
                 </div>
             </div>

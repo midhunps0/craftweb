@@ -1,4 +1,4 @@
-<div class="flex flex-row justify-between w-full pt-1 md:px-16 lg:px-24">
+<div class="flex flex-row justify-between w-full pt-1 max-w-[1500px] m-auto">
     <div class="flex ltr:justify-start rtl:justify-start">
         <img src="/images/icons/craftfertility (1).webp"
             class="h-16 md:h-28 lg:h-36"alt="craft_logo_image">

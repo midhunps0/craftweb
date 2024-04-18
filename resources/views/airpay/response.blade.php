@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-main-menu-component/>
-    <div class="w-full px-2 md:px-16 lg:px-24">
+    <div class="w-full px-2 max-w-[1500px] m-auto">
         <x-page-title title="Booking Status" />
     </div>
     <div  class="my-16 w-1/2 m-auto">
