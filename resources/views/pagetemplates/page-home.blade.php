@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="bg-white items-center mx-auto text-base-content ">
         <div>
-            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-2 lg:px-0">
+            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-2 ">
                 <x-main-menu-component />
                 <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
@@ -12,7 +12,7 @@
                     <div class="absolute z-0 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div>
                 </div>
 
-                <div class="md:flex w-full max-w-[1500px] m-auto z-10">
+                <div class="md:flex w-full px-2 max-w-[1500px] m-auto z-10">
                     <div
                         class=" lg:w-1/2 hidden lg:flex lg:mt-24 lg:text-4xl xl:text-[2.75rem] font-thin font-franklin lg:flex-col justify-center">
                         <p class="text-darkgray leading-[3.25rem]">
@@ -88,7 +88,7 @@
         <div class="my-20 flex flex-col w-full px-2 max-w-[1500px] m-auto z-10">
             <h2 class="text-darkgray text-3xl text-center font-franklin">What our Patients Are Saying</h2>
 
-            <div class="ltr:flex flex-row w-full rtl:flex-reverse  mt-4">
+            <div class="ltr:flex flex-row w-full rtl:flex-reverse mt-4">
                 <img src="/images/icons/google icon.webp" class="h-6 lg:h-8 xl:h-10 rounded-full border border-gray"
                     alt="">
                 <p
@@ -198,7 +198,7 @@
 
         <div class="relative my-20 w-full z-10 px-2 md:px-0">
             <div class="absolute bg-gray w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 "></div>
-            <div class="flex flex-col md:flex-row relative w-full max-w-[1500px] m-auto z-10">
+            <div class="flex flex-col md:flex-row relative w-full px-2 max-w-[1500px] m-auto z-10">
                 <div class="w-full md:w-1/2 py-4 md:py-16 relative">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
@@ -293,7 +293,7 @@
             <h2 class="text-darkgray text-3xl text-center font-franklin">Why Is Your IVF Cycle In Craft Most Likely To
                 Be Successful </h2>
         </div>
-        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full max-w-[1500px] m-auto z-10 h-fit items-stretch">
+        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full px-2 max-w-[1500px] m-auto z-10 h-fit items-stretch">
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
                 <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L00']" /></div>
                 <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L01']" /></div>
@@ -321,7 +321,7 @@
                     console.log('features')
                     console.log(features)
                 "
-                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full max-w-[1500px] m-auto z-10 h-fit">
+                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full px-2 max-w-[1500px] m-auto z-10 h-fit">
             <div
                 class="relative w-1/2 border border-gray p-8">
                 <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
@@ -391,7 +391,7 @@
                 </div>
             </div>
         </div>
-        <div class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full max-w-[1500px] m-auto z-10">
+        <div class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full px-2 max-w-[1500px] m-auto z-10">
             <div class="w-full lg:w-1/3">
                 <p class="text-4xl text-darkgray font-franklin my-6 relative z-40">
                     Our Experienced And<br>Certified Doctors
@@ -566,8 +566,8 @@
                 "
                 @resize.window="setCurrentItems();"
                 class="relative z-10 my-12 min-h-84">
-                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40  max-w-[1500px] m-auto">News And Announcements</h2>
-                <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-[1500px] m-auto">
+                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 px-2 max-w-[1500px] m-auto">News And Announcements</h2>
+                <div id="news-container" class="relative z-10 overflow-hidden py-4 px-2 max-w-[1500px] m-auto">
                     <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
                         <button type="button" @click.prevent.stop="slideBackward();" class="text-white hover:opacity-40 cursor-pointer">
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
@@ -591,13 +591,13 @@
                         </button>
                     </div>
                 </div>
-                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6 max-w-[1500px] m-auto px-2 lg:px-0">
+                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6 max-w-[1500px] m-auto px-2 ">
                     <x-viewallbutton-component text="{{ __('button.more_news') }}" href="{{route('news.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
         </div>
 
-        <div class="relative flex flex-col w-full max-w-[1500px] m-auto z-10">
+        <div class="relative flex flex-col w-full px-2 max-w-[1500px] m-auto z-10">
             <div x-data="{
                 dir: 'ltr',
                 itemWidth: 0,

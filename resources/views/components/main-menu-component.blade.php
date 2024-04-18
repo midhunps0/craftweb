@@ -1,4 +1,4 @@
-<div class="flex flex-row justify-between w-full pt-1 px-2 lg:px-0">
+<div class="flex flex-row justify-between w-full pt-1 px-2 ">
     <div class="flex ltr:justify-start rtl:justify-start">
         <a href="{{route('home')}}" class="ltr:block rtl:hidden">
             <img src="/images/icons/craft_logo.webp"
