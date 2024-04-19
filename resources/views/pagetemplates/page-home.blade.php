@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="bg-white items-center mx-auto text-base-content ">
         <div>
-            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-12 overflow-hidden">
+            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-12">
                 <x-main-menu-component />
                 <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
@@ -9,7 +9,7 @@
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
                     </div>
                     <div class="h-full w-32 lg:w-36 bg-gray"></div>
-                    <div class="absolute z-0 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div>
+                    <div class="absolute z-10 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div>
                 </div>
 
                 <div class="md:flex w-full px-2 lg:max-w-[1500px] m-auto z-10">
