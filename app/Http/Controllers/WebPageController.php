@@ -168,4 +168,44 @@ class WebPageController extends SmartController
             ]
         );
     }
+
+    public function homeReviews($locale)
+    {
+        $data = $this->connectorService->getHomeReviews($locale);
+        return response()->json([
+            $data
+        ]);
+    }
+
+    public function homeFeatures($locale)
+    {
+        $data = $this->connectorService->getHomwFeatures($locale);
+        return response()->json([
+            $data
+        ]);
+    }
+
+    public function homeDoctors($locale)
+    {
+        $data = $this->connectorService->getHomeDoctors($locale);
+        return response()->json([
+            $data
+        ]);
+    }
+
+    public function homeNews($locale)
+    {
+        $data = $this->connectorService->getHomeNews($locale);
+        return response()->json([
+            $data
+        ]);
+    }
+
+    public function homeArticles($locale)
+    {
+        $data = $this->connectorService->getHomeArticles($locale);
+        return response()->json([
+            $data
+        ]);
+    }
 }

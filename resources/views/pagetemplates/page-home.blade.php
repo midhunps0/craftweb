@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="bg-white items-center mx-auto text-base-content ">
         <div>
-            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-2 overflow-hidden">
+            <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-12 overflow-hidden">
                 <x-main-menu-component />
                 <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
@@ -12,9 +12,8 @@
                     <div class="absolute z-0 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div>
                 </div>
 
-                <div class="md:flex w-full px-2 max-w-[1500px] m-auto z-10">
-                    <div
-                        class=" lg:w-1/2 hidden lg:flex lg:mt-24 lg:text-4xl xl:text-[2.75rem] font-thin font-franklin lg:flex-col justify-center">
+                <div class="md:flex w-full px-2 lg:max-w-[1500px] m-auto z-10">
+                    <div class=" lg:w-1/2 hidden lg:flex lg:mt-24 lg:text-4xl xl:text-[2.75rem] font-thin font-franklin lg:flex-col justify-center">
                         <p class="text-darkgray leading-[3.25rem]">
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
@@ -34,10 +33,59 @@
                             Kochi | Kodungallur
                         </p>
                     </div>
-                    <div class="lg:w-1/2">
-                        <div class="flex justify-center lg:flex lg:justify-normal">
-                            <img src="/images/home/baby.jpg"
-                                class="w-2/3 sm:w-2/3 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] relative z-10 "alt="baby_image">
+                    <div class="w-full m-auto lg:w-1/2 ltr:lg:justify-start rtl:lg:justify-end">
+                        <div x-data="{
+                                currentIndex: 0,
+                            }"
+                            x-init="
+                                setInterval(() => {
+                                    console.log('currentIndex: '+currentIndex);
+                                    currentIndex = currentIndex < 3 ? currentIndex + 1 : 0;
+                                }, 3000);
+                            " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
+                            {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
+                                <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            {{-- </div> --}}
+                            <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                                x-transition:enter="transition ease-in-out duration-1000"
+                                x-transition:enter-start="cube-enter-start"
+                                x-transition:enter-end="cube-enter-end"
+                                x-transition:leave="transition ease-in-out duration-1000"
+                                x-transition:leave-start="cube-leave-start"
+                                x-transition:leave-end="cube-leave-end"
+                                >
+                                <img src="/images/home/baby.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            </div>
+                            <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                                x-transition:enter="transition ease-in-out duration-1000"
+                                x-transition:enter-start="cube-enter-start"
+                                x-transition:enter-end="cube-enter-end"
+                                x-transition:leave="transition ease-in-out duration-1000"
+                                x-transition:leave-start="cube-leave-start"
+                                x-transition:leave-end="cube-leave-end"
+                                >
+                                <img src="/images/home/a1.jpg" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            </div>
+                            <div x-show="currentIndex == 2" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                                x-transition:enter="transition ease-in-out duration-1000"
+                                x-transition:enter-start="cube-enter-start"
+                                x-transition:enter-end="cube-enter-end"
+                                x-transition:leave="transition ease-in-out duration-1000"
+                                x-transition:leave-start="cube-leave-start"
+                                x-transition:leave-end="cube-leave-end"
+                                >
+                                <img src="/images/home/baby.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            </div>
+                            <div x-show="currentIndex == 3" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                                x-transition:enter="transition ease-in-out duration-1000"
+                                x-transition:enter-start="cube-enter-start"
+                                x-transition:enter-end="cube-enter-end"
+                                x-transition:leave="transition ease-in-out duration-1000"
+                                x-transition:leave-start="cube-enter-end"
+                                x-transition:leave-end="cube-leave-end"
+                                >
+                                <img src="/images/home/a5.jpg" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            </div>
                         </div>
                         <div class="flex justify-center">
                             <div
@@ -104,7 +152,25 @@
             </div>
         </div>
 
-        <div class="my-20 flex flex-col w-full px-2 max-w-[1500px] m-auto z-10">
+        <div x-data="{
+                options: [],
+                xdone: false,
+                observer: null,
+            }"
+            x-init="
+                options = {
+                    threshold: 0.2
+                };
+                observer = new IntersectionObserver((entries, observer) => {
+                    if(entries[0].isIntersecting) {
+                        xdone = true;
+                    }
+                }, options);
+                let el = document.querySelector('#reviews-div');
+                observer.observe(el);
+            "
+            id="reviews-div" class="my-20 flex flex-col w-full px-12 max-w-[1500px] m-auto z-10 transition-all duration-500"
+            :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
             <h2 class="text-darkgray text-3xl text-center font-franklin">What our Patients Are Saying</h2>
 
             <div class="ltr:flex flex-row w-full rtl:flex-reverse mt-4">
@@ -154,13 +220,29 @@
                                 }
                             }
                             this.setItemWidth();
+                        },
+                        fetchData() {
+                            axios.get(
+                                '{{route('home.reviews', ['locale' => app()->currentLocale()])}}',
+                                {
+                                    params: {'locale': '{{app()->currentLocale()}}'}
+                                }
+                            ).then((r) => {
+                                console.log('r.data');
+                                console.log(r.data[0]);
+                                this.reviews = r.data[0];
+                                this.setCurrentItems();
+                            }).catch((e) => {
+                                console.log(e);
+                            });
                         }
                     }"
                     x-init="
                         dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+
                         $nextTick(() => {
-                            reviews = {{Js::from($data['reviews'])}};
-                            setCurrentItems();
+                            {{-- reviews = {{Js::from($data['reviews'])}}; --}}
+                            fetchData();
                         });
                     "
                     @resize.window="setCurrentItems();"
@@ -174,9 +256,12 @@
                     <div class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0">
                         <template x-for="(r, i) in reviews">
                             <div class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
-                                <div class="w-full lg:max-w-96 my-3" :style="`min-width: ${itemWidth - 20}px`">
-                                    <div class="bg-base-100 bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] mx-2 pb-5">
-                                        <div class="flex w-full p-2 items-center">
+                                <div class="w-full h-96 m-3" :style="`min-width: ${itemWidth - 20}px`">
+                                    <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-center">
+                                        <img :src="r.photo_url" class="object-contain">
+                                        <div @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
+                                        :class="{'overflow-hidden h-20 hover:text-pink bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div>
+                                        {{-- <div class="flex w-full p-2 items-center">
                                             <div>
                                                 <img src="/images/icons/double qoute left1.png" class="h-16" alt="">
                                             </div>
@@ -195,7 +280,7 @@
                                         </div>
                                         <div class="px-4 max-h-52 md:h-52 overflow-y-scroll">
                                             <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review"></p>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -228,13 +313,13 @@
             }"
             x-init="
                 options = {
-                    threshold: 0.1
+                    threshold: 0.2
                 };
                 observer = new IntersectionObserver(callback, options);
                 let el = document.querySelector('#videos-div');
                 observer.observe(el);
             "
-            id="videos-div" class="relative my-20 w-full z-10 px-2 md:px-0">
+            id="videos-div" class="relative my-20 w-full z-10 px-12 md:px-0">
             <div class="absolute bg-gray w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 "></div>
             <div x-data="{
                     done: false,
@@ -248,8 +333,8 @@
                             this.done = true;
                         }
                     },
-                }" class="flex flex-col md:flex-row relative w-full px-2 max-w-[1500px] m-auto z-10 overflow-hidden">
-                <div class="w-full md:w-1/2 py-4 md:py-16 relative transition-transform duration-1000 ease-in-out" :class="{'scale-100' : done, 'scale-50' : !done}">
+                }" class="flex flex-col md:flex-row relative w-full px-12 max-w-[1500px] m-auto z-10 overflow-hidden">
+                <div class="w-full md:w-1/2 py-4 md:py-16 relative transition-transform duration-1000 ease-in-out" :class="{'scale-100 bg-opacity-100 opacity-100' : done, 'scale-50 bg-opacity-0 opacity-0' : !done}">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
                     </div>
@@ -318,7 +403,7 @@
                     class="w-full md:w-1/2 relative py-4 md:py-16">
                     <div class="absolute top-0 ltr:left-0 rtl:right-0 bg-gray w-1/2 h-full z-0">
                     </div>
-                    <div id="video-container" class="w-full overflow-hidden transition-transform duration-1000 ease-in-out" :class="{'translate-x-0' : done, 'ltr:translate-x-64 rtl:-translate-x-64' : !done}">
+                    <div id="video-container" class="w-full overflow-hidden transition-transform duration-1000 ease-in-out" :class="{'translate-x-0 bg-opacity-100 opacity-100' : done, 'ltr:translate-x-64 rtl:-translate-x-64 bg-opacity-0 opacity-0' : !done}">
                         <div :style="`width: ${wrapperWidth}px; transform: translate(${wrapperOffset}px);`" class="flex flex-row transition-all">
                             <template x-for="(v, i) in videos">
                                 <div :style="`width: ${itemWidth}px`">
@@ -353,11 +438,30 @@
             </div>
         </div>
 
-        <div class="mt-8">
-            <h2 class="text-darkgray text-3xl text-center font-franklin">Why Is Your IVF Cycle In Craft Most Likely To
+        <div x-data="{
+                options: [],
+                xdone: false,
+                observer: null,
+            }"
+            x-init="
+                xdone = false;
+                options = {
+                    threshold: 0.2
+                };
+                observer = new IntersectionObserver((entries, observer) => {
+                    if(entries[0].isIntersecting) {
+                        xdone = true;
+                    }
+                }, options);
+                let el = document.querySelector('#hilights-heading');
+                observer.observe(el);
+            "
+            id="hilights-heading" class="mt-8 px-12">
+            <h2 class="text-darkgray text-3xl text-center font-franklin transition-all duration-500"
+            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">Why Is Your IVF Cycle In Craft Most Likely To
                 Be Successful </h2>
         </div>
-        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full px-2 max-w-[1500px] m-auto z-10 h-fit items-stretch">
+        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full px-12 max-w-[1500px] m-auto z-10 h-fit items-stretch">
             <div class="flex flex-row flex-wrap w-full items-center justify-center">
                 <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L00']" /></div>
                 <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L01']" /></div>
@@ -378,30 +482,45 @@
 
         <div x-data="{
                     features: [],
-                    currentKey: 'L00'
+                    currentKey: 'L00',
+                    options: [],
+                    xdone: false,
+                    observer: null,
                 }"
                 x-init="
+                    xdone = false;
                     features = {{Js::from($data['hfeatures'])}};
-                    console.log('features')
-                    console.log(features)
+                    options = {
+                        threshold: 0.2
+                    };
+                    observer = new IntersectionObserver((entries, observer) => {
+                        if(entries[0].isIntersecting) {
+                            xdone = true;
+                        }
+                    }, options);
+                    let el = document.querySelector('#hilights-div');
+                    observer.observe(el);
                 "
-                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full px-2 max-w-[1500px] m-auto z-10 h-fit">
+                id="hilights-div"
+                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full px-12 max-w-[1500px] m-auto z-10 h-fit">
             <div
-                class="relative w-1/2 border border-gray p-8">
+                class="relative w-1/2 border border-gray p-8 transition-all duration-500"
+                :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
                 <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
                     <img src="/images/icons/vector women pink_Mesa de trabajo 1.png" class="h-full opacity-40 dir-img"
                         alt="pregnant_lady_image">
                 </div>
                 <div class="relative z-40">
-                        <div class="flex justify-center items-center min-h-96">
+                        <div class="flex justify-center items-center min-h-96 transition-all duration-500"
+                            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
                             <div>
-                                <div class="flex justify-center items-center">
+                                <div class="flex justify-center items-center w-3/4 m-auto px-[6%]">
                                     <div class="text-pink">
                                         <x-easyadmin::display.icon icon="icons.sperm" height="h-16"
                                             width="w-16" />
                                     </div>
                                     <div class="items-center mt-1">
-                                        <h3 class="font-bold text-2xl font-questrial "
+                                        <h3 class="font-bold text-2xl font-questrial"
                                             x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">100% non-donor policy</h3>
                                     </div>
                                 </div>
@@ -428,7 +547,8 @@
             <div class="absolute h-full w-full z-10 top-0 left-0 flex justify-center items-center">
                 <div
                     class="w-full lg:w-10/12 xl:4/5 flex ltr:flex-row rtl:flex-row-reverse justify-between items-center">
-                    <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8">
+                    <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8 transition-all duration-500"
+                            :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
                         <div class="flex flex-row">
                             <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" ref_key="L00"/>
                             <div class="p-4"></div>
@@ -440,7 +560,8 @@
                             <x-cycle-component :title="$data['hfeatures']['L11']->current_translation->data['title']" ref_key="L11"/>
                         </div>
                     </div>
-                    <div class="flex-col ltr:justify-start rtl:justify-end space-y-8">
+                    <div class="flex-col ltr:justify-start rtl:justify-end space-y-8 transition-all duration-500"
+                            :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
                         <div class="flex">
                             <x-cycle-component :title="$data['hfeatures']['R00']->current_translation->data['title']"  ref_key="R00"/>
                             <div class="p-4"></div>
@@ -455,7 +576,25 @@
                 </div>
             </div>
         </div>
-        <div class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full px-2 max-w-[1500px] m-auto z-10">
+        <div x-data="{
+                options: [],
+                xdone: false,
+                observer: null,
+            }"
+            x-init="
+                options = {
+                    threshold: 0.2
+                };
+                observer = new IntersectionObserver((entries, observer) => {
+                    if(entries[0].isIntersecting) {
+                        xdone = true;
+                    }
+                }, options);
+                let el = document.querySelector('#doctors-div');
+                observer.observe(el);
+            "
+            id="doctors-div" class="relative my-20 flex flex-col lg:flex-row justify-center items-center w-full px-12 max-w-[1500px] m-auto z-10 transition-all duration-1000"
+            :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
             <div class="w-full lg:w-1/3">
                 <p class="text-4xl text-darkgray font-franklin my-6 relative z-40">
                     Our Experienced And<br>Certified Doctors
@@ -558,7 +697,25 @@
             </div>
         </div>
 
-        <div class="relative my-20 flex flex-col w-fullz-10">
+        <div x-data="{
+                    options: [],
+                    xdone: false,
+                    observer: null,
+                }"
+                x-init="
+                    options = {
+                        threshold: 0.2
+                    };
+                    observer = new IntersectionObserver((entries, observer) => {
+                        if(entries[0].isIntersecting) {
+                            xdone = true;
+                        }
+                    }, options);
+                    let el = document.querySelector('#news-div');
+                    observer.observe(el);
+                "
+                id="news-div" class="relative my-20 flex flex-col w-fullz-10 transition-all duration-1000"
+                :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
             <div class="absolute top-0 left-0 z-0 bg-gray w-1/6 h-full"></div>
             <div x-data="{
                     dir: 'ltr',
@@ -629,9 +786,9 @@
                     });
                 "
                 @resize.window="setCurrentItems();"
-                class="relative z-10 my-12 min-h-84">
-                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 px-2 max-w-[1500px] m-auto">News And Announcements</h2>
-                <div id="news-container" class="relative z-10 overflow-hidden py-4 px-2 max-w-[1500px] m-auto">
+                class="relative z-10 my-12 min-h-84 px-12">
+                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 max-w-[1500px] m-auto">News And Announcements</h2>
+                <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-[1500px] m-auto">
                     <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
                         <button type="button" @click.prevent.stop="slideBackward();" class="text-white hover:opacity-40 cursor-pointer">
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
@@ -661,7 +818,25 @@
             </div>
         </div>
 
-        <div class="relative flex flex-col w-full px-2 max-w-[1500px] m-auto z-10">
+        <div x-data="{
+                options: [],
+                xdone: false,
+                observer: null,
+            }"
+            x-init="
+                options = {
+                    threshold: 0.2
+                };
+                observer = new IntersectionObserver((entries, observer) => {
+                    if(entries[0].isIntersecting) {
+                        xdone = true;
+                    }
+                }, options);
+                let el = document.querySelector('#blogs-div');
+                observer.observe(el);
+            "
+            id="blogs-div" class="relative flex flex-col w-full px-12 max-w-[1500px] m-auto z-10 transition-all duration-1000"
+            :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
             <div x-data="{
                 dir: 'ltr',
                 itemWidth: 0,

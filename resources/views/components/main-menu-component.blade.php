@@ -38,7 +38,7 @@
                             </div>
 
                         </button>
-                        <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl ">
+                        <div x-show="open" x-cloak class="absolute  bg-white bg-opacity-90 shadow-xl ">
                             <ul class="flex flex-col p-0">
                                 <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about-craft'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about-craft'])}}'})"
@@ -62,7 +62,7 @@
                                 <x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-3" width="w-3" />
                             </div>
                         </button>
-                        <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl">
+                        <div x-show="open" x-cloak class="absolute  bg-white bg-opacity-90 shadow-xl">
                             <ul class="grid grid-cols-3 gap-4 p-4">
                                 <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-lab-and-embryology'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-lab-and-embryology'])}}'})" class="font-questrial text-center">{{ __('main_menu.ivf') }}</a></li>
@@ -109,7 +109,7 @@
                                 <x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-3" width="w-3" />
                             </div>
                         </button>
-                        <div x-show="open" class="absolute  bg-white bg-opacity-90 shadow-xl">
+                        <div x-show="open" x-cloak class="absolute  bg-white bg-opacity-90 shadow-xl">
                             <ul class="p-2 py-4 space-y-2">
                                 <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-cycle'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ivf-cycle'])}}'})"
@@ -152,7 +152,7 @@
                             fill="#404853" />
                     </svg>
                 </button>
-                <div x-show="open" class=" fixed  bg-white bg-opacity-90 w-full   h-scren overflow-y-scroll inset-0 z-30  ">
+                <div x-show="open" x-cloak class=" fixed  bg-white bg-opacity-90 w-full   h-scren overflow-y-scroll inset-0 z-30  ">
                     <div class=" flex justify-end p-3 sm:p-10 absolute top-5 right-5">
                         <svg xmlns="http://www.w3.org/2000/svg" x-show="open"
                             x-on:click="open = false" class="h-8 w-8 fill-current text-black hover:text-pink"
@@ -211,7 +211,7 @@
                                         stroke="none" fill=current fill-rule="evenodd" />
                                 </svg>
                             </button>
-                            <div x-show="open" class=" bg-white h-fit w-full inset-0 top-0  "
+                            <div x-show="open" x-cloak class=" bg-white h-fit w-full inset-0 top-0  "
                                 x-on:click.outside="open = false">
 
                                 <ul class="ltr:ml-4 rtl:mr-4 space-y-2 ">
@@ -273,7 +273,7 @@
                                         stroke="none" fill=current fill-rule="evenodd" />
                                 </svg>
                             </button>
-                            <div x-show="open" class=" bg-white h-fit w-full inset-0 top-0 "
+                            <div x-show="open" x-cloak class=" bg-white h-fit w-full inset-0 top-0 "
                                 x-on:click.outside="open = false">
 
                                 <ul class="ltr:ml-4 rtl:mr-4 space-y-2">

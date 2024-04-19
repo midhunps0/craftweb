@@ -20,6 +20,7 @@ class Review extends Model implements MediaOwner
     protected $appends = [
         'translations_array',
         'current_translation',
+        'photo_url'
     ];
 
     public function defaultName(): Attribute

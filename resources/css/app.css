@@ -19,6 +19,8 @@
     src:url('./fonts/Questrial-Regular.ttf');
 }
 
+[x-cloak] { display: none !important; }
+
 body {
     @apply ltr:text-left rtl:text-right leading-10;
 }
@@ -208,4 +210,17 @@ h3{
 }
 .center-align {
     @apply text-center  ;
+}
+
+.cube-enter-start {
+    transform: translateX(50%) rotateY(90deg);
+}
+.cube-enter-end {
+    transform: translateX(0%) rotateY(0deg);
+}
+.cube-leave-start {
+    transform: translateX(0%) rotateY(0deg);
+}
+.cube-leave-end {
+    transform: translateX(-50%) rotateY(-90deg);
 }

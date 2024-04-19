@@ -92,7 +92,6 @@ class WebPageService implements ModelViewConnector {
             $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
             $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
             $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
-            // dd($thedata['doctors']);
         } else {
             $homePage = WebPage::whereHas('translations', function ($q) {
                 return $q->where('slug', 'home');
@@ -120,6 +119,36 @@ class WebPageService implements ModelViewConnector {
             instance: $item,
             data: $thedata
         );
+    }
+
+    public function getHomeReviews($locale)
+    {
+        return Review::orderBy('id', 'desc')->limit(9)->get();
+    }
+
+    public function getHomeFeatures($locale)
+    {
+        $hfeatures = HilightFeature::all();
+        $data = [];
+        foreach ($hfeatures as $f) {
+            $data[$f->display_location] = $f;
+        }
+        return $data;
+    }
+
+    public function getHomeDoctors($locale)
+    {
+        return Doctor::orderBy('id', 'desc')->limit(6)->get();
+    }
+
+    public function getHomeNews($locale)
+    {
+        return News::orderBy('id', 'desc')->limit(6)->get();
+    }
+
+    public function getHomeArticles($locale)
+    {
+        return Article::orderBy('id', 'desc')->limit(6)->get();
     }
 
     public function getNewsData($locale)

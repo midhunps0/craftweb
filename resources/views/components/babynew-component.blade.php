@@ -21,7 +21,7 @@
                         this.pulse = true;
                         setTimeout(() => {
                             this.pulse = false;
-                        }, 6000);
+                        }, 2000);
                         this.done = true;
                     }
                 }, this.stepDuration);
@@ -29,7 +29,7 @@
                 this.pulse = true;
                 setTimeout(() => {
                     this.pulse = false;
-                }, 6000);
+                }, 2000);
             }
         },
     }"
