@@ -83,35 +83,35 @@ class WebPageService implements ModelViewConnector {
         MetatagHelper::addTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
         $thedata = [];
         if ($slug == 'home') {
-            $hfeatures = HilightFeature::all();
-            foreach ($hfeatures as $f) {
-                $thedata['hfeatures'][$f->display_location] = $f;
-            }
-            $thedata['reviews'] = Review::orderBy('id', 'desc')->limit(12)->get();
-            $thedata['videos'] = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get();
-            $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
-            $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
-            $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
+            // $hfeatures = HilightFeature::all();
+            // foreach ($hfeatures as $f) {
+            //     $thedata['hfeatures'][$f->display_location] = $f;
+            // }
+            // $thedata['reviews'] = Review::orderBy('id', 'desc')->limit(12)->get();
+            // $thedata['videos'] = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get();
+            // $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
+            // $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
+            // $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
         } else {
-            $homePage = WebPage::whereHas('translations', function ($q) {
-                return $q->where('slug', 'home');
-            })->get()->first();
-            $results = DB::table('web_pages', 'w')
-            ->join('translations as t', 'w.id', '=', 't.translatable_id')
-            ->select('t.slug as slug', 't.data as data')
-            ->where('t.translatable_type', WebPage::class)
-            ->where('w.id', '<>', $homePage->id)
-            ->where('t.slug', '<>', 'home')
-            ->where('t.locale', App::currentLocale())
-            ->get();
-            $allItems = [];
-            foreach ($results as $i) {
-                $allItems[] = [
-                    'slug' => $i->slug,
-                    'title' => (json_decode($i->data))->title
-                ];
-            }
-            $thedata['quickLinks'] = $allItems;
+            // $homePage = WebPage::whereHas('translations', function ($q) {
+            //     return $q->where('slug', 'home');
+            // })->get()->first();
+            // $results = DB::table('web_pages', 'w')
+            // ->join('translations as t', 'w.id', '=', 't.translatable_id')
+            // ->select('t.slug as slug', 't.data as data')
+            // ->where('t.translatable_type', WebPage::class)
+            // ->where('w.id', '<>', $homePage->id)
+            // ->where('t.slug', '<>', 'home')
+            // ->where('t.locale', App::currentLocale())
+            // ->get();
+            // $allItems = [];
+            // foreach ($results as $i) {
+            //     $allItems[] = [
+            //         'slug' => $i->slug,
+            //         'title' => (json_decode($i->data))->title
+            //     ];
+            // }
+            // $thedata['quickLinks'] = $allItems;
         }
 
         return new ShowPageData(
@@ -124,6 +124,11 @@ class WebPageService implements ModelViewConnector {
     public function getHomeReviews($locale)
     {
         return Review::orderBy('id', 'desc')->limit(9)->get();
+    }
+
+    public function getHomeVideos($locale)
+    {
+        return VideoTestimonial::orderBy('id', 'desc')->limit(6)->get();
     }
 
     public function getHomeFeatures($locale)

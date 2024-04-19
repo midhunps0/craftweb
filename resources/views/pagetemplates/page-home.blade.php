@@ -39,7 +39,7 @@
                             }"
                             x-init="
                                 setInterval(() => {
-                                    console.log('currentIndex: '+currentIndex);
+                                    //console.log('currentIndex: '+currentIndex);
                                     currentIndex = currentIndex < 3 ? currentIndex + 1 : 0;
                                 }, 3000);
                             " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
@@ -228,12 +228,12 @@
                                     params: {'locale': '{{app()->currentLocale()}}'}
                                 }
                             ).then((r) => {
-                                console.log('r.data');
-                                console.log(r.data[0]);
+                                //console.log('r.data');
+                                //console.log(r.data[0]);
                                 this.reviews = r.data[0];
                                 this.setCurrentItems();
                             }).catch((e) => {
-                                console.log(e);
+                                //console.log(e);
                             });
                         }
                     }"
@@ -386,17 +386,26 @@
                         setCurrentItems () {
                             this.currentItems = this.dir == 'ltr' ? [0] : [this.videos.length - 1];
                             this.setItemWidth();
+                        },
+                        fetchData() {
+                            axios.get(
+                                '{{route('home.videos', ['locale' => app()->currentLocale()])}}',
+                                {
+                                    params: {'locale': '{{app()->currentLocale()}}'}
+                                }
+                            ).then((r) => {
+                                //console.log('r.data');
+                                //console.log(r.data[0]);
+                                this.videos = r.data[0];
+                                this.setCurrentItems();
+                            }).catch((e) => {
+                                //console.log(e);
+                            });
                         }
                     }"
                     x-init="
                         dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
-                        $nextTick(() => {
-                            videos = {{Js::from($data['videos'])}};
-                            setCurrentItems();
-                            setItemWidth();
-                            console.log('videos');
-                            console.log(videos);
-                        });
+                        fetchData();
                     "
                     @resize.window="setItemWidth();"
                     @animatevideo.window="animate();"
@@ -458,119 +467,157 @@
             "
             id="hilights-heading" class="mt-8 px-12">
             <h2 class="text-darkgray text-3xl text-center font-franklin transition-all duration-500"
-            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">Why Is Your IVF Cycle In Craft Most Likely To
+            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-90': !xdone}">Why Is Your IVF Cycle In Craft Most Likely To
                 Be Successful </h2>
         </div>
-        <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full px-12 max-w-[1500px] m-auto z-10 h-fit items-stretch">
-            <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L00']" /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L01']" /></div>
-            </div>
-            <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L10']" /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['L11']" /></div>
-            </div>
-            <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R00']" /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R01']" /></div>
-            </div>
-            <div class="flex flex-row flex-wrap w-full items-center justify-center">
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R10']" /></div>
-                <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component :feature="$data['hfeatures']['R11']" /></div>
-            </div>
-        </div>
-
         <div x-data="{
-                    features: [],
-                    currentKey: 'L00',
-                    options: [],
-                    xdone: false,
-                    observer: null,
-                }"
-                x-init="
-                    xdone = false;
-                    features = {{Js::from($data['hfeatures'])}};
-                    options = {
-                        threshold: 0.2
-                    };
-                    observer = new IntersectionObserver((entries, observer) => {
-                        if(entries[0].isIntersecting) {
-                            xdone = true;
+                features: [],
+                currentKey: 'L00',
+                currentIcon: '',
+                options: [],
+                xdone: false,
+                observer: null,
+                setCurrentItemData(e) {
+                    this.currentKey = e.detail.ref;
+                    this.currentIcon = document.getElementById('feature-'+this.currentKey).innerHTML;
+                },
+                fetchData() {
+                    axios.get(
+                        '{{route('home.features', ['locale' => app()->currentLocale()])}}',
+                        {
+                            params: {'locale': '{{app()->currentLocale()}}'}
                         }
-                    }, options);
-                    let el = document.querySelector('#hilights-div');
-                    observer.observe(el);
-                "
-                id="hilights-div"
-                @hfeature.window="currentKey = $event.detail.ref;" class="hidden relative my-16 lg:flex flex-row justify-center w-full px-12 max-w-[1500px] m-auto z-10 h-fit">
-            <div
-                class="relative w-1/2 border border-gray p-8 transition-all duration-500"
-                :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
-                <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
-                    <img src="/images/icons/vector women pink_Mesa de trabajo 1.png" class="h-full opacity-40 dir-img"
-                        alt="pregnant_lady_image">
+                    ).then((r) => {
+                        //console.log('features');
+                        //console.log(r.data[0]);
+                        this.features = r.data[0];
+                    }).catch((e) => {
+                        //console.log(e);
+                    });
+                }
+            }"
+            x-init="
+                fetchData();
+                xdone = false;
+                options = {
+                    threshold: 0.2
+                };
+                observer = new IntersectionObserver((entries, observer) => {
+                    if(entries[0].isIntersecting) {
+                        xdone = true;
+                    }
+                }, options);
+                let el = document.querySelector('#hilights-div');
+                observer.observe(el);
+                $nextTick(() => {
+                    currentIcon = document.getElementById('feature-L00').innerHTML;
+                });
+            ">
+            <div class=" relative my-10 flex flex-col lg:hidden justify-center w-full px-12 max-w-[1500px] m-auto z-10 h-fit items-stretch">
+                <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="L00" icon="icons.non-donor" /></div>
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="L01" icon="icons.individualised-treatment" /></div>
                 </div>
-                <div class="relative z-40">
-                        <div class="flex justify-center items-center min-h-96 transition-all duration-500"
-                            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
-                            <div>
-                                <div class="flex justify-center items-center w-3/4 m-auto px-[6%]">
-                                    <div class="text-pink">
-                                        <x-easyadmin::display.icon icon="icons.sperm" height="h-16"
-                                            width="w-16" />
+                <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="L10" icon="icons.best-in-class-technolgy" /></div>
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="L11" icon="icons.best-in-class-stimulation" /></div>
+                </div>
+                <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="R00" icon="icons.blessed-hand" /></div>
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component icon="surgical-sperm-retrivel" ref_key="R01" icon="icons.surgical-sperm-retrivel" /></div>
+                </div>
+                <div class="flex flex-row flex-wrap w-full items-center justify-center">
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="R10" icon="icons.pgt" /></div>
+                    <div class="p-2 w-full sm:w-1/2 min-w-64 max-w-96"><x-feature-component ref_key="R11" icon="icons.zero-emi" /></div>
+                </div>
+            </div>
+
+            <div id="hilights-div" @hfeature.window="setCurrentItemData($event);" class="hidden relative my-16 lg:flex flex-row justify-center w-full px-12 max-w-[1500px] m-auto z-10 h-fit">
+                <div
+                    class="relative w-1/2 border border-gray p-8 transition-all duration-500"
+                    :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-90': !xdone}">
+                    <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
+                        <img src="/images/icons/vector women pink_Mesa de trabajo 1.png" class="h-full opacity-40 dir-img"
+                            alt="pregnant_lady_image">
+                    </div>
+                    <div class="relative z-40">
+                            <div class="flex justify-center items-center min-h-96 transition-all duration-500"
+                                :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
+                                <div>
+                                    <div class="flex justify-center items-center w-3/4 m-auto px-[6%]">
+                                        <div class="text-pink p-2 border border-pink" x-html="currentIcon">
+                                            {{-- <x-easyadmin::display.icon icon="icons.sperm" height="h-16"
+                                                width="w-16" /> --}}
+                                        </div>
+                                        <div class="items-center mt-1 p-2">
+                                            <h3 class="font-bold text-2xl font-questrial"
+                                                x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">100% non-donor policy</h3>
+                                        </div>
                                     </div>
-                                    <div class="items-center mt-1">
-                                        <h3 class="font-bold text-2xl font-questrial"
-                                            x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">100% non-donor policy</h3>
+                                    <div
+                                        class="flex justify-center z-40 text-sm lg:text-base font-normal font-questrial text-justify w-3/4 m-auto px-[6%]"
+                                        x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.description : ''">
+                                        We’re
+                                        the only centre in India that strictly follows a non-donor (self-parentage) IVF
+                                        policy. We
+                                        truly believe in 100% biological parentage. Hence with us, the end result is your
+                                        own blood.
+                                        To ensure that all babies born through IVF are biologically yours, we use an RI
+                                        Witnessing
+                                        system through Radio Frequency Identification (RFID) to detect and monitor all
+                                        activity in
+                                        the IVF Laboratory. The system helps mitigate the risk of human error there by
+                                        ensuring that
+                                        all embryos transferred are yours and yours alone.
                                     </div>
                                 </div>
-                                <div
-                                    class="flex justify-center z-40 text-sm lg:text-base font-normal font-questrial text-justify w-3/4 m-auto px-[6%]"
-                                    x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.description : ''">
-                                    We’re
-                                    the only centre in India that strictly follows a non-donor (self-parentage) IVF
-                                    policy. We
-                                    truly believe in 100% biological parentage. Hence with us, the end result is your
-                                    own blood.
-                                    To ensure that all babies born through IVF are biologically yours, we use an RI
-                                    Witnessing
-                                    system through Radio Frequency Identification (RFID) to detect and monitor all
-                                    activity in
-                                    the IVF Laboratory. The system helps mitigate the risk of human error there by
-                                    ensuring that
-                                    all embryos transferred are yours and yours alone.
+                            </div>
+                    </div>
+                </div>
+                <div class="absolute h-full w-full z-10 top-0 left-0 flex justify-center items-center">
+                    <div
+                        class="w-full lg:w-10/12 xl:4/5 flex ltr:flex-row rtl:flex-row-reverse justify-between items-center">
+                        <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8 transition-all duration-500"
+                                :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
+                            <div class="flex flex-row">
+                                <div>
+                                    <x-cycle-component icon="icons.non-donor" ref_key="L00"/>
+                                </div>
+                                <div class="p-4"></div>
+                                <div>
+                                    <x-cycle-component icon="icons.individualised-treatment" ref_key="L01"/>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div>
+                                    <x-cycle-component icon="icons.best-in-class-technolgy" ref_key="L10"/>
+                                </div>
+                                <div class="p-4"></div>
+                                <div>
+                                    <x-cycle-component icon="icons.best-in-class-stimulation" ref_key="L11"/>
                                 </div>
                             </div>
                         </div>
-                </div>
-            </div>
-            <div class="absolute h-full w-full z-10 top-0 left-0 flex justify-center items-center">
-                <div
-                    class="w-full lg:w-10/12 xl:4/5 flex ltr:flex-row rtl:flex-row-reverse justify-between items-center">
-                    <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8 transition-all duration-500"
-                            :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
-                        <div class="flex flex-row">
-                            <x-cycle-component :title="$data['hfeatures']['L00']->current_translation->data['title']" ref_key="L00"/>
-                            <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L01']->current_translation->data['title']" ref_key="L01"/>
-                        </div>
-                        <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['L10']->current_translation->data['title']" ref_key="L10"/>
-                            <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['L11']->current_translation->data['title']" ref_key="L11"/>
-                        </div>
-                    </div>
-                    <div class="flex-col ltr:justify-start rtl:justify-end space-y-8 transition-all duration-500"
-                            :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
-                        <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['R00']->current_translation->data['title']"  ref_key="R00"/>
-                            <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['R01']->current_translation->data['title']"  ref_key="R01"/>
-                        </div>
-                        <div class="flex">
-                            <x-cycle-component :title="$data['hfeatures']['R10']->current_translation->data['title']"  ref_key="R10"/>
-                            <div class="p-4"></div>
-                            <x-cycle-component :title="$data['hfeatures']['R11']->current_translation->data['title']"  ref_key="R11"/>
+                        <div class="flex-col ltr:justify-start rtl:justify-end space-y-8 transition-all duration-500"
+                                :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
+                                <div class="flex flex-row">
+                                    <div>
+                                        <x-cycle-component icon="icons.blessed-hand" ref_key="R00"/>
+                                    </div>
+                                    <div class="p-4"></div>
+                                    <div>
+                                        <x-cycle-component icon="icons.surgical-sperm-retrivel" ref_key="R01"/>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div>
+                                        <x-cycle-component icon="icons.pgt" ref_key="R10"/>
+                                    </div>
+                                    <div class="p-4"></div>
+                                    <div>
+                                        <x-cycle-component icon="icons.zero-emi" ref_key="R11"/>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -629,7 +676,7 @@
                     setCurrentItems () {
                         {{-- let el = document.getElementById('items-container');
                         let cWidth = el.offsetWidth;
-                        console.log(`c width: ${cWidth}`); --}}
+                        //console.log(`c width: ${cWidth}`); --}}
                         if (window.innerWidth > 640) {
                             if(this.currentItems.length != 3) {
                                 let rlen = this.doctors.length;
@@ -641,14 +688,24 @@
                             }
                         }
                         this.setItemWidth();
+                    },
+                    fetchData() {
+                        axios.get(
+                            '{{route('home.doctors', ['locale' => app()->currentLocale()])}}',
+                            {
+                                params: {'locale': '{{app()->currentLocale()}}'}
+                            }
+                        ).then((r) => {
+                            this.doctors = r.data[0];
+                            this.setCurrentItems();
+                        }).catch((e) => {
+                            //console.log(e);
+                        });
                     }
                 }"
                 x-init="
                     dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
-                    $nextTick(() => {
-                        doctors = {{Js::from($data['doctors'])}};
-                        setCurrentItems();
-                    });
+                    fetchData();
                 "
                 @resize.window="setCurrentItems();"
                 class="w-full lg:w-2/3">
@@ -760,9 +817,9 @@
                             if(this.currentItems.length != 3) {
                                 let rlen = this.newsitems.length;
                                 this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
-                                console.log(`rlen: ${rlen}`);
-                                console.log(`CI: ${this.currentItems}`);
-                                console.log(this.newsitems);
+                                //console.log(`rlen: ${rlen}`);
+                                //console.log(`CI: ${this.currentItems}`);
+                                //console.log(this.newsitems);
                             }
                         } else {
                             if(this.currentItems.length != 1) {
@@ -775,15 +832,25 @@
                     setWrapperOffset() {
                         this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
                         this.wrapperOffset = this.dir == 'ltr' ? this.wrapperOffset : -(this.wrapperOffset);
+                    },
+                    fetchData() {
+                        axios.get(
+                            '{{route('home.news', ['locale' => app()->currentLocale()])}}',
+                            {
+                                params: {'locale': '{{app()->currentLocale()}}'}
+                            }
+                        ).then((r) => {
+                            this.newsitems = r.data[0];
+                            this.setCurrentItems();
+                            this.setWrapperOffset();
+                        }).catch((e) => {
+                            //console.log(e);
+                        });
                     }
                 }"
                 x-init="
                     dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
-                    $nextTick(() => {
-                        newsitems = {{Js::from($data['newsitems'])}};
-                        setCurrentItems();
-                        setWrapperOffset();
-                    });
+                    fetchData();
                 "
                 @resize.window="setCurrentItems();"
                 class="relative z-10 my-12 min-h-84 px-12">
@@ -890,14 +957,26 @@
                 },
                 setWrapperOffset() {
                     this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
+                },
+                fetchData() {
+                    axios.get(
+                        '{{route('home.articles', ['locale' => app()->currentLocale()])}}',
+                        {
+                            params: {'locale': '{{app()->currentLocale()}}'}
+                        }
+                    ).then((r) => {
+                        this.articles = r.data[0];
+                        //console.log('aaa...')
+                        //console.log(this.articles);
+                        this.setCurrentItems();
+                    }).catch((e) => {
+                        //console.log(e);
+                    });
                 }
             }"
             x-init="
                 dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
-                $nextTick(() => {
-                    articles = {{Js::from($data['articles'])}};
-                    setCurrentItems();
-                });
+                fetchData();
             "
             @resize.window="setCurrentItems();"
             class="relative z-10">
@@ -909,20 +988,21 @@
                         </button>
                     </div>
                     <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
-                    {{-- <template x-for="(a,i) in articles"> --}}
-                        @foreach ($data['articles'] as $a)
+                    <template x-for="(a,i) in articles">
+                        {{-- @foreach ($data['articles'] as $a) --}}
                         <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
                             <div class="w-full flex flex-row justify-center md:justify-between">
                                 <div class="mx-2 w-full py-2">
                                     <x-blogcard-component
-                                    title="{{$a->current_translation->data['title']}}"
+                                    {{-- title="{{$a->current_translation->data['title']}}"
                                     image_url="{{$a->current_translation->display_image}}"
-                                    slug="{{$a->current_translation->slug}}"/>
+                                    slug="{{$a->current_translation->slug}}" --}}
+                                    />
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                    {{-- </template> --}}
+                        {{-- @endforeach --}}
+                    </template>
                     </div>
                     <div :class="currentItems[currentItems.length - 1] != articles.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
                         <button type="button" @click.prevent.stop="slideForward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">

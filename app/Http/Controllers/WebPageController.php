@@ -177,9 +177,17 @@ class WebPageController extends SmartController
         ]);
     }
 
+    public function homeVideos($locale)
+    {
+        $data = $this->connectorService->getHomeVideos($locale);
+        return response()->json([
+            $data
+        ]);
+    }
+
     public function homeFeatures($locale)
     {
-        $data = $this->connectorService->getHomwFeatures($locale);
+        $data = $this->connectorService->getHomeFeatures($locale);
         return response()->json([
             $data
         ]);
