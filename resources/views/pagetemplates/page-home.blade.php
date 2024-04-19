@@ -993,11 +993,7 @@
                         <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
                             <div class="w-full flex flex-row justify-center md:justify-between">
                                 <div class="mx-2 w-full py-2">
-                                    <x-blogcard-component
-                                    {{-- title="{{$a->current_translation->data['title']}}"
-                                    image_url="{{$a->current_translation->display_image}}"
-                                    slug="{{$a->current_translation->slug}}" --}}
-                                    />
+                                    <x-blogcard-component-js />
                                 </div>
                             </div>
                         </div>
