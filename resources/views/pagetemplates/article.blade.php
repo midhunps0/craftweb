@@ -5,15 +5,15 @@
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
             <div class="flex flex-row">
                 {{-- main body --}}
-                <div class="md:w-3/4">
+                {{-- <div> --}}
                     <div>
                         @if (isset($instance->current_translation->data['body']))
                         <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
                         @endif
                     </div>
-                </div>
+                {{-- </div> --}}
                 {{-- Sidebar --}}
-                <div class="md:w-1/4">
+                {{-- <div class="md:w-1/4">
                     <div class="w-full max-h-full overflow-y-scroll">
                         <div class="py-2 mb-4">
                             <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking')}}', route: 'booking'})" />
@@ -32,7 +32,7 @@
                         </div>
                         @endif
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <x-footer/>

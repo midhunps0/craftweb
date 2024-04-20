@@ -6,11 +6,11 @@
             <div class="flex flex-row">
                 {{-- main body --}}
                 <div class="md:w-3/4">
-                    @if (isset($instance->current_translation->display_image))
+                    {{-- @if (isset($instance->current_translation->display_image))
                         <div>
                             <img src="{{$instance->current_translation->display_image}}" alt="">
                         </div>
-                    @endif
+                    @endif --}}
                     <div>
                         @if (isset($instance->current_translation->data['body']))
                         <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>

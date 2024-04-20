@@ -4,11 +4,11 @@
             <x-main-menu-component />
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
             <div class="md:w-3/4 m-auto">
-                @if (isset($instance->current_translation->display_image))
+                {{-- @if (isset($instance->current_translation->display_image))
                     <div>
                         <img src="{{$instance->current_translation->display_image}}" alt="">
                     </div>
-                @endif
+                @endif --}}
                 <div>
                     <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
                 </div>
