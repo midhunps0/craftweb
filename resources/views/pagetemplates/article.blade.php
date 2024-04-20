@@ -6,7 +6,7 @@
             <div class="flex flex-row">
                 {{-- main body --}}
                 {{-- <div> --}}
-                    <div>
+                    <div class="md:w-3/4 m-auto">
                         @if (isset($instance->current_translation->data['body']))
                         <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
                         @endif
