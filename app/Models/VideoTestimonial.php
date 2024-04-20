@@ -18,6 +18,7 @@ class VideoTestimonial extends Model
     protected $appends = [
         'translations_array',
         'current_translation',
+        'thumbnail_url'
     ];
 
     public function defaultName(): Attribute
@@ -35,6 +36,17 @@ class VideoTestimonial extends Model
             get: function() {
                 $story = ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['story'];
                 return ($story != null ? Str::substr($story, 0, 100) : '');
+            }
+        );
+    }
+
+    public function thumbnailUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function() {
+                $id = explode('embed/', $this->link)[1];
+                $id = explode('?si=', $id)[0];
+                return "https://img.youtube.com/vi/{$id}/0.jpg";
             }
         );
     }

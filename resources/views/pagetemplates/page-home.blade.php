@@ -416,12 +416,17 @@
                         <div :style="`width: ${wrapperWidth}px; transform: translate(${wrapperOffset}px);`" class="flex flex-row transition-all">
                             <template x-for="(v, i) in videos">
                                 <div :style="`width: ${itemWidth}px`">
-                                    <div class="relative z-10" style="position:relative;padding-bottom:56.25%">
+                                    <div x-data="{videoOn: false}" class="relative z-10" style="position:relative;padding-bottom:56.25%">
+                                        <template x-if="!videoOn">
+                                            <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="absolute top-0 left-0 h-full w-full">
+                                        </template>
+                                        <template x-if="videoOn">
                                         <iframe width="100%" height="100%"
                                             class="w-full absolute top-0 left-0" :src="v.link"
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                                             referrerpolicy="origin" allowfullscreen></iframe>
+                                        </template>
                                     </div>
                                 </div>
                             </template>
