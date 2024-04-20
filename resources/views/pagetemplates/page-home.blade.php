@@ -549,16 +549,19 @@
                             <div class="flex justify-center items-center min-h-96 transition-all duration-500"
                                 :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
                                 <div>
-                                    <div class="flex justify-center items-center w-3/4 m-auto px-[6%]">
-                                        <div class="text-pink p-2 border border-pink" x-html="currentIcon">
-                                            {{-- <x-easyadmin::display.icon icon="icons.sperm" height="h-16"
-                                                width="w-16" /> --}}
-                                        </div>
-                                        <div class="items-center mt-1 p-2">
-                                            <h3 class="font-bold text-2xl font-questrial"
-                                                x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">100% non-donor policy</h3>
+                                    <div class="w-3/4 m-auto px-[6%] ">
+                                        <div class="flex w-full justify-center items-center border-b border-gray pb-2 mb-2">
+                                            <div class="text-pink p-2 border border-gray bg-lightgray" x-html="currentIcon">
+                                                {{-- <x-easyadmin::display.icon icon="icons.sperm" height="h-16"
+                                                    width="w-16" /> --}}
+                                            </div>
+                                            <div class="items-center mt-1 p-2">
+                                                <h3 class="font-bold text-2xl font-questrial"
+                                                    x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.title : ''">100% non-donor policy</h3>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div
                                         class="flex justify-center z-40 text-sm lg:text-base font-normal font-questrial text-justify w-3/4 m-auto px-[6%]"
                                         x-text="features[currentKey] != undefined ? features[currentKey].current_translation.data.description : ''">
