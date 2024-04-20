@@ -18,14 +18,14 @@
                 src: '',
                 show: false,
                 setShow(e) {
-                    this.src = $event.detail.imgsrc;
+                    this.src = e.detail.imgsrc;
                     this.show = true;
                 }
-            }" x-show="show" @newsclick.window="setShow($event.detail);" class="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+            }" x-show="show" @newsclick.window="setShow($event);" class="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
             <div class="w-fit h-fit max-h-full max-w-full">
                 <img src="" alt="" class="" class="max-h-full max-w-full">
             </div>
-            <button @click.prevent.stop="show = false;" type="button" class="btn btn-sm btn-error text-white absolute top-4 right-4">
+            <button @click.prevent.stop="show = false;" type="button" class="btn btn-sm btn-error text-white absolute top-4 right-4" x-transition>
                 <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-4" width="w-4" />
             </button>
         </div>
