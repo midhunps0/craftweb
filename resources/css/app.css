@@ -22,7 +22,7 @@
 [x-cloak] { display: none !important; }
 
 body {
-    @apply ltr:text-left rtl:text-right leading-10 max-w-full overflow-hidden;
+    @apply ltr:text-left rtl:text-right leading-10 max-w-full overflow-x-hidden;
 }
 
 .dir-img {
