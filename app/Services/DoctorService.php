@@ -6,6 +6,7 @@ use App\Models\MetatagsList;
 use App\Models\Translation;
 use Exception;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -311,6 +312,17 @@ class DoctorService implements ModelViewConnector {
         //Do something with the updated $instance
     }
 
+    public function processAfterDelee($id)
+    {
+        $rids = Doctor::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+        foreach ($rids as $r) {
+            if ($id > $r) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+                break;
+            }
+        }
+    }
     public function buildCreateFormLayout(): array
     {
         return (new ColumnLayout())->getLayout();
@@ -355,7 +367,13 @@ class DoctorService implements ModelViewConnector {
             ]);
 
             DB::commit();
-            return $wp->refresh();
+            $wp->refresh();
+            $aids = Doctor::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+            if (in_array($wp->id, $aids)) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+            }
+            return $wp;
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());
@@ -401,7 +419,13 @@ class DoctorService implements ModelViewConnector {
                 );
             }
             DB::commit();
-            return $wp->refresh();
+            $wp->refresh();
+            $aids = Doctor::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+            if (in_array($wp->id, $aids)) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+            }
+            return $wp;
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

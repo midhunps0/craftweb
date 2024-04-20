@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\Translation;
 use App\Models\VideoTestimonial;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -280,6 +281,17 @@ class VideoTestimonialService implements ModelViewConnector {
         //Do something with the updated $instance
     }
 
+    public function processAfterDelee($id)
+    {
+        $rids = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+        foreach ($rids as $r) {
+            if ($id > $r) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+                break;
+            }
+        }
+    }
     public function buildCreateFormLayout(): array
     {
         return (new ColumnLayout())->getLayout();
@@ -316,7 +328,13 @@ class VideoTestimonialService implements ModelViewConnector {
             );
 
             DB::commit();
-            return $testimonial->refresh();
+            $testimonial->refresh();
+            $aids = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+            if (in_array($testimonial->id, $aids)) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+            }
+            return $testimonial;
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());
@@ -360,7 +378,13 @@ class VideoTestimonialService implements ModelViewConnector {
             }
 
             DB::commit();
-            return $testimonial->refresh();
+            $testimonial->refresh();
+            $aids = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+            if (in_array($testimonial->id, $aids)) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+            }
+            return $testimonial;
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

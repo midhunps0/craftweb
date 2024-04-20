@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\News;
 use App\Models\Translation;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -251,6 +252,17 @@ class NewsService implements ModelViewConnector {
     {
         //Do something with the updated $instance
     }
+    public function processAfterDelee($id)
+    {
+        $rids = News::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+        foreach ($rids as $r) {
+            if ($id > $r) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+                break;
+            }
+        }
+    }
 
     public function buildCreateFormLayout(): array
     {
@@ -285,7 +297,13 @@ class NewsService implements ModelViewConnector {
             );
 
             DB::commit();
-            return $n->refresh();
+            $n->refresh();
+            $aids = News::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+            if (in_array($n->id, $aids)) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+            }
+            return $n;
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());
@@ -329,7 +347,13 @@ class NewsService implements ModelViewConnector {
             }
 
             DB::commit();
-            return $n->refresh();
+            $n->refresh();
+            $aids = News::orderBy('id', 'desc')->limit(6)->get()->pluck('id')->toArray();
+            if (in_array($n->id, $aids)) {
+                Cache::forget('home_page');
+                Cache::forget('home_page_ar');
+            }
+            return $n;
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

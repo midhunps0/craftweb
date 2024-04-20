@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\HilightFeature;
 use App\Models\Translation;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -277,6 +278,11 @@ class HilightFeatureService implements ModelViewConnector {
     {
         //Do something with the updated $instance
     }
+    public function processAfterDelee($id)
+    {
+        Cache::forget('home_page');
+        Cache::forget('home_page_ar');
+    }
 
     public function buildCreateFormLayout(): array
     {
@@ -315,6 +321,8 @@ class HilightFeatureService implements ModelViewConnector {
             );
 
             DB::commit();
+            Cache::forget('home_page');
+            Cache::forget('home_page_ar');
             return $hfeature->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -361,6 +369,8 @@ class HilightFeatureService implements ModelViewConnector {
             }
 
             DB::commit();
+            Cache::forget('home_page');
+            Cache::forget('home_page_ar');
             return $hfeature->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
