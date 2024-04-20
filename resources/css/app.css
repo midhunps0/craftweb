@@ -61,7 +61,7 @@ ol.list li{
 }
 
 ul.list li{
-    @apply list-decimal list-outside px-0;
+    @apply list-disc list-outside px-0;
 }
 
 h2{
