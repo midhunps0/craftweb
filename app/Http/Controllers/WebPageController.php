@@ -8,9 +8,12 @@ use App\Services\WebPageService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
+
+use function PHPUnit\Framework\callback;
 
 class WebPageController extends SmartController
 {
@@ -34,13 +37,25 @@ class WebPageController extends SmartController
     public function home()
     {
         App::setlocale('en');
-        return $this->show('en','home');
+        $data = Cache::rememberForever(
+            key: 'home_page',
+            callback: function () {
+            return $this->show('en','home')->render();
+        });
+
+        return $data;
     }
 
     public function homeAr()
     {
         App::setlocale('ar');
-        return $this->show('en','home');
+        $data = Cache::rememberForever(
+            key: 'home_page_ar',
+            callback: function () {
+            return $this->show('ar','home');
+        });
+
+        return $data;
     }
 
     public function quickShow($slug)
@@ -50,7 +65,7 @@ class WebPageController extends SmartController
     }
 
     public function show($locale, $slug)
-    {
+    { info('fetching page..');
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
             $template = PageTemplate::find($showPageData->instance->template_id);
