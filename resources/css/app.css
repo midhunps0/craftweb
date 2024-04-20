@@ -91,6 +91,9 @@ h3{
 .card.big {
     @apply max-w-100;
 }
+.card.highlight > div {
+    @apply bg-lightgray min-h-64 justify-center items-center;
+}
 .rounded-images img {
     @apply rounded-full w-52 h-52 border border-gray p-2;
 }
