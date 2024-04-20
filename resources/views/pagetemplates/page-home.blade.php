@@ -865,8 +865,8 @@
                         <template x-for="(n,i) in newsitems">
                         <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
                             <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white">
-                                <div class="h-72 overflow-hidden">
-                                    <img :src="n.image_url" alt="" class="max-w-full">
+                                <div class="h-72 overflow-hidden bg-lightgray">
+                                    <img :src="n.image_url" alt="" class="max-h-full max-w-full m-auto">
                                 </div>
                                 <div class="text-center p-2 mt-4" x-text="n.current_translation.data.title"></div>
                             </div>
