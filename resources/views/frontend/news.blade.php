@@ -22,7 +22,7 @@
                     this.show = true;
                 }
             }" x-show="show" @newsclick.window="setShow($event);" class="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center bg-white bg-opacity-90">
-            <div class="w-fit h-fit max-h-4/5 max-w-4/5 p-3 border border-gray bg-white">
+            <div class="max-h-4/5 max-w-4/5 p-3 border border-gray bg-white">
                 <img :src="src" alt="" class="" class="max-h-full max-w-full">
             </div>
             <button @click.prevent.stop="show = false;" type="button" class="btn btn-sm btn-error text-white absolute top-4 right-4">
