@@ -17,7 +17,7 @@
                         <p class="text-darkgray leading-[3.25rem]">
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
-                        <div class="lg:flex lg:mt-12 lg:space-x-1">
+                        <div class="lg:flex lg:mt-12 lg:gap-x-2">
                             <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking')}}', route: 'booking'})" />
                             <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
                         </div>
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div class="lg:hidden mt-24 sm:mt-28 sm:pt-0 relative ">
-                    <div class="flex justify-center ltr:space-x-2 rtl:space-x-2 rtl:space-x-reverse md:mt-36">
+                    <div class="flex justify-center gap-x-2 md:mt-36">
                         <x-bluebutton-component />
                         <x-pinkbutton-component />
                     </div>
@@ -588,7 +588,7 @@
                 </div>
                 <div class="absolute h-full w-full z-10 top-0 left-0 flex justify-center items-center">
                     <div
-                        class="w-full lg:w-10/12 xl:4/5 flex ltr:flex-row rtl:flex-row-reverse justify-between items-center">
+                        class="w-full lg:w-10/12 xl:4/5 flex justify-between items-center">
                         <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8 transition-all duration-500">
                             <div class="flex flex-row">
                                 <div>
@@ -784,7 +784,7 @@
                 id="news-div" class="relative flex flex-col w-full px-12 max-w-[1500px] m-auto my-20 z-10 transition-all duration-1000"
                 :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
             <div class="ltr:pl-12 rtl:pr-12">
-                <div class="absolute top-0 left-0 z-0 bg-gray w-1/6 h-full"></div>
+                <div class="absolute top-0 ltr:left-0 rtl:right-0 z-0 bg-gray w-1/6 h-full"></div>
             </div>
             <div x-data="{
                     dir: 'ltr',
@@ -891,7 +891,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-6 max-w-[1500px] m-auto px-2 ">
+                <div class="relative flex flex-row w-full justify-end mt-6 max-w-[1500px] m-auto px-2 ">
                     <x-viewallbutton-component text="{{ __('button.more_news') }}" href="{{route('news.loc', ['locale' => app()->currentLocale()])}}"/>
                 </div>
             </div>
