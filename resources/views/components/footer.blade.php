@@ -1,6 +1,6 @@
 <footer class="bg-white">
-    <div class="mb-2 relative flex flex-row ltr:justify-start rtl:justify-end w-full max-w-[1500px] m-auto z-10">
-        <div class="flex ltr:flex-row rtl:flex-row-reverse justify-start mt-16 w-1/2">
+    <div class="mb-2 relative flex flex-row w-full max-w-[1500px] m-auto z-10">
+        <div class="flex flex-row justify-start mt-16 w-1/2">
             <div class="mr-4">
                 <img src="/images/icons/faq.png" class="h-24" alt="">
             </div>
