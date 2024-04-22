@@ -3,7 +3,7 @@
         <div>
             <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-12">
                 <x-main-menu-component />
-                <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row ltr:pr-12 rtl:pl-12">
+                <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
@@ -322,7 +322,7 @@
             id="videos-div"
             class="flex flex-col md:flex-row relative w-full px-12 max-w-[1500px] m-auto z-10 overflow-hidden">
             {{-- class="relative my-20 w-full z-10 px-12 md:px-0"> --}}
-            <div class="absolute w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 ltr:pl-12 rtl:pr-12">
+            <div class="absolute w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0">
                 <div class="h-full w-full bg-gray"></div>
             </div>
             <div x-data="{
