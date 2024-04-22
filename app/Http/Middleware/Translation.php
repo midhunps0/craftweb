@@ -17,6 +17,7 @@ class Translation
     public function handle(Request $request, Closure $next): Response
     {
         App::setlocale($request->route('locale'));
+        $request->session()->forget('translation_link');
         return $next($request);
     }
 }

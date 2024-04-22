@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // \Illuminate\Support\Facades\View::composer('*', function (View $view) {
+        //     $uri = $this->app->request->getRequestUri();
+        //     info('current uri: ' . $uri);
+        // });
     }
 }

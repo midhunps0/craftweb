@@ -40,7 +40,11 @@ class WebPageController extends SmartController
         $data = Cache::rememberForever(
             key: 'home_page',
             callback: function () {
-            return $this->show('en','home')->render();
+            return $this->show(
+                'en',
+                'home',
+                route('home.ar')
+            )->render();
         });
 
         return $data;
@@ -52,7 +56,11 @@ class WebPageController extends SmartController
         $data = Cache::rememberForever(
             key: 'home_page_ar',
             callback: function () {
-            return $this->show('ar','home')->render();
+            return $this->show(
+                'ar',
+                'home',
+                'home'
+                )->render();
         });
 
         return $data;
@@ -64,8 +72,15 @@ class WebPageController extends SmartController
         return $this->show('en', $slug);
     }
 
-    public function show($locale, $slug)
-    { info('fetching page..');
+    public function show($locale, $slug, $translationLink = null)
+    {
+        if ($translationLink == null) {
+            $tl = $locale == 'en' ? 'ar' : 'en';
+            session(['translation_link' => route('webpages.guest.show', ['locale' => $tl, 'slug' => $slug])]);
+        } else {
+            session(['translation_link' => $translationLink]);
+        }
+
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
             $template = PageTemplate::find($showPageData->instance->template_id);

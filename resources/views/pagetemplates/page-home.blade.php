@@ -551,10 +551,9 @@
                             alt="pregnant_lady_image">
                     </div>
                     <div class="relative z-40">
-                            <div class="flex justify-center items-center min-h-96 transition-all duration-500"
-                                :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-50': !xdone}">
+                            <div class="flex w-full justify-center items-center min-h-96 transition-all duration-500">
                                 <div>
-                                    <div class="w-3/4 m-auto px-[6%] ">
+                                    <div class="w-3/4 m-auto px-[6%]">
                                         <div class="flex w-full justify-center items-center border-b border-gray pb-2 mb-2">
                                             <div class="text-pink p-2 border border-gray bg-lightgray" x-html="currentIcon">
                                                 {{-- <x-easyadmin::display.icon icon="icons.sperm" height="h-16"
@@ -590,8 +589,7 @@
                 <div class="absolute h-full w-full z-10 top-0 left-0 flex justify-center items-center">
                     <div
                         class="w-full lg:w-10/12 xl:4/5 flex ltr:flex-row rtl:flex-row-reverse justify-between items-center">
-                        <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8 transition-all duration-500"
-                                :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
+                        <div class="flex flex-col ltr:justify-end rtl:justify-start space-y-8 transition-all duration-500">
                             <div class="flex flex-row">
                                 <div>
                                     <x-cycle-component icon="icons.non-donor" ref_key="L00"/>
@@ -611,8 +609,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex-col ltr:justify-start rtl:justify-end space-y-8 transition-all duration-500"
-                                :class="xdone? 'bg-opacity-100 scale-100' : 'bg-opacity-0 scale-50'">
+                        <div class="flex-col ltr:justify-start rtl:justify-end space-y-8 transition-all duration-500">
                                 <div class="flex flex-row">
                                     <div>
                                         <x-cycle-component icon="icons.blessed-hand" ref_key="R00"/>

@@ -12,8 +12,7 @@
     <div class="flex ltr:justify-end rtl:justify-end relative">
         <div class="  flex flex-col  top-0  ">
             <div class="z-10 lg:w-full hidden lg:flex ltr:justify-end rtl:justify-end relative">
-                <div
-                    class="flex ltr:flex-row ltr:justify-end rtl:flex-row-reverse items-center space-x-3 lg:py-3  rtl:justify-start text-[0.4rem]">
+                <div class="flex justify-end items-center gap-x-3 lg:py-3 text-[0.4rem]">
                     <div class="flex flex-row  items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/Phone.png" class="h-3 rtl:-rotate-90  "alt="">
                         <p class= "lg:text-sm 2xl:text-base font-light font-questrial">+91 8590462565</p>
@@ -22,6 +21,9 @@
                         <img src="/images/icons/medicine logo.png" class="h-3 2xl:h-5"alt="">
                         <p class="lg:text-sm 2xl:text-base font-light font-questrial">{{ __('main_menu.international') }}
                         </p>
+                    </div>
+                    <div class="flex flex-row items-center text-sm">
+                        <x-translation-button />
                     </div>
                 </div>
 
@@ -36,7 +38,6 @@
                                 <div><span class="font-questrial">{{ __('main_menu.about_us') }}</span></div>
                                 <x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-3" width="w-3" />
                             </div>
-
                         </button>
                         <div x-show="open" x-cloak class="absolute  bg-white bg-opacity-90 shadow-xl ">
                             <ul class="flex flex-col p-0">
@@ -152,6 +153,7 @@
                             fill="#404853" />
                     </svg>
                 </button>
+                <div class="text-sm"><x-translation-button /></div>
                 <div x-show="open" x-cloak class=" fixed  bg-white bg-opacity-90 w-full   h-scren overflow-y-scroll inset-0 z-30  ">
                     <div class=" flex justify-end p-3 sm:p-10 absolute top-5 right-5">
                         <svg xmlns="http://www.w3.org/2000/svg" x-show="open"
