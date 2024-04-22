@@ -3,13 +3,13 @@
         <div>
             <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-12">
                 <x-main-menu-component />
-                <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
+                <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row ltr:pr-12 rtl:pl-12">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
                     </div>
                     <div class="h-full w-32 lg:w-36 bg-gray"></div>
-                    <div class="absolute z-10 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div>
+                    {{-- <div class="absolute z-10 ltr:left-full rtl:right-full h-full w-1/6 bg-gray"></div> --}}
                 </div>
 
                 <div class="md:flex w-full px-2 lg:max-w-[1500px] m-auto z-10">
@@ -46,7 +46,7 @@
                             {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
                                 <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
                             {{-- </div> --}}
-                            <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                            <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0"
                                 x-transition:enter="transition ease-in-out duration-1000"
                                 x-transition:enter-start="cube-enter-start"
                                 x-transition:enter-end="cube-enter-end"
@@ -54,7 +54,7 @@
                                 x-transition:leave-start="cube-leave-start"
                                 x-transition:leave-end="cube-leave-end"
                                 >
-                                <img src="/images/home/baby.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                                <img src="/images/home/the_week.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image" alt="santhwanam package">
                             </div>
                             <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
@@ -64,7 +64,7 @@
                                 x-transition:leave-start="cube-leave-start"
                                 x-transition:leave-end="cube-leave-end"
                                 >
-                                <img src="/images/home/a1.jpg" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                                <img src="/images/home/santhwanam.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="now in cochin">
                             </div>
                             <div x-show="currentIndex == 2" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
@@ -74,7 +74,7 @@
                                 x-transition:leave-start="cube-leave-start"
                                 x-transition:leave-end="cube-leave-end"
                                 >
-                                <img src="/images/home/baby.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                                <img src="/images/home/emi_offers.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="ranked among tp 10">
                             </div>
                             <div x-show="currentIndex == 3" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
@@ -84,7 +84,7 @@
                                 x-transition:leave-start="cube-enter-end"
                                 x-transition:leave-end="cube-leave-end"
                                 >
-                                <img src="/images/home/a5.jpg" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                                <img src="/images/home/at_kochi.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="0% emi offer">
                             </div>
                         </div>
                         <div class="flex justify-center">
@@ -319,8 +319,12 @@
                 let el = document.querySelector('#videos-div');
                 observer.observe(el);
             "
-            id="videos-div" class="relative my-20 w-full z-10 px-12 md:px-0">
-            <div class="absolute bg-gray w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 "></div>
+            id="videos-div"
+            class="flex flex-col md:flex-row relative w-full px-12 max-w-[1500px] m-auto z-10 overflow-hidden">
+            {{-- class="relative my-20 w-full z-10 px-12 md:px-0"> --}}
+            <div class="absolute w-full md:w-1/2 h-full top-0 ltr:left-0 rtl:right-0 z-0 ltr:pl-12 rtl:pr-12">
+                <div class="h-full w-full bg-gray"></div>
+            </div>
             <div x-data="{
                     done: false,
                     showanimation: false,
@@ -333,7 +337,8 @@
                             this.done = true;
                         }
                     },
-                }" class="flex flex-col md:flex-row relative w-full px-12 max-w-[1500px] m-auto z-10 overflow-hidden">
+                }"
+                class="flex flex-col md:flex-row relative w-full px-12 max-w-[1500px] m-auto z-10 overflow-hidden">
                 <div class="w-full md:w-1/2 py-4 md:py-16 relative transition-transform duration-1000 ease-in-out" :class="{'scale-100 bg-opacity-100 opacity-100' : done, 'scale-50 bg-opacity-0 opacity-0' : !done}">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
@@ -720,7 +725,7 @@
                 <div id="items-container" class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden">
                     <template x-for="(d,i) in doctors">
                         <div :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'"
-                            class="flex flex-row justify-center md:justify-between transition-all overflow-x-hidden">
+                            class="flex flex-row justify-end transition-all overflow-x-hidden">
                             <div class="mx-3">
                                 <div class="w-64 max-w-full relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
                                    <div class="px-4">
@@ -779,9 +784,11 @@
                     let el = document.querySelector('#news-div');
                     observer.observe(el);
                 "
-                id="news-div" class="relative my-20 flex flex-col w-fullz-10 transition-all duration-1000"
+                id="news-div" class="relative flex flex-col w-full px-12 max-w-[1500px] m-auto my-20 z-10 transition-all duration-1000"
                 :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
-            <div class="absolute top-0 left-0 z-0 bg-gray w-1/6 h-full"></div>
+            <div class="ltr:pl-12 rtl:pr-12">
+                <div class="absolute top-0 left-0 z-0 bg-gray w-1/6 h-full"></div>
+            </div>
             <div x-data="{
                     dir: 'ltr',
                     itemWidth: 0,
@@ -861,7 +868,7 @@
                     fetchData();
                 "
                 @resize.window="setCurrentItems();"
-                class="relative z-10 my-12 min-h-84 px-12">
+                class="relative z-10 my-12 min-h-84">
                 <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 max-w-[1500px] m-auto">News And Announcements</h2>
                 <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-[1500px] m-auto">
                     <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">

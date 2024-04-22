@@ -52,7 +52,7 @@ class WebPageController extends SmartController
         $data = Cache::rememberForever(
             key: 'home_page_ar',
             callback: function () {
-            return $this->show('ar','home');
+            return $this->show('ar','home')->render();
         });
 
         return $data;
