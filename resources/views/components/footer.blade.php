@@ -5,8 +5,8 @@
                 <img src="/images/icons/faq.png" class="h-24" alt="">
             </div>
             <div>
-                <h2 class="text-3xl">Frequently Asked Questions</h2>
-                <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
+                <h2 class="text-3xl">{{__('homecontent.frequently_asked_questions')}}</h2>
+                <h4 class="text-sm mt-4">{{__('homecontent.the_answer_to your_question _can_be_found')}}</h4>
             </div>
         </div>
     </div>

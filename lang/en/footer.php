@@ -14,7 +14,7 @@ return [
                                 Chalikkavattam, NH66 Bypass<br>
                                 Kochi 682032, Kerala<br>
                                 ph: +91 9526986000<br>',
-    'our_location' => 'Our location',
+    'our_location' => 'Our Location',
     'general_info' => 'General Info',
     'opening_hours' => 'Opening Hours',
     'opening_hours_kochi' => ' Mon-Sat<br>

@@ -1,5 +1,5 @@
 <div class="flex flex-col  border border-gray/25 bg-white shadow-xl p-10">
-    <p class="text-xl font-franklin font-bold">Please submit the form to send us your message.</p>
+    <p class="text-xl font-franklin font-bold">{{__('contact.please_submit_form')}}</p>
     <form  method="POST" action="">
     @csrf
         <div class="flex flex-col gap-8 mt-6 ">
@@ -10,7 +10,7 @@
                     placeholder="Name" required/>
                 <label for="name"
                     class="absolute ltr:left-0 rtl:right-0 -top-3.5 text-sm   transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-base
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">Name
+                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">{{__('contact.name')}}
                 </label>
             </div>
             <div class="relative  ">
@@ -20,7 +20,7 @@
                     placeholder="Email" required />
                 <label for="email"
                     class="absolute ltr:left-0 rtl:right-0 -top-3.5 text-sm transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-base
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">Email
+                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">{{__('contact.email_contact')}}
                 </label>
             </div>
             <div class="relative   ">
@@ -30,11 +30,11 @@
                     placeholder="Mesage" required/>
                 <label for="message"
                     class="absolute ltr:left-0 rtl:right-0 -top-3.5text-sm transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-base
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">Message
+                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">{{__('contact.message')}}
                 </label>
             </div>
             <div>
-                <button type="submit" class="cursor-pointer text-sm  font-semibold  bg-gray font-franklin tracking-widest w-full p-2">SEND</button>
+                <button type="submit" class="cursor-pointer text-sm  font-semibold  bg-gray font-franklin tracking-widest w-full p-2">{{__('contact.send')}}</button>
             </div>
         </div>
 

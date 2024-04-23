@@ -4,7 +4,7 @@
             class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
             <x-page-title title="Book An Appointment" />
-            {{-- <p class="text-xs lg:text-base mb-8 text-center">Feel free to contact us any time. We will get back to you as soon as we can!</p> --}}
+            {{-- <p class="text-xs lg:text-base mb-8 text-center">{{__('contact.feel_free_to_contact')}}</p> --}}
             <div x-data="{
                 tab : 0,
                 specialties: [],
@@ -207,48 +207,48 @@
                     <x-bookingstage3 /> --}}
                     <div class="flex flex-col gap-y-3 w-1/2 p-3 border border-lightgray bg-lightgray">
                         <div class="relative flex-grow">
-                            <label class="font-bold label" for="title1">Department</label>
+                            <label class="font-bold label" for="title1">{{__('doctors.department')}}</label>
                             <select x-model="specialtyCode" id="title1" name="title1" type="text" autocomplete="title1"
                                 class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
                                     border-gray"
                                 required>
-                                <option value="">--Select--</option>
+                                <option value="">--{{__('contact.select')}}--</option>
                                 <template x-for="(s, i) in specialties">
                                     <option :value="s.Sp_Cd" x-text="s.SpecialtyName"></option>
                                 </template>
                             </select>
                         </div>
                         <div class="relative flex-grow">
-                                <label class="font-bold label" for="title2">Doctor</label>
+                                <label class="font-bold label" for="title2">{{__('contact.doctor')}}</label>
                                 <select x-model="doctorId" id="title2" name="title2" type="text" autocomplete="title2"
                                     class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
                                         border-gray"
                                     required>
-                                    <option value="">--Select--</option>
+                                    <option value="">--{{__('contact.select')}}--</option>
                                     <template x-for="(d, i) in specialtyDoctors">
                                         <option :value="d.DoctorId" x-text="d.DoctorName"></option>
                                     </template>
                                 </select>
                         </div>
                         <div class="relative flex-grow">
-                                <label class="font-bold label" for="title2">Consultation Date</label>
+                                <label class="font-bold label" for="title2">{{__('contact.consultation_date')}}</label>
                                 <select x-model="theDate" id="title2" name="title2" type="text" autocomplete="title2"
                                     class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
                                         border-gray"
                                     required>
-                                    <option value="">--Select--</option>
+                                    <option value="">--{{__('contact.select')}}--</option>
                                     <template x-for="(d, i) in dates">
                                         <option :value="d.return_date" x-text="d.display_date"></option>
                                     </template>
                                 </select>
                         </div>
                         <div class="relative flex-grow">
-                            <label class="font-bold label" for="title2">Consultation Time</label>
+                            <label class="font-bold label" for="title2">{{__('contact.consultation_time')}}</label>
                             <select x-model="theSlot" id="title2" name="title2" type="text" autocomplete="title2"
                                 class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
                                     border-gray"
                                 required>
-                                <option value="">--Select--</option>
+                                <option value="">--{{__('contact.select')}}--</option>
                                 <template x-for="(t, i) in timeslots">
                                     <option :value="t.return_time" x-text="t.display_time"></option>
                                 </template>
@@ -257,12 +257,12 @@
                     </div>
                     <div id="personal-div" :style="`width: ${divWidth}px;`" class="flex flex-col gap-y-3 transition-all overflow-hidden bg-lightgray"
                         :class="divWidth == 0 || 'p-3 border border-lightgray border-l-transparent'">
-                        <h3 class="font-bold mt-2 text-center overflow-hidden" :class="divWidth != 0 || 'text-nowrap'">Please enter your contact details</h3>
+                        <h3 class="font-bold mt-2 text-center overflow-hidden" :class="divWidth != 0 || 'text-nowrap'">{{__('contact.please_enter_your_contact_details')}}</h3>
                         <div class="relative text-sm text-error overflow-hidden" :class="divWidth != 0 || 'text-nowrap'">
-                            Make sure that you enter the correct details. Booking confirmation will be sent to the email address provided.
+                        {{__('contact.make_sure_correct_details_entered')}}
                         </div>
                         <div class="relative">
-                            <label class="label font-bold" for="name">Name</label>
+                            <label class="label font-bold" for="name">{{__('contact.name')}}</label>
                             <input x-model="name" name="name" type="text" autocomplete="name"
                                 class="input bg-white w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
                                     border-gray"
@@ -270,14 +270,14 @@
                             </input>
                         </div>
                         <div class="relative">
-                            <label class="label font-bold" for="phone no.">Phone No.</label>
+                            <label class="label font-bold" for="phone no.">{{__('contact.phone_no')}}</label>
                             <input x-model="phone" name="phone no." type="text" autocomplete="phone no."
                                 class="input bg-white w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0 border-gray"
                                 required>
                             </input>
                         </div>
                         <div class="relative">
-                            <label class="label font-bold" for="phone no.">Email</label>
+                            <label class="label font-bold" for="phone no.">{{__('contact.email_contact')}}</label>
                             <input x-model="email" name="email" type="text" autocomplete="email"
                                 class="input bg-white w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0 border-gray"
                                 required>
@@ -289,7 +289,7 @@
                     <form id="airpay-form"  action="https://payments.airpay.co.in/pay/index.php" method="post">
                         <div x-html="airpayFields"></div>
                     </form>
-                    <button type="button" @click="getPaymentForm();" class="text-white bg-blue text-xs lg:text-sm py-2 px-4 lg:py-2 lg:px-6 tracking-widest cursor-pointer disabled:bg-opacity-70 disabled:cursor-crosshair" :disabled="!inputsReady()">Confirm</button>
+                    <button type="button" @click="getPaymentForm();" class="text-white bg-blue text-xs lg:text-sm py-2 px-4 lg:py-2 lg:px-6 tracking-widest cursor-pointer disabled:bg-opacity-70 disabled:cursor-crosshair" :disabled="!inputsReady()">{{__('contact.confirm')}}</button>
                 </div>
             </div>
         </div>

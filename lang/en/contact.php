@@ -1,0 +1,33 @@
+<?php 
+return[
+    'craft_address_kodungallur' => 'CRAFT HOSPITAL AND RESEARCH CENTRE, VIII/77/ 2,3,4,Kodungallur P.O, Chanthappura,Kodungallur, Thrissur, Kerala',
+    'craft_address_kochi' => 'CRAFT Multispecialty Centre 5th & 6th Floor, Imperial Amity, Chalikkavattam, NH66 Bypass Kochi 682032, Kerala Ph: +91 956986000 ',
+    'email_address' => 'Email Address',
+    'email' => 'info@craftivf.comadmin@craftivf.com<br>
+            info@craftivfkochi.com<br>',
+    'phone_no' => 'Phone Number',
+    'tel' => 'Tel',
+    'mob' => 'Mob',
+    'whatsapp' => 'WhatsApp',
+    'kochi' => 'Kochi',
+    'read' => 'Read',
+    'please_submit_form' => 'Please submit the form to send us your message.',
+    'name' => 'Name',
+    'email_contact' => 'Email',
+    'message' => 'Message',
+    'send' => 'SEND',
+    'doctor' => 'Doctor',
+    'consultation_date' => 'Consultation Date',
+    'consultation_time' => 'Consultation Time',
+    'please_enter_your_contact_details' => 'Please enter your contact details',
+    'make_sure_correct_details_entered' => 'Make sure that you enter the correct details. Booking confirmation will be sent to the email address provided.',
+    'confirm' => 'Confirm',
+    'feel_free_to_contact' => 'Feel free to contact us any time. We will get back to you as soon as we can!',
+    'select' => 'Select',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+];
+?>

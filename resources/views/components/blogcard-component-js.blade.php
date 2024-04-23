@@ -14,7 +14,7 @@
             <a class="flex flex-row text-pink justify-center items-center p-1 gap-1 px-2" :href="'{{$link}}'.replace('_X_', a.current_translation.slug)" @click.prevent.stop="$dispatch('linkaction', {
                 link: '{{$link}}'.replace('_X_', a.current_translation.slug), route: 'articles.guest.show'
             })">
-                <span>Read</span>
+                <span>{{__('contact.read')}}</span>
                 <x-easyadmin::display.icon icon="easyadmin::icons.arrow-right"
                     height="h-3" width="w-3" class="ltr:rotate-0 rtl:rotate-180" />
             </a>
