@@ -214,6 +214,7 @@ h3{
 .center-align {
     @apply text-center  ;
 }
+/*  */
 
 .cube-enter-start {
     transform: translateX(50%) rotateY(90deg);
