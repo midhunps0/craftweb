@@ -6,7 +6,7 @@ return[
     'for_infertility_treatment'=>'For <span class="text-blue">Infertility Treatment</span>',
     'what_our_patients_saying'=>'What our Patients Are Saying',
     'reviews'=>'Reviews',
-    'little_angel'=>'<span class="font-bold">55,000 </span> little angels & counting...',
+    'little_angel'=>'<span class="font-bold">75,000 </span> little angels & counting...',
     'video_testimonials'=>'Video Testimonials',
     'our_patients_are_our_best'=>'Our patients are our best advocates, hear the inspiring stories of their treatment journey',
     'why_is_your_ivf_cycle_in_craft_succesful'=>'Why Is Your IVF Cycle In Craft Most Likely To Be Successful',

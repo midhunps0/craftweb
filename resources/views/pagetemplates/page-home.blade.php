@@ -145,6 +145,7 @@
                         <x-babynew-component :count="'14000'" text="{{__('homecontent.ivf_icfsi')}}" />
                         <x-babynew-component :count="'3800'" text="{{__('homecontent.mtese')}}" />
                         <x-babynew-component :count="'500'" text="{{__('homecontent.pgs')}}" />
+                        
                     </div>
                 </div>
 
