@@ -119,7 +119,7 @@
                 <div class="mt-10 z-10">
                     <p
                         class="  lg:block text-sm italic text-pink  md:text-base xl:text-lg 2xl:text-xl font-normal text-center ">
-                        {!!__('homecontent.little_angel')!!}
+                        {!!__('homecontent.little_angels')!!}
                     </p>
                     <div x-data="{
                         options: [],
