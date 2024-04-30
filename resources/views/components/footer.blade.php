@@ -74,8 +74,7 @@
                             <li class="list-disc"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'refund-policy'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'refund-policy'])}}'})" 
                                     class="block w-full px-4 py-2 underline">{{ __('footer.refund_policy') }}</a></li>
-                            <li class="list-disc"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'terms-and-conditions'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'terms-and-conditions'])}}'})" 
+                            <li class="list-disc"><a href="{{route('contact')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('contact')}}', route: 'contact'})" 
                                     class="block w-full px-4 py-2 underline">{{ __('footer.contact_us') }}</a></li>
                         </ul>
                     </p>
