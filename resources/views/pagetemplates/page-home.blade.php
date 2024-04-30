@@ -119,7 +119,7 @@
                 <div class="mt-10 z-10">
                     <p
                         class="  lg:block text-sm italic text-pink  md:text-base xl:text-lg 2xl:text-xl font-normal text-center ">
-                        {!!__('homecontent.little_angels')!!}
+                        {!!__('homecontent.little_angel')!!}
                     </p>
                     <div x-data="{
                         options: [],
@@ -141,10 +141,11 @@
                           observer.observe(el);
                         "
                         id="counts-div"
-                        class="flex justify-center space-x-4  sm:space-x-6    md:space-x-8  lg:space-x-32  rtl:space-x-reverse z-20 relative mt-6 pb-12">
+                        class="flex justify-center space-x-2  sm:space-x-4    md:space-x-6  lg:space-x-12  rtl:space-x-reverse z-20 relative mt-6 pb-12">
                         <x-babynew-component :count="'14000'" text="{{__('homecontent.ivf_icfsi')}}" />
                         <x-babynew-component :count="'3800'" text="{{__('homecontent.mtese')}}" />
                         <x-babynew-component :count="'500'" text="{{__('homecontent.pgs')}}" />
+                        <x-babynew-component :count="'56700'" text="{{__('homecontent.others')}}" />
                         
                     </div>
                 </div>
@@ -1039,6 +1040,7 @@
                 <x-bookappointment-component/>
             </div>
         </div> --}}
+        
         <div class="relative w-full z-0 h-0 overflow-visible">
             <x-footer />
         </div>
