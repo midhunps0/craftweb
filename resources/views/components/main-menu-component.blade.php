@@ -19,7 +19,11 @@
                     </div>
                     <div class="flex flex-row items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/medicine logo.png" class="h-3 2xl:h-5"alt="">
-                        <p class="lg:text-sm 2xl:text-base font-light font-questrial">{{ __('main_menu.international') }}
+                        <p class="lg:text-sm 2xl:text-base font-light font-questrial">
+                            <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}"
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}'})"
+                                        class="font-questrial">{{ __('main_menu.international') }}
+                            </a>
                         </p>
                     </div>
                     <div class="flex flex-row items-center text-sm">
@@ -47,9 +51,9 @@
                                 <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'message-from-chairman'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'message-from-chairman'])}}'})"
                                         class="font-questrial">{{ __('main_menu.message') }}</a></li>
-                                <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}"
+                                <!-- <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients-2'])}}'})"
-                                        class="font-questrial">{{ __('main_menu.international') }}</a></li>
+                                        class="font-questrial">{{ __('main_menu.international') }}</a></li> -->
                                 <li class="px-4 py-2 mb-1 hover:font-bold hover:text-pink cursor-pointer text-left"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-achievements'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-achievements'])}}'})"
                                         class="font-questrial">{{ __('main_menu.achievements') }}</a></li>
