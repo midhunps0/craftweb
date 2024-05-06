@@ -730,8 +730,8 @@
                                    </div>
 
                                    <div class="relative flex flex-row justify-end">
-                                      <!-- <img :src="d.photo_url" class="h-52 dir-img" alt="doctor_image"> -->
-                                      <img src="/images/home/demo-img1.webp" class="h-52 dir-img " alt="doctor_image">
+                                      <img :src="d.photo_url" class="h-52 dir-img" alt="doctor_image">
+                                      <!-- <img src="/images/home/demo-img1.webp" class="h-52 dir-img " alt="doctor_image"> -->
                                    </div>
 
                                    <div class="absolute flex ltr:flex-row rtl:flex-row-reverse items-center space-x-2 -rotate-90 origin-top-left bottom-10 ltr:left-2 rtl:-right-24">
