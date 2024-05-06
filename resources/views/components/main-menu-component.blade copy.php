@@ -14,7 +14,7 @@
                     </div>
                     <div class="flex flex-row items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/medicine logo.png" class="h-3 2xl:h-5"alt="">
-                        <p class="lg:text-sm 2xl:text-base font-light font-questrial">International Patients
+                        <p class="lg:text-sm 2xl:text-base font-light font-questrial">{{__('main_menu.International')}}
                         </p>
                     </div>
                 </div>

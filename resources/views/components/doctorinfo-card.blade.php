@@ -30,26 +30,26 @@
     <div class="mt-6 md:w-2/3 flex flex-col justify-end items-center lg:items-start gap-y-3 font-franklin text-sm lg:text-base my-auto mx-auto">
 
         <div class="flex flex-col md:justify-end lg:justify-start gap-y-1 w-5/6">
-        <p class="font-semibold">Designation:</p>
+        <p class="font-semibold">{{__('doctors.designation')}}:</p>
         <p class="">{{$designation}}</p>
         </div>
         <div class="flex flex-col  md:justify-end lg:justify-start gap-y-1  w-5/6">
-        <p class=" font-semibold">Department:</p>
+        <p class=" font-semibold">{{__('doctors.department')}}:</p>
         <p class="">{{$department}}</p>
         </div>
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
-        <p class=" font-semibold">Qualification:</p>
+        <p class=" font-semibold">{{__('doctors.qualification')}}:</p>
         <p class="">{{$qualification}}</p>
         </div>
         @if (trim($specialisations) != '')
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
-        <p class=" font-semibold">Specialization:</p>
+        <p class=" font-semibold">{{__('doctors.specialisation')}}:</p>
         <p class="">{{$specialisations}}</p>
         </div>
         @endif
         @if (trim($exp_summary) != '')
         <div class="flex flex-col  md:justify-end lg:justify-start  gap-y-1  w-5/6">
-        <p class=" font-semibold">Experience & Expertise:</p>
+        <p class=" font-semibold">{{__('doctors.experience_&_expertise')}}:</p>
         <p class=" min-h-32 text-justify overflow-y-scroll">{{$exp_summary}}</p>
         </div>
         @endif

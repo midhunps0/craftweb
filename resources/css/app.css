@@ -193,7 +193,7 @@ h3{
 .page-content h3{
  @apply text-3xl;
 
-    @apply text-3xl;
+   
 }
 .content-justify {
     @apply text-justify;
@@ -213,6 +213,12 @@ h3{
 }
 .center-align {
     @apply text-center  ;
+}
+.content-margin{
+    @apply my-12;
+}
+.margin-top{
+    @apply mt-16;
 }
 /*  */
 

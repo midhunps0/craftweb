@@ -4,9 +4,9 @@
             <x-easyadmin::display.icon icon="icons.map-pin" height="h-8" width="w-8"/>
         </div>
         <div class="flex-grow">
-           <p class="font-bold mb-4">Our Location</p>
-           <p>CRAFT HOSPITAL AND RESEARCH CENTRE, VIII/77/ 2,3,4,Kodungallur P.O, Chanthappura,Kodungallur, Thrissur, Kerala</p>
-           <p>CRAFT Multispecialty Centre 5th & 6th Floor, Imperial Amity, Chalikkavattam, NH66 Bypass Kochi 682032, Kerala Ph: +91 956986000 </p>
+           <p class="font-bold mb-4">{{__('footer.our_location')}}</p>
+           <p>{{__('contact.craft_address_kodungallur')}}</p>
+           <p>{{__('contact.craft_address_kochi')}}</p>
         </div>
     </div>
     <div  class="flex flex-row items-center gap-6">
@@ -15,13 +15,13 @@
         </div>
         <div class="flex-grow">
            <p class="font-bold mb-4">
-                Phone Number
+                {{__('contact.phone_no')}}
             </p>
             <p>
-            Tel: 0480 2800200<br>
-            Mob: +919544180011<br>
-            WhatsApp: +918590904036<br>
-            Kochi : +91 9526196000<br>
+            {{__('contact.tel')}}: 0480 2800200<br>
+            {{__('contact.mob')}}: +919544180011<br>
+            {{__('contact.whatsapp')}}: +918590904036<br>
+            {{__('contact.kochi')}} : +91 9526196000<br>
             </p>
 
         </div>
@@ -32,11 +32,10 @@
         </div>
         <div class="flex-grow">
            <p class="font-bold mb-4">
-            Email Address
+           {{__('contact.email_address')}}
            </p>
            <p>
-            info@craftivf.comadmin@craftivf.com<br>
-            info@craftivfkochi.com<br>
+            {!!__('contact.email')!!}
             </p>
 
         </div>

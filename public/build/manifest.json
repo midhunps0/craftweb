@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DMoU5ncH.css",
+    "file": "assets/app-CIsJwQtS.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -21,7 +21,8 @@
     "src": "resources/css/fonts/franklin-gothic-book.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DLGe0a7j.js",
+    "file": "assets/app-Chx3wF2t.js",
+    "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   }

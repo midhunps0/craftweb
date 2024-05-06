@@ -10,11 +10,11 @@ return [
                                     Chanthappura, Kodungallur, Thrissur, Keral<br>
                                     Ph: +91 6282396564',
     'craft_address_kochi' => 'CRAFT Multispeciality Centre<br>
-                                5th & 6th Fllor, Imperial Amity,<br>
+                                5th & 6th Floor, Imperial Amity,<br>
                                 Chalikkavattam, NH66 Bypass<br>
                                 Kochi 682032, Kerala<br>
                                 ph: +91 9526986000<br>',
-    'our_location' => 'Our location',
+    'our_location' => 'Our Location',
     'general_info' => 'General Info',
     'opening_hours' => 'Opening Hours',
     'opening_hours_kochi' => ' Mon-Sat<br>
@@ -25,6 +25,7 @@ return [
     'book_appointment_content' => 'Check Doctor Availability & Book Appointment Online',
     'send_us_message' => 'Send Us A Message',
     'emails_craft' => 'info@craftivf.com, info@craftivfkochi.com',
-    '' => '',
+    'craft_address_perinthalmanna' => 'CRAFT Multispeciality Centre<br>
+                                        X66H+3JH, Cholomkunnu, Pattambi Rd,<br> Perinthalmanna, Kerala 679322',
 ];
 ?>

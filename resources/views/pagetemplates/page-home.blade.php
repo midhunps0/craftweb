@@ -22,7 +22,7 @@
                             <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
                         </div>
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
-                            Feel Free To Call Us Any Time
+                           {{__('homecontent.feel_free_to_call')}}
                         </p>
                         <div class="flex  mt-2 flex-row items-center space-x-1">
                             <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="">
@@ -30,7 +30,7 @@
                             </p>
                         </div>
                         <p class="text-sm text-darkpink  md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
-                            Kochi | Kodungallur
+                        {{__('homecontent.kochi_kodungallur')}}
                         </p>
                     </div>
                     <div class="w-full m-auto lg:w-1/2 ltr:lg:justify-start rtl:lg:justify-end">
@@ -90,8 +90,8 @@
                         <div class="flex justify-center">
                             <div
                                 class="flex flex-col justify-center lg:hidden absolute  bg-lightgray/80 z-20  text-center font-franklin w-4/5 sm:w-11/12 md:w-11/12  text-2xl md:text-3xl py-6 md:py-12 md:-mt-16  -mt-12 shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)]">
-                                <p class="text-darkgray">The <span class="text-pink">Most Trusted</span> Hospital</p>
-                                <p class="text-darkgray">For <span class="text-blue">Infertility Treatment</span></p>
+                                <p class="text-darkgray">{!!__('homecontent.most_trusted_hospital')!!}</p>
+                                <p class="text-darkgray">{!!__('homecontent.for_infertility_treatment')!!}</p>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                         <x-pinkbutton-component />
                     </div>
                     <div class="">
-                        <p class="mt-8 font-bold md:text-base text-center  font-gothic">Feel Free To Call Us Any Time
+                        <p class="mt-8 font-bold md:text-base text-center  font-gothic">{{__('homecontent.feel_free_to_call')}}
                         </p>
                         <div class="flex justify-center  mt-2 flex-row items-center space-x-1">
                             <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="">
@@ -111,8 +111,7 @@
                             </p>
                         </div>
                         <p class="text-sm text-darkpink text-center md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
-                            Kochi
-                            | Kodungallur</p>
+                        {{__('homecontent.kochi_kodungallur')}}</p>
                     </div>
 
 
@@ -120,7 +119,7 @@
                 <div class="mt-10 z-10">
                     <p
                         class="  lg:block text-sm italic text-pink  md:text-base xl:text-lg 2xl:text-xl font-normal text-center ">
-                        <span class="font-bold">55,000 </span> little angles & counting...
+                        {!!__('homecontent.little_angel')!!}
                     </p>
                     <div x-data="{
                         options: [],
@@ -142,10 +141,12 @@
                           observer.observe(el);
                         "
                         id="counts-div"
-                        class="flex justify-center space-x-4  sm:space-x-6    md:space-x-8  lg:space-x-32  rtl:space-x-reverse z-20 relative mt-6 pb-12">
-                        <x-babynew-component :count="'14000'" :text="'IVF-ICFSI'" />
-                        <x-babynew-component :count="'3800'" :text="'MTESE-TESA ICSI'" />
-                        <x-babynew-component :count="'500'" :text="'PGS/PGD'" />
+                        class="flex justify-center space-x-2  sm:space-x-4    md:space-x-6  lg:space-x-12  rtl:space-x-reverse z-20 relative mt-6 pb-12">
+                        <x-babynew-component :count="'14000'" text="{{__('homecontent.ivf_icfsi')}}" />
+                        <x-babynew-component :count="'3800'" text="{{__('homecontent.mtese')}}" />
+                        <x-babynew-component :count="'500'" text="{{__('homecontent.pgs')}}" />
+                        <x-babynew-component :count="'56700'" text="{{__('homecontent.others')}}" />
+                        
                     </div>
                 </div>
 
@@ -171,14 +172,14 @@
             "
             id="reviews-div" class="my-20 flex flex-col w-full px-12 max-w-[1500px] m-auto z-10 transition-all duration-500"
             :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
-            <h2 class="text-darkgray text-3xl text-center font-franklin">What our Patients Are Saying</h2>
+            <h2 class="text-darkgray text-3xl text-center font-franklin">{{__('homecontent.what_our_patients_saying')}}</h2>
 
             <div class="ltr:flex flex-row w-full rtl:flex-reverse mt-4">
                 <img src="/images/icons/google icon.webp" class="h-6 lg:h-8 xl:h-10 rounded-full border border-gray"
                     alt="">
                 <p
                     class="text-darkgray font-franklin ltr:text-left rtl:text-right  text-base lg:text-lg xl:text-xl xl:p-2">
-                    Reviews</p>
+                    {{__('homecontent.reviews')}}</p>
             </div>
 
             {{-- <div class="mt-8 flex justify-center md:hidden">
@@ -343,11 +344,10 @@
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
                     </div>
-                    <h2 class="text-3xl text-darkgray font-franklin pt-6 relative z-40">Video
-                        Testimonials</h2>
-                    <p class="z-40 relative w-2/3 text-2xl text-darkgray font-franklin mt-3 lg:mt-8 ">Our patients are
-                        our best
-                        advocates, hear the inspiring stories of their treatment journey</p>
+                    <h2 class="text-3xl text-darkgray font-franklin pt-6 relative z-40">
+                        {{__('homecontent.video_testimonials')}}</h2>
+                    <p class="z-40 relative w-2/3 text-2xl text-darkgray font-franklin mt-3 lg:mt-8 ">
+                       {{__('homecontent.our_patients_are_our_best')}}</p>
                     <div class="hidden md:block mt-4 lg:mt-8 z-20 relative"><x-viewallbutton-component
                             text="{{ __('button.all_testimonials') }}" href="{{route('videotestimonials.loc', ['locale' => app()->currentLocale()])}}"/></div>
                 </div>
@@ -477,8 +477,8 @@
             "
             id="hilights-heading" class="mt-8 px-12">
             <h2 class="text-darkgray text-3xl text-center font-franklin transition-all duration-500"
-            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-90': !xdone}">Why Is Your IVF Cycle In Craft Most Likely To
-                Be Successful </h2>
+            :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-90': !xdone}">
+            {{__('homecontent.why_is_your_ivf_cycle_in_craft_succesful')}}</h2>
         </div>
         <div x-data="{
                 features: [],
@@ -654,7 +654,7 @@
             :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
             <div class="w-full lg:w-1/3">
                 <p class="text-4xl text-darkgray font-franklin my-6 relative z-40">
-                    Our Experienced And<br>Certified Doctors
+                    {!!__('homecontent.our_experienced_doctors')!!}
                 </p>
                 <p>
                     <x-viewallbutton-component text="{{ __('button.all_doctors') }}" href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"/>
@@ -726,16 +726,17 @@
                             <div class="mx-3">
                                 <div class="w-64 max-w-full relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
                                    <div class="px-4">
-                                      <p class="text-xl font-franklin pt-6 min-h-20" x-text="d.current_translation.data.name"></p>
+                                      <p class="text-xl font-franklin pt-6 min-h-20 " x-text="d.current_translation.data.name"></p>
                                    </div>
 
                                    <div class="relative flex flex-row justify-end">
-                                      <img :src="d.photo_url" class="h-52 dir-img" alt="doctor_image">
+                                      <!-- <img :src="d.photo_url" class="h-52 dir-img" alt="doctor_image"> -->
+                                      <img src="/images/home/demo-img1.webp" class="h-52 dir-img " alt="doctor_image">
                                    </div>
 
                                    <div class="absolute flex ltr:flex-row rtl:flex-row-reverse items-center space-x-2 -rotate-90 origin-top-left bottom-10 ltr:left-2 rtl:-right-24">
                                          <img src="/images/icons/Copy of icone-d-information-noir.png" class="opacity-40 h-8 w-8 rotate-90" alt="">
-                                         <p class="text-gray text-xs font-normal">Craft IVF Hospital</p>
+                                         <p class="text-gray text-xs font-normal">{{__('homecontent.craft_ivf_hospital')}}</p>
                                    </div>
 
                                    <div class="bg-gray-600 py-3 h-20 flex flex-col w-full justify-center items-center overflow-hidden">
@@ -866,7 +867,7 @@
                 "
                 @resize.window="setCurrentItems();"
                 class="relative z-10 my-12 min-h-84">
-                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 max-w-[1500px] m-auto">News And Announcements</h2>
+                <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 max-w-[1500px] m-auto">{{__('homecontent.news_&_announcement')}}</h2>
                 <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-[1500px] m-auto">
                     <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
                         <button type="button" @click.prevent.stop="slideBackward();" class="text-white hover:opacity-40 cursor-pointer">
@@ -992,7 +993,7 @@
             "
             @resize.window="setCurrentItems();"
             class="relative z-10">
-                <h2 class="text-4xl text-darkgray font-franklin relative z-40">Blog</h2>
+                <h2 class="text-4xl text-darkgray font-franklin relative z-40">{{__('homecontent.blog')}}</h2>
                 <div id="articles-container" class="relative z-10 overflow-hidden py-4">
                     <div  class="absolute z-50 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
                         <button type="button" @click.prevent.stop="slideBackward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
@@ -1030,8 +1031,8 @@
                 </div>
                 <div>
                     <h2 class="text-3xl"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}"
-                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}', route: 'webpages.guest.show'})">Frequently Asked Questions</a></h2>
-                    <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
+                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'frequently-asked-questions'])}}', route: 'webpages.guest.show'})">{{__('homecontent.frequently_asked_questions')}}</a></h2>
+                    <h4 class="text-sm mt-4">{{__('homecontent.the_answer_to your_question _can_be_found')}}</h4>
                 </div>
             </div>
         </div>
@@ -1040,6 +1041,7 @@
                 <x-bookappointment-component/>
             </div>
         </div> --}}
+        
         <div class="relative w-full z-0 h-0 overflow-visible">
             <x-footer />
         </div>

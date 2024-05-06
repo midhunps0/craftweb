@@ -5,8 +5,8 @@
                 <img src="/images/icons/faq.png" class="h-24" alt="">
             </div>
             <div>
-                <h2 class="text-3xl">Frequently Asked Questions</h2>
-                <h4 class="text-sm mt-4">The answers to your questions can be found here</h4>
+                <h2 class="text-3xl">{{__('homecontent.frequently_asked_questions')}}</h2>
+                <h4 class="text-sm mt-4">{{__('homecontent.the_answer_to your_question _can_be_found')}}</h4>
             </div>
         </div>
     </div>
@@ -26,16 +26,19 @@
                         class="w-16 bg-white shadow md:w-32 rounded-sm">
                     <ul class="flex justify-between items-center mt-4">
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <x-easyadmin::display.icon icon="icons.fb" height="h-6" width="w-6" />
+                            <a href="https://www.facebook.com/craftivf/" target="blank"><x-easyadmin::display.icon icon="icons.fb" height="h-6" width="w-6" /></a>
+                    </li>
+                    <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
+                        <a href="https://www.instagram.com/craftivf/" target="blank"><x-easyadmin::display.icon icon="icons.insta" height="h-6" width="w-6"/></a>
                         </li>
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <x-easyadmin::display.icon icon="icons.insta" height="h-6" width="w-6" />
+                            <a href="https://wa.me/918590462565"><x-easyadmin::display.icon icon="icons.whatsapp" height="h-6" width="w-6" /></a>
                         </li>
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <x-easyadmin::display.icon icon="icons.whatsapp" height="h-6" width="w-6" />
+                            <a href="https://twitter.com/craftivf/"><x-easyadmin::display.icon icon="icons.x-logo" height="h-6" width="w-6" /></a>
                         </li>
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <x-easyadmin::display.icon icon="icons.x-logo" height="h-6" width="w-6" />
+                            <a href="https://www.youtube.com/channel/UCCajQAeJaBGY19_ekaym3eQ"><x-easyadmin::display.icon icon="icons.youtube" height="h-6" width="w-6" /></a>
                         </li>
                     </ul>
                 </div>
@@ -46,31 +49,26 @@
                             {!! __('footer.craft_address_kodungallur') !!}
                         </p>
 
-                        <p class="mt-4 leading-6">
-                            {!! __('footer.craft_address_kochi') !!}
-                        </p>
-                    </div>
+                    <p class="mt-4 leading-6">
+                    {!! __('footer.craft_address_kochi') !!}
+                    </p>
                 </div>
-                <div class="flex flex-col justify-center md:mt-4">
-                    <h3 class="uppercase font-semibold text-white">{{ __('footer.opening_hours') }}</h3>
-                    <div class="text-gray-300 text-xs  flex flex-col items-left ">
-                        <p class="py-2 leading-6">
-                            {!! __('footer.opening_hours_kochi') !!}
-                            {!! __('footer.opening_hours_kodungallur') !!}
-                        </p>
+            </div>
+            <div class="flex flex-col justify-center md:mt-4">
+                <h3 class="uppercase font-semibold text-white">{{ __('footer.opening_hours') }}</h3>
+                <div class="text-gray-300 text-xs  flex flex-col items-left ">
+                    <p class="py-2 leading-6">
+                    {!! __('footer.opening_hours_kochi') !!}
+                    {!! __('footer.opening_hours_kodungallur') !!}
+                    </p>
 
                         <h3 class="uppercase font-semibold text-white mt-4">{{ __('footer.general_info') }}</h3>
                         <p class="py-2 px-4 leading-6">
                         <ul>
-                            <li class="list-disc"><a href="#"
-                                    class="block w-full px-4 py-2 underline">{{ __('footer.terms_and_conditions') }}</a>
-                            </li>
-                            <li class="list-disc"><a href="#"
-                                    class="block w-full px-4 py-2 underline">{{ __('footer.privacy_policy') }}</a></li>
-                            <li class="list-disc"><a href="#"
-                                    class="block w-full px-4 py-2 underline">{{ __('footer.refund_policy') }}</a></li>
-                            <li class="list-disc"><a href="#"
-                                    class="block w-full px-4 py-2 underline">{{ __('footer.contact_us') }}</a></li>
+                            <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.terms_and_conditions') }}</a></li>
+                            <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.privacy_policy') }}</a></li>
+                            <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.refund_policy') }}</a></li>
+                            <li class="list-disc"><a href="#" class="block w-full px-4 py-2 underline">{{ __('footer.contact_us') }}</a></li>
                         </ul>
                         </p>
                     </div>
