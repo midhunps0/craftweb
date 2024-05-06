@@ -146,7 +146,7 @@
                         <x-babynew-component :count="'3800'" text="{{__('homecontent.mtese')}}" />
                         <x-babynew-component :count="'500'" text="{{__('homecontent.pgs')}}" />
                         <x-babynew-component :count="'56700'" text="{{__('homecontent.others')}}" />
-                        
+
                     </div>
                 </div>
 
@@ -798,8 +798,8 @@
                         if (this.currentItems[0] != this.newsitems.length - (this.currentItems.length - 1)) {
                             this.wrapperOffset = this.wrapperOffset - this.itemWidth;
 
-                            if (this.currentItems.length == 3 && this.currentItems[2] != this.newsitems.length -1 ) {
-                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                            if (this.currentItems.length == 4 && this.currentItems[3] != this.newsitems.length -1 ) {
+                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[3], this.currentItems[3] + 1];
                             } else if (this.currentItems.length == 1 && this.currentItems[0] != this.newsitems.length - 1) {
                                 this.currentItems = [this.currentItems[0] + 1];
                             }
@@ -809,8 +809,8 @@
                         if (this.currentItems[0] >= 0) {
                             this.wrapperOffset = this.wrapperOffset + this.itemWidth;
 
-                            if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
-                                this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                            if (this.currentItems.length == 4 && this.currentItems[0] != 0 ) {
+                                this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1], this.currentItems[2]];
                             } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
                                 this.currentItems = [this.currentItems[0] - 1];
                             }
@@ -819,7 +819,7 @@
 
                     setItemWidth() {
                         if (this.currentItems.length > 1) {
-                            this.itemWidth = document.getElementById('news-container').offsetWidth / 2;
+                            this.itemWidth = document.getElementById('news-container').offsetWidth / 4;
                         } else {
                             this.itemWidth = $el.offsetWidth
                         }
@@ -827,9 +827,9 @@
                     },
                     setCurrentItems () {
                         if (window.innerWidth > 640) {
-                            if(this.currentItems.length != 3) {
+                            if(this.currentItems.length != 4) {
                                 let rlen = this.newsitems.length;
-                                this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                                this.currentItems = this.dir == 'ltr' ? [0, 1, 2, 3] : [rlen - 4, rlen - 3, rlen - 2, rlen - 1];
                                 //console.log(`rlen: ${rlen}`);
                                 //console.log(`CI: ${this.currentItems}`);
                                 //console.log(this.newsitems);
@@ -841,10 +841,12 @@
                         }
                         this.setItemWidth();
                         this.setWrapperOffset();
+                        console.log(`set currentItems: ${this.currentItems.join(', ')}`);
                     },
                     setWrapperOffset() {
-                        this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
-                        this.wrapperOffset = this.dir == 'ltr' ? this.wrapperOffset : -(this.wrapperOffset);
+                        this.wrapperOffset = 0;
+                        {{-- this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
+                        this.wrapperOffset = this.dir == 'ltr' ? this.wrapperOffset : -(this.wrapperOffset); --}}
                     },
                     fetchData() {
                         axios.get(
@@ -874,10 +876,10 @@
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
                         </button>
                     </div>
-                    <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
+                    <div class="w-fit flex flex-row transition-all items-stretch" :style="`transform: translate(${wrapperOffset}px);`">
                         <template x-for="(n,i) in newsitems">
-                        <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
-                            <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white">
+                        <div :style="`width: ${itemWidth}px`" class="overflow-hidden flex flex-col">
+                            <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white flex-grow">
                                 <div class="h-72 overflow-hidden bg-lightgray">
                                     <img :src="n.image_url" alt="" class="max-h-full max-w-full m-auto">
                                 </div>
@@ -1041,7 +1043,7 @@
                 <x-bookappointment-component/>
             </div>
         </div> --}}
-        
+
         <div class="relative w-full z-0 h-0 overflow-visible">
             <x-footer />
         </div>
