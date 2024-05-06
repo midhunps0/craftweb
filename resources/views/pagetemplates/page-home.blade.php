@@ -726,7 +726,7 @@
                             <div class="mx-3">
                                 <div class="w-64 max-w-full relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
                                    <div class="px-4">
-                                      <p class="text-xl font-franklin pt-6 min-h-20" x-text="d.current_translation.data.name"></p>
+                                      <p class="text-xl font-franklin pt-6 min-h-20 " x-text="d.current_translation.data.name"></p>
                                    </div>
 
                                    <div class="relative flex flex-row justify-end">

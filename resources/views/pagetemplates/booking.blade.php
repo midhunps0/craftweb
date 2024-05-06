@@ -3,7 +3,7 @@
         <div
             class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
-            <x-page-title title="Book An Appointment" />
+            <x-page-title title="{{ __('booking.booking') }}" />
             {{-- <p class="text-xs lg:text-base mb-8 text-center">{{__('contact.feel_free_to_contact')}}</p> --}}
             <div x-data="{
                 tab : 0,
@@ -36,7 +36,7 @@
                             $dispatch(
                                 'showtoast',
                                 {
-                                    message: 'No dates available for this doctor.',
+                                    message: '{{ __('booking.no_dates_available') }}',
                                     mode: 'error'
                                 }
                             );
@@ -49,7 +49,7 @@
                         $dispatch(
                                 'showtoast',
                                 {
-                                    message: 'Sorry, couldn\'t fetch the dates: Unexpected Error',
+                                    message: '{!! __('booking.sorry_unexpector_error') !!}',
                                     mode: 'error'
                                 }
                             );
@@ -72,7 +72,7 @@
                             $dispatch(
                                 'showtoast',
                                 {
-                                    message: 'No dates available for this doctor.',
+                                    message: '{{ __('booking.no_dates_available') }}',
                                     mode: 'error'
                                 }
                             );
@@ -85,7 +85,7 @@
                         $dispatch(
                                 'showtoast',
                                 {
-                                    message: 'Sorry, couldn\'t fetch the dates: Unexpected Error',
+                                    message: '{!! __('booking.sorry_unexpector_error') !!}',
                                     mode: 'error'
                                 }
                             );
@@ -124,7 +124,7 @@
                             $dispatch(
                                 'showtoast',
                                 {
-                                    message: 'Sorry, the system is unable to process the booking now.',
+                                    message: '{{ __('booking.system_is_unable') }}',
                                     mode: 'error'
                                 }
                             );
@@ -140,7 +140,7 @@
                         $dispatch(
                                 'showtoast',
                                 {
-                                    message: 'Sorry, the system is unable to process the booking now.',
+                                    message: '{{ __('booking.system_is_unable') }}',
                                     mode: 'error'
                                 }
                             );
