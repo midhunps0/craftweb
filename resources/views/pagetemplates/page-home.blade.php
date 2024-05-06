@@ -881,7 +881,7 @@
                         <div :style="`width: ${itemWidth}px`" class="overflow-hidden flex flex-col">
                             <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white flex-grow">
                                 <div class="h-72 overflow-hidden bg-lightgray">
-                                    <img :src="n.image_url" alt="" class="max-h-full max-w-full m-auto">
+                                    <img :src="n.image_url" alt="" class="max-h-full max-w-full m-auto object-cover">
                                 </div>
                                 <div class="text-center p-2 mt-4" x-text="n.current_translation.data.title"></div>
                             </div>
