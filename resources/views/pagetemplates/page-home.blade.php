@@ -338,7 +338,7 @@
                         }
                     },
                 }"
-                class="flex flex-col md:flex-row relative w-full px-12 max-w-[1500px] m-auto z-10 overflow-hidden">
+                class="flex flex-col md:flex-row relative w-full z-10 overflow-hidden">
                 <div class="w-full md:w-1/2 py-4 md:py-16 relative transition-transform duration-1000 ease-in-out" :class="{'scale-100 bg-opacity-100 opacity-100' : done, 'scale-50 bg-opacity-0 opacity-0' : !done}">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
                         <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">

@@ -2,7 +2,8 @@
     <div class="text-base">
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
-            <x-page-title title="{{$instance->current_translation->data['title']}}" />
+            <x-page-title title="{{$instance->current_translation->data['title']}}"
+            image="{{$instance->current_translation->display_image}}"/>
             {{-- @if (isset($instance->current_translation->display_image))
                 <div>
                     <img src="{{$instance->current_translation->display_image}}" alt="">
