@@ -2,7 +2,7 @@
     <div class="text-base">
         <x-main-menu-component />
         <div class="w-full px-12 max-w-[1500px] m-auto text-justify">
-            <x-page-title title="Our Doctors" />
+            <x-page-title title="Our Doctors"  image="{{asset('images/about_us.webp')}}"/>
             <div class="my-12">
                 {{__('doctors.our_doctor_description')}}
             </div>

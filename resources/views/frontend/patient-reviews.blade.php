@@ -2,7 +2,7 @@
     <div class="text-base">
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
-            <x-page-title title="Patient Reviews / Testimonials" />
+            <x-page-title title="Patient Reviews / Testimonials"  image="{{asset('images/blog.webp')}}"/>
             <div class="">
                 @foreach ($reviews as $r)
                 {{-- {{dd($r->current_translation, $r)}} --}}

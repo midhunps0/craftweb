@@ -2,7 +2,7 @@
     <div class="text-base">
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
-            <x-page-title title="Blog" />
+            <x-page-title title="Blog" image="{{asset('images/blog.webp')}}"/>
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($blog as $a)
                 {{-- {{dd($a->current_translation)}} --}}

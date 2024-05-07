@@ -2,7 +2,7 @@
     <div class="text-base">
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
-            <x-page-title title="Patient Testimonial Videos" />
+            <x-page-title title="Patient Testimonial Videos CCC" image="{{asset('images/blog.webp')}}"/>
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($videos as $v)
                     <div class="w-full sm:w-1/2 md:w-1/3 p-3 box-border">

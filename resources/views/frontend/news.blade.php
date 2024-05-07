@@ -2,7 +2,7 @@
     <div class="text-base">
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
-            <x-page-title title="News" />
+            <x-page-title title="News"  image="{{asset('images/patient_guide.webp')}}"/>
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($news as $n)
                 {{-- {{dd($n->current_translation)}} --}}
