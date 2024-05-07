@@ -16,5 +16,9 @@
     <label class="label" for="">Video Link</label>
     <input name="link" type="text" class="input input-bordered w-full" required />
 </div>
+<div>
+    <label class="label" for="">Display Priority</label>
+    <input name="display_priority" type="number" step="1" min="1" class="input input-bordered w-full" required />
+</div>
 
 

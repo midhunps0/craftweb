@@ -243,6 +243,7 @@ class VideoTestimonialService implements ModelViewConnector {
             'locale' => ['required', 'string'],
             'data' => ['required', 'array'],
             'link' => ['required', 'string'],
+            'display_priority' => ['sometimes', 'integer'],
         ];
     }
 
@@ -252,6 +253,7 @@ class VideoTestimonialService implements ModelViewConnector {
             'locale' => ['required', 'string'],
             'data' => ['required', 'array'],
             'link' => ['required', 'string'],
+            'display_priority' => ['sometimes', 'integer'],
         ];
     }
 
@@ -314,7 +316,8 @@ class VideoTestimonialService implements ModelViewConnector {
             DB::beginTransaction();
             $testimonial = VideoTestimonial::create(
                 [
-                    'link' => $data['link']
+                    'link' => $data['link'],
+                    'display_priority' => $data['display_priority'],
                 ]
             );
             $translation = Translation::create(
@@ -353,6 +356,7 @@ class VideoTestimonialService implements ModelViewConnector {
              */
             $testimonial = VideoTestimonial::find($id);
             $testimonial->link = $data['link'];
+            $testimonial->display_priority = $data['display_priority'];
             $testimonial->save();
             /**
              * @var Translation

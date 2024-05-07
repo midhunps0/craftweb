@@ -244,6 +244,7 @@ class ReviewService implements ModelViewConnector {
             'data' => ['required', 'array'],
             'photo' => ['sometimes', 'string'],
             'stars' => ['required', 'integer'],
+            'display_priority' => ['sometimes', 'integer'],
         ];
     }
 
@@ -254,6 +255,7 @@ class ReviewService implements ModelViewConnector {
             'data' => ['required', 'array'],
             'photo' => ['sometimes', 'string'],
             'stars' => ['required', 'integer'],
+            'display_priority' => ['sometimes', 'integer'],
         ];
     }
 
@@ -315,10 +317,14 @@ class ReviewService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
+            $createData = [
+                    'stars' => $data['stars'],
+            ];
+            if (isset($data['display_priority'])) {
+                $createData['display_priority'] = $data['display_priority'];
+            }
             $review = Review::create(
-                [
-                    'stars' => $data['stars']
-                ]
+                $createData
             );
             if(isset($data['photo'])){
                 $review->addMediaFromEAInput('photo', $data['photo']);
@@ -352,13 +358,12 @@ class ReviewService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            info('data --');
-            info($data['data']);
             /**
              * @var Review
              */
             $review = Review::find($id);
             $review->stars = $data['stars'];
+            $review->display_priority = $data['display_priority'];
             $review->save();
             if(isset($data['photo'])){
                 $review->syncMedia('photo', $data['photo']);

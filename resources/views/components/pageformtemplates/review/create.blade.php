@@ -12,6 +12,10 @@
     <label class="label" for="">Review Stars</label>
     <input name="stars" type="number" step="1" min="1" class="input input-bordered w-full" required />
 </div>
+<div>
+    <label class="label" for="">Display Priority</label>
+    <input name="display_priority" type="number" step="1" min="1" class="input input-bordered w-full" required />
+</div>
 <x-easyadmin::inputs.imageuploader
     :element="[
         'key' => 'photo',

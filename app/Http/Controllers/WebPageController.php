@@ -69,7 +69,8 @@ class WebPageController extends SmartController
     public function quickShow($slug)
     {
         App::setlocale('en');
-        return $this->show('en', $slug);
+        return redirect(config("oldslug_redirect.$slug"),301);
+        // return $this->show('en', $slug);
     }
 
     public function show($locale, $slug, $translationLink = null)
