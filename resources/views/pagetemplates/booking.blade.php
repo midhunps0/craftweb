@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="text-base">
+    <div class="text-base">{{dd('hi')}}
         <div
             class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />

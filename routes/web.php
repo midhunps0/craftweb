@@ -36,8 +36,8 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 Route::get('/', [WebPageController::class, 'home'])->name('home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
 
-Route::get('/contact-us', [WebPageController::class, 'contact'])->name('contact');
-Route::get('/ar/contact-us', [WebPageController::class, 'contactAr'])->name('contact.ar');
+// Route::get('{locale}/contact-us', [WebPageController::class, 'contact'])->name('contact');
+// Route::get('/ar/contact-us', [WebPageController::class, 'contactAr'])->name('contact.ar');
 
 Route::get('/{locale}/data/home/reviews', [WebPageController::class, 'homeReviews'])->name('home.reviews');
 Route::get('/{locale}/data/home/videos', [WebPageController::class, 'homeVideos'])->name('home.videos');
@@ -46,7 +46,7 @@ Route::get('/{locale}/data/home/news', [WebPageController::class, 'homeNews'])->
 Route::get('/{locale}/data/home/doctors', [WebPageController::class, 'homeDoctors'])->name('home.doctors');
 Route::get('/{locale}/data/home/articles', [WebPageController::class, 'homeArticles'])->name('home.articles');
 
-Route::get('/consequatur-molestias-debitis', [ArticleController::class, 'old'])->name('articles.old');
+// Route::get('/consequatur-molestias-debitis', [ArticleController::class, 'old'])->name('articles.old');
 
 Route::get('/ea/icons', [IconsController::class, 'index'])->name('eaicons');
 
@@ -55,7 +55,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/booking', [BookingController::class, 'bookingPage'])->name('booking');
+// Route::get('/{locale}/booking', function () {
+//     return 'kkdsas';
+// })->name('booking');
+Route::get('/{locale}/booking', [BookingController::class, 'test'])->name('booking');
 Route::get('/booking/specialties', [BookingController::class, 'specialties'])->name('booking.specialties');
 Route::get('/booking/doctors', [BookingController::class, 'doctors'])->name('booking.doctors');
 Route::get('/booking/dates', [BookingController::class, 'dates'])->name('booking.dates');
@@ -101,10 +104,10 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['ynotz.translation']], function () {
-    Route::get('/our-blogs', [WebPageController::class, 'blog'])->name('blog');
-    Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
-    Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
-    Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
+    // Route::get('/our-blogs', [WebPageController::class, 'blog'])->name('blog');
+    // Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
+    // Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
+    // Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
     Route::get('/{locale}/news', [WebPageController::class, 'news'])->name('news.loc');
     Route::get('/{locale}/our-blogs', [WebPageController::class, 'blog'])->name('blog.loc');
     Route::get('/{locale}/our-doctors', [WebPageController::class, 'doctors'])->name('doctors.loc');

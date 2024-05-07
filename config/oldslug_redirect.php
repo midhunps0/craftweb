@@ -1,4 +1,4 @@
-<?php 
+<?php
 return[
     'about-craft' => 'en/pages/about-craft',
     'message-from-chairman' => 'en/pages/message-from-chairman',

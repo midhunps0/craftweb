@@ -340,7 +340,7 @@
                         <li class=" text-black  hover:text-pink">
                             <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'training-courses'])}}', route: 'webpages.guest.show'})">
                         </li>
-                        <li class=" text-black  hover:text-pink"><a href="{{route('contact')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('contact')}}', route: 'contact'})"
+                        <li class=" text-black  hover:text-pink"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'contact-us'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'contact-us'])}}', route: 'contact'})"
                                 class="font-questrial  py-1 md:py-2">{{ __('main_menu.contact') }}</a></li>
                         <li class=" text-black  hover:text-pink">
                             <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebook'])}}', route: 'webpages.guest.show'})">

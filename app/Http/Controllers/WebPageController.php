@@ -162,10 +162,10 @@ class WebPageController extends SmartController
         );
     }
 
-    public function contact()
+    public function contact($locale)
     {
-        App::setlocale('en');
-        return $this->show('en','contact-us');
+        App::setlocale($locale);
+        return $this->show($locale,'contact-us');
     }
 
     public function contactAr()

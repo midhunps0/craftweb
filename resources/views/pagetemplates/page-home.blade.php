@@ -18,7 +18,7 @@
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
                         <div class="lg:flex lg:mt-12 lg:gap-x-2">
-                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking')}}', route: 'booking'})" />
+                            <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})" />
                             <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
                         </div>
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
