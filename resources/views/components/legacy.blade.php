@@ -13,8 +13,8 @@
     </div>
     <div class="lg:w-2/5 w-full flex flex-col items-center justify-center mt-8">
     <p class=" text-xl sm:text-2xl md:text-3xl lg:text-5xl  text-blue lg:hidden text-left mt-4">The Craft Legacy</p>
-        <img src="/images/home/legacy.jpeg" class="hidden lg:block lg:h-96 shadow-xl border-b border-r border-l border-gray" alt="doctaor_image">
-        <img src="/images/home/legacy.jpeg" class="h-48 w-80 lg:hidden shadow-xl border-b border-r border-l border-gray mt-6" alt="doctaor_image">
+        <img src="/images/legacy.jpeg" class="hidden lg:block lg:h-96 shadow-xl border-b border-r border-l border-gray" alt="doctor_image">
+        <img src="/images/legacy.jpeg" class="h-48 w-80 lg:hidden shadow-xl border-b border-r border-l border-gray mt-6" alt="doctor_image">
     </div>
    
 </div>
