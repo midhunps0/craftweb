@@ -34,6 +34,9 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 //     return view('welcome');
 // })->name('home');
 Route::get('/', [WebPageController::class, 'home'])->name('home');
+Route::get('/kochi', function () {
+    return view('home-kochi');
+})->name('kochi.home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
 
 // Route::get('{locale}/contact-us', [WebPageController::class, 'contact'])->name('contact');
