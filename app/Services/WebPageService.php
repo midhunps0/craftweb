@@ -123,7 +123,7 @@ class WebPageService implements ModelViewConnector {
 
     public function getHomeReviews($locale)
     {
-        return Review::orderBy('id', 'desc')->limit(9)->get();
+        return Review::orderBy('display_priority', 'desc')->limit(9)->get();
     }
 
     public function getHomeVideos($locale)
