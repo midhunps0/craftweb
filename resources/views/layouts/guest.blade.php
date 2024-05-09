@@ -100,6 +100,7 @@ lang="en"
                         $el.innerHTML = $event.detail.content;
                         {{-- show = true; --}}
                         $el.style.opacity = 1;
+                        document.body.scrollTop = document.documentElement.scrollTop = 0;
                     },
                         200
                     );
