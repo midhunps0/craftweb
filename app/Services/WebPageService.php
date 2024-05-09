@@ -176,10 +176,10 @@ class WebPageService implements ModelViewConnector {
         return VideoTestimonial::paginate(60);
     }
 
-    public function getReviewsData($locale)
+    public function getReviewsData($locale, $page = 1)
     {
         return Review::orderBy(DB::raw('RAND(1234)'))
-            ->paginate(60);
+            ->paginate(perPage: 10, page: $page);
     }
 
     public function getFileFields(): array

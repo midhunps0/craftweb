@@ -153,7 +153,7 @@ class WebPageController extends SmartController
     {
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
-        $reviews = $this->connectorService->getReviewsData($locale);
+        $reviews = $this->connectorService->getReviewsData($locale, $this->request->input('page', 1));
         return $this->buildResponse(
             'frontend.patient-reviews',
             [

@@ -3,6 +3,7 @@
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
             <x-page-title title="Patient Reviews / Testimonials"  image="{{asset('images/blog.webp')}}"/>
+            {{-- {{dd($reviews)}} --}}
             <div class="">
                 @foreach ($reviews as $r)
                 {{-- {{dd($r->current_translation, $r)}} --}}
@@ -14,6 +15,9 @@
                             photo_url="{{$r->photo_url}}"/>
                     </div>
                 @endforeach
+            </div>
+            <div>
+                {{$reviews->links('frontend.tailwind-paginator')}}
             </div>
         </div>
         <x-footer/>
