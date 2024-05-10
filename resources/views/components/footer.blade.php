@@ -58,7 +58,7 @@
                     </p>
                 </div>
             </div>
-            <div class="flex flex-col justify-start md:mt-4">
+            <div class="flex flex-col justify-start">
                 <h3 class="uppercase font-semibold text-white">{{ __('footer.opening_hours') }}</h3>
                 <div class="text-gray-300 text-xs  flex flex-col items-left ">
                     <p class="py-2 leading-6">
