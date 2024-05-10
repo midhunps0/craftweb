@@ -52,6 +52,9 @@
                     <p class="mt-4 leading-6">
                     {!! __('footer.craft_address_kochi') !!}
                     </p>
+                    <p class="mt-4 leading-6">
+                    {!! __('footer.craft_address_perinthalmanna') !!}
+                    </p>
                 </div>
             </div>
             <div class="flex flex-col justify-center md:mt-4">

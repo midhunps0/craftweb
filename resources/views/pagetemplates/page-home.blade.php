@@ -2,7 +2,7 @@
     <div class="bg-white items-center mx-auto text-base-content ">
         <div>
             <div class="relative flex flex-col items-center max-w-[1500px] m-auto px-12">
-                <x-main-menu-component />
+                <x-main-menu-component/>
                 <div class="absolute z-0 top-0 left-0 h-full w-full flex flex-row">
                     <div class="h-full flex-grow flex flex-col justify-between items-end">
                         <div class="bg-gray w-1/2 md:w-72 lg:w-77 h-28 md:h-28 lg:h-30"></div>
@@ -30,8 +30,10 @@
                             </p>
                         </div>
                         <p class="text-sm text-darkpink  md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
-                        {{__('homecontent.kochi_kodungallur')}}
+                        <a href="{{route('kochi.home')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('kochi.home')}}'})">{{__('homecontent.kochi')}} </a>
+                        | {{__('homecontent.kodungallur')}}
                         </p>
+                        <!-- <p class="text-sm text-darkpink  md:text-base font-normal xl:text-lg  mt-2 md:mt-4">{{__('homecontent.kochi')}} </p> -->
                     </div>
                     <div class="w-full m-auto lg:w-1/2 ltr:lg:justify-start rtl:lg:justify-end">
                         <div x-data="{
@@ -102,7 +104,7 @@
                         <x-bluebutton-component />
                         <x-pinkbutton-component />
                     </div>
-                    <div class="">
+                    <div class=""> {{__('homecontent.kochi_kodungallur')}}
                         <p class="mt-8 font-bold md:text-base text-center  font-gothic">{{__('homecontent.feel_free_to_call')}}
                         </p>
                         <div class="flex justify-center  mt-2 flex-row items-center space-x-1">

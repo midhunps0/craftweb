@@ -11,7 +11,7 @@
 <body class=" max-w-7xl mx-auto font-franklin">
 <div class="bg-white">
     <div class=" ">
-        <x-main-menu-component />
+    <x-main-menu-component/>
         <x-top-image/>
     </div>
     <div class="mt-6 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
@@ -62,7 +62,9 @@
         </div>
         
     </div>
-    
+    <div class="relative w-full z-0 h-0 overflow-visible">
+            <x-footer />
+    </div>
    
 </div>
    
