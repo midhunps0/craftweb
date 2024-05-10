@@ -834,12 +834,12 @@
                         if (this.currentItems.length > 1) {
                             this.itemWidth = document.getElementById('news-container').offsetWidth / 4;
                         } else {
-                            this.itemWidth = $el.offsetWidth
+                            this.itemWidth = document.getElementById('news-container').offsetWidth;
                         }
                         this.itemHeight = document.getElementById('news-container').offsetHeight;
                     },
                     setCurrentItems () {
-                        if (window.innerWidth > 840) {
+                        if (window.innerWidth > 1024) {
                             if(this.currentItems.length != 4) {
                                 let rlen = this.newsitems.length;
                                 this.currentItems = this.dir == 'ltr' ? [0, 1, 2, 3] : [rlen - 4, rlen - 3, rlen - 2, rlen - 1];
@@ -883,7 +883,7 @@
                 @resize.window="setCurrentItems();"
                 class="relative z-10 my-12 min-h-84">
                 <h2 class="text-4xl text-darkgray font-franklin pt-6 relative z-40 max-w-[1500px] m-auto">{{__('homecontent.news_&_announcement')}}</h2>
-                <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-[1500px] m-auto">
+                <div id="news-container" class="relative z-10 overflow-hidden py-4 max-w-96 lg:max-w-[1500px] m-auto">
                     <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
                         <button type="button" @click.prevent.stop="slideBackward();" class="text-white hover:opacity-40 cursor-pointer">
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
