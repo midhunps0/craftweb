@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'terms_and_conditions' => 'Terms and Conditions',
     'privacy_policy' => 'Privacy Policy',
@@ -27,7 +27,7 @@ return [
     'emails_craft' => 'info@craftivf.com, info@craftivfkochi.com',
     'craft_address_perinthalmanna' => 'CRAFT Multispeciality Centre<br>
                                         X66H+3JH, Cholomkunnu, Pattambi Rd,<br> Perinthalmanna, Kerala 679322',
-    'other_location' => 'Other Location',
-    
+    'other_location' => 'Other Locations',
+
 ];
 ?>
