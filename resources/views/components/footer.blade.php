@@ -26,33 +26,34 @@
                         class="w-16 bg-white shadow md:w-32 rounded-sm">
                     <ul class="flex justify-between items-center mt-4">
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <a href="https://www.facebook.com/craftivf/" target="blank"><x-easyadmin::display.icon icon="icons.fb" height="h-6" width="w-6" /></a>
+                            <a href="https://www.facebook.com/craftivf/" target="_blank"><x-easyadmin::display.icon icon="icons.fb" height="h-6" width="w-6" /></a>
                     </li>
                     <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                        <a href="https://www.instagram.com/craftivf/" target="blank"><x-easyadmin::display.icon icon="icons.insta" height="h-6" width="w-6"/></a>
+                        <a href="https://www.instagram.com/craftivf/" target="_blank"><x-easyadmin::display.icon icon="icons.insta" height="h-6" width="w-6"/></a>
                         </li>
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <a href="https://wa.me/918590462565"><x-easyadmin::display.icon icon="icons.whatsapp" height="h-6" width="w-6" /></a>
+                            <a href="https://wa.me/918590462565" target="_blank"><x-easyadmin::display.icon icon="icons.whatsapp" height="h-6" width="w-6" /></a>
                         </li>
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <a href="https://twitter.com/craftivf/"><x-easyadmin::display.icon icon="icons.x-logo" height="h-6" width="w-6" /></a>
+                            <a href="https://twitter.com/craftivf/" target="_blank"><x-easyadmin::display.icon icon="icons.x-logo" height="h-6" width="w-6" /></a>
                         </li>
                         <li class="p-1 mr-2 bg-pink-500 shadow rounded text-xl  hover:bg-pink-400">
-                            <a href="https://www.youtube.com/channel/UCCajQAeJaBGY19_ekaym3eQ"><x-easyadmin::display.icon icon="icons.youtube" height="h-6" width="w-6" /></a>
+                            <a href="https://www.youtube.com/channel/UCCajQAeJaBGY19_ekaym3eQ" target="_blank"><x-easyadmin::display.icon icon="icons.youtube" height="h-6" width="w-6" /></a>
                         </li>
                     </ul>
+                    <p class="leading-6 mt-4">{!! __('footer.craft_address_kodungallur') !!}</p>
                 </div>
                 <div class="flex flex-col justify-center items-left">
-                    <h3 class="uppercase font-semibold text-white">{{ __('footer.our_location') }}</h3>
+                    
                     <div class="text-gray-300 text-xs  flex flex-col items-left ">
-                        <p class="leading-6 ">
-                            {!! __('footer.craft_address_kodungallur') !!}
-                        </p>
-
-                    <p class="mt-4 leading-6">
+                       
+                    <h3 class="uppercase font-semibold text-white">{{ __('footer.other_location') }}</h3>
+                    <h4 class="uppercase font-semibold text-white mt-4">{{ __('homecontent.kochi') }}</h4>
+                    <p class=" leading-6">
                     {!! __('footer.craft_address_kochi') !!}
                     </p>
-                    <p class="mt-4 leading-6">
+                    <h4 class="uppercase font-semibold text-white mt-4">{{ __('homecontent.perinthalmanna') }}</h4>
+                    <p class=" leading-6">
                     {!! __('footer.craft_address_perinthalmanna') !!}
                     </p>
                 </div>

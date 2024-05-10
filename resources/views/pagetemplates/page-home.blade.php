@@ -30,8 +30,9 @@
                             </p>
                         </div>
                         <p class="text-sm text-darkpink  md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
-                        <a href="{{route('kochi.home')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('kochi.home')}}'})">{{__('homecontent.kochi')}} </a>
-                        | {{__('homecontent.kodungallur')}}
+                         {{__('homecontent.kodungallur')}} | 
+                         <a href="{{route('kochi.home')}}"  target="_blank">{{__('homecontent.kochi')}}</a> |
+                         <a href="https://crafthospital.com/"  target="_blank">{{__('homecontent.perinthalmanna')}}</a>
                         </p>
                         <!-- <p class="text-sm text-darkpink  md:text-base font-normal xl:text-lg  mt-2 md:mt-4">{{__('homecontent.kochi')}} </p> -->
                     </div>
@@ -101,10 +102,10 @@
                 </div>
                 <div class="lg:hidden mt-24 sm:mt-28 sm:pt-0 relative ">
                     <div class="flex justify-center gap-x-2 md:mt-36">
-                        <x-bluebutton-component />
-                        <x-pinkbutton-component />
+                        <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})"/>
+                        <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565"/>
                     </div>
-                    <div class=""> {{__('homecontent.kochi_kodungallur')}}
+                    <div class=""> 
                         <p class="mt-8 font-bold md:text-base text-center  font-gothic">{{__('homecontent.feel_free_to_call')}}
                         </p>
                         <div class="flex justify-center  mt-2 flex-row items-center space-x-1">
@@ -113,7 +114,9 @@
                             </p>
                         </div>
                         <p class="text-sm text-darkpink text-center md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
-                        {{__('homecontent.kochi_kodungallur')}}</p>
+                        {{__('homecontent.kodungallur')}} | 
+                         <a href="{{route('kochi.home')}}"  target="_blank">{{__('homecontent.kochi')}}</a> |
+                         <a href="https://crafthospital.com/"  target="_blank">{{__('homecontent.perinthalmanna')}}</a>
                     </div>
 
 

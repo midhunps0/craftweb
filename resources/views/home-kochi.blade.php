@@ -8,13 +8,13 @@
     @stack('css')
     @stack('header_js')
 </head>
-<body class=" max-w-7xl mx-auto font-franklin">
+<body class=" max-w-[1500px] m-auto font-franklin">
 <div class="bg-white">
     <div class=" ">
-    <x-main-menu-component/>
+        
         <x-top-image/>
     </div>
-    <div class="mt-6 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
+    <div id="section1" class="mt-6 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
         <p class="text-darkgray text-center  text-xl lg:text-4xl mt-32">Treatments We Offer</p>
         <div class="lg:flex flex-col gap-6 mt-6 hidden">
         <div class="flex flex-row justify-center gap-6 ">
@@ -37,10 +37,10 @@
             <x-carousel-card/>
         </div>
     </div>
-    <div class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
+    <div id="section2" class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
         <x-legacy />
     </div>
-    <p class="text-darkgray text-center  text-xl sm:text-2xl lg:text-4xl mt-32">Our Experts</p>
+    <p id="section3" class="text-darkgray text-center  text-xl sm:text-2xl lg:text-4xl mt-32">Our Experts</p>
     <div class="flex flex-col gap-y-8 lg:flex-row mt-6 gap-x-2 p-4 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
         
     <x-expert
@@ -54,10 +54,10 @@
     
     </div>
     <div class="mt-4 flex flex-col gap-6 lg:gap-x-12 lg:flex-row justify-center max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto p-10">
-        <div class="lg:w-1/2">
+        <div id="section4" class="lg:w-1/2">
         <x-contact-form />
         </div>
-        <div  class="lg:w-1/2  ">
+        <div  class="">
             <x-address-kochi />
         </div>
         

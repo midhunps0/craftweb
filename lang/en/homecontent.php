@@ -23,7 +23,7 @@ return[
     'others'=>'OTHERS',
     'kochi'=>'Kochi',
     'kodungallur'=>'Kodungallur',
-    ''=>'',
+    'perinthalmanna'=>'Perinthalmanna',
     ''=>'',
     ''=>'',
     ''=>'',

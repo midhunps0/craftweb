@@ -7,7 +7,7 @@ return [
     'craft_address_kodungallur' => ' CRAFT HOSPITAL AND<br>
                                     RESEARCH CENTRE<br>
                                     V111/77/2,3,4, Kondungallur P.O<br>
-                                    Chanthappura, Kodungallur, Thrissur, Keral<br>
+                                    Chanthappura, Kodungallur, Thrissur,<br> Kerala
                                     Ph: +91 6282396564',
     'craft_address_kochi' => 'CRAFT Multispeciality Centre<br>
                                 5th & 6th Floor, Imperial Amity,<br>
@@ -27,5 +27,7 @@ return [
     'emails_craft' => 'info@craftivf.com, info@craftivfkochi.com',
     'craft_address_perinthalmanna' => 'CRAFT Multispeciality Centre<br>
                                         X66H+3JH, Cholomkunnu, Pattambi Rd,<br> Perinthalmanna, Kerala 679322',
+    'other_location' => 'Other Location',
+    
 ];
 ?>

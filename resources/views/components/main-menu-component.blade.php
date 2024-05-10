@@ -167,6 +167,9 @@
                                 <li class=" hover:text-pink cursor-pointer"><a href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()] )}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}'})"
                                         class="font-questrial px-4 py-2 mb-1">{{ __('main_menu.testimonial') }}</a></li>
+                                <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'plan-your-pregnancy'])}}"
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'plan-your-pregnancy'])}}'})"
+                                        class="font-questrial px-4 py-2 mb-1">{{ __('main_menu.plan_pregnancy') }}</a></li>        
                             </ul>
 
 
@@ -334,6 +337,9 @@
                                     <li class=" hover:text-pink cursor-pointer"><a href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}'})"
                                             class="font-questrial text-center ">{{ __('main_menu.testimonial') }}</a></li>
+                                    <li class=" hover:text-pink cursor-pointer"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'plan-your-pregnancy'])}}"
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'plan-your-pregnancy'])}}'})"
+                                        class="font-questrial text-center">{{ __('main_menu.plan_pregnancy') }}</a></li>          
                                 </ul>
                             </div>
                         </li>

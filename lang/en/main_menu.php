@@ -28,6 +28,7 @@ return[
    'contact' => 'Contact Us',
    'ebook' => 'E Book',
    'blogs' => 'Blogs',
+   'plan_pregnancy' => 'Plan Your Pregnancy',
 ];
 
 ?>
