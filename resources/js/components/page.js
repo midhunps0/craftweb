@@ -30,7 +30,7 @@ export default () => ({
     historyAction(e) {
         // console.log('inside history action');
         if (e.state != undefined && e.state != null) {
-            // console.log(e.state);
+            console.log(e.state);
 
             let link = e.state.href;
             let route = e.state.route;
@@ -57,9 +57,12 @@ export default () => ({
                             link: link,
                             fresh: true
                         });
-                        // if (this.$store.app.xpages[link].meta != undefined) {
-                        //     this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
-                        // }
+                        if (this.$store.app.xpages[link].meta != undefined) {
+                            this.$dispatch('xmetachange', {data: this.$store.app.xpages[link].meta});
+                        }
+                        if (this.$store.app.xpages[link].x_title != undefined != undefined) {
+                            this.$dispatch('xtitlechange', {data: this.$store.app.xpages[link].x_title});
+                        }
                     }
                 //     this.ajaxLoading = false;
                 // },
@@ -124,8 +127,12 @@ export default () => ({
                 setTimeout(() => {
                     this.showPage = true;
                     this.$dispatch('contentupdate', {content: this.$store.app.xpages[thelink].data.html, target: targetPanelId});
+                    console.log(`this.$store.app.xpages[link].meta: ${this.$store.app.xpages[link].meta}`);
                     if (this.$store.app.xpages[link].meta != undefined) {
-                        this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
+                        this.$dispatch('xmetachange', {data: this.$store.app.xpages[link].meta});
+                    }
+                    if (this.$store.app.xpages[link].x_title != undefined != undefined) {
+                        this.$dispatch('xtitlechange', {data: this.$store.app.xpages[link].x_title});
                     }
                     this.$dispatch('pagechanged', {currentpath: link, currentroute: detail.route});
                     this.ajaxLoading = false;
@@ -168,6 +175,7 @@ export default () => ({
                         () => {
                             // document.getElementById(targetPanelId).innerHTML = r.data;
                             this.$dispatch('contentupdate', {content: r.data.html, target: targetPanelId});
+                            console.log(`r.data.x_metatags: ${r.data.x_metatags}`);
                             if (r.data.x_metatags != undefined) {
                                 this.$dispatch('xmetachange', {data: r.data.x_metatags});
                             }
@@ -190,6 +198,9 @@ export default () => ({
                         // this.$store.app.xpages[thelink].data = r.data;
                         if (r.data.x_metatags != undefined) {
                             theData.meta = r.data.x_metatags;
+                        }
+                        if (r.data.x_title != undefined) {
+                            theData.x_title = r.data.x_title;
                         }
 
                         this.$store.app.xpages[thelink] = theData;

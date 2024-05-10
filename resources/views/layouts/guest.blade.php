@@ -51,9 +51,12 @@ x-init="
     "
     @xmetachange="
         metatags = JSON.parse($event.detail.data);
+        console.log(`metas changed:`);
+        console.log(metatags);
     "
     @xtitlechange="
         xtitle = $event.detail.data;
+        console.log(`title changed: ${xtitle}`);
     "
     @pagechanged.window="
     currentpath=$event.detail.currentpath;
