@@ -427,12 +427,20 @@
                             <template x-for="(v, i) in videos">
                                 <div :style="`width: ${itemWidth}px`">
                                     <div x-data="{videoOn: false}" class="relative z-10" style="position:relative;padding-bottom:56.25%">
-                                        <template x-if="!videoOn">
+                                        {{-- <template x-if="!videoOn">
                                             <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="absolute top-0 left-0 h-full w-full">
+                                        </template> --}}
+                                        <template x-if="!videoOn">
+                                            <div class="absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center">
+                                                <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="w-full">
+                                                <div @click="videoOn = true;" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center">
+                                                    <img src="{{asset('images/icons/yt_logo.png')}}" alt="">
+                                                </div>
+                                            </div>
                                         </template>
                                         <template x-if="videoOn">
                                         <iframe width="100%" height="100%"
-                                            class="w-full absolute top-0 left-0" :src="v.link"
+                                            class="w-full absolute top-0 left-0" :src="v.link+'&autoplay=1'"
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                                             referrerpolicy="origin" allowfullscreen></iframe>

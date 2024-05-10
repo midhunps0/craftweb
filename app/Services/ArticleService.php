@@ -20,6 +20,7 @@ use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Modules\Ynotz\Metatags\Helpers\MetatagHelper;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class ArticleService implements ModelViewConnector {
@@ -52,6 +53,8 @@ class ArticleService implements ModelViewConnector {
 
     public function getShowPageData($slug): ShowPageData
     {
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
         $item = Article::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug) {
                 $q->where('locale', App::currentLocale())
@@ -69,6 +72,8 @@ class ArticleService implements ModelViewConnector {
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
+        MetatagHelper::setTitle($item->current_translation->data['metatags']['title'] ?? $item->current_translation->data['title']);
+        MetatagHelper::addTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
 
         $results = DB::table('articles', 'a')
             ->join('translations as t', 'a.id', '=', 't.translatable_id')
