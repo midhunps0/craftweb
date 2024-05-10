@@ -43,10 +43,10 @@
                     </ul>
                     <p class="leading-6 mt-4">{!! __('footer.craft_address_kodungallur') !!}</p>
                 </div>
-                <div class="flex flex-col justify-center items-left">
-                    
+                <div class="flex flex-col justify-start items-left">
+
                     <div class="text-gray-300 text-xs  flex flex-col items-left ">
-                       
+
                     <h3 class="uppercase font-semibold text-white">{{ __('footer.other_location') }}</h3>
                     <h4 class="uppercase font-semibold text-white mt-4">{{ __('homecontent.kochi') }}</h4>
                     <p class=" leading-6">
@@ -58,7 +58,7 @@
                     </p>
                 </div>
             </div>
-            <div class="flex flex-col justify-center md:mt-4">
+            <div class="flex flex-col justify-start md:mt-4">
                 <h3 class="uppercase font-semibold text-white">{{ __('footer.opening_hours') }}</h3>
                 <div class="text-gray-300 text-xs  flex flex-col items-left ">
                     <p class="py-2 leading-6">
@@ -73,12 +73,12 @@
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'terms-and-conditions'])}}'})"
                                      class="block w-full px-4 py-2 underline">{{ __('footer.terms_and_conditions') }}</a></li>
                             <li class="list-disc"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'privacy-policy'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'privacy-policy'])}}'})" 
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'privacy-policy'])}}'})"
                                     class="block w-full px-4 py-2 underline">{{ __('footer.privacy_policy') }}</a></li>
                             <li class="list-disc"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'refund-policy'])}}"
-                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'refund-policy'])}}'})" 
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'refund-policy'])}}'})"
                                     class="block w-full px-4 py-2 underline">{{ __('footer.refund_policy') }}</a></li>
-                            <li class="list-disc"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'contact-us'])}}" 
+                            <li class="list-disc"><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'contact-us'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'contact-us'])}}', route: 'contact'})"
                                     class="block w-full px-4 py-2 underline">{{ __('footer.contact_us') }}</a></li>
                         </ul>
