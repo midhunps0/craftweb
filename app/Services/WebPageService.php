@@ -124,7 +124,7 @@ class WebPageService implements ModelViewConnector {
 
     public function getHomeReviews($locale)
     {
-        return Review::orderBy('display_priority', 'desc')->limit(9)->get();
+        return Review::orderBy('display_priority', 'desc')->limit(12)->get();
     }
 
     public function getHomeVideos($locale)
@@ -144,17 +144,17 @@ class WebPageService implements ModelViewConnector {
 
     public function getHomeDoctors($locale)
     {
-        return Doctor::orderBy('id', 'desc')->limit(6)->get();
+        return Doctor::orderBy('display_priority', 'desc')->limit(6)->get();
     }
 
     public function getHomeNews($locale)
     {
-        return News::orderBy('id', 'desc')->limit(6)->get();
+        return News::orderBy('id', 'desc')->limit(8)->get();
     }
 
     public function getHomeArticles($locale)
     {
-        return Article::orderBy('id', 'desc')->limit(6)->get();
+        return Article::orderBy('id', 'desc')->limit(8)->get();
     }
 
     public function getNewsData($locale)
@@ -164,12 +164,12 @@ class WebPageService implements ModelViewConnector {
 
     public function getBlogData($locale)
     {
-        return Article::paginate(30);
+        return Article::paginate(12);
     }
 
     public function getDoctorsData($locale)
     {
-        return Doctor::paginate(30);
+        return Doctor::orderBy('display_priority', 'desc')->paginate(9);
     }
 
     public function getVideoTestomonialsData($locale)

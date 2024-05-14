@@ -24,6 +24,9 @@
                     </div>
                 @endforeach
             </div>
+            <div>
+                {{$doctors->links('frontend.tailwind-paginator')}}
+            </div>
         </div>
         <x-footer/>
     </div>

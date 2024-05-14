@@ -14,6 +14,9 @@
                     </div>
                 @endforeach
             </div>
+            <div>
+                {{$blog->links('frontend.tailwind-paginator')}}
+            </div>
         </div>
         <x-footer/>
     </div>

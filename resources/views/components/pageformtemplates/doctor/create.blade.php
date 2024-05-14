@@ -6,6 +6,10 @@
     <label class="label" for="">Slug</label>
     <input @titlechange.window="if ($event.detail.key == 'create-doctor') {$el.value = $event.detail.value.toLowerCase().replace(/ /g, '-').replace(/[@#\$%\^\&*()_\+=\[\]{};':\\\|,\.<>\/\?~`]/g, '');}" name="slug" type="text" class="input input-bordered w-full" required />
 </div>
+<div>
+    <label class="label" for="">Display Priority</label>
+    <input name="display_priority" type="number" step="1" min="1" class="input input-bordered w-full" required />
+</div>
 <div class="flex flex-row space-x-4 w-full">
     <div class="flex-grow form-control">
         <label class="label" for="">Departmant</label>

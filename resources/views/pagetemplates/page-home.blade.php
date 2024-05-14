@@ -43,7 +43,7 @@
                             x-init="
                                 setInterval(() => {
                                     //console.log('currentIndex: '+currentIndex);
-                                    currentIndex = currentIndex < 3 ? currentIndex + 1 : 0;
+                                    currentIndex = currentIndex < 4 ? currentIndex + 1 : 0;
                                 }, 3000);
                             " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
                             {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
@@ -87,7 +87,17 @@
                                 x-transition:leave-start="cube-enter-end"
                                 x-transition:leave-end="cube-leave-end"
                                 >
-                                <img src="/images/home/at_kochi.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="0% emi offer">
+                                <img src="/images/home/at_kochi.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="At Cochin">
+                            </div>
+                            <div x-show="currentIndex == 4" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                                x-transition:enter="transition ease-in-out duration-1000"
+                                x-transition:enter-start="cube-enter-start"
+                                x-transition:enter-end="cube-enter-end"
+                                x-transition:leave="transition ease-in-out duration-1000"
+                                x-transition:leave-start="cube-enter-end"
+                                x-transition:leave-end="cube-leave-end"
+                                >
+                                <img src="/images/home/craft_campus.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="Craft Campus">
                             </div>
                         </div>
                         <div class="flex justify-center">
@@ -147,10 +157,10 @@
                         "
                         id="counts-div"
                         class="flex justify-center space-x-2  sm:space-x-4    md:space-x-6  lg:space-x-12  rtl:space-x-reverse z-20 relative mt-6 pb-12">
-                        <x-babynew-component :count="'14000'" text="{{__('homecontent.ivf_icfsi')}}" />
-                        <x-babynew-component :count="'3800'" text="{{__('homecontent.mtese')}}" />
-                        <x-babynew-component :count="'500'" text="{{__('homecontent.pgs')}}" />
-                        <x-babynew-component :count="'56700'" text="{{__('homecontent.others')}}" />
+                        <x-babynew-component :count="'15134'" :plus="true" text="{{__('homecontent.ivf_icfsi')}}" />
+                        <x-babynew-component :count="'2509'" :plus="true" text="{{__('homecontent.mtese')}}" />
+                        <x-babynew-component :count="'511'" :plus="true" text="{{__('homecontent.pgs')}}" />
+                        <x-babynew-component :count="'56846'" :plus="true" text="{{__('homecontent.others')}}" />
 
                     </div>
                 </div>
@@ -238,9 +248,27 @@
                                 //console.log(r.data[0]);
                                 this.reviews = r.data[0];
                                 this.setCurrentItems();
+                                setInterval(() => {
+                                    this.autoPlay();
+                                }, 2000);
                             }).catch((e) => {
                                 //console.log(e);
                             });
+                        },
+                        autoPlay() {
+                            if (this.currentItems.length == 3) {
+                                if (this.currentItems[2] != this.reviews.length -1) {
+                                    this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                                } else {
+                                    this.currentItems = [0, 1, 2];
+                                }
+                            } else if (this.currentItems.length == 1) {
+                                if (this.currentItems[0] != this.reviews.length - 1) {
+                                    this.currentItems = [this.currentItems[0] + 1];
+                                } else {
+                                    this.currentItems = [0];
+                                }
+                            }
                         }
                     }"
                     x-init="
@@ -408,9 +436,21 @@
                                 //console.log(r.data[0]);
                                 this.videos = r.data[0];
                                 this.setCurrentItems();
+                                setInterval(() => {
+                                    this.autoPlay();
+                                }, 3000);
                             }).catch((e) => {
                                 //console.log(e);
                             });
+                        },
+                        autoPlay() {
+                            if (this.currentItems[0] != this.videos.length - 1) {
+                                this.wrapperOffset = this.wrapperOffset - this.itemWidth;
+                                this.currentItems[0]++;
+                            } else {
+                                this.wrapperOffset = 0;
+                                this.currentItems = [0];
+                            }
                         }
                     }"
                     x-init="
@@ -721,9 +761,27 @@
                         ).then((r) => {
                             this.doctors = r.data[0];
                             this.setCurrentItems();
+                            setInterval(() => {
+                                this.autoPlay();
+                            }, 3000);
                         }).catch((e) => {
                             //console.log(e);
                         });
+                    },
+                    autoPlay() {
+                        if (this.currentItems.length == 3) {
+                            if (this.currentItems[2] != this.doctors.length -1) {
+                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                            } else {
+                                this.currentItems = [0, 1, 2];
+                            }
+                        } else if (this.currentItems.length == 1) {
+                            if (this.currentItems[0] != this.doctors.length - 1) {
+                                this.currentItems = [this.currentItems[0] + 1];
+                            } else {
+                                this.currentItems = [0];
+                            }
+                        }
                     }
                 }"
                 x-init="
@@ -871,9 +929,41 @@
                             this.newsitems = r.data[0];
                             this.setCurrentItems();
                             this.setWrapperOffset();
+                            setInterval(() => {
+                                this.autoPlay();
+                            }, 3000);
                         }).catch((e) => {
                             //console.log(e);
                         });
+                    },
+                    autoPlay() {
+                        if (this.currentItems[0] != this.newsitems.length - (this.currentItems.length - 1)) {
+                            this.wrapperOffset = this.wrapperOffset - this.itemWidth;
+
+
+                            if (this.currentItems.length == 4) {
+                                if (this.currentItems[3] < this.newsitems.length - 1) {
+                                    this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[3], this.currentItems[3] + 1];
+                                } else {
+                                    this.currentItems = [0, 1, 2, 3];
+                                    this.wrapperOffset = 0;
+                                }
+                            } else if (this.currentItems.length == 1) {
+                                if (this.currentItems[0] != this.newsitems.length - 1) {
+                                    this.currentItems = [this.currentItems[0] + 1];
+                                } else {
+                                    this.currentItems = [0];
+                                    this.wrapperOffset = 0;
+                                }
+                            }
+
+
+                            {{-- if (this.currentItems.length == 4 && this.currentItems[3] != this.newsitems.length -1 ) {
+                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[3], this.currentItems[3] + 1];
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != this.newsitems.length - 1) {
+                                this.currentItems = [this.currentItems[0] + 1];
+                            } --}}
+                        }
                     }
                 }"
                 x-init="

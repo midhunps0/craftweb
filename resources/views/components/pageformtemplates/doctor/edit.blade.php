@@ -10,6 +10,11 @@
     <input @titlechange.window="if ($event.detail.key == 'edit-doctor') {$el.value = $event.detail.value.toLowerCase().replace(/ /g, '-').replace(/[@#\$%\^\&*()_\+=\[\]{};':\\\|,\.<>\/\?~`]/g, '');}" name="slug" type="text" class="input input-bordered w-full"
     value="{{$instance->getTranslation($locale)->slug ?? ''}}" required />
 </div>
+<div>
+    <label class="label justify-start" for="">Display Priority &nbsp;<i class="text-xs text-warning">(Same for all translations)</i></label>
+    <input name="display_priority" type="number" step="1" min="1" class="input input-bordered w-full"
+        value="{{$instance->display_priority ?? ''}}" required />
+</div>
 <div class="flex flex-row space-x-4 w-full">
     <div class="flex-grow form-control">
         <label class="label" for="">Departmant</label>

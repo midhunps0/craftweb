@@ -271,6 +271,7 @@ class DoctorService implements ModelViewConnector {
         return [
             'locale' => ['required', 'string'],
             'slug' => ['required', 'string'],
+            'display_priority' => ['sometimes', 'integer'],
             'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
         ];
@@ -281,6 +282,7 @@ class DoctorService implements ModelViewConnector {
         return [
             'locale' => ['required', 'string'],
             'slug' => ['required', 'string'],
+            'display_priority' => ['sometimes', 'integer'],
             'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
         ];
@@ -343,7 +345,9 @@ class DoctorService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $wp = Doctor::create();
+            $wp = Doctor::create([
+                    'display_priority' => $data['display_priority']
+                ]);
             $wp->addMediaFromEAInput('photo', $data['photo']);
 
             $translation = Translation::create(
@@ -384,14 +388,16 @@ class DoctorService implements ModelViewConnector {
     public function update($id, array $data)
     {
         info('inside Doctor update');
+        info($data);
         try {
             DB::beginTransaction();
-            info('data');
-            info($data['data']);
+
             /**
              * @var Doctor
              */
             $wp = Doctor::find($id);
+            $wp->display_priority = $data['display_priority'];
+            $wp->save();
 
             $wp->syncMedia('photo', $data['photo']);
             /**
