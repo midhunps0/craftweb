@@ -41,16 +41,19 @@ class BookingService
 
     private function isSolverAvailable()
     {
-        $host = $this->solverDomain;
+        $host = config('app_settings.solver_ip');
         $port = 80;
         $waitTimeoutInSeconds = 1;
-
-        if($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){
-            $this->solverOk = true;
-        } else {
+        try{
+            if($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){
+                $this->solverOk = true;
+            } else {
+                $this->solverOk = false;
+            }
+            fclose($fp);
+        } catch(Exception $e) {
             $this->solverOk = false;
         }
-        fclose($fp);
         return $this->solverOk;
     }
 

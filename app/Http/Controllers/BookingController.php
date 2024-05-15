@@ -10,8 +10,9 @@ use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
 class BookingController extends SmartController
 {
     private $service;
-    public function __construct(BookingService $service)
+    public function __construct(Request $request, BookingService $service)
     {
+        $this->request = $request;
         $this->service = $service;
     }
 

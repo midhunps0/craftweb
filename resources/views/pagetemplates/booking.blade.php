@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="text-base">{{dd('hi')}}
+    <div class="text-base">
         <div
             class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
@@ -22,6 +22,7 @@
                 phone: '',
                 email: '',
                 airpayFields: '',
+                solverOk: true,
                 fetchDates() {
                     axios.get(
                         '{{route('booking.dates')}}',
@@ -189,18 +190,22 @@
                 });
                 @if (isset($doctors))
                     doctors = {{Js::from($doctors)}};
+                @else
+                    solverOk = false;
                 @endif
                 @if (isset($specialties))
                     specialties = {{Js::from($specialties)}}.filter((s) => {
                         return hasDoctors(s.Sp_Cd);dbng
                     });
+                @else
+                    solverOk = false;
                 @endif
 
                 divWidthOriginal = document.getElementById('booking-form-div').offsetWidth / 2;
                 divWidth = 0;
             "
             class="min-h-1/2 gap-4 w-full border border-gray p-8">
-                <div id="booking-form-div" class="flex w-full justify-center py-4 mb-4 px-8">
+                <div x-show="solverOk" id="booking-form-div" class="flex w-full justify-center py-4 mb-4 px-8">
                     {{-- <x-booking-stage-component/> --}}
                     {{-- <x-bookingstage1 /> --}}
                     {{-- <x-bookingstage2 />
@@ -285,11 +290,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center">
+                <div x-show="solverOk" class="flex justify-center">
                     <form id="airpay-form"  action="https://payments.airpay.co.in/pay/index.php" method="post">
                         <div x-html="airpayFields"></div>
                     </form>
                     <button type="button" @click="getPaymentForm();" class="text-white bg-blue text-xs lg:text-sm py-2 px-4 lg:py-2 lg:px-6 tracking-widest cursor-pointer disabled:bg-opacity-70 disabled:cursor-crosshair" :disabled="!inputsReady()">{{__('contact.confirm')}}</button>
+                </div>
+                <div x-show="!solverOk" class="p-8 text-center">
+                    THe booking server is unavailable now. Please try later.
                 </div>
             </div>
         </div>

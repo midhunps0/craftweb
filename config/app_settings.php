@@ -16,6 +16,7 @@ return [
     'hfeature_translation_component' => 'hilight_feature',
     'solver_userid' => 'VOICEOC_TEST',
     'solver_password' => '@piPa$$word',
+    'solver_ip' => '117.232.77.122',
     'solver_domain' => 'http://117.232.77.122:98',
     'solver_token_url' => '/API/Security/ValidateUser',
     'solver_specialties_url' => '/API/Appointment/GetSpecialtyList',
