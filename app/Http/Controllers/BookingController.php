@@ -15,15 +15,19 @@ class BookingController extends SmartController
         $this->service = $service;
     }
 
-    public function test($locale)
-    {
-        return 'success';
-    }
-
     public function bookingPage($locale)
-    { return 'hi';
+    {
         try {
             App::setlocale($locale);
+            if (!$this->service->solverOk) {
+                return $this->buildResponse(
+                    'pagetemplates.booking',
+                    [
+                        'success' => false,
+                        'error' => 'Booking Server Not Vailable.'
+                    ]
+                );
+            }
             $data = $this->service->initData();
             return $this->buildResponse(
                 'pagetemplates.booking',

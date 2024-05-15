@@ -61,7 +61,7 @@ Route::get('/dashboard', function () {
 // Route::get('/{locale}/booking', function () {
 //     return 'kkdsas';
 // })->name('booking');
-Route::get('/{locale}/booking', [BookingController::class, 'test'])->name('booking');
+Route::get('/{locale}/booking', [BookingController::class, 'bookingPage'])->name('booking');
 Route::get('/booking/specialties', [BookingController::class, 'specialties'])->name('booking.specialties');
 Route::get('/booking/doctors', [BookingController::class, 'doctors'])->name('booking.doctors');
 Route::get('/booking/dates', [BookingController::class, 'dates'])->name('booking.dates');
