@@ -2,7 +2,8 @@
 return[
     'about-craft' => 'en/pages/about-craft',
     'message-from-chairman' => 'en/pages/message-from-chairman',
-    'international-patients' => 'en/pages/international-patients-2',
+    'international-patients' => 'en/pages/international-patients',
+    'international-patients-2' => 'en/pages/international-patients-2',
     'our-achievements' => 'en/pages/our-achievements',
     'female-fertility' => 'en/pages/female-fertility',
     'sperm-and-embryo-freezing' => 'en/pages/sperm-and-embryo-freezing',
