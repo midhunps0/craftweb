@@ -89,16 +89,21 @@
             <div class="flex justify-between items-center flex-col lg:flex-row md:w-5/12">
                 <div class="flex justify-center items-center flex-col w-full">
                     <div
-                        class="flex justify-end items-center mt-10 flex-col-reverse lg:flex-row w-full ltr:pr-12 rtl:pl-12">
-                        <div>
-                            <img src="/images/icons/nabh-logo.png" alt="" class="lg:w-24 mr-4 w-16">
-                        </div>
-                        <div>
-                            <img src="/images/icons/logo20years.png" alt="" class="lg:w-24 lg:mr-4 w-16">
+                        class="flex justify-end items-center mt-10 flex-col-reverse lg:flex-col  w-full ltr:pr-12 rtl:pl-12">
+                        <div class="flex flex-col lg:flex-row lg:my-6">
+                            <div>
+                                <img src="/images/icons/nabh-logo.png" alt="" class="lg:w-24 mr-4 w-16">
+                            </div>
+                            <div>
+                                <img src="/images/icons/logo20years.png" alt="" class="lg:w-24 lg:mr-4 w-16">
+                            </div>
                         </div>
                         <div class="">
                             <h3 class="text-xs text-white">{{ __('footer.our_sister_concern') }}</h3>
-                            <img src="/images/icons/ar_logo.png" alt="" class="lg:w-52 w-40 lg:mb-0 mb-4 ">
+                            <div class="flex flex-col lg:flex-row gap-2 justify-center items-center">
+                            <img src="/images/icons/ar_logonew.webp" alt="" class="lg:w-52 w-40 lg:mb-0 mb-4">
+                            <img src="/images/icons/craftnursingnew.webp" alt="" class="w-20 lg:w-28 lg:mb-0 mb-4" >
+                            </div>
                         </div>
                     </div>
                 </div>

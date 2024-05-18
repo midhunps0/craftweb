@@ -24,7 +24,7 @@ return[
     'kochi'=>'Kochi',
     'kodungallur'=>'Kodungallur',
     'perinthalmanna'=>'Perinthalmanna',
-    ''=>'',
+    'click_here_to'=>'Click here to',
     ''=>'',
     ''=>'',
     ''=>'',

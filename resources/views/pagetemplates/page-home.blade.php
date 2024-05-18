@@ -17,9 +17,15 @@
                         <p class="text-darkgray leading-[3.25rem]">
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
-                        <div class="lg:flex lg:mt-12 lg:gap-x-2">
+                        <div class="lg:mt-12">
+                        <div class="flex flex-row justify-start gap-1 items-center my-2">   
+                        <p class="text-sm lg:text-base text-blue">{{__('homecontent.click_here_to')}}</p>
+                        <div class="flex items-center fill-current text-blue"><x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-4" width="w-4" /></div>
+                        </div> 
+                        <div class="lg:flex lg:gap-x-2">
                             <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})" />
                             <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
+                        </div>
                         </div>
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
                            {{__('homecontent.feel_free_to_call')}}
@@ -111,7 +117,11 @@
                     </div>
                 </div>
                 <div class="lg:hidden mt-24 sm:mt-28 sm:pt-0 relative ">
-                    <div class="flex justify-center gap-x-2 md:mt-36">
+                    <div class="flex flex-row justify-start gap-1 items-center my-2  md:mt-36">   
+                        <p class="text-sm lg:text-base text-blue">{{__('homecontent.click_here_to')}}</p>
+                        <div class="flex items-center fill-current text-blue"><x-easyadmin::display.icon icon="icons.chevron-down-solid" height="h-4" width="w-4" /></div>
+                    </div> 
+                    <div class="flex justify-center gap-x-2">
                         <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})"/>
                         <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565"/>
                     </div>
