@@ -21,13 +21,14 @@ return [
                         09.00 AM - 06.00 PM(Kochi)<br>',
     'opening_hours_kodungallur' => ' Mon - Sun<br>
                             Always Open (Kodungallur)<br>',
-    'our_sister_concern' => 'Our Sister Concern',
+    'our_sister_concerns' => 'Our Sister Concerns',
     'book_appointment_content' => 'Check Doctor Availability & Book Appointment Online',
     'send_us_message' => 'Send Us A Message',
     'emails_craft' => 'info@craftivf.com, info@craftivfkochi.com',
     'craft_address_perinthalmanna' => 'CRAFT Multispeciality Centre<br>
                                         X66H+3JH, Cholomkunnu, Pattambi Rd,<br> Perinthalmanna, Kerala 679322',
     'other_location' => 'Other Locations',
+    'click_here_to' => 'Click Here To',
 
 ];
 ?>

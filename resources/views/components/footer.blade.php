@@ -99,10 +99,10 @@
                             </div>
                         </div>
                         <div class="">
-                            <h3 class="text-xs text-white">{{ __('footer.our_sister_concern') }}</h3>
+                            <h3 class="text-xs text-white">{{ __('footer.our_sister_concerns') }}</h3>
                             <div class="flex flex-col lg:flex-row gap-2 justify-center items-center">
                             <img src="/images/icons/ar_logonew.webp" alt="" class="lg:w-52 w-40 lg:mb-0 mb-4">
-                            <img src="/images/icons/craftnursingnew.webp" alt="" class="w-20 lg:w-28 lg:mb-0 mb-4" >
+                            <img src="/images/icons/craftnursingnew.webp" alt="" class="w-20 lg:w-28 lg:mb-0 mb-4 rounded-lg" >
                             </div>
                         </div>
                     </div>

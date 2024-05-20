@@ -4,7 +4,8 @@
            <img src="/images/icons/bookappointmentbgremove.png" class="h-20 md:h-28 mt-4" alt="">
         </div>
         <div class="items-center 3/4">
-            <p class="font-franklin font-medium items-center text-xl md:text-2xl lg:text-3xl pt-6 ml-3"><a href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})">{{ __('button.book_an_appointment') }}</a></p>
+        <p class="font-franklin font-medium items-center text-xs md:text-sm lg:text-base ml-3 pt-6">{{ __('footer.click_here_to') }}</p>
+            <p class="font-franklin font-medium items-center text-xl md:text-2xl lg:text-3xl  ml-3"><a href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})">{{ __('button.book_an_appointment') }}</a></p>
             <p class="font-franklin font-medium items-center text-xs md:text-sm lg:text-base ml-3">{{ __('footer.book_appointment_content') }}</p>
         </div>
 
