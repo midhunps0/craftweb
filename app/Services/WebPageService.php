@@ -179,9 +179,9 @@ class WebPageService implements ModelViewConnector {
 
     public function getReviewsData($locale, $page = 1)
     {
-        return Review::paginate(perPage: 100, page: $page);
-        // return Review::orderBy(DB::raw('RAND(1234)'))
-        //     ->paginate(perPage: 10, page: $page);
+        // return Review::paginate(perPage: 100, page: $page);
+        return Review::orderBy(DB::raw('RAND(1234)'))
+            ->paginate(perPage: 10, page: $page);
     }
 
     public function getFileFields(): array
