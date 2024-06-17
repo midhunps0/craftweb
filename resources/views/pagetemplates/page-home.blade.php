@@ -835,7 +835,7 @@
                 "
                 @resize.window="setCurrentItems();"
                 class="w-full lg:w-2/3">
-                <div id="items-container" class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden">
+                <div id="items-container" class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden items-stretch">
                     <template x-for="(d,i) in doctors">
                         <div :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'"
                             class="flex flex-row justify-end transition-all overflow-x-hidden">
@@ -845,15 +845,15 @@
                                       <p class="text-xl font-franklin pt-6 min-h-20 " x-text="d.current_translation.data.name"></p>
                                    </div>
 
-                                   <div class="relative flex flex-row justify-end">
-                                      <img :src="d.photo_url" class="h-52 dir-img" alt="doctor_image">
+                                   <div class="relative flex flex-row justify-end w-full">
+                                      <img :src="d.photo_url" class="w-full min-h-52 dir-img" alt="doctor_image">
                                       <!-- <img src="/images/home/demo-img1.webp" class="h-52 dir-img " alt="doctor_image"> -->
                                    </div>
 
-                                   <div class="absolute flex ltr:flex-row rtl:flex-row-reverse items-center space-x-2 -rotate-90 origin-top-left bottom-10 ltr:left-2 rtl:-right-24">
+                                   {{-- <div class="absolute flex ltr:flex-row rtl:flex-row-reverse items-center space-x-2 -rotate-90 origin-top-left bottom-10 ltr:left-2 rtl:-right-24">
                                          <img src="/images/icons/Copy of icone-d-information-noir.png" class="opacity-40 h-8 w-8 rotate-90" alt="">
                                          <p class="text-gray text-xs font-normal">{{__('homecontent.craft_ivf_hospital')}}</p>
-                                   </div>
+                                   </div> --}}
 
                                    <div class="bg-gray-600 py-3 h-20 flex flex-col w-full justify-center items-center overflow-hidden">
                                       <p class="text-white font-questrial font-normal text-sm text-center overflow-y-hidden" x-text="d.current_translation.data.designation"></p>
