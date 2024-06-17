@@ -17,12 +17,12 @@
                         <p class="text-darkgray leading-[3.25rem]">
                             {!! $instance->current_translation->data['title'] !!}
                         </p>
-                       
+
                         <div class="lg:flex lg:gap-x-2 lg:mt-12">
                             <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})" />
                             <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565" />
                         </div>
-                        
+
                         <p class="mt-8 font-bold md:text-base xl:text-lg 2xl:text-xl flex font-gothic">
                            {{__('homecontent.feel_free_to_call')}}
                         </p>
@@ -41,17 +41,59 @@
                     <div class="w-full m-auto lg:w-1/2 ltr:lg:justify-start rtl:lg:justify-end">
                         <div x-data="{
                                 currentIndex: 0,
+                                images: [
+                                    {
+                                        url: '/images/home/motherhood.webp',
+                                        alt: 'Motherhood with craft'
+                                    },
+                                    {
+                                        url: '/images/home/blessed-gift.webp',
+                                        alt: 'Get blessed with your baby'
+                                    },
+                                    {
+                                        url: '/images/home/compassionate-care.webp',
+                                        alt: 'Compassionate care'
+                                    },
+                                    {
+                                        url: '/images/home/male-infertility.webp',
+                                        alt: 'Male infertility treatment'
+                                    },
+                                    {
+                                        url: '/images/home/santhwanam.webp',
+                                        alt: 'Santhanam package'
+                                    },
+                                    {
+                                        url: '/images/home/at_kochi.webp',
+                                        alt: 'Now at Cochin'
+                                    },
+                                    {
+                                        url: '/images/home/craft_campus.webp',
+                                        alt: 'Craft campus'
+                                    },
+                                ]
                             }"
                             x-init="
                                 setInterval(() => {
                                     //console.log('currentIndex: '+currentIndex);
-                                    currentIndex = currentIndex < 4 ? currentIndex + 1 : 0;
+                                    currentIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
                                 }, 3000);
                             " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
                             {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
-                                <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
                             {{-- </div> --}}
-                            <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0"
+                            <template x-for="(img, i) in images">
+                                <div x-show="currentIndex == i" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0"
+                                x-transition:enter="transition ease-in-out duration-1000"
+                                x-transition:enter-start="cube-enter-start"
+                                x-transition:enter-end="cube-enter-end"
+                                x-transition:leave="transition ease-in-out duration-1000"
+                                x-transition:leave-start="cube-enter-end"
+                                x-transition:leave-end="cube-leave-end"
+                                >
+                                <img :src="img.url" width="330px" height="330px" class="h-full w-full" class="object-fit" :alt="img.alt">
+                            </div>
+                            </template>
+                            {{-- <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0"
                                 x-transition:enter="transition ease-in-out duration-1000"
                                 x-transition:enter-start="cube-enter-start"
                                 x-transition:enter-end="cube-enter-end"
@@ -60,8 +102,8 @@
                                 x-transition:leave-end="cube-leave-end"
                                 >
                                 <img src="/images/home/the_week.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image" alt="santhwanam package">
-                            </div>
-                            <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                            </div> --}}
+                            {{-- <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
                                 x-transition:enter-start="cube-enter-start"
                                 x-transition:enter-end="cube-enter-end"
@@ -70,8 +112,8 @@
                                 x-transition:leave-end="cube-leave-end"
                                 >
                                 <img src="/images/home/santhwanam.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="now in cochin">
-                            </div>
-                            <div x-show="currentIndex == 2" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                            </div> --}}
+                            {{-- <div x-show="currentIndex == 2" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
                                 x-transition:enter-start="cube-enter-start"
                                 x-transition:enter-end="cube-enter-end"
@@ -80,8 +122,8 @@
                                 x-transition:leave-end="cube-leave-end"
                                 >
                                 <img src="/images/home/emi_offers.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="ranked among tp 10">
-                            </div>
-                            <div x-show="currentIndex == 3" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                            </div> --}}
+                            {{-- <div x-show="currentIndex == 3" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
                                 x-transition:enter-start="cube-enter-start"
                                 x-transition:enter-end="cube-enter-end"
@@ -90,8 +132,8 @@
                                 x-transition:leave-end="cube-leave-end"
                                 >
                                 <img src="/images/home/at_kochi.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="At Cochin">
-                            </div>
-                            <div x-show="currentIndex == 4" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                            </div> --}}
+                            {{-- <div x-show="currentIndex == 4" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
                                 x-transition:enter="transition ease-in-out duration-1000"
                                 x-transition:enter-start="cube-enter-start"
                                 x-transition:enter-end="cube-enter-end"
@@ -100,7 +142,7 @@
                                 x-transition:leave-end="cube-leave-end"
                                 >
                                 <img src="/images/home/craft_campus.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="Craft Campus">
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="flex justify-center">
                             <div
@@ -113,7 +155,7 @@
                     </div>
                 </div>
                 <div class="lg:hidden mt-24 sm:mt-28 sm:pt-0 relative ">
-                    
+
                     <div class="flex justify-center gap-x-2">
                         <x-bluebutton-component text="{{ __('button.book_an_appointment') }}" href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()])}}', route: 'booking'})"/>
                         <x-pinkbutton-component text="{{ __('button.chat_with_us') }}" href="https://wa.me/918590462565"/>
