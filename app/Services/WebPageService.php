@@ -124,7 +124,7 @@ class WebPageService implements ModelViewConnector {
 
     public function getHomeReviews($locale)
     {
-        return Review::orderBy('display_priority', 'desc')->limit(12)->get();
+        return Review::where('display_priority', '>', 1)->orderBy('display_priority', 'desc')->limit(9)->get();
     }
 
     public function getHomeVideos($locale)
