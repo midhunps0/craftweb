@@ -75,4 +75,9 @@ class Doctor extends Model implements MediaOwner
             }
         );
     }
+
+    public function scopeActive($query)
+    {
+        $query->where('is_active', true);
+    }
 }

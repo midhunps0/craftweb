@@ -1,7 +1,24 @@
-<div class="flex flex-col  border border-gray/25 bg-white shadow-xl p-10">
+<div x-data="{
+    loading: false,
+    doSubmit(e) {
+        let f = e.target;
+        let fd = new FormData(f);
+        this.loading = true;
+        axios.post('{{route('mail.contact')}}', fd).then((r) => {
+            console.log('mail response');
+            console.log(r);
+            this.loading = false;
+        }).catch((e) => {
+            this.loading = false;
+        });
+    }
+}"  class="flex flex-col  border border-gray/25 bg-white shadow-xl p-10">
     <p class="text-xl font-franklin font-bold">{{__('contact.please_submit_form')}}</p>
-    <form  method="POST" action="">
+    <form  method="POST" action="" @submit.prevent.stop="doSubmit">
     @csrf
+    <div x-show="loading" class="absolute top-0 left-0 h-full w-full bg-white bg-opacity-40 flex justify-center items-center">
+        <span class="animate-pulse text-warning">Please wait..</span>
+    </div>
         <div class="flex flex-col gap-8 mt-6 ">
             <div class="relative  ">
                 <input id="name" name="name" type="text" autocomplete="name"
