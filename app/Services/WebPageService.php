@@ -81,7 +81,9 @@ class WebPageService implements ModelViewConnector {
         // dd($item->current_translation->data['metatags']);
         MetatagHelper::setTitle($item->current_translation->data['metatags']['title'] ?? env('APP_NAME'));
         MetatagHelper::addTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
-
+        MetatagHelper::addTag('type', 'website');
+        MetatagHelper::addOgTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
+        MetatagHelper::addOgTag('type', 'website');
         $thedata = [];
         if ($slug == 'home') {
             // $hfeatures = HilightFeature::all();
