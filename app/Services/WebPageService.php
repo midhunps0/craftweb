@@ -79,10 +79,16 @@ class WebPageService implements ModelViewConnector {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
         // dd($item->current_translation->data['metatags']);
-        MetatagHelper::setTitle($item->current_translation->data['metatags']['title'] ?? env('APP_NAME'));
-        MetatagHelper::addTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
+        $title = $item->current_translation->data['metatags']['title'] ?? env('APP_NAME');
+        MetatagHelper::setTitle($title);
+        MetatagHelper::addTag('title', $title);
+        MetatagHelper::addOgTag('title', $title);
+
+        $description = $item->current_translation->data['metatags']['description'] ?? env('APP_NAME');
+        $ogDescription = $item->current_translation->data['metatags']['description'] ?? $description;
+        MetatagHelper::addTag('description', $description);
         MetatagHelper::addTag('type', 'website');
-        MetatagHelper::addOgTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
+        MetatagHelper::addOgTag('description', $ogDescription);
         MetatagHelper::addOgTag('type', 'website');
         $thedata = [];
         if ($slug == 'home') {
