@@ -27,7 +27,7 @@
                            {{__('homecontent.feel_free_to_call')}}
                         </p>
                         <div class="flex  mt-2 flex-row items-center space-x-1">
-                            <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="">
+                            <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="phone">
                             <p class="text-black text-sm  md:text-base xl:text-lg 2xl:text-xl font-light">+91 8590462565
                             </p>
                         </div>
@@ -79,7 +79,7 @@
                                 }, 3000);
                             " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
                             {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
-                            <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="craft ivf hospital">
                             {{-- </div> --}}
                             <template x-for="(img, i) in images">
                                 <div x-show="currentIndex == i" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0"
@@ -164,7 +164,7 @@
                         <p class="mt-8 font-bold md:text-base text-center  font-gothic">{{__('homecontent.feel_free_to_call')}}
                         </p>
                         <div class="flex justify-center  mt-2 flex-row items-center space-x-1">
-                            <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="">
+                            <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="phone number">
                             <p class="text-black text-sm  md:text-base xl:text-lg 2xl:text-xl font-light">+91 8590462565
                             </p>
                         </div>
@@ -236,7 +236,7 @@
 
             <div class="ltr:flex flex-row w-full rtl:flex-reverse mt-4">
                 <img src="/images/icons/google icon.webp" class="h-6 lg:h-8 xl:h-10 rounded-full border border-gray"
-                    alt="">
+                    alt="google reviews">
                 <p
                     class="text-darkgray font-franklin ltr:text-left rtl:text-right  text-base lg:text-lg xl:text-xl xl:p-2">
                     {{__('homecontent.reviews')}}</p>
@@ -337,7 +337,7 @@
                             <div class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
                                 <div class="w-full h-96 m-3" :style="`min-width: ${itemWidth - 20}px`">
                                     <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-start">
-                                        <img :src="r.photo_url" class="object-contain" :alt="'review by' + r.current_translation.data.reviewer">
+                                        <img :src="r.photo_url" class="object-contain" :alt="'review by ' + r.current_translation.data.reviewer">
                                         <div @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
                                         :class="{'overflow-hidden h-20 hover:text-pink bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div>
                                         {{-- <div class="flex w-full p-2 items-center">
@@ -420,7 +420,7 @@
                 class="flex flex-col md:flex-row relative w-full z-10 overflow-hidden">
                 <div class="w-full md:w-1/2 py-4 md:py-16 relative transition-transform duration-1000 ease-in-out" :class="{'scale-100 bg-opacity-100 opacity-100' : done, 'scale-50 bg-opacity-0 opacity-0' : !done}">
                     <div class="absolute z-0 top-0 py-10 left-0 h-full w-full">
-                        <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="">
+                        <img src="/images/icons/qouteleftgray.png" class="h-full hidden md:block z-0 dir-img"alt="quote">
                     </div>
                     <h2 class="text-3xl text-darkgray font-franklin pt-6 relative z-40">
                         {{__('homecontent.video_testimonials')}}</h2>
@@ -517,9 +517,9 @@
                                         </template> --}}
                                         <template x-if="!videoOn">
                                             <div class="absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center">
-                                                <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="w-full">
+                                                <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="w-full" :alt="'testimonial video: ' + v.thumbnail_url">
                                                 <div @click="videoOn = true;" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center">
-                                                    <img src="{{asset('images/icons/yt_logo.png')}}" alt="">
+                                                    <img src="{{asset('images/icons/yt_logo.png')}}" alt="youtube logo">
                                                 </div>
                                             </div>
                                         </template>
@@ -646,7 +646,7 @@
                     :class="{'bg-opacity-100 scale-100': xdone, 'bg-opacity-0 scale-90': !xdone}">
                     <div class="absolute h-full w-full top-0 left-0 z-0 flex justify-center">
                         <img src="/images/icons/vector women pink_Mesa de trabajo 1.png" class="h-full opacity-40 dir-img"
-                            alt="pregnant_lady_image">
+                            alt="pregnant lady">
                     </div>
                     <div class="relative z-40">
                             <div class="flex w-full justify-center items-center min-h-96 transition-all duration-500">
@@ -846,7 +846,7 @@
                                    </div>
 
                                    <div class="relative flex flex-row justify-end w-full">
-                                      <img :src="d.photo_url" class="w-full min-h-52 dir-img" alt="doctor_image">
+                                      <img :src="d.photo_url" class="w-full min-h-52 dir-img" :alt="d.current_translation.data.name +' photo'">
                                       <!-- <img src="/images/home/demo-img1.webp" class="h-52 dir-img " alt="doctor_image"> -->
                                    </div>
 
@@ -1029,7 +1029,7 @@
                         <div :style="`width: ${itemWidth}px`" class="overflow-hidden flex flex-col">
                             <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white flex-grow">
                                 <div class="h-72 overflow-hidden flex justify-center items-center border border-lightgray">
-                                    <img :src="n.image_url" alt="" class="m-auto object-cover">
+                                    <img :src="n.image_url" alt="" class="m-auto object-cover" :alt="n.current_translation.data.title">
                                 </div>
                                 <div class="text-center p-2 mt-4" x-text="n.current_translation.data.title"></div>
                             </div>

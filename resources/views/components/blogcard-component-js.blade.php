@@ -4,7 +4,7 @@
 <div class="flex flex-col h-full p-4 rounded-sm border border-lightgray shadow-[1px_1px_2px_2px_rgba(4,4,4,0.1)] text-sm">
     <div class="w-full relative overflow-hidden border border-lightgray" style="padding-bottom:56.25%">
     <img :src="a.display_image" class="absolute w-full"
-        alt="ivf_image" />
+        :alt="a.current_translation.data.title" />
     </div>
     <div class="flex flex-col flex-grow">
         <h4 class="font-questrial text-left font-bold min-h-10 flex-grow text-md mt-3" x-text="a.current_translation.data.title"></h4>
