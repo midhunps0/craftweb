@@ -43,14 +43,14 @@
                 </label>
             </div>
             <div class="relative   ">
-                <input id="message" name="message" type="text"
+                {{-- <input id="message" name="message" type="text"
                     class="w-full h-10 text-gray-900 placeholder-transparent border-0  peer focus:outline-none focus:border-0 border-b
                         border-black"
-                    placeholder="Mesage" required/>
-                <label for="message"
-                    class="absolute ltr:left-0 rtl:right-0 -top-3.5text-sm transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:md:text-base
-                        peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm font-franklin">{{__('contact.message')}}
+                    placeholder="Mesage" required/> --}}
+                <label for="message" class="font-franklin">
+                    {{__('contact.message')}}
                 </label>
+                <textarea name="message" class="w-full" rows="3"></textarea>
             </div>
             <div>
                 <button type="submit" class="cursor-pointer text-sm  font-semibold  bg-gray font-franklin tracking-widest w-full p-2">{{__('contact.send')}}</button>
