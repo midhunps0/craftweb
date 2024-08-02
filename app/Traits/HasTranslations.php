@@ -5,12 +5,17 @@ use App\Models\Translation;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Lang;
 
 trait HasTranslations {
     public function translations(): MorphMany
     {
         return $this->morphMany(Translation::class, 'translatable');
+    }
+
+    public function defaultTranslation(): MorphMany
+    {
+        return $this->morphMany(Translation::class, 'translatable')
+            ->where('locale', 'en');
     }
 
     public function defaultTitle(): Attribute
@@ -48,6 +53,23 @@ trait HasTranslations {
                 foreach (config('app_settings.enabled_locales') as $c => $l) {
                     $t = $this->getTranslation($c);
                     $ar[$c] = $t != null ? $t->data : [];
+                    if(count($ar[$c]) == 0) {
+                        $ar[$c] = ($this->getTranslation(config('app_settings.default_locale')))->data;
+                    }
+                }
+                return $ar;
+            }
+        );
+    }
+
+    public function translationsSlugs(): Attribute
+    {
+        return Attribute::make(
+            get: function ($v) {
+                $ar = [];
+                foreach (config('app_settings.enabled_locales') as $c => $l) {
+                    $t = $this->getTranslation($c);
+                    $ar[$c] = $t != null ? ($t->slug ?? '#') : $this->getTranslation(config('app_settings.default_locale'))->slug;
                 }
                 return $ar;
             }
