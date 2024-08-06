@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html x-data="{theme: $persist('light'), href: '', currentpath: '{{url()->current()}}', currentroute: '{{ Route::currentRouteName() }}', compact: $persist(false), metatags: [], xtitle: '',
+<html x-data="{theme: $persist('light'), href: '', currentpath: '{{url()->current()}}', currentroute: '{{ Route::currentRouteName() }}', compact: $persist(false), xtitle: '', metatags: [],
 nameMetas() {
     return this.metatags.filter(
         (m) => {
@@ -14,7 +14,26 @@ propertyMetas() {
         }
     );
 },
-
+metaHtml() {
+    let tags = [];
+    this.nameMetas().forEach((nm) => {
+        tags.push(`<meta name='${nm.name}' content='${nm.content}'>`);
+    });
+    this.propertyMetas().forEach((pm) => {
+        tags.push(`<meta property='${pm.property}' content='${pm.content}'>`);
+    });
+    return tags.join(' ');
+},
+setMetaHtml() {
+    let headHtml = document.getElementsByTagName('head')[0].innerHTML;
+    console.log('head html: '+headHtml);
+    let temp = headHtml.split('<!--meta-->');
+    temp[1] = this.metaHtml();
+    console.log('meta html: '+temp[1]);
+    console.log(temp.join('<!--meta-->'));
+    document.getElementsByTagName('head')[0].innerHTML = temp.join('<!--meta-->');
+    document.getElementsByTagName('title')[0].innerHTML = this.xtitle;
+}
 }"
 {{-- @themechange.window="theme = $event.detail.darktheme ? 'newdark' : 'light';"  --}}
 
@@ -48,14 +67,17 @@ x-init="
     xtitle='{{session()->get('title') ?? config('app.name')}}';
     console.log('title')
     console.log(xtitle)
+    setMetaHtml();
     "
     @xmetachange="
         metatags = JSON.parse($event.detail.data);
+        setMetaHtml();
         console.log(`metas changed:`);
         console.log(metatags);
     "
     @xtitlechange="
         xtitle = $event.detail.data;
+        setMetaHtml();
         console.log(`title changed: ${xtitle}`);
     "
     @pagechanged.window="
@@ -68,18 +90,18 @@ dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >
     <head>
-        <title x-text="xtitle"></title>
+        <title>Craft IVF Hospital</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!--meta-->
-        <template x-for="tag in nameMetas()">
+        {{-- <template x-for="tag in nameMetas()">
             <meta x-bind:name="tag.name" x-bind:content="tag.content" >
         </template>
         <template x-for="tag in propertyMetas()">
             <meta x-bind:property="tag.property" x-bind:content="tag.content" >
-        </template>
-        <!--endmeta-->
+        </template> --}}
+        <!--meta-->
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
