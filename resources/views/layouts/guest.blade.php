@@ -90,7 +90,7 @@ dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >
     <head>
-        <title>{{request()->session()->get('metatags')['title']}}</title>
+        <title>{{request()->session()->get('title')}}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
