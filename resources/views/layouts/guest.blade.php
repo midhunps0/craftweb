@@ -95,12 +95,13 @@ lang="en"
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!--meta-->
-        {{-- <template x-for="tag in nameMetas()">
-            <meta x-bind:name="tag.name" x-bind:content="tag.content" >
-        </template>
-        <template x-for="tag in propertyMetas()">
-            <meta x-bind:property="tag.property" x-bind:content="tag.content" >
-        </template> --}}
+        @foreach (request()->session()->get('metatags') as $tag)
+            @if (isset($tag['name']))
+                <meta name="{{$tag['name']}}" content="{{$tag['content']}}" >
+            @else
+                <meta name="{{$tag['property']}}" content="{{$tag['content']}}" >
+            @endif
+        @endforeach
         <!--meta-->
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
