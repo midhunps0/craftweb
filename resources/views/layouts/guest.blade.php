@@ -72,14 +72,14 @@ lang="en"
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <!--meta-->
         <template x-for="tag in nameMetas()">
-                <meta :name="tag.name" :content="tag.content" >
+            <meta x-bind:name="tag.name" x-bind:content="tag.content" >
         </template>
         <template x-for="tag in propertyMetas()">
-                <meta :property="tag.property" :content="tag.content" >
+            <meta x-bind:property="tag.property" x-bind:content="tag.content" >
         </template>
-
+        <!--endmeta-->
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
