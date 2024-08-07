@@ -193,8 +193,7 @@ class WebPageService implements ModelViewConnector {
         $description,
         $createdAt,
         $updatedAt,
-    )
-    {
+    ){
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
         $title = 'Best IVF Specialist Doctor\'s in Kerala | India - Craft IVF
