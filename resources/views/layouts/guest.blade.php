@@ -95,9 +95,18 @@ lang="en"
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--meta-->
         @foreach (request()->session()->get('metatags') as $tag)
-            @if (isset($tag['name']))
+            @if (isset($tag['by_props']))
+                <meta
+                @foreach ($tag as $attr => $v)
+                    @if ($attr != 'by_props')
+                    {{-- {{dd($tag)}} --}}
+                    {{$attr}}="{{$v}}"
+                    @endif
+                @endforeach
+                 >
+            @elseif (isset($tag['name']))
                 <meta name="{{$tag['name']}}" content="{{$tag['content']}}" >
-            @else
+            @elseif (isset($tag['property']))
                 <meta name="{{$tag['property']}}" content="{{$tag['content']}}" >
             @endif
         @endforeach

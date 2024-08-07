@@ -14,6 +14,7 @@ use App\Models\WebPage;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -80,18 +81,18 @@ class WebPageService implements ModelViewConnector {
         }
         // dd($item->current_translation->data['metatags']);
         $title = $item->current_translation->data['metatags']['title'] ?? env('APP_NAME');
-        MetatagHelper::setTitle($title);
-        MetatagHelper::addTag('title', $title);
-        MetatagHelper::addOgTag('title', $title);
 
         $description = $item->current_translation->data['metatags']['description'] ?? env('APP_NAME');
-        $ogDescription = $item->current_translation->data['metatags']['description'] ?? $description;
-        MetatagHelper::addTag('description', $description);
-        MetatagHelper::addTag('type', 'website');
-        MetatagHelper::addOgTag('description', $ogDescription);
-        MetatagHelper::addOgTag('type', 'website');
+
+        $this->setMetaTags(
+            $title,
+            $description,
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->toIso8601String(),
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->updated_at)->toIso8601String(),
+        );
+
         $thedata = [];
-        if ($slug == 'home') {
+        // if ($slug == 'home') {
             // $hfeatures = HilightFeature::all();
             // foreach ($hfeatures as $f) {
             //     $thedata['hfeatures'][$f->display_location] = $f;
@@ -101,7 +102,7 @@ class WebPageService implements ModelViewConnector {
             // $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
             // $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
             // $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
-        } else {
+        // } else {
             // $homePage = WebPage::whereHas('translations', function ($q) {
             //     return $q->where('slug', 'home');
             // })->get()->first();
@@ -121,7 +122,7 @@ class WebPageService implements ModelViewConnector {
             //     ];
             // }
             // $thedata['quickLinks'] = $allItems;
-        }
+        // }
 
         return new ShowPageData(
             title: Str::ucfirst($this->getModelShortName()),
@@ -177,7 +178,61 @@ class WebPageService implements ModelViewConnector {
 
     public function getDoctorsData($locale)
     {
+        $this->setMetaTags(
+            config('meta_config.our-doctors')['title'],
+            config('meta_config.our-doctors')['description'],
+            config('meta_config.our-doctors')['created_at'],
+            config('meta_config.our-doctors')['updated_at'],
+        );
+
         return Doctor::active()->orderBy('display_priority', 'desc')->paginate(9);
+    }
+
+    private function setMetaTags(
+        $title,
+        $description,
+        $createdAt,
+        $updatedAt,
+    )
+    {
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
+        $title = 'Best IVF Specialist Doctor\'s in Kerala | India - Craft IVF
+        ';
+        MetatagHelper::setTitle($title);
+        MetatagHelper::addTag('title', $title);
+        MetatagHelper::addOgTag('locale', app()->currentLocale() == 'en' ? 'en-_US' : 'ar_AE');
+        MetatagHelper::addOgTag('site_name', env('APP_NAME'));
+        MetatagHelper::addOgTag('type', 'article');
+        MetatagHelper::addOgTag('title', $title);
+
+        $description = config('meta_config.our-doctors')['description'];
+        $ogDescription = $description;
+        MetatagHelper::addTag('description', $description);
+        MetatagHelper::addTag('type', 'article');
+        MetatagHelper::addOgTag('description', $ogDescription);
+        MetatagHelper::addOgTag('type', 'article');
+
+        MetatagHelper::addTagByProps([
+            'property' => 'article:published_time',
+            'content' => $createdAt
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'article:modified_time',
+            'content' => $updatedAt
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:card',
+            'content' => 'summary_large_image'
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:title',
+            'content' => $title
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:description',
+            'content' => $description
+        ]);
     }
 
     public function getVideoTestomonialsData($locale)
