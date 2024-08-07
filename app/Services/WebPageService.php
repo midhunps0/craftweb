@@ -200,7 +200,7 @@ class WebPageService implements ModelViewConnector {
         ';
         MetatagHelper::setTitle($title);
         MetatagHelper::addTag('title', $title);
-        MetatagHelper::addOgTag('locale', app()->currentLocale() == 'en' ? 'en-_US' : 'ar_AE');
+        MetatagHelper::addOgTag('locale', app()->currentLocale() == 'en' ? 'en_US' : 'ar_AE');
         MetatagHelper::addOgTag('site_name', env('APP_NAME'));
         MetatagHelper::addOgTag('type', 'article');
         MetatagHelper::addOgTag('title', $title);
