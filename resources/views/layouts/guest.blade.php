@@ -94,6 +94,7 @@ lang="en"
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--meta-->
+        @if (request()->session()->get('metatags') != null)
         @foreach (request()->session()->get('metatags') as $tag)
             @if (isset($tag['by_props']))
                 <meta
@@ -110,6 +111,7 @@ lang="en"
                 <meta name="{{$tag['property']}}" content="{{$tag['content']}}" >
             @endif
         @endforeach
+        @endif
         <!--meta-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Fonts -->
