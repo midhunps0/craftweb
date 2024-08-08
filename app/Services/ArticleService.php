@@ -6,6 +6,7 @@ use App\Models\MetatagsList;
 use App\Models\Translation;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -72,8 +73,16 @@ class ArticleService implements ModelViewConnector {
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
-        MetatagHelper::setTitle($item->current_translation->data['metatags']['title'] ?? $item->current_translation->data['title']);
-        MetatagHelper::addTag('description', $item->current_translation->data['metatags']['description'] ?? env('APP_NAME'));
+        $title = $item->current_translation->data['metatags']['title'] ?? env('APP_NAME');
+
+        $description = $item->current_translation->data['metatags']['description'] ?? env('APP_NAME');
+
+        $this->setMetaTags(
+            $title,
+            $description,
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->current_translation->created_at)->toIso8601String(),
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->current_translation->updated_at)->toIso8601String(),
+        );
 
         $results = DB::table('articles', 'a')
             ->join('translations as t', 'a.id', '=', 't.translatable_id')
@@ -96,6 +105,52 @@ class ArticleService implements ModelViewConnector {
                 'allArticles' => $allItems
             ]
         );
+    }
+
+    private function setMetaTags(
+        $title,
+        $description,
+        $createdAt,
+        $updatedAt,
+    ){
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
+        $title = 'Best IVF Specialist Doctor\'s in Kerala | India - Craft IVF
+        ';
+        MetatagHelper::setTitle($title);
+        MetatagHelper::addTag('title', $title);
+        MetatagHelper::addOgTag('locale', app()->currentLocale() == 'en' ? 'en_US' : 'ar_AE');
+        MetatagHelper::addOgTag('site_name', env('APP_NAME'));
+        MetatagHelper::addOgTag('type', 'article');
+        MetatagHelper::addOgTag('title', $title);
+
+        $description = config('meta_config.our-doctors')['description'];
+        $ogDescription = $description;
+        MetatagHelper::addTag('description', $description);
+        MetatagHelper::addTag('type', 'article');
+        MetatagHelper::addOgTag('description', $ogDescription);
+        MetatagHelper::addOgTag('type', 'article');
+
+        MetatagHelper::addTagByProps([
+            'property' => 'article:published_time',
+            'content' => $createdAt
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'article:modified_time',
+            'content' => $updatedAt
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:card',
+            'content' => 'summary_large_image'
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:title',
+            'content' => $title
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:description',
+            'content' => $description
+        ]);
     }
 
     protected function relations()

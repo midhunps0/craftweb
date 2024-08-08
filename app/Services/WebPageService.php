@@ -173,6 +173,13 @@ class WebPageService implements ModelViewConnector {
 
     public function getBlogData($locale)
     {
+        $this->setMetaTags(
+            config('meta_config.our-blogs')['title'],
+            config('meta_config.our-blogs')['description'],
+            config('meta_config.our-blogs')['created_at'],
+            config('meta_config.our-blogs')['updated_at'],
+        );
+
         return Article::paginate(12);
     }
 
