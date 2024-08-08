@@ -87,8 +87,8 @@ class WebPageService implements ModelViewConnector {
         $this->setMetaTags(
             $title,
             $description,
-            Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->toIso8601String(),
-            Carbon::createFromFormat('Y-m-d H:i:s', $item->updated_at)->toIso8601String(),
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->current_translation->created_at)->toIso8601String(),
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->current_translation->updated_at)->toIso8601String(),
         );
 
         $thedata = [];
