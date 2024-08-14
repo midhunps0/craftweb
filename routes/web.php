@@ -135,3 +135,6 @@ Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     return 'Cache cleared.';
 })->name('cache.clear');
+
+Route::get('/{locale}', [WebPageController::class, 'notFound'])->middleware('web');
+Route::get('/{locale}/{page}', [WebPageController::class, 'notFound'])->middleware('web');

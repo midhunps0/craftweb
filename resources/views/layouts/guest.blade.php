@@ -90,7 +90,9 @@ dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >
     <head>
+        @if(request()->session() != null)
         <title>{{request()->session()->get('title')}}</title>
+        @endif
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--meta-->
@@ -100,7 +102,6 @@ lang="en"
                 <meta
                 @foreach ($tag as $attr => $v)
                     @if ($attr != 'by_props')
-                    {{-- {{dd($tag)}} --}}
                     {{$attr}}="{{$v}}"
                     @endif
                 @endforeach

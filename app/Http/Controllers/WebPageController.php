@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 use function PHPUnit\Framework\callback;
 
@@ -68,8 +69,13 @@ class WebPageController extends SmartController
 
     public function quickShow($slug)
     {
+        info('inside quick show');
         App::setlocale('en');
-        return redirect(config("oldslug_redirect.$slug"),301);
+        $newSlug = config("oldslug_redirect.$slug");
+        if (!isset($newSlug)) {
+            return $this->buildResponse('errors.404');
+        }
+        return redirect($newSlug,301);
         // return $this->show('en', $slug);
     }
 
@@ -91,9 +97,10 @@ class WebPageController extends SmartController
             return $this->buildResponse('pagetemplates.'.$template->name, $showPageData->getData());
         } catch (\Throwable $e) {
             info($e);
-            return $this->buildResponse($this->errorView, [
-                'error' => $e->__toString()
-            ]);
+            return $this->buildResponse('errors.404');
+            // return $this->buildResponse($this->errorView, [
+            //     'error' => $e->__toString()
+            // ]);
         }
     }
 
@@ -246,5 +253,10 @@ class WebPageController extends SmartController
         return response()->json([
             $data
         ]);
+    }
+
+    public function notFound()
+    {
+        return $this->buildResponse('errors.404');
     }
 }
