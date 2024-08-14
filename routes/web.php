@@ -104,9 +104,6 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
 
     Route::get('/template-get', [PageTemplateController::class, 'getTemplateInputsForm'])->name('template.get');
 
-    // Route::get('/clear-cache', function () {
-    //     Artisan::call('cache:clear');
-    // })->name('cache.clear');
 });
 
 
@@ -131,3 +128,10 @@ Route::group(['middleware' => ['ynotz.translation']], function () {
 });
 Route::post('contact-mail', [MailController::class, 'contactMail'])->name('mail.contact');
 
+Route::get('/clear-cache', function () {
+    if(request()->pass != 'Craft@1234*'){
+        return 'Unauthorised Action!';
+    }
+    Artisan::call('cache:clear');
+    return 'Cache cleared.';
+})->name('cache.clear');
