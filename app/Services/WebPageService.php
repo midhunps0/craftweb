@@ -16,6 +16,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -581,6 +582,9 @@ class WebPageService implements ModelViewConnector {
             ]);
 
             DB::commit();
+
+            Artisan::call('cache:clear');
+
             return $wp->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -647,8 +651,10 @@ class WebPageService implements ModelViewConnector {
                 $translation->syncMedia('cover_image', $coverImage);
             }
 
-
             DB::commit();
+
+            Artisan::call('cache:clear');
+
             return $wp->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();

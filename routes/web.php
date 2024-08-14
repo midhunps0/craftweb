@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
 use App\Models\PageTemplate;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\AccessControl\Http\Controllers\PermissionsController;
 use Modules\Ynotz\AccessControl\Http\Controllers\RolesController;
@@ -102,6 +103,10 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
     Route::post('/roles/permission-update', [RolesController::class, 'permissionUpdate'])->name('roles.update_permissions');
 
     Route::get('/template-get', [PageTemplateController::class, 'getTemplateInputsForm'])->name('template.get');
+
+    // Route::get('/clear-cache', function () {
+    //     Artisan::call('cache:clear');
+    // })->name('cache.clear');
 });
 
 

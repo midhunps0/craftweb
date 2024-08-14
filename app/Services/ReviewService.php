@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\Review;
 use App\Models\Translation;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -346,6 +347,9 @@ class ReviewService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $review;
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -401,6 +405,9 @@ class ReviewService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $review;
         } catch (\Throwable $e) {
             DB::rollBack();

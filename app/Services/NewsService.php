@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\News;
 use App\Models\Translation;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -303,6 +304,9 @@ class NewsService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $n;
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -353,6 +357,9 @@ class NewsService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $n;
         } catch (\Throwable $e) {
             DB::rollBack();

@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\HilightFeature;
 use App\Models\Translation;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -323,6 +324,9 @@ class HilightFeatureService implements ModelViewConnector {
             DB::commit();
             Cache::forget('home_page');
             Cache::forget('home_page_ar');
+
+            Artisan::call('cache:clear');
+
             return $hfeature->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -371,6 +375,9 @@ class HilightFeatureService implements ModelViewConnector {
             DB::commit();
             Cache::forget('home_page');
             Cache::forget('home_page_ar');
+
+            Artisan::call('cache:clear');
+
             return $hfeature->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();

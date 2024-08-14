@@ -6,6 +6,7 @@ use App\Models\MetatagsList;
 use App\Models\Translation;
 use Exception;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -377,6 +378,9 @@ class DoctorService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $wp;
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -431,6 +435,9 @@ class DoctorService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+            info('cache cleared');
             return $wp;
         } catch (\Throwable $e) {
             DB::rollBack();

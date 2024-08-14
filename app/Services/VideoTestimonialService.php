@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\Translation;
 use App\Models\VideoTestimonial;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -337,6 +338,9 @@ class VideoTestimonialService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $testimonial;
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -388,6 +392,9 @@ class VideoTestimonialService implements ModelViewConnector {
                 Cache::forget('home_page');
                 Cache::forget('home_page_ar');
             }
+
+            Artisan::call('cache:clear');
+
             return $testimonial;
         } catch (\Throwable $e) {
             DB::rollBack();
