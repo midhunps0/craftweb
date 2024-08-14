@@ -60,7 +60,7 @@ class WebPageController extends SmartController
             return $this->show(
                 'ar',
                 'home',
-                '/ar/pages/home'
+                '/en/pages/home'
                 )->render();
         });
 
