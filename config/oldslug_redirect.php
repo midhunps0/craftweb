@@ -42,11 +42,5 @@ return[
     'how-to-select-best-hospital-for-fertility-treatment' => 'en/articles/how-to-select-best-hospital-for-fertility-treatment',
     'in-vitro-fertilization-ivf' => 'en/articles/in-vitro-fertilization-ivf',
     'plan-your-pregnancy/' => 'en/pages/plan-your-pregnancy',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
 ];
 ?>
