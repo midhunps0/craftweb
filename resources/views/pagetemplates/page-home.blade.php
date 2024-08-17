@@ -650,7 +650,7 @@
                     </div>
                     <div class="relative z-40">
                             <div class="flex w-full justify-center items-center min-h-96 transition-all duration-500">
-                                <div>
+                                <div class="w-full">
                                     <div class="w-3/4 m-auto px-[6%]">
                                         <div class="flex w-full justify-center items-center border-b border-gray pb-2 mb-2">
                                             <div class="text-pink p-2 border border-gray bg-lightgray" x-html="currentIcon">
