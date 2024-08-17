@@ -26,11 +26,10 @@ metaHtml() {
 },
 setMetaHtml() {
     let headHtml = document.getElementsByTagName('head')[0].innerHTML;
-    console.log('head html: '+headHtml);
+
     let temp = headHtml.split('<!--meta-->');
     temp[1] = this.metaHtml();
-    console.log('meta html: '+temp[1]);
-    console.log(temp.join('<!--meta-->'));
+
     document.getElementsByTagName('head')[0].innerHTML = temp.join('<!--meta-->');
     document.getElementsByTagName('title')[0].innerHTML = this.xtitle;
 }
@@ -64,7 +63,11 @@ x-init="
         }, 500);
 
     }
-    xtitle='{{session()->get('title') ?? config('app.name')}}';
+    {{-- @if(session()->get('title') != null)
+    xtitle='{{addslashes(session()->get('title'))}}';
+    @else
+    xtitle='{{addslashes(config('app.name'))}}';
+    @endif --}}
     console.log('title')
     console.log(xtitle)
     setMetaHtml();
@@ -91,7 +94,7 @@ lang="en"
 >
     <head>
         @if(request()->session() != null)
-        <title>{{request()->session()->get('title')}}</title>
+        <title>{{addslashes(request()->session()->get('title'))}}</title>
         @endif
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -102,14 +105,14 @@ lang="en"
                 <meta
                 @foreach ($tag as $attr => $v)
                     @if ($attr != 'by_props')
-                    {{$attr}}="{{$v}}"
+                    {{$attr}}="{{addslashes($v)}}"
                     @endif
                 @endforeach
                  >
             @elseif (isset($tag['name']))
-                <meta name="{{$tag['name']}}" content="{{$tag['content']}}" >
+                <meta name="{{$tag['name']}}" content="{{addslashes($tag['content'])}}" >
             @elseif (isset($tag['property']))
-                <meta name="{{$tag['property']}}" content="{{$tag['content']}}" >
+                <meta name="{{$tag['property']}}" content="{{addslashes($tag['content'])}}" >
             @endif
         @endforeach
         @endif
