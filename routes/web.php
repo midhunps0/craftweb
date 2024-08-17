@@ -138,3 +138,4 @@ Route::get('/clear-cache', function () {
 
 Route::get('/{locale}', [WebPageController::class, 'notFound'])->middleware('web');
 Route::get('/{locale}/{page}', [WebPageController::class, 'notFound'])->middleware('web');
+Route::fallback([WebPageController::class, 'notFound']);
