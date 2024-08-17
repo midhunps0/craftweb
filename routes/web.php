@@ -3,6 +3,7 @@
 use App\Http\Controllers\AirpayController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\IconsController;
 use App\Http\Controllers\LayoutBuilderController;
@@ -42,6 +43,7 @@ Route::get('/kochi', function () {
 })->name('kochi.home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
 
+Route::get('/correct-urls', [CorrectionController::class, 'correctTranslationUrls']);
 // Route::get('{locale}/contact-us', [WebPageController::class, 'contact'])->name('contact');
 // Route::get('/ar/contact-us', [WebPageController::class, 'contactAr'])->name('contact.ar');
 
@@ -139,3 +141,4 @@ Route::get('/clear-cache', function () {
 Route::get('/{locale}', [WebPageController::class, 'notFound'])->middleware('web');
 Route::get('/{locale}/{page}', [WebPageController::class, 'notFound'])->middleware('web');
 Route::fallback([WebPageController::class, 'notFound']);
+
