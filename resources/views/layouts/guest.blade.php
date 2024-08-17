@@ -75,13 +75,10 @@ x-init="
     @xmetachange="
         metatags = JSON.parse($event.detail.data);
         setMetaHtml();
-        console.log(`metas changed:`);
-        console.log(metatags);
     "
     @xtitlechange="
         xtitle = $event.detail.data;
         setMetaHtml();
-        console.log(`title changed: ${xtitle}`);
     "
     @pagechanged.window="
     currentpath=$event.detail.currentpath;
@@ -125,7 +122,7 @@ lang="en"
         @stack('css')
         @stack('header_js')
     </head>
-    <body x-data="initPage" x-init="initAction();"
+    <body x-data="initPage" x-init="initAction().then(() => {});"
         @linkaction.window="initialised = false; fetchLink($event.detail); "
         @formsubmit.window="postForm($event.detail);"
         @popstate.window="historyAction($event)"

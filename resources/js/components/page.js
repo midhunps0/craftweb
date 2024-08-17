@@ -22,6 +22,7 @@ export default () => ({
         }
         setTimeout(() => {
             this.$store.app.xpages[link].data.html = el.innerHTML;
+            console.log(el.innerHTML);
         }, 500);
 
         // history.pushState({href: link}, '', link);
@@ -30,6 +31,7 @@ export default () => ({
     historyAction(e) {
         // console.log('inside history action');
         if (e.state != undefined && e.state != null) {
+            console.log('e.state');
             console.log(e.state);
 
             let link = e.state.href;
@@ -50,13 +52,14 @@ export default () => ({
                 // setTimeout(() => {
                     this.showPage = true;
                     // this.page = this.$store.app.xpages[link];
+                    console.log('this.$store.app.xpages[link].data.html');
                     if (this.$store.app.xpages[link] && typeof this.$store.app.xpages[link].data != 'undefined') {
-                        // this.$dispatch('pagechanged', {currentpath: link, currentroute: route, target: target, fragment: fragment});
-                        // this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
-                        this.fetchLink({
-                            link: link,
-                            fresh: true
-                        });
+                        this.$dispatch('pagechanged', {currentpath: link, currentroute: route, target: target, fragment: fragment});
+                        this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
+                        // this.fetchLink({
+                        //     link: link,
+                        //     fresh: true
+                        // });
                         if (this.$store.app.xpages[link].meta != undefined) {
                             this.$dispatch('xmetachange', {data: this.$store.app.xpages[link].meta});
                         }
