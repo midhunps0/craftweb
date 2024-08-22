@@ -1,4 +1,4 @@
-@props(['name', 'designation', 'qualification', 'photo_url', 'departmant'])
+@props(['name', 'designation', 'qualification', 'photo_url', 'department'])
 <div>
    <div class="w-64 relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
       {{-- <div class="px-4">
@@ -17,7 +17,7 @@
 
       <div class="bg-gray-600 py-3 h-20 overflow-hidden">
          <p class="text-white font-questrial text-sm text-center font-bold">{{$name}}</p>
-         <p class="text-white font-questrial font-normal text-sm text-center">{{$departmant}}</p>
+         <p class="text-white font-questrial font-normal text-sm text-center">{{$department}}</p>
       </div>
    </div>
 </div>
