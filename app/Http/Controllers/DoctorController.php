@@ -32,7 +32,8 @@ class DoctorController extends SmartController
 
     public function show($locale, $slug)
     {
-        session(['translation_link' => route('doctors.guest.show', ['locale' => $locale, 'slug' => $slug])]);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('doctors.guest.show', ['locale' => $tl, 'slug' => $slug])]);
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
             if (!($showPageData instanceof ShowPageData)) {

@@ -121,7 +121,8 @@ class WebPageController extends SmartController
     public function blog($locale = null)
     {
         $locale = $locale ?? 'en';
-        session(['translation_link' => route('blog.loc', ['locale' => $locale])]);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('blog.loc', ['locale' => $tl])]);
         App::setlocale($locale);
         $articles = $this->connectorService->getBlogData($locale);
         return $this->buildResponse(
@@ -135,7 +136,8 @@ class WebPageController extends SmartController
     public function doctors($locale = null)
     {
         $locale = $locale = $locale ?? 'en';
-        session(['translation_link' => route('doctors.loc', ['locale' => $locale])]);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('doctors.loc', ['locale' => $tl])]);
         App::setlocale($locale);
         $doctors = $this->connectorService->getDoctorsData($locale);
         return $this->buildResponse(
@@ -149,7 +151,8 @@ class WebPageController extends SmartController
     public function patientVideos($locale = null)
     {
         $locale = $locale = $locale ?? 'en';
-        session(['translation_link' => route('videotestimonials.loc', ['locale' => $locale])]);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('videotestimonials.loc', ['locale' => $tl])]);
         App::setlocale($locale);
         $videos = $this->connectorService->getVideoTestomonialsData($locale);
         return $this->buildResponse(
@@ -163,7 +166,8 @@ class WebPageController extends SmartController
     public function patientReviews($locale = null)
     {
         $locale = $locale = $locale ?? 'en';
-        session(['translation_link' => route('patientreviews.loc', ['locale' => $locale])]);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('patientreviews.loc', ['locale' => $tl])]);
         App::setlocale($locale);
         $reviews = $this->connectorService->getReviewsData($locale, $this->request->input('page', 1));
         return $this->buildResponse(
