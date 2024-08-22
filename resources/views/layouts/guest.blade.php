@@ -100,8 +100,8 @@ lang="en"
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-MDFJ569M');</script>
-            <!-- End Google Tag Manager -->
+            })(window,document,'script','dataLayer','GTM-P849T2N');</script>
+        <!-- End Google Tag Manager -->
         <!--meta-->
         @if (request()->session()->get('metatags') != null)
         @foreach (request()->session()->get('metatags') as $tag)
@@ -135,9 +135,9 @@ lang="en"
         @popstate.window="historyAction($event)"
         class="font-sans antialiased text-sm transition-colors">
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDFJ569M"
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P849T2N"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
+        <!-- End Google Tag Manager (noscript) -->
         <div class="min-h-screen bg-base-200 flex flex-col">
             <main class="flex flex-col items-stretch flex-grow w-full">
                 <div x-data="{show: true}" x-show="show"
