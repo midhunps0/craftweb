@@ -437,6 +437,7 @@
                         videos: [],
                         currentItems: [],
                         wrapperOffset: 0,
+                        playInterval: null,
 {{--
                         done: false,
                         showanimation: false,
@@ -481,8 +482,8 @@
                                 //console.log(r.data[0]);
                                 this.videos = r.data[0];
                                 this.setCurrentItems();
+                                this.playInterval = this.autoPlay();
                                 setInterval(() => {
-                                    this.autoPlay();
                                 }, 3000);
                             }).catch((e) => {
                                 //console.log(e);
@@ -495,6 +496,12 @@
                             } else {
                                 this.wrapperOffset = 0;
                                 this.currentItems = [0];
+                            }
+                        },
+                        stopAnimation() {
+                            if (this.playInterval != null) {
+                                clearInterval(this.playInterval);
+                                this.playInterval = null;
                             }
                         }
                     }"
@@ -517,8 +524,8 @@
                                         </template> --}}
                                         <template x-if="!videoOn">
                                             <div class="absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center">
-                                                <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="w-full" :alt="'testimonial video: ' + v.thumbnail_url">
-                                                <div @click="videoOn = true;" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center">
+                                                <img @click="videoOn = true; stopAnimation();" :src="v.thumbnail_url" alt="video testimonial" class="w-full" :alt="'testimonial video: ' + v.thumbnail_url">
+                                                <div @click="videoOn = true; stopAnimation();" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center">
                                                     <img src="{{asset('images/icons/yt_logo.png')}}" alt="youtube logo">
                                                 </div>
                                             </div>
