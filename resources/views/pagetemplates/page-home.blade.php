@@ -841,9 +841,9 @@
                             class="flex flex-row justify-end transition-all overflow-x-hidden">
                             <div class="mx-3">
                                 <div class="w-64 max-w-full relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
-                                   <div class="px-4">
+                                   {{-- <div class="px-4">
                                       <p class="text-xl font-franklin pt-6 min-h-20 " x-text="d.current_translation.data.name"></p>
-                                   </div>
+                                   </div> --}}
 
                                    <div class="relative flex flex-row justify-end w-full">
                                       <img :src="d.photo_url" class="w-full min-h-52 dir-img" :alt="d.current_translation.data.name +' photo'">
@@ -856,8 +856,8 @@
                                    </div> --}}
 
                                    <div class="bg-gray-600 py-3 h-20 flex flex-col w-full justify-center items-center overflow-hidden">
-                                      <p class="text-white font-questrial font-normal text-sm text-center overflow-y-hidden" x-text="d.current_translation.data.designation"></p>
-                                      <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.qualification"></p>
+                                      <p class="text-white font-questrial font-bold text-sm text-center" x-text="d.current_translation.data.name"></p>
+                                      <p class="text-white font-questrial font-normal text-sm text-center" x-text="d.current_translation.data.department"></p>
                                    </div>
                                 </div>
                             </div>
