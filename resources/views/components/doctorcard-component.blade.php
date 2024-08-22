@@ -17,7 +17,7 @@
 
       <div class="bg-gray-600 py-3 h-20 overflow-hidden">
          <p class="text-white font-questrial text-sm text-center font-bold">{{$name}}</p>
-         <p class="text-white font-questrial font-normal text-sm text-center">{{$department}}</p>
+         <p class="text-white font-questrial font-normal text-sm text-center">{{$departmant}}</p>
       </div>
    </div>
 </div>
