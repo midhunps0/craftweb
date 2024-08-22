@@ -2,7 +2,7 @@
 @php
     $id = explode('embed/', $data->url)[1];
     $id = explode('?si=', $id)[0];
-    $thumbnail = "https://img.youtube.com/vi/{$id}/sd_default.jpg";
+    $thumbnail = "https://img.youtube.com/vi/{$id}/hqdefault.jpg";
 @endphp
 <div x-data="{videoOn: false}" class="video w-full relative" style="position:relative;padding-bottom:56.25%">
     <template x-if="!videoOn">
