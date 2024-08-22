@@ -482,8 +482,8 @@
                                 //console.log(r.data[0]);
                                 this.videos = r.data[0];
                                 this.setCurrentItems();
-                                this.playInterval = this.autoPlay();
-                                setInterval(() => {
+                                this.playInterval = setInterval(() => {
+                                    this.autoPlay();
                                 }, 3000);
                             }).catch((e) => {
                                 //console.log(e);
