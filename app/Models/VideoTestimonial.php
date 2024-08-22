@@ -46,7 +46,7 @@ class VideoTestimonial extends Model
             get: function() {
                 $id = explode('embed/', $this->link)[1];
                 $id = explode('?si=', $id)[0];
-                return "https://img.youtube.com/vi/{$id}/sddefault.jpg";
+                return "https://img.youtube.com/vi/{$id}/sd_default.jpg";
             }
         );
     }
