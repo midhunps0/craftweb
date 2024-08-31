@@ -1033,7 +1033,7 @@
                     </div>
                     <div class="w-fit flex flex-row transition-all items-stretch" :style="`transform: translate(${wrapperOffset}px);`">
                         <template x-for="(n,i) in newsitems">
-                        <div :style="`width: ${itemWidth}px`" class="overflow-hidden flex flex-col">
+                        <div :style="`width: ${itemWidth}px`" class="transition-all duration-1000 ease-in-out overflow-hidden flex flex-col">
                             <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white flex-grow">
                                 <div class="h-72 overflow-hidden flex justify-center items-center border border-lightgray">
                                     <img :src="n.image_url" alt="" class="m-auto object-cover" :alt="n.current_translation.data.title">
