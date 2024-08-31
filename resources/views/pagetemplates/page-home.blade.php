@@ -1031,7 +1031,7 @@
                             <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
                         </button>
                     </div>
-                    <div class="w-fit flex flex-row transition-all duration-700 ease-in-out items-stretch" :style="`transform: translate(${wrapperOffset}px);`">
+                    <div class="w-fit flex flex-row transition-all duration-500 ease-in items-stretch" :style="`transform: translate(${wrapperOffset}px);`">
                         <template x-for="(n,i) in newsitems">
                         <div :style="`width: ${itemWidth}px`" class="transition-all  overflow-hidden flex flex-col">
                             <div class="m-2 p-4 h-84 shadow-[3px_3px_4px_2px_rgba(0,0,0,0.2)] bg-white flex-grow">
