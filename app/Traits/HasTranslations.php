@@ -29,11 +29,18 @@ trait HasTranslations {
 
     public function getTranslation(string $code = null): Translation|null
     {
-        return Translation::where('translatable_id', $this->id)
+        $t = Translation::where('translatable_id', $this->id)
             ->Where('translatable_type', Self::class)
             ->where('locale', $code ?? App::currentLocale())->get()->first() ?? Translation::where('translatable_id', $this->id)
             ->Where('translatable_type', Self::class)
             ->where('locale', $code ?? 'en')->get()->first();
+        if ($t == null) {
+            return $t;
+        }
+        if (is_string($t->data)) {
+            $t->data = json_decode($t->data, true);
+        }
+        return $t;
     }
 
     public function currentTranslation(): Attribute
@@ -41,6 +48,10 @@ trait HasTranslations {
         return Attribute::make(
             get: function () {
                 return $this->getTranslation();
+                // if (is_string($t->data)) {
+                //     $t->data = json_decode($t->data, true);
+                // }
+                // return $t;
             }
         );
     }
@@ -75,5 +86,7 @@ trait HasTranslations {
             }
         );
     }
+
+
 
 }

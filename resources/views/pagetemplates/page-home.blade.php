@@ -289,13 +289,13 @@
                                     params: {'locale': '{{app()->currentLocale()}}'}
                                 }
                             ).then((r) => {
-                                //console.log('r.data');
-                                //console.log(r.data[0]);
+                                {{-- console.log('r.data');
+                                console.log(r.data[0]); --}}
                                 this.reviews = r.data[0];
                                 this.setCurrentItems();
                                 setInterval(() => {
                                     this.autoPlay();
-                                }, 2000);
+                                }, 3000);
                             }).catch((e) => {
                                 //console.log(e);
                             });
@@ -334,12 +334,12 @@
                     </div>
                     <div class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0">
                         <template x-for="(r, i) in reviews">
-                            <div class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
+                            <div class="transition-all ease-in-out overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
                                 <div class="w-full h-96 m-3" :style="`min-width: ${itemWidth - 20}px`">
                                     <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-start">
                                         <img :src="r.photo_url" class="object-contain" :alt="'review by ' + r.current_translation.data.reviewer">
-                                        <div @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
-                                        :class="{'overflow-hidden h-20 hover:text-pink bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div>
+                                        {{-- <div @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
+                                        :class="{'overflow-hidden h-20 hover:text-pink bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div> --}}
                                         {{-- <div class="flex w-full p-2 items-center">
                                             <div>
                                                 <img src="/images/icons/double qoute left1.png" class="h-16" alt="">
@@ -484,7 +484,7 @@
                                 this.setCurrentItems();
                                 this.playInterval = setInterval(() => {
                                     this.autoPlay();
-                                }, 3000);
+                                }, 4000);
                             }).catch((e) => {
                                 //console.log(e);
                             });
@@ -514,10 +514,10 @@
                     class="w-full md:w-1/2 relative py-4 md:py-16">
                     <div class="absolute top-0 ltr:left-0 rtl:right-0 bg-gray w-1/2 h-full z-0">
                     </div>
-                    <div id="video-container" class="w-full overflow-hidden transition-transform duration-1000 ease-in-out" :class="{'translate-x-0 bg-opacity-100 opacity-100' : done, 'ltr:translate-x-64 rtl:-translate-x-64 bg-opacity-0 opacity-0' : !done}">
-                        <div :style="`width: ${wrapperWidth}px; transform: translate(${wrapperOffset}px);`" class="flex flex-row transition-all">
+                    <div id="video-container" class="w-full overflow-hidden transition-transform duration-2000 ease-in-out" :class="{'translate-x-0 bg-opacity-100 opacity-100' : done, 'ltr:translate-x-64 rtl:-translate-x-64 bg-opacity-0 opacity-0' : !done}">
+                        <div :style="`width: ${wrapperWidth}px; transform: translate(${wrapperOffset}px);`" class="flex flex-row transition-all ease-in-out duration-1000">
                             <template x-for="(v, i) in videos">
-                                <div :style="`width: ${itemWidth}px`">
+                                <div :style="`width: ${itemWidth}px`" class="transition-all ease-in-out duration-1000">
                                     <div x-data="{videoOn: false}" class="relative z-10" style="position:relative;padding-bottom:56.25%">
                                         {{-- <template x-if="!videoOn">
                                             <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="absolute top-0 left-0 h-full w-full">
@@ -845,7 +845,7 @@
                 <div id="items-container" class="w-full flex ltr:flex-row rtl:flex-row-reverse md:flex-nowrap justify-center md:justify-between overflow-hidden items-stretch">
                     <template x-for="(d,i) in doctors">
                         <div :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'"
-                            class="flex flex-row justify-end transition-all overflow-x-hidden">
+                            class="flex flex-row justify-end transition-all ease-in-out duration-1000 overflow-x-hidden">
                             <div class="mx-3">
                                 <div class="w-64 max-w-full relative shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)] ">
                                    {{-- <div class="px-4">
