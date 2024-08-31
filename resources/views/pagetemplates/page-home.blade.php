@@ -334,7 +334,7 @@
                     </div>
                     <div class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0">
                         <template x-for="(r, i) in reviews">
-                            <div class="transition-all ease-in-out overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
+                            <div class="transition-all ease-in-out duration-1000 overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
                                 <div class="w-full h-96 m-3" :style="`min-width: ${itemWidth - 20}px`">
                                     <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-start">
                                         <img :src="r.photo_url" class="object-contain" :alt="'review by ' + r.current_translation.data.reviewer">
