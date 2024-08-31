@@ -983,7 +983,7 @@
                             this.setWrapperOffset();
                             setInterval(() => {
                                 this.autoPlay();
-                            }, 3000);
+                            }, 2000);
                         }).catch((e) => {
                             //console.log(e);
                         });
