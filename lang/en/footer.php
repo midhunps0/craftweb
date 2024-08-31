@@ -8,7 +8,7 @@ return [
                                     RESEARCH CENTRE<br>
                                     V111/77/2,3,4, Kondungallur P.O<br>
                                     Chanthappura, Kodungallur, Thrissur,<br> Kerala
-                                    Ph: +91 6282396564',
+                                    Ph: +91 0480 2800200',
     'craft_address_kochi' => 'CRAFT Multispeciality Centre<br>
                                 5th & 6th Floor, Imperial Amity,<br>
                                 Chalikkavattam, NH66 Bypass<br>
