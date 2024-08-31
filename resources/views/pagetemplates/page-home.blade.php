@@ -864,7 +864,7 @@
 
                                    <div class="bg-gray-600 py-3 h-20 flex flex-col w-full justify-center items-center overflow-hidden">
                                       <p class="text-white font-questrial font-bold text-base text-center" x-text="d.current_translation.data.name"></p>
-                                      <p class="text-white font-questrial font-normal text-sm text-center" ><spanx-text="d.current_translation.data.designation"></span>, <spanx-text="d.current_translation.data.department"></span></p>
+                                      <p class="text-white font-questrial font-normal text-sm text-center" ><span x-text="d.current_translation.data.designation"></span>, <span x-text="d.current_translation.data.department"></span></p>
                                    </div>
                                 </div>
                             </div>
