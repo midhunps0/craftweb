@@ -57,6 +57,6 @@ return[
     'mrs-sreesha-viswam' => 'en/doctors/mrs-sreesha-viswam',
     'dr-shikkuraj-vallat' => 'en/doctors/dr-shikkuraj-vallat',
     'dr-ajay-p-g' => 'en/doctors/dr-ajay-p-g',
-    'mrs-priyanka-rohit' => 'en/doctors/mrs-priyanka-rohit',
+    'mrs-priyanka-rohit' => '/',
 ];
 ?>
