@@ -46,7 +46,7 @@ return[
     'dr-santhosh-kumar-jena' => 'en/doctors/dr-santhosh-kumar-jena',
     'dr-noushin-abdul-majiyd' => 'en/doctors/dr-noushin-abdul-majiyd',
     'dr-boban-abraham' => 'en/doctors/dr-boban-abraham',
-    'dr-ritu-nair' => 'en/doctors/dr-ritu-nair',
+    'dr-ritu-nair' => '/',
     'dr-abdul-majeed-a' => 'en/doctors/dr-abdul-majeed-a',
     'dr-reema-basheer' => 'en/doctors/dr-reema-basheer',
     'dr-subhash-v-p' => 'en/doctors/dr-subhash-v-p',
