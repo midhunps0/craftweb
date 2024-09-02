@@ -334,7 +334,7 @@
                             <div class="transition-all ease-in-out duration-1000 overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
                                 <div class="w-full h-96 m-3" :style="`min-width: ${itemWidth - 20}px`">
                                     <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-center">
-                                        <img :src="r.photo_url" class="object-contain" :alt="'review by ' + r.current_translation.data.reviewer">
+                                        <img :src="r.photo_url" class="h-full w-full" :alt="'review by ' + r.current_translation.data.reviewer">
                                     </div>
                                 </div>
                             </div>
