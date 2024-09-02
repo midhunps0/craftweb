@@ -7,6 +7,7 @@ use App\Models\PageTemplate;
 use App\Services\DoctorService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
@@ -44,6 +45,17 @@ class DoctorController extends SmartController
             info($e);
             return $this->buildResponse($this->errorView, ['error' => $e->__toString()]);
         }
+    }
+
+    public function redirect($slug)
+    {
+        info('inside doctor redirect show');
+        App::setlocale('en');
+        $newSlug = config("oldslug_redirect.$slug");
+        if (!isset($newSlug)) {
+            return $this->buildResponse('errors.404');
+        }
+        return redirect($newSlug,301);
     }
 
     public function create()

@@ -43,6 +43,7 @@ Route::get('/kochi', function () {
 })->name('kochi.home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
 
+Route::get('/team-member/{slug}', [DoctorController::class, 'redirect']);
 Route::get('/correct-urls', [CorrectionController::class, 'correctTranslationUrls']);
 // Route::get('{locale}/contact-us', [WebPageController::class, 'contact'])->name('contact');
 // Route::get('/ar/contact-us', [WebPageController::class, 'contactAr'])->name('contact.ar');
