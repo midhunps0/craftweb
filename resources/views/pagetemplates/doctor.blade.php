@@ -3,12 +3,12 @@
         <div class="w-full px-12 max-w-[1500px] m-auto">
             <x-main-menu-component />
             <x-page-title title="{{$instance->current_translation->data['name']}}" />
-            <div class="flex flex-row justify-end p-4">
+            {{-- <div class="flex flex-row justify-end p-4">
                 <a href="{{route('doctors.guest.show', ['locale' => app()->currentLocale(), 'slug' => $instance->current_translation->slug])}}" class="btn btn-sm"
                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('doctors.guest.show', ['locale' => app()->currentLocale(), 'slug' => $instance->current_translation->slug])}}'})">
                     {{__('doctors.all_doctors')}}
                 </a>
-            </div>
+            </div> --}}
             <div class="flex flex-row flex-wrap gap-y-8 border border-gray rounded-sm shadow-lg p-4 my-16">
                 {{-- Sidebar --}}
                 <div class="md:w-1/2 lg:w-1/4">
