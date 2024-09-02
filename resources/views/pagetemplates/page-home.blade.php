@@ -333,30 +333,8 @@
                         <template x-for="(r, i) in reviews">
                             <div class="transition-all ease-in-out duration-1000 overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
                                 <div class="w-full h-96 m-3" :style="`min-width: ${itemWidth - 20}px`">
-                                    <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-start">
-                                        <img :src="r.photo_url" class="object-cover max-w-none" :alt="'review by ' + r.current_translation.data.reviewer">
-                                        {{-- <div @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
-                                        :class="{'overflow-hidden h-20 hover:text-pink bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div> --}}
-                                        {{-- <div class="flex w-full p-2 items-center">
-                                            <div>
-                                                <img src="/images/icons/double qoute left1.png" class="h-16" alt="">
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    <p class="font-franklin font-bold text-sm" x-text="r.current_translation.data.reviewer"></p>
-                                                </div>
-                                                <div class="flex flex-row">
-                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="px-4 max-h-52 md:h-52 overflow-y-scroll">
-                                            <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review"></p>
-                                        </div> --}}
+                                    <div class="relative bg-opacity-40 rounded-sm shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full overflow-hidden bg-lightgray flex justify-center items-center">
+                                        <img :src="r.photo_url" class="object-contain" :alt="'review by ' + r.current_translation.data.reviewer">
                                     </div>
                                 </div>
                             </div>
