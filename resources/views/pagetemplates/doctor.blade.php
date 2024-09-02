@@ -49,11 +49,11 @@
                     @endif
                 </div>
             </div>
-        </div>
-        <div>
-            @if (isset($instance->current_translation->data['body']))
-            <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
-            @endif
+            <div class="my-8">
+                @if (isset($instance->current_translation->data['body']))
+                <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
+                @endif
+            </div>
         </div>
         <x-footer/>
     </div>
