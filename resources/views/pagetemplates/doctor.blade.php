@@ -19,6 +19,7 @@
                             photo_url="{{$instance->photo_url}}"
                             designation="{{$instance->current_translation->data['designation']}}"
                             qualification="{{$instance->current_translation->data['qualification']}}"
+                            department="{{$instance->current_translation->data['department']}}"
                             slug="{{$instance->current_translation->slug}}"/>
                     </div>
                 </div>

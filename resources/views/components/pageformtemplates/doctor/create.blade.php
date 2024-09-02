@@ -31,6 +31,13 @@
     </div>
 </div>
 <div class="form-control">
+    <label class="label">
+        <span class="label-text">Body</span>
+    </label>
+    {{-- <textarea name="data[body]" class="textarea textarea-bordered h-24"></textarea> --}}
+    <x-inputs.content-builder key="data[body]" />
+</div>
+<div class="form-control">
     <label class="label" for="">Intro Video Link</label>
     <input name="data[video_link]" type="text" class="input input-bordered w-full" />
 </div>

@@ -52,6 +52,12 @@
         {{$instance->translations_array[$locale]['exp_summary'] ?? ''}}
     </textarea>
 </div>
+<div class="form-control">
+    <label class="label">
+        <span class="label-text">Body</span>
+    </label>
+    <x-inputs.content-builder key="data[body]" contentdata="{{$instance->translations_array[$locale]['body'] ?? ''}}"/>
+</div>
 <x-easyadmin::inputs.imageuploader
     :element="[
         'key' => 'photo',

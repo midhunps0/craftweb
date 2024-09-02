@@ -173,24 +173,21 @@
                          <a href="{{route('kochi.home')}}"  target="_blank">{{__('homecontent.kochi')}}</a> |
                          <a href="https://crafthospital.com/"  target="_blank">{{__('homecontent.perinthalmanna')}}</a>
                     </div>
-
-
                 </div>
                 <div class="mt-10 z-10">
-                    <p
-                        class="  lg:block text-sm italic text-pink  md:text-base xl:text-lg 2xl:text-xl font-normal text-center ">
+                    <p class="lg:block text-sm italic text-pink  md:text-base xl:text-lg 2xl:text-xl font-normal text-center ">
                         {!!__('homecontent.little_angel')!!}
                     </p>
                     <div x-data="{
-                        options: [],
-                        observer: null,
-                        intersecting: false,
-                        callback (entries, observer) {
-                            this.intersecting = entries[0].isIntersecting;
-                            if(this.intersecting) {
-                                $dispatch('animatecounts');
+                            options: [],
+                            observer: null,
+                            intersecting: false,
+                            callback (entries, observer) {
+                                this.intersecting = entries[0].isIntersecting;
+                                if(this.intersecting) {
+                                    $dispatch('animatecounts');
+                                }
                             }
-                          }
                         }"
                         x-init="
                         options = {
