@@ -50,6 +50,11 @@
                 </div>
             </div>
         </div>
+        <div>
+            @if (isset($instance->current_translation->data['body']))
+            <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
+            @endif
+        </div>
         <x-footer/>
     </div>
 </x-guest-layout>
