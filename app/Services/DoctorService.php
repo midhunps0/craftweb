@@ -5,6 +5,7 @@ use App\Models\Doctor;
 use App\Models\MetatagsList;
 use App\Models\Translation;
 use Exception;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
@@ -20,6 +21,7 @@ use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Support\Str;
+use Modules\Ynotz\Metatags\Helpers\MetatagHelper;
 
 class DoctorService implements ModelViewConnector {
     use IsModelViewConnector;
@@ -50,6 +52,8 @@ class DoctorService implements ModelViewConnector {
 
     public function getShowPageData($slug): ShowPageData
     {
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
         $item = Doctor::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug) {
                 $q->where('locale', App::currentLocale())
@@ -59,6 +63,16 @@ class DoctorService implements ModelViewConnector {
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
+        $title = $item->current_translation->data['metatags']['title'] ?? env('APP_NAME');
+
+        $description = $item->current_translation->data['metatags']['description'] ?? env('APP_NAME');
+
+        $this->setMetaTags(
+            $title,
+            $description,
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->current_translation->created_at)->toIso8601String(),
+            Carbon::createFromFormat('Y-m-d H:i:s', $item->current_translation->updated_at)->toIso8601String(),
+        );
         return new ShowPageData(
             Str::ucfirst($this->getModelShortName()),
             $item
@@ -444,6 +458,51 @@ class DoctorService implements ModelViewConnector {
             info($e->__toString());
             throw new Exception($e->__toString());
         }
+    }
+
+    private function setMetaTags(
+        $title,
+        $description,
+        $createdAt,
+        $updatedAt,
+    ){
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
+        $title = $title ?? env('APP_NAME');
+        MetatagHelper::setTitle($title);
+        MetatagHelper::addTag('title', $title);
+        MetatagHelper::addOgTag('locale', app()->currentLocale() == 'en' ? 'en_US' : 'ar_AE');
+        MetatagHelper::addOgTag('site_name', env('APP_NAME'));
+        MetatagHelper::addOgTag('type', 'article');
+        MetatagHelper::addOgTag('title', $title);
+
+        $description = config('meta_config.our-doctors')['description'];
+        $ogDescription = $description;
+        MetatagHelper::addTag('description', $description);
+        MetatagHelper::addTag('type', 'article');
+        MetatagHelper::addOgTag('description', $ogDescription);
+        MetatagHelper::addOgTag('type', 'article');
+
+        MetatagHelper::addTagByProps([
+            'property' => 'article:published_time',
+            'content' => $createdAt
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'article:modified_time',
+            'content' => $updatedAt
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:card',
+            'content' => 'summary_large_image'
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:title',
+            'content' => $title
+        ]);
+        MetatagHelper::addTagByProps([
+            'property' => 'twitter:description',
+            'content' => $description
+        ]);
     }
 }
 
