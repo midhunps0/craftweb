@@ -116,8 +116,7 @@ class ArticleService implements ModelViewConnector {
     ){
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
-        $title = 'Best IVF Specialist Doctor\'s in Kerala | India - Craft IVF
-        ';
+        $title = $title ?? config('meta_config.our-blogs.title');
         MetatagHelper::setTitle($title);
         MetatagHelper::addTag('title', $title);
         MetatagHelper::addOgTag('locale', app()->currentLocale() == 'en' ? 'en_US' : 'ar_AE');
