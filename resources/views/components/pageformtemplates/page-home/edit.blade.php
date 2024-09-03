@@ -147,15 +147,12 @@
     value="{{$instance->translations_array[$locale]['mail_subtext'] ?? ''}}" required />
 </div>
 
-
-
 <div>
     <label class="label" for="">Slug</label>
     <input name="slug"  class="input input-bordered w-full"
     value="{{$instance->getTranslation($locale)->slug ?? ''}}" required />
 </div>
-<x-pageformtemplates.metatags />
-
+<x-pageformtemplates.metatags :instance="$instance" locale="{{$locale}}"/>
 
 <!--
 

@@ -63,11 +63,11 @@ x-init="
         }, 500);
 
     }
-    {{-- @if(session()->get('title') != null)
+    @if(request()->session() != null)
     xtitle='{{addslashes(session()->get('title'))}}';
     @else
     xtitle='{{addslashes(config('app.name'))}}';
-    @endif --}}
+    @endif
     console.log('title')
     console.log(xtitle)
     setMetaHtml();
@@ -90,7 +90,9 @@ dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >
     <head>
+        {{-- {{dd(request()->session()->get('title'))}} --}}
         @if(request()->session() != null)
+        {{-- {{dd(request()->session()->get('title'), addslashes(request()->session()->get('title')))}} --}}
         <title>{{addslashes(request()->session()->get('title'))}}</title>
         @endif
         <meta charset="utf-8">
