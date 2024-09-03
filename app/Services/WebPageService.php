@@ -174,6 +174,8 @@ class WebPageService implements ModelViewConnector {
 
     public function getBlogData($locale)
     {
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
         $this->setMetaTags(
             config('meta_config.our-blogs')['title'],
             config('meta_config.our-blogs')['description'],
@@ -186,6 +188,8 @@ class WebPageService implements ModelViewConnector {
 
     public function getDoctorsData($locale)
     {
+        MetatagHelper::clearAllMeta();
+        MetatagHelper::clearTitle();
         $this->setMetaTags(
             config('meta_config.our-doctors')['title'],
             config('meta_config.our-doctors')['description'],
