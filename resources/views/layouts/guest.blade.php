@@ -90,7 +90,6 @@ dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >
     <head>
-        {{dd(request()->session()->get('title'))}}
         @if(request()->session() != null)
         <title>{{addslashes(request()->session()->get('title'))}}</title>
         @endif
