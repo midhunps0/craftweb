@@ -124,7 +124,7 @@ class ArticleService implements ModelViewConnector {
         MetatagHelper::addOgTag('type', 'article');
         MetatagHelper::addOgTag('title', $title);
 
-        $description = config('meta_config.our-doctors')['description'];
+        // $description = config('meta_config.our-doctors')['description'];
         $ogDescription = $description;
         MetatagHelper::addTag('description', $description);
         MetatagHelper::addTag('type', 'article');
