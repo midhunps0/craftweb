@@ -70,3 +70,4 @@
         'photo' => $instance->photo
     ]"/>
 <x-pageformtemplates.metatags :instance="$instance" locale="{{$locale}}"/>
+{{-- test --}}
