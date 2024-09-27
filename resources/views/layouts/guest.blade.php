@@ -124,6 +124,9 @@ lang="en"
         @endif
         <!--meta-->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        @if (request()->session()->get('canonical_url') != null)
+            <link rel="canonical" href="{{request()->session()->get('canonical_url')}}" />
+        @endif
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
