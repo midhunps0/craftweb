@@ -120,14 +120,14 @@ class SidebarService implements SidebarServiceInterface
                     ],
                 ]
             ],
-            // [
-            //     'type' => 'menu_item',
-            //     'title' => 'Menu Item Two',
-            //     'route' => 'home',
-            //     'route_params' => [],
-            //     'icon' => 'easyadmin::icons.plus',
-            //     'show' => $this->showRoles()
-            // ],
+            [
+                'type' => 'menu_item',
+                'title' => 'App Settings',
+                'route' => 'appsettings.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $this->showAppSettings()
+            ],
         ];
     }
 
@@ -146,6 +146,10 @@ class SidebarService implements SidebarServiceInterface
     private function showSettings()
     {
         return auth()->check();
+    }
+    private function showAppSettings()
+    {
+        return auth()->user()->hasPermissionTo('App Settings: Edit');
     }
 }
 ?>

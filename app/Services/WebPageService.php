@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
 use Modules\Ynotz\EasyAdmin\Traits\IsModelViewConnector;
@@ -70,12 +71,27 @@ class WebPageService implements ModelViewConnector {
             })
             ->get()->first();
         if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $defaultLocale = config('app_settings.default_locale');
+            $route = Route::currentRouteName();
+            if ($slug == 'home') {
+                $canonicalUrl = route('home');
+            } else {
+                $canonicalUrl = route($route, ['locale' => $defaultLocale, 'slug' => $slug]);
+            }
+            session()->put('canonical_url', $canonicalUrl);
             $item = WebPage::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug) {
                 $q->where('locale', config('app_settings.default_locale'))
                 ->where('slug', $slug);
             })
             ->get()->first();
+        } else {
+            $defaultLocale = config('app_settings.default_locale');
+            $route = Route::currentRouteName();
+            if ($slug == 'home') {
+                $canonicalUrl = route('home');
+            }
+            session()->put('canonical_url', $canonicalUrl);
         }
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
@@ -169,11 +185,21 @@ class WebPageService implements ModelViewConnector {
 
     public function getNewsData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         return News::paginate(30);
     }
 
     public function getBlogData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
         $this->setMetaTags(
@@ -188,6 +214,11 @@ class WebPageService implements ModelViewConnector {
 
     public function getDoctorsData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
         $this->setMetaTags(
@@ -216,7 +247,6 @@ class WebPageService implements ModelViewConnector {
         MetatagHelper::addOgTag('type', 'article');
         MetatagHelper::addOgTag('title', $title);
 
-        // $description = config('meta_config.our-doctors')['description'];
         $ogDescription = $description;
         MetatagHelper::addTag('description', $description);
         MetatagHelper::addTag('type', 'article');
@@ -252,6 +282,11 @@ class WebPageService implements ModelViewConnector {
 
     public function getReviewsData($locale, $page = 1)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         // return Review::paginate(perPage: 100, page: $page);
         return Review::orderBy(DB::raw('RAND(1234)'))
             ->paginate(perPage: 10, page: $page);

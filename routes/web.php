@@ -20,6 +20,7 @@ use Modules\Ynotz\AccessControl\Http\Controllers\RolesController;
 use Modules\Ynotz\AccessControl\Http\Controllers\UsersController;
 use Modules\Ynotz\AccessControl\Models\Permission;
 use Modules\Ynotz\AccessControl\Models\Role;
+use Modules\Ynotz\AppSettings\Http\Controllers\AppSettingsController;
 use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 
 /*
@@ -98,6 +99,10 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
     RouteHelper::getEasyRoutes('Doctor');
     RouteHelper::getEasyRoutes('News');
     RouteHelper::getEasyRoutes('HilightFeature');
+    RouteHelper::getEasyRoutes(
+        modelName:'AppSetting',
+        controller: AppSettingsController::class
+    );
 
     RouteHelper::getEasyRoutes(modelName: Role::class, controller: RolesController::class);
     RouteHelper::getEasyRoutes(modelName: Permission::class, controller: PermissionsController::class);

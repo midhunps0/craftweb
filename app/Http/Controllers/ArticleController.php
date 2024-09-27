@@ -46,6 +46,8 @@ class ArticleController extends SmartController
 
     public function show($locale, $slug)
     {
+        session()->remove('canonical_url');
+
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
 

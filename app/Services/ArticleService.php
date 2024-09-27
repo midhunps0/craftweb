@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
 use Modules\Ynotz\EasyAdmin\Traits\IsModelViewConnector;
@@ -64,12 +65,21 @@ class ArticleService implements ModelViewConnector {
             })
             ->get()->first();
         if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $defaultLocale = config('app_settings.default_locale');
+            $route = Route::currentRouteName();
+            $canonicalUrl = route($route, ['locale' => $defaultLocale, 'slug' => $slug]);
+            session()->put('canonical_url', $canonicalUrl);
+
             $item = Article::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug) {
                 $q->where('locale', config('app_settings.default_locale'))
                 ->where('slug', $slug);
             })
             ->get()->first();
+        } else {
+            $route = Route::currentRouteName();
+            $canonicalUrl = route($route, ['locale' => app()->currentLocale(), 'slug' => $slug]);
+            session()->put('canonical_url', $canonicalUrl);
         }
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");

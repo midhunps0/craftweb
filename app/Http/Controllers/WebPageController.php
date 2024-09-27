@@ -81,6 +81,7 @@ class WebPageController extends SmartController
 
     public function show($locale, $slug, $translationLink = null)
     {
+        session()->remove('canonical_url');
         if ($translationLink == null) {
             $tl = $locale == 'en' ? 'ar' : 'en';
             session(['translation_link' => route('webpages.guest.show', ['locale' => $tl, 'slug' => $slug])]);
@@ -106,6 +107,7 @@ class WebPageController extends SmartController
 
     public function news($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale ?? 'en';
         session(['translation_link' => route('news.loc', ['locale' => $locale])]);
         App::setlocale($locale);
@@ -120,6 +122,7 @@ class WebPageController extends SmartController
 
     public function blog($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale ?? 'en';
         $tl = $locale == 'en' ? 'ar' : 'en';
         session(['translation_link' => route('blog.loc', ['locale' => $tl])]);
@@ -135,6 +138,7 @@ class WebPageController extends SmartController
 
     public function doctors($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         $tl = $locale == 'en' ? 'ar' : 'en';
         session(['translation_link' => route('doctors.loc', ['locale' => $tl])]);
@@ -150,6 +154,7 @@ class WebPageController extends SmartController
 
     public function patientVideos($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         $tl = $locale == 'en' ? 'ar' : 'en';
         session(['translation_link' => route('videotestimonials.loc', ['locale' => $tl])]);
@@ -165,6 +170,7 @@ class WebPageController extends SmartController
 
     public function patientReviews($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         $tl = $locale == 'en' ? 'ar' : 'en';
         session(['translation_link' => route('patientreviews.loc', ['locale' => $tl])]);
@@ -180,12 +186,16 @@ class WebPageController extends SmartController
 
     public function contact($locale)
     {
+        session()->remove('canonical_url');
         App::setlocale($locale);
         return $this->show($locale,'contact-us');
     }
 
     public function contactAr()
     {
+        session()->remove('canonical_url');
+        $canonicalUrl = route('contact');
+        session()->put('canonical_url', $canonicalUrl);
         App::setlocale('ar');
         return $this->show('ar','contact-us');
     }
