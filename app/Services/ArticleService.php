@@ -104,9 +104,15 @@ class ArticleService implements ModelViewConnector {
             ->get();
         $allItems = [];
         foreach ($results as $i) {
+            // dd(json_decode($i->data)->title);
+            if (is_string(json_decode($i->data))) {
+                $title = json_decode(json_decode($i->data))->title;
+            } else {
+                $title = json_decode($i->data)->title;
+            }
             $allItems[] = [
                 'slug' => $i->slug,
-                'title' => (json_decode($i->data))->title
+                'title' => $title
             ];
         }
         return new ShowPageData(

@@ -90,6 +90,8 @@ class WebPageService implements ModelViewConnector {
             $route = Route::currentRouteName();
             if ($slug == 'home') {
                 $canonicalUrl = route('home');
+            } else {
+                $canonicalUrl = route($route, ['locale' => $defaultLocale, 'slug' => $slug]);
             }
             session()->put('canonical_url', $canonicalUrl);
         }
