@@ -231,7 +231,7 @@ class UserService implements ModelViewConnector {
     {
         return [
             'name' => ['required', 'string'],
-            'username' => ['required', 'string'],
+            // 'username' => ['required', 'string'],
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
             'roles.*' => ['required'],
@@ -248,8 +248,8 @@ class UserService implements ModelViewConnector {
 
     public function processBeforeStore(array $data): array
     {
-        $data['district_id'] = $data['district'];
-        unset($data['district']);
+        // $data['district_id'] = $data['district'];
+        // unset($data['district']);
         $data['password'] = Hash::make($data['password']);
 
         return $data;
