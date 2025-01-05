@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\AccessControl\Http\Controllers\PermissionsController;
 use Modules\Ynotz\AccessControl\Http\Controllers\RolesController;
-use Modules\Ynotz\AccessControl\Http\Controllers\UsersController;
+use App\Http\Controllers\UsersController;
 use Modules\Ynotz\AccessControl\Models\Permission;
 use Modules\Ynotz\AccessControl\Models\Role;
 use Modules\Ynotz\AppSettings\Http\Controllers\AppSettingsController;
