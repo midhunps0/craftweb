@@ -58,10 +58,10 @@
                                         url: '/images/home/male-infertility.webp',
                                         alt: 'Male infertility treatment'
                                     },
-                                    {
+                                    {{-- {
                                         url: '/images/home/santhwanam.webp',
                                         alt: 'Santhanam package'
-                                    },
+                                    }, --}}
                                     {
                                         url: '/images/home/at_kochi.webp',
                                         alt: 'Now at Cochin'
