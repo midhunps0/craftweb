@@ -43,6 +43,10 @@
                                 currentIndex: 0,
                                 images: [
                                     {
+                                        url: '/images/home/craft_nova.webp',
+                                        alt: 'Craft - Nova | 2 Legacies United'
+                                    },
+                                    {
                                         url: '/images/home/motherhood.webp',
                                         alt: 'Motherhood with craft'
                                     },
