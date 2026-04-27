@@ -28,7 +28,7 @@
                         </p>
                         <div class="flex  mt-2 flex-row items-center space-x-1">
                             <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="phone">
-                            <p class="text-black text-sm  md:text-base xl:text-lg 2xl:text-xl font-light">+91 8590462565
+                            <p class="text-black text-sm  md:text-base xl:text-lg 2xl:text-xl font-light">+91 8590462565, 9778414057
                             </p>
                         </div>
                         <p class="text-sm text-darkpink  md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
@@ -169,7 +169,7 @@
                         </p>
                         <div class="flex justify-center  mt-2 flex-row items-center space-x-1">
                             <img src="/images/icons/Phone.png" class="h-3  2xl:h-5 "alt="phone number">
-                            <p class="text-black text-sm  md:text-base xl:text-lg 2xl:text-xl font-light">+91 8590462565
+                            <p class="text-black text-sm  md:text-base xl:text-lg 2xl:text-xl font-light">+91 8590462565, 9778414057
                             </p>
                         </div>
                         <p class="text-sm text-darkpink text-center md:text-base font-normal xl:text-lg  mt-2 md:mt-4">
