@@ -15,7 +15,7 @@
                 <div class="flex justify-end items-center gap-x-3 lg:py-3 text-[0.4rem]">
                     <div class="flex flex-row  items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/Phone.png" class="h-3 rtl:-rotate-90  "alt="">
-                        <p class= "lg:text-sm 2xl:text-base font-light font-questrial">+91 8590462565, 9778414057</p>
+                        <p class= "lg:text-sm 2xl:text-base font-light font-questrial">+91 8590462565</p>
                     </div>
                     <div class="flex flex-row items-center space-x-1 rtl:space-x-reverse ">
                         <img src="/images/icons/medicine logo.png" class="h-3 2xl:h-5"alt="">
